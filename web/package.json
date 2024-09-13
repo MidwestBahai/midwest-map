@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@loaders.gl/core": "^4.2.3",
+    "@loaders.gl/shapefile": "^4.2.3",
+    "@tanstack/react-query": "^5.56.2",
     "@types/mapbox-gl": "^3.4.0",
     "mapbox-gl": "^3.6.0",
     "next": "15.0.0-rc.0",

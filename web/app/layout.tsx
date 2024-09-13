@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { PT_Sans } from "next/font/google"
 import "./globals.css"
 import React from "react"
-import ReactMapGl, {ViewState as MapViewState} from "react-map-gl"
 
 const ptSans = PT_Sans({
     weight: ['400', '700'],
@@ -19,11 +18,17 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{
     children: React.ReactNode
 }>) {
+    // Next adds the rest of the head. I'd prefer to use the <Head> component
+    // for this stylesheet -- and move it to the map itself -- but it wasn't working:
+    // https://nextjs.org/docs/pages/api-reference/components/head
     return (
         <html lang="en">
-        <body className={`${ptSans.className} w-screen h-screen`}>
-        {children}
-        </body>
+            <head>
+                <link href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" rel="stylesheet"/>
+            </head>
+            <body className={`${ptSans.className} w-screen h-screen`}>
+                {children}
+            </body>
         </html>
     )
 }
