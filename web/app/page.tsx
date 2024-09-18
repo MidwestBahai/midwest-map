@@ -1,4 +1,3 @@
-import { metadata } from "./layout"
 import { ClientMain } from "./ClientMain"
 
 export default function Home() {
