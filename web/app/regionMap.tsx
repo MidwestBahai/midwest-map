@@ -11,7 +11,9 @@ import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
 import { ClusterLayers } from "./clusterLayers"
 
-export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
+export const RegionMap = (
+    {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
+) => {
     const windowSize = useWindowSize()
 
     const { isPending, error, data } = useShapefile(
@@ -57,7 +59,7 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                 {data?.features?.map((feature, index) => (
                     <ClusterLayers key={index} data={feature} index={index} hoverFeature={hoverFeature}/>
                 ))}
-                {hoverFeature && (
+                {hoverFeature && debug && (
                     <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>
                         <p>{JSON.stringify(hoverFeature.properties, undefined, 1)}</p>
                     </div>

@@ -48,7 +48,7 @@ const makeShapefileQuery = (filename: string) => async (): Promise<ValidatedShap
     const unvalidatedResult = await load<Loader<ShapefileOutput>>(`/shapefiles/${filename}`, ShapefileLoader)
     try {
         const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
-        console.log({unvalidatedResult, features})
+        // console.log({unvalidatedResult, features})
         return {...unvalidatedResult, features}
     } catch (error) {
         console.error({message: "Error parsing geoJSON features.", error})
