@@ -1,15 +1,15 @@
 "use client"
 
-import Map, { Layer, Source } from "react-map-gl"
+import Map from "react-map-gl"
 import React, { useCallback, useEffect } from "react"
 import { useWindowSize } from "./useWindowSize"
 import { initialBounds } from "./initialMapBounds"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
-import { useAllClustersShapefile, useShapefile } from "./useAllClustersShapefile"
+import { useShapefile } from "./useAllClustersShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
-import { clusterColor } from "./clusterColor"
+import { ClusterLayers } from "./clusterLayers"
 
 export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
     const windowSize = useWindowSize()
@@ -55,27 +55,7 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                 onMouseMove={onHover}
             >
                 {data?.features?.map((feature, index) => (
-                    <Source type="geojson" data={feature} key={index}>
-                        <Layer
-                            type="fill"
-                            paint={{
-                                "fill-color": clusterColor(feature.properties),
-                            }}
-                            id={`cluster-${index}`}
-                        />
-                        <Layer type="symbol" layout={{
-                            "text-field": "{Cluster}\n{M}",
-                            "text-size": 13,
-                            "text-anchor": "center",
-                        }} />
-                        <Layer
-                            type="line"
-                            paint={{
-                                "line-color": clusterColor(feature.properties, feature?.properties?.Cluster === hoverFeature?.properties?.Cluster ? 180 : 20),
-                                "line-width": 2,
-                            }}
-                        />
-                    </Source>
+                    <ClusterLayers key={index} data={feature} index={index} hoverFeature={hoverFeature}/>
                 ))}
                 {hoverFeature && (
                     <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>

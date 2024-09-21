@@ -28,10 +28,10 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
             return `oklab(from hsl(${baseHue}, 100%, 50%) l a b / 0.3)`
         case "m0":
             return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.1) a b / 0.3)`
-        case "e":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
         case "n":
             return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
+        case "e":
+            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.3) a b / 0.3)`
         default:
             return `hsl(0 100% 50% / 0.2)`
     }
