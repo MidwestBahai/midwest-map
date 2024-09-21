@@ -6,7 +6,7 @@ import { useWindowSize } from "./useWindowSize"
 import { initialBounds } from "./initialMapBounds"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
-import { useAllClustersShapefile } from "./useAllClustersShapefile"
+import { useAllClustersShapefile, useShapefile } from "./useAllClustersShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
 import { clusterColor } from "./clusterColor"
@@ -14,7 +14,10 @@ import { clusterColor } from "./clusterColor"
 export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
     const windowSize = useWindowSize()
 
-    const { isPending, error, data } = useAllClustersShapefile()
+    const { isPending, error, data } = useShapefile(
+        // "IN_clusters.shp"
+        "all-clusters.shp"
+    )
 
     const [ hoverFeature, setHoverFeature ] = React.useState<GeoJSONFeature | undefined>(undefined)
 
@@ -57,8 +60,6 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                             type="fill"
                             paint={{
                                 "fill-color": clusterColor(feature.properties),
-                                // "line-color": (feature === hoverFeature) ? "black" : undefined,
-                                // "line-width": (feature === hoverFeature) ? 3: 0,
                             }}
                             id={`cluster-${index}`}
                         />
@@ -67,6 +68,13 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                             "text-size": 13,
                             "text-anchor": "center",
                         }} />
+                        <Layer
+                            type="line"
+                            paint={{
+                                "line-color": clusterColor(feature.properties, feature?.properties?.Cluster === hoverFeature?.properties?.Cluster ? 180 : 20),
+                                "line-width": 2,
+                            }}
+                        />
                     </Source>
                 ))}
                 {hoverFeature && (

@@ -33,13 +33,13 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
         case "n":
             return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
         default:
-            return "#f00"
+            return `hsl(0 100% 50% / 0.2)`
     }
 }
 
-const colorCache: Record<string, string[]> = {}
+const colorCache: Record<string, Uint8ClampedArray[]> = {}
 
-const milestoneColor = (milestone: string, baseHue: number = 45) => {
+const milestoneRgba = (milestone: string, baseHue: number): Uint8ClampedArray => {
     if (colorCache[milestone]?.[baseHue]) return colorCache[milestone][baseHue]
     const lch = milestoneColorInner(milestone, baseHue)
     // Use a canvas to convert the color to RGBA
@@ -48,18 +48,22 @@ const milestoneColor = (milestone: string, baseHue: number = 45) => {
     canvas.width = 1
     canvas.height = 1
     const ctx = canvas.getContext("2d", {willReadFrequently: true})
-    if (!ctx) return "#ff0"
+    if (!ctx) return [255, 0, 0, 0] as unknown as Uint8ClampedArray
     ctx.fillStyle = lch
     ctx.fillRect(0, 0, 1, 1)
     const rgbaValues = ctx.getImageData(0, 0, 1, 1).data
-    const rgbaString = `rgba(${rgbaValues[0]}, ${rgbaValues[1]}, ${rgbaValues[2]}, ${rgbaValues[3] / 255})`
     if (!colorCache[milestone]) colorCache[milestone] = []
-    colorCache[milestone][baseHue] = rgbaString
-    return rgbaString
+    colorCache[milestone][baseHue] = rgbaValues
+    return rgbaValues
 }
 
-export const clusterColor = (properties: GeoJSONFeature["properties"]) => {
+const milestoneColor = (milestone: string, baseHue: number, alpha?: number) =>
+    rgbaString(milestoneRgba(milestone, baseHue), alpha)
+
+export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) => `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
+
+export const clusterColor = (properties: GeoJSONFeature["properties"], alpha?: number) => {
     const milestone = `${properties?.["M"] ?? "Unknown"}`
     const baseHue = clusterBaseHue(properties)
-    return milestoneColor(milestone, baseHue)
+    return milestoneColor(milestone, baseHue, alpha)
 }
