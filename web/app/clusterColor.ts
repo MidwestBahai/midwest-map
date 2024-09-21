@@ -1,5 +1,23 @@
 import { GeoJSONFeature } from "zod-geojson"
 
+const clusterBaseHue = (properties: GeoJSONFeature["properties"]) => {
+    const group = properties?.["Group"] ?? "Unknown"
+    switch (group) {
+        case "AA":
+            return 200 // blue
+        case "GR":
+            return 30 // orange
+        case "INDY":
+            return 330 // pink
+        case "CLV":
+            return 100 // green
+        case "CBUS":
+            return 270 // purplish
+        default:
+            return 0
+    }
+}
+
 const milestoneColorInner = (milestone: string, baseHue: number) => {
     switch (milestone.toLowerCase()) {
         case "m3":
@@ -18,7 +36,9 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
             return "#f00"
     }
 }
+
 const colorCache: Record<string, string[]> = {}
+
 const milestoneColor = (milestone: string, baseHue: number = 45) => {
     if (colorCache[milestone]?.[baseHue]) return colorCache[milestone][baseHue]
     const lch = milestoneColorInner(milestone, baseHue)
@@ -42,22 +62,4 @@ export const clusterColor = (properties: GeoJSONFeature["properties"]) => {
     const milestone = `${properties?.["M"] ?? "Unknown"}`
     const baseHue = clusterBaseHue(properties)
     return milestoneColor(milestone, baseHue)
-}
-
-const clusterBaseHue = (properties: GeoJSONFeature["properties"]) => {
-    const group = properties?.["Group"] ?? "Unknown"
-    switch (group) {
-        case "AA":
-            return 45
-        case "GR":
-            return 105
-        case "INDY":
-            return 165
-        case "CLV":
-            return 225
-        case "CBUS":
-            return 285
-        default:
-            return 0
-    }
 }

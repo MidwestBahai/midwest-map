@@ -57,13 +57,11 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                             type="fill"
                             paint={{
                                 "fill-color": clusterColor(feature.properties),
-                                // "fill-color": (feature === hoverFeature) ? "#fff" : randomColor(),
                                 // "line-color": (feature === hoverFeature) ? "black" : undefined,
                                 // "line-width": (feature === hoverFeature) ? 3: 0,
                             }}
                             id={`cluster-${index}`}
-                        >
-                        </Layer>
+                        />
                         <Layer type="symbol" layout={{
                             "text-field": "{Cluster}\n{M}",
                             "text-size": 13,

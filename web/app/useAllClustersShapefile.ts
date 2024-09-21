@@ -44,8 +44,8 @@ interface ValidatedShapefile extends ShapefileOutput {
     parseError?: string
 }
 
-const clustersQueryFunction = async (): Promise<ValidatedShapefile> => {
-    const unvalidatedResult = await load<Loader<ShapefileOutput>>('/shapefiles/all-clusters.shp', ShapefileLoader)
+const makeShapefileQuery = (filename: string) => async (): Promise<ValidatedShapefile> => {
+    const unvalidatedResult = await load<Loader<ShapefileOutput>>(`/shapefiles/${filename}`, ShapefileLoader)
     try {
         const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
         console.log({unvalidatedResult, features})
@@ -56,8 +56,11 @@ const clustersQueryFunction = async (): Promise<ValidatedShapefile> => {
     }
 }
 
-export const useAllClustersShapefile = (): UseQueryResult<ValidatedShapefile> =>
+export const useShapefile = (shapefile: string): UseQueryResult<ValidatedShapefile> =>
     useQuery<LoaderReturnType<Loader<ValidatedShapefile>>>({
-        queryKey: ['all-clusters.shp'],
-        queryFn: clustersQueryFunction,
+        queryKey: [shapefile],
+        queryFn: makeShapefileQuery(shapefile),
     })
+
+export const useAllClustersShapefile = (): UseQueryResult<ValidatedShapefile> =>
+    useShapefile('all-clusters.shp')
