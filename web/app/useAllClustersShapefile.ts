@@ -48,7 +48,7 @@ const clustersQueryFunction = async (): Promise<ValidatedShapefile> => {
     const unvalidatedResult = await load<Loader<ShapefileOutput>>('/shapefiles/all-clusters.shp', ShapefileLoader)
     try {
         const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
-        // console.log({unvalidatedResult, features})
+        console.log({unvalidatedResult, features})
         return {...unvalidatedResult, features}
     } catch (error) {
         console.error({message: "Error parsing geoJSON features.", error})

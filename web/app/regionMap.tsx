@@ -17,6 +17,50 @@ const clusterLayerStyle: Partial<FillLayerSpecification> = { // LayerProps = {
     }
 }
 
+const milestoneColorInner = (milestone: string, baseHue = 45) => {
+    switch (milestone.toLowerCase()) {
+        case "m3": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l + 0.2) a b / 0.3)`
+        case "m2": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l + 0.1) a b / 0.3)`
+        case "m1": return `oklab(from hsl(${baseHue}, 100%, 50%) l a b / 0.3)`
+        case "m0": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.1) a b / 0.3)`
+        case "e": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
+        case "n": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
+
+        // case "m3": return `rgba(255, 240, 180, .3)`
+        // case "m2": return `rgba(220, 210, 170, .3)`
+        // case "m1": return `rgba(180, 190, 160, .3)`
+        // case "m0": return `rgba(160, 170, 150, .3)`
+        // case "n": return `rgba(170, 160, 140, .3)`
+        // case "e": return `rgba(160, 150, 130, .3)`
+
+        // case "m3": return `hsl(${baseHue} 100% 80% / .3)`
+        // case "m2": return `hsl(${baseHue} 80% 60% / .3)`
+        // case "m1": return `hsl(${baseHue} 60% 50% / .3)`
+        // case "m0": return `hsl(${baseHue} 50% 40% / .3)`
+        // case "n": return `hsl(${baseHue} 50% 40% / .3)`
+        // case "e": return `hsl(${baseHue} 50% 40% / .3)`
+
+        default: return "#f00"
+    }
+}
+
+const milestoneColor = (milestone: string, baseHue: number = 45) => {
+    const lch = milestoneColorInner(milestone, baseHue)
+    // Use a canvas to convert the color to RGBA
+    // From https://stackoverflow.com/questions/63929820/converting-css-lch-to-rgb
+    const canvas = document.createElement("canvas")
+    canvas.width = 1
+    canvas.height = 1
+    const ctx = canvas.getContext("2d", {willReadFrequently: true})
+    if (!ctx) return "#ff0"
+    ctx.fillStyle = lch
+    ctx.fillRect(0, 0, 1, 1)
+    const rgbaValues = ctx.getImageData(0, 0, 1, 1).data
+    const rgbaString = `rgba(${rgbaValues[0]}, ${rgbaValues[1]}, ${rgbaValues[2]}, ${rgbaValues[3] / 255})`
+    console.log({milestone, lch, rgbaString})
+    return rgbaString
+}
+
 const randomColor = () => {
     const r = Math.random()*255
     const g = Math.random()*(255 - r)
@@ -69,12 +113,19 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                         <Layer
                             type="fill"
                             paint={{
-                                "fill-color": (feature === hoverFeature) ? "#fff" : randomColor(),
+                                "fill-color": milestoneColor(`${feature?.properties?.M}` || ""),
+                                // "fill-color": (feature === hoverFeature) ? "#fff" : randomColor(),
                                 // "line-color": (feature === hoverFeature) ? "black" : undefined,
                                 // "line-width": (feature === hoverFeature) ? 3: 0,
                             }}
                             id={`cluster-${index}`}
-                        />
+                        >
+                        </Layer>
+                        <Layer type="symbol" layout={{
+                            "text-field": "{Cluster}\n{M}",
+                            "text-size": 16,
+                            "text-anchor": "center",
+                        }} />
                     </Source>
                 ))}
                 {hoverFeature && (
