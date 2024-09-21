@@ -5,17 +5,10 @@ import React, { useCallback, useEffect } from "react"
 import { useWindowSize } from "./useWindowSize"
 import { initialBounds } from "./initialMapBounds"
 import Head from "next/head"
-import { FillLayerSpecification, MapMouseEvent } from "mapbox-gl"
+import { MapMouseEvent } from "mapbox-gl"
 import { useAllClustersShapefile } from "./useAllClustersShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
-
-const clusterLayerStyle: Partial<FillLayerSpecification> = { // LayerProps = {
-    type: "fill",
-    paint: {
-        "fill-color": "rgba(200, 200, 255, .3)",
-    }
-}
 
 const milestoneColorInner = (milestone: string, baseHue: number) => {
     switch (milestone.toLowerCase()) {
@@ -25,21 +18,6 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
         case "m0": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.1) a b / 0.3)`
         case "e": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
         case "n": return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
-
-        // case "m3": return `rgba(255, 240, 180, .3)`
-        // case "m2": return `rgba(220, 210, 170, .3)`
-        // case "m1": return `rgba(180, 190, 160, .3)`
-        // case "m0": return `rgba(160, 170, 150, .3)`
-        // case "n": return `rgba(170, 160, 140, .3)`
-        // case "e": return `rgba(160, 150, 130, .3)`
-
-        // case "m3": return `hsl(${baseHue} 100% 80% / .3)`
-        // case "m2": return `hsl(${baseHue} 80% 60% / .3)`
-        // case "m1": return `hsl(${baseHue} 60% 50% / .3)`
-        // case "m0": return `hsl(${baseHue} 50% 40% / .3)`
-        // case "n": return `hsl(${baseHue} 50% 40% / .3)`
-        // case "e": return `hsl(${baseHue} 50% 40% / .3)`
-
         default: return "#f00"
     }
 }
@@ -65,11 +43,22 @@ const milestoneColor = (milestone: string, baseHue: number = 45) => {
     return rgbaString
 }
 
-const randomColor = () => {
-    const r = Math.random()*255
-    const g = Math.random()*(255 - r)
-    const b = Math.random()*(255 - r - g)
-    return `rgba(${r}, ${g}, ${b}, .3)`
+const clusterColor = (properties: GeoJSONFeature["properties"]) => {
+    const milestone = `${properties?.["M"] ?? "Unknown"}`
+    const baseHue = clusterBaseHue(properties)
+    return milestoneColor(milestone, baseHue)
+}
+
+const clusterBaseHue = (properties: GeoJSONFeature["properties"]) => {
+    const group = properties?.["Group"] ?? "Unknown"
+    switch (group) {
+        case "AA": return 45
+        case "GR": return 105
+        case "INDY": return 165
+        case "CLV": return 225
+        case "CBUS": return 285
+        default: return 0
+    }
 }
 
 export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
@@ -117,7 +106,7 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                         <Layer
                             type="fill"
                             paint={{
-                                "fill-color": milestoneColor(`${feature?.properties?.M}` || ""),
+                                "fill-color": clusterColor(feature.properties),
                                 // "fill-color": (feature === hoverFeature) ? "#fff" : randomColor(),
                                 // "line-color": (feature === hoverFeature) ? "black" : undefined,
                                 // "line-width": (feature === hoverFeature) ? 3: 0,
@@ -127,7 +116,7 @@ export const RegionMap = ({mapboxAccessToken}: {mapboxAccessToken: string}) => {
                         </Layer>
                         <Layer type="symbol" layout={{
                             "text-field": "{Cluster}\n{M}",
-                            "text-size": 16,
+                            "text-size": 13,
                             "text-anchor": "center",
                         }} />
                     </Source>
