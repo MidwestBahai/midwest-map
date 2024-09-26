@@ -1,6 +1,6 @@
 import { GeoJSONFeature } from "zod-geojson"
 import { Layer, Source } from "react-map-gl"
-import { clusterColor } from "./clusterColor"
+import { clusterColor, clusterLabelColor } from "./clusterColor"
 import React from "react"
 
 export const ClusterLayers = (props: {
@@ -19,11 +19,17 @@ export const ClusterLayers = (props: {
                 />
             )}
             {props.data.properties && (
-                <Layer type="symbol" layout={{
-                    "text-field": "{Cluster}\n{M}",
-                    "text-size": 13,
-                    "text-anchor": "center",
-                }}/>
+                <Layer
+                    type="symbol"
+                    layout={{
+                        "text-field": "{Cluster}\n{M}",
+                        "text-size": 13,
+                        "text-anchor": "center",
+                    }}
+                   paint={{
+                       "text-color": clusterLabelColor(props.data.properties),
+                   }}
+                />
             )}
             {hovered && (
                 <Layer

@@ -56,6 +56,7 @@ export const RegionMap = (
                 // mapStyle="mapbox://styles/mapbox/streets-v12"
                 // mapStyle="mapbox://styles/mapbox/navigation-day-v1"
                 mapStyle="mapbox://styles/mapbox/light-v11"
+                // mapStyle="mapbox://styles/mapbox/dark-v11"
                 interactiveLayerIds={data?.features?.map((_, index) => `cluster-${index}`)}
                 onMouseMove={onHover}
             >

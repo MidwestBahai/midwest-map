@@ -79,7 +79,24 @@ const milestoneColor = (milestone: string, baseHue: number, alpha?: number) =>
 export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) => `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
 
 export const clusterColor = (properties: GeoJSONFeature["properties"], alpha?: number) => {
-    const milestone = `${properties?.["M"] ?? "Unknown"}`
     const baseHue = clusterBaseHue(properties)
-    return milestoneColor(milestone, baseHue, alpha)
+    return milestoneColor(milestone(properties), baseHue, alpha)
+}
+
+const milestone = (properties: GeoJSONFeature["properties"]) => `${properties?.["M"] ?? "Unknown"}`
+
+export const clusterLabelColor = (properties: GeoJSONFeature["properties"]) => {
+    switch (milestone(properties).toLowerCase()) {
+        case "m3r":
+        case "m2r":
+            return "white"
+        case "m3":
+        case "m2":
+        case "m1":
+        case "e":
+        case "m0":
+        case "n":
+        default:
+            return "black"
+    }
 }
