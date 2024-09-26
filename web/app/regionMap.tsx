@@ -18,7 +18,7 @@ export const RegionMap = (
 
     const { isPending, error, data } = useShapefile(
         // "IN_clusters.shp"
-        "v6.shp"
+        "clusters-2022.shp"
         // "counties.shp"
     )
 
