@@ -17,8 +17,8 @@ export const RegionMap = (
     const windowSize = useWindowSize()
 
     const { isPending, error, data } = useShapefile(
-        // "IN_clusters.shp"
-        "clusters-2022.shp"
+        // "clusters-2022.shp"
+        "clusters-2024.shp"
         // "counties.shp"
     )
 
@@ -53,7 +53,9 @@ export const RegionMap = (
                 mapboxAccessToken={mapboxAccessToken}
                 initialViewState={initialBounds(windowSize)}
                 style={{width: '100vw', height: '100vh'}}
-                mapStyle="mapbox://styles/mapbox/streets-v11"
+                // mapStyle="mapbox://styles/mapbox/streets-v12"
+                // mapStyle="mapbox://styles/mapbox/navigation-day-v1"
+                mapStyle="mapbox://styles/mapbox/light-v11"
                 interactiveLayerIds={data?.features?.map((_, index) => `cluster-${index}`)}
                 onMouseMove={onHover}
             >

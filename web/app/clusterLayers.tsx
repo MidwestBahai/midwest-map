@@ -25,13 +25,15 @@ export const ClusterLayers = (props: {
                     "text-anchor": "center",
                 }}/>
             )}
-            <Layer
-                type="line"
-                paint={{
-                    "line-color": clusterColor(props.data.properties, hovered ? 180 : 20),
-                    "line-width": 2,
-                }}
-            />
+            {hovered && (
+                <Layer
+                    type="line"
+                    paint={{
+                        "line-color": clusterColor(props.data.properties, hovered ? 180 : 20),
+                        "line-width": 3,
+                    }}
+                />
+            )}
         </Source>
     )
 }

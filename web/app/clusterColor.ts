@@ -4,37 +4,53 @@ const clusterBaseHue = (properties: GeoJSONFeature["properties"]) => {
     const group = properties?.["Group"] ?? "Unknown"
     switch (group) {
         case "AA":
-            return 200 // blue
+            return 200 // aqua
         case "GR":
-            return 30 // orange
+            return 80 // orange
         case "INDY":
-            return 330 // pink
+            return 350 // red
         case "CLV":
-            return 100 // green
+            return 140 // green
         case "CBUS":
-            return 270 // purplish
+            return 280 // purplish
         default:
             return 0
     }
 }
 
+const alpha = .5
+
 const milestoneColorInner = (milestone: string, baseHue: number) => {
     switch (milestone.toLowerCase()) {
+        case "m3r":
+        case "m2r":
+            // alpha: make it less transparent
+            return `oklch(.2 .35 ${baseHue} / ${1 - .6 * (1 - alpha)})`
         case "m3":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l + 0.2) a b / 0.3)`
+            return `oklch(.25 .35 ${baseHue} / ${alpha})`
         case "m2":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l + 0.1) a b / 0.3)`
+            return `oklch(.4 .3 ${baseHue} / ${alpha})`
         case "m1":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) l a b / 0.3)`
-        case "m0":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.1) a b / 0.3)`
-        case "n":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.2) a b / 0.3)`
+            return `oklch(.7 .25 ${baseHue} / ${alpha})`
         case "e":
-            return `oklab(from hsl(${baseHue}, 100%, 50%) calc(l - 0.3) a b / 0.3)`
+        case "m0":
+            return `oklch(.8 .2 ${baseHue} / ${alpha})`
+        case "n":
+            return `oklch(.9 .07 ${baseHue} / ${alpha})`
         default:
             return `hsl(0 100% 50% / 0.2)`
     }
+}
+
+const milestoneLabels = {
+    m3: "M3",
+    m3r: "M3, Reservoir",
+    m2r: "M2, Reservoir",
+    m2: "M2",
+    m1: "M1",
+    m0: "Emerging",
+    e: "Emerging",
+    n: "No Program of Growth",
 }
 
 const colorCache: Record<string, Uint8ClampedArray[]> = {}
