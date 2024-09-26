@@ -8,19 +8,23 @@ export const ClusterLayers = (props: {
 }) => {
     const hovered = props.data?.properties?.Cluster === props.hoverFeature?.properties?.Cluster
     return (
-            <Source type="geojson" data={props.data}>
-            <Layer
-                type="fill"
-                paint={{
-                    "fill-color": clusterColor(props.data.properties),
-                }}
-                id={`cluster-${props.index}`}
-            />
-            <Layer type="symbol" layout={{
-                "text-field": "{Cluster}\n{M}",
-                "text-size": 13,
-                "text-anchor": "center",
-            }}/>
+        <Source type="geojson" data={props.data}>
+            {props.data.properties && (
+                <Layer
+                    type="fill"
+                    paint={{
+                        "fill-color": clusterColor(props.data.properties),
+                    }}
+                    id={`cluster-${props.index}`}
+                />
+            )}
+            {props.data.properties && (
+                <Layer type="symbol" layout={{
+                    "text-field": "{Cluster}\n{M}",
+                    "text-size": 13,
+                    "text-anchor": "center",
+                }}/>
+            )}
             <Layer
                 type="line"
                 paint={{

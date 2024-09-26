@@ -61,6 +61,3 @@ export const useShapefile = (shapefile: string): UseQueryResult<ValidatedShapefi
         queryKey: [shapefile],
         queryFn: makeShapefileQuery(shapefile),
     })
-
-export const useAllClustersShapefile = (): UseQueryResult<ValidatedShapefile> =>
-    useShapefile('all-clusters.shp')

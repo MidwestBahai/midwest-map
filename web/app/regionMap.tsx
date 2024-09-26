@@ -6,7 +6,7 @@ import { useWindowSize } from "./useWindowSize"
 import { initialBounds } from "./initialMapBounds"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
-import { useShapefile } from "./useAllClustersShapefile"
+import { useShapefile } from "./useShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
 import { ClusterLayers } from "./clusterLayers"
@@ -18,7 +18,8 @@ export const RegionMap = (
 
     const { isPending, error, data } = useShapefile(
         // "IN_clusters.shp"
-        "all-clusters.shp"
+        "v6.shp"
+        // "counties.shp"
     )
 
     const [ hoverFeature, setHoverFeature ] = React.useState<GeoJSONFeature | undefined>(undefined)
