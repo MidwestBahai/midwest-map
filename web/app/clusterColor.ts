@@ -34,7 +34,7 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
             return `oklch(.7 .25 ${baseHue} / ${alpha})`
         case "e":
         case "m0":
-            return `oklch(.8 .2 ${baseHue} / ${alpha})`
+            return `oklch(.8 .12 ${baseHue} / ${alpha})`
         case "n":
             return `oklch(.9 .07 ${baseHue} / ${alpha})`
         default:
