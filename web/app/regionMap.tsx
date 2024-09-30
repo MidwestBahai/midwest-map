@@ -1,6 +1,6 @@
 "use client"
 
-import Map from "react-map-gl"
+import Map, { MapRef } from "react-map-gl"
 import React, { useCallback, useEffect } from "react"
 import { useWindowSize } from "./useWindowSize"
 import { initialBounds } from "./initialMapBounds"
@@ -10,6 +10,7 @@ import { useShapefile } from "./useShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
 import { ClusterLayers } from "./clusterLayers"
+import { MapContext } from "./mapContext"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
@@ -42,6 +43,14 @@ export const RegionMap = (
             console.error({isPending, error})
     }, [isPending, error])
 
+    const mapRef = React.useRef<MapRef>(null)
+
+    useEffect(() => {
+        const map = mapRef.current?.getMap()
+        if (debug && map && !map.showCollisionBoxes)
+            map.showCollisionBoxes = true
+    })
+
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
     // See https://github.com/visgl/react-map-gl/issues/568
     return (
@@ -53,22 +62,27 @@ export const RegionMap = (
                 mapboxAccessToken={mapboxAccessToken}
                 initialViewState={initialBounds(windowSize)}
                 style={{width: '100vw', height: '100vh'}}
-                // mapStyle="mapbox://styles/mapbox/streets-v12"
                 // mapStyle="mapbox://styles/mapbox/navigation-day-v1"
+                // mapStyle="mapbox://styles/mapbox/streets-v11"
+                // mapStyle="mapbox://styles/mapbox/streets-v12"
                 mapStyle="mapbox://styles/mapbox/light-v11"
                 // mapStyle="mapbox://styles/mapbox/dark-v11"
                 interactiveLayerIds={data?.features?.map((_, index) => `cluster-${index}`)}
                 onMouseMove={onHover}
+                ref={mapRef}
             >
-                {data?.features?.map((feature, index) => (
-                    <ClusterLayers key={index} data={feature} index={index} hoverFeature={hoverFeature}/>
-                ))}
-                {hoverFeature && debug && (
-                    <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>
-                        <p>{JSON.stringify(hoverFeature.properties, undefined, 1)}</p>
-                    </div>
-                )}
+                <MapContext.Provider value={mapRef.current ?? undefined}>
+                    {data?.features?.map((feature, index) => (
+                        <ClusterLayers key={index} data={feature} index={index} hoverFeature={hoverFeature}/>
+                    ))}
+                    {hoverFeature && debug && (
+                        <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>
+                            <p>{JSON.stringify(hoverFeature.properties, undefined, 1)}</p>
+                        </div>
+                    )}
+                </MapContext.Provider>
             </Map>
         </>
     )
 }
+
