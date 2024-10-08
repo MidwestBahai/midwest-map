@@ -2,6 +2,7 @@ import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { ShapefileOutput, ValidatedShapefile } from "../_lib/ShapefileTypes"
+import { fetchFile } from "../_lib/FetchFile"
 
 /**
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.
@@ -26,7 +27,11 @@ if (!filename) {
     process.exit(1)
 }
 
-load<Loader<ShapefileOutput>>(`http://localhost:3030/shapefiles/${filename}`, ShapefileLoader).then(unvalidatedResult => {
+load<Loader<ShapefileOutput>>(
+    `file://public/shapefiles/${filename}`,
+    ShapefileLoader,
+    { fetch: fetchFile },
+).then(unvalidatedResult => {
     const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
     const validatedShapefile: ValidatedShapefile = {...unvalidatedResult, features}
     console.log(JSON.stringify(validatedShapefile, null, 2))

@@ -7,9 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "import-shapefiles-ts": "NODE_NO_WARNINGS=1 node --experimental-strip-types app/_script/ImportShapefiles.ts clusters-2024.shp",
-    "import-shapefiles-parallel": "npx serve public & NODE_NO_WARNINGS=1 node --experimental-strip-types web/app/_script/ImportShapefiles.ts clusters-2024.shp",
-    "serve-shapefiles": "serve -p 3030 public",
     "compile-importer": "tsc -p tsconfig-import-shapefiles.json",
     "import-shapefiles": "node out-scripts/app/_script/ImportShapefiles.js clusters-2024.shp"
   },
@@ -36,7 +33,6 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.0-rc.0",
     "postcss": "^8",
-    "serve": "^14.2.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
