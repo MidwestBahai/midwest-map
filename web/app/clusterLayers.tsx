@@ -17,7 +17,7 @@ export const ClusterLayers = (props: {
         const fillLayer = map?.getLayer(fillLayerId)
         const symbolLayer = map?.getLayer(symbolLayerId)
         if (props.data.properties?.Cluster === "IN-01")
-            console.log({fillLayer, symbolLayer, properties: props.data.properties})
+            console.log({fillLayer, symbolLayer, properties: props.data.properties, map})
     }, [map, fillLayerId, symbolLayerId, props.data.properties])
 
     return (

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "out-scripts",
+    "module": "commonjs",
+    "target": "esnext",
+    "rootDir": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["app/_lib/**/*.ts", "app/_script/**/*.ts" ],
+  "exclude": ["node_modules"]
+}

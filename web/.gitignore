@@ -13,8 +13,9 @@
 /.next/
 /out/
 
-# production
+# artifacts
 /build
+/out-scripts
 
 # misc
 .DS_Store
