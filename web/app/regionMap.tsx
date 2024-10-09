@@ -6,22 +6,17 @@ import { useWindowSize } from "@/app/useWindowSize"
 import { initialBounds } from "@/app/initialMapBounds"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
-import { useShapefile } from "@/app/useShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
 import { ClusterLayers } from "@/app/clusterLayers"
 import { MapContext } from "@/app/mapContext"
 
+import validatedData from "@/app/_data/clusters.geo.json"
+
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
 ) => {
     const windowSize = useWindowSize()
-
-    const { isPending, error, data } = useShapefile(
-        // "clusters-2022.shp"
-        "clusters-2024.shp"
-        // "counties.shp"
-    )
 
     const [ hoverFeature, setHoverFeature ] = React.useState<GeoJSONFeature | undefined>(undefined)
 
@@ -37,11 +32,6 @@ export const RegionMap = (
         if (!deepEqual(newHoverFeature?.properties, hoverFeature?.properties))
             setHoverFeature(newHoverFeature)
     }, [hoverFeature])
-
-    useEffect(() => {
-        if (error)
-            console.error({isPending, error})
-    }, [isPending, error])
 
     const mapRef = React.useRef<MapRef>(null)
 
@@ -62,18 +52,15 @@ export const RegionMap = (
                 mapboxAccessToken={mapboxAccessToken}
                 initialViewState={initialBounds(windowSize)}
                 style={{width: '100vw', height: '100vh'}}
-                // mapStyle="mapbox://styles/mapbox/navigation-day-v1"
-                // mapStyle="mapbox://styles/mapbox/streets-v11"
-                // mapStyle="mapbox://styles/mapbox/streets-v12"
                 mapStyle="mapbox://styles/mapbox/light-v11"
                 // mapStyle="mapbox://styles/mapbox/dark-v11"
-                interactiveLayerIds={data?.features?.map((_, index) => `cluster-${index}`)}
+                interactiveLayerIds={validatedData.features.map((_, index) => `cluster-${index}`)}
                 onMouseMove={onHover}
                 ref={mapRef}
             >
                 <MapContext.Provider value={mapRef.current ?? undefined}>
-                    {data?.features?.map((feature, index) => (
-                        <ClusterLayers key={index} data={feature} index={index} hoverFeature={hoverFeature}/>
+                    {validatedData.features.map((feature, index) => (
+                        <ClusterLayers key={index} data={feature as GeoJSONFeature} index={index} hoverFeature={hoverFeature}/>
                     ))}
                     {hoverFeature && debug && (
                         <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>

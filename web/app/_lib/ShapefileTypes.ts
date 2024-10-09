@@ -1,5 +1,6 @@
 import { GeoJSONFeature } from "zod-geojson"
 
+// copied from @loaders.gl/shapefile package since it doesn't export these types
 export interface SHXOutput {
     offsets: Int32Array;
     lengths: Int32Array;

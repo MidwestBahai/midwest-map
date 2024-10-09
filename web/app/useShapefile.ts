@@ -1,4 +1,3 @@
-// copied from @loaders.gl/shapefile package since it doesn't export this type
 import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
