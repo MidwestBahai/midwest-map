@@ -2,15 +2,15 @@
 
 import Map, { MapRef } from "react-map-gl"
 import React, { useCallback, useEffect } from "react"
-import { useWindowSize } from "./useWindowSize"
-import { initialBounds } from "./initialMapBounds"
+import { useWindowSize } from "@/app/useWindowSize"
+import { initialBounds } from "@/app/initialMapBounds"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
-import { useShapefile } from "./useShapefile"
+import { useShapefile } from "@/app/useShapefile"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
-import { ClusterLayers } from "./clusterLayers"
-import { MapContext } from "./mapContext"
+import { ClusterLayers } from "@/app/clusterLayers"
+import { MapContext } from "@/app/mapContext"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}

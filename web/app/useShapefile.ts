@@ -4,7 +4,7 @@ import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { LoaderReturnType } from "@loaders.gl/loader-utils"
-import { ShapefileOutput, ValidatedShapefile } from "../_lib/ShapefileTypes"
+import { ShapefileOutput, ValidatedShapefile } from "@/app/_lib/ShapefileTypes"
 
 const makeShapefileQuery = (filename: string) => async (): Promise<ValidatedShapefile> => {
     const unvalidatedResult = await load<Loader<ShapefileOutput>>(`/shapefiles/${filename}`, ShapefileLoader)

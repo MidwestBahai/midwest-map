@@ -1,8 +1,8 @@
 import { GeoJSONFeature } from "zod-geojson"
 import { Layer, MapRef, Source } from "react-map-gl"
-import { clusterFillColor, clusterLabelColor, clusterLineColor } from "./clusterColor"
+import { clusterFillColor, clusterLabelColor, clusterLineColor } from "@/app/clusterColor"
 import React, { useEffect, useMemo } from "react"
-import { useMap } from "./mapContext"
+import { useMap } from "@/app/mapContext"
 
 export const ClusterLayers = (props: {
     data: GeoJSONFeature, index: number, hoverFeature?: GeoJSONFeature

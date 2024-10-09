@@ -1,4 +1,4 @@
-import { ClientMain } from "./ClientMain"
+import { ClientMain } from "@/app/ClientMain"
 
 export default function Home() {
     return (
