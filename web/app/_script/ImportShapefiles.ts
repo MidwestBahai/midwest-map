@@ -1,8 +1,9 @@
 import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
-import { ShapefileOutput, ValidatedShapefile } from "../_lib/ShapefileTypes"
-import { fetchFile } from "../_lib/FetchFile"
+import { ShapefileOutput, ValidatedShapefile } from "@/app/_lib/ShapefileTypes"
+import { fetchFile } from "@/app/_lib/FetchFile"
+import { writeFile } from "node:fs/promises"
 
 /**
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.
@@ -31,8 +32,9 @@ load<Loader<ShapefileOutput>>(
     `file://public/shapefiles/${filename}`,
     ShapefileLoader,
     { fetch: fetchFile },
-).then(unvalidatedResult => {
+).then(async unvalidatedResult => {
     const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
     const validatedShapefile: ValidatedShapefile = {...unvalidatedResult, features}
-    console.log(JSON.stringify(validatedShapefile, null, 2))
+    // console.log(JSON.stringify(validatedShapefile, null, 2))
+    await writeFile('./app/_data/clusters.geo.json', JSON.stringify(validatedShapefile, null, 1))
 })
