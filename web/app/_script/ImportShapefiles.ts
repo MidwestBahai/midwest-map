@@ -2,7 +2,7 @@ import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { ShapefileOutput, ValidatedShapefile } from "@/app/_lib/ShapefileTypes"
-import { fetchFile } from "@/app/_lib/FetchFile"
+import { fetchFile } from "../_lib/FetchFile"
 import { writeFile } from "node:fs/promises"
 
 /**
@@ -22,19 +22,24 @@ import { writeFile } from "node:fs/promises"
  */
 console.log("Importing shapefiles...")
 
-const filename = process.argv[2]
-if (!filename) {
+const inputFilename = process.argv[2]
+if (!inputFilename) {
     console.error("Usage: ImportShapefiles <filename>")
     process.exit(1)
 }
 
+const OUTPUT_FILENAME = './app/_data/clusters.geo.json'
+
 load<Loader<ShapefileOutput>>(
-    `file://public/shapefiles/${filename}`,
+    `file://public/shapefiles/${inputFilename}`,
     ShapefileLoader,
     { fetch: fetchFile },
 ).then(async unvalidatedResult => {
     const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
-    const validatedShapefile: ValidatedShapefile = {...unvalidatedResult, features}
+    // omit "data" from result, since it is now in "features"
+    const {data, ...rest} = unvalidatedResult
+    const validatedShapefile: ValidatedShapefile = {...rest, features}
     // console.log(JSON.stringify(validatedShapefile, null, 2))
-    await writeFile('./app/_data/clusters.geo.json', JSON.stringify(validatedShapefile, null, 1))
+    await writeFile(OUTPUT_FILENAME, JSON.stringify(validatedShapefile, null, 1))
+    console.log(`Successfully wrote geoJSON data to ${OUTPUT_FILENAME}`)
 })

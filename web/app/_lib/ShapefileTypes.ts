@@ -35,7 +35,7 @@ export interface ShapefileOutput {
     data: object[];
 }
 
-export interface ValidatedShapefile extends ShapefileOutput {
+export interface ValidatedShapefile extends Omit<ShapefileOutput, "data"> {
     features?: GeoJSONFeature[]
     parseError?: string
 }
