@@ -44,7 +44,7 @@ export const RegionMap = (
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
     // See https://github.com/visgl/react-map-gl/issues/568
     return (
-        <>
+        <div className="relative h-screen w-screen">
             <Head>
                 <link href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" rel="stylesheet"/>
             </Head>
@@ -60,16 +60,30 @@ export const RegionMap = (
             >
                 <MapContext.Provider value={mapRef.current ?? undefined}>
                     {validatedData.features.map((feature, index) => (
-                        <ClusterLayers key={index} data={feature as GeoJSONFeature} index={index} hoverFeature={hoverFeature}/>
+                        <ClusterLayers key={index} data={feature as GeoJSONFeature} index={index}
+                                       hoverFeature={hoverFeature}/>
                     ))}
                     {hoverFeature && debug && (
-                        <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            padding: '1em',
+                            backgroundColor: 'white',
+                            color: 'black'
+                        }}>
                             <p>{JSON.stringify(hoverFeature.properties, undefined, 1)}</p>
                         </div>
                     )}
                 </MapContext.Provider>
             </Map>
-        </>
+            <div className="absolute top-2 left-2 p-2 bg-white text-black rounded-md border-2 border-black">
+                <div className="grid grid-cols-5 gap-2">
+                    <div className="col-span-5 text-center">Legend</div>
+                    <div className="col-span-5 text-center">TODO</div>
+                </div>
+            </div>
+        </div>
     )
 }
 
