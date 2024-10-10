@@ -1,5 +1,4 @@
 import * as fs from "node:fs"
-import { Readable } from "node:stream"
 
 /**
  *  A fetch-like function that supports the `file://` protocol.
