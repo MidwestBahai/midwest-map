@@ -5,7 +5,7 @@ import { useCallback } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { useLocalState } from "@/lib/useLocalState"
+import { useLocalState } from "../lib/useLocalState"
 
 type ColorSwatch = {
     color: string

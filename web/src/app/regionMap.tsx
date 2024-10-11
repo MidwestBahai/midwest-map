@@ -11,8 +11,7 @@ import { deepEqual } from "fast-equals"
 import { ClusterLayers } from "@/app/clusterLayers"
 import { MapContext } from "@/app/mapContext"
 
-import validatedData from "@/app/_data/clusters.geo.json"
-import FloatingMapKey from "./floatingMapKey"
+import validatedData from "@/data/clusters.geo.json"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
