@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "compile-importer": "tsc -p tsconfig-import-shapefiles.json",
-    "import-shapefiles": "node out-scripts/app/_script/ImportShapefiles.js clusters-2024.shp"
+    "import-shapefiles": "node out-scripts/src/script/ImportShapefiles.js clusters-2024.shp"
   },
   "dependencies": {
     "@loaders.gl/core": "^4.2.5",

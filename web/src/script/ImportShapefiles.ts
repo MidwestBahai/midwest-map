@@ -2,9 +2,9 @@ import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { writeFile } from "node:fs/promises"
-import { ShapefileOutput, ValidatedShapefile } from "@/lib/ShapefileTypes"
-// not sure why this requires a relative path; can't compile otherwise
-import { fetchFile } from "../../lib/FetchFile"
+// not sure why these require a relative path; can't compile otherwise
+import { ShapefileOutput, ValidatedShapefile } from "../lib/ShapefileTypes"
+import { fetchFile } from "../lib/FetchFile"
 
 /**
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.
@@ -29,7 +29,7 @@ if (!inputFilename) {
     process.exit(1)
 }
 
-const OUTPUT_FILENAME = './data/clusters.geo.json'
+const OUTPUT_FILENAME = './src/data/clusters.geo.json'
 
 load<Loader<ShapefileOutput>>(
     `file://public/shapefiles/${inputFilename}`,
