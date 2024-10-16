@@ -1,9 +1,8 @@
 "use client"
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { RegionMap } from "@/app/regionMap"
-import { FloatingMapKey } from "./floatingMapKey"
-import React from "react"
+import { RegionMap } from "@/map/regionMap"
+import { FloatingMapKey } from "@/map/floatingMapKey"
 
 const queryClient = new QueryClient()
 

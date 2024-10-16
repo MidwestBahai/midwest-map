@@ -1,25 +1,24 @@
 "use client"
 
 import Map, { MapRef } from "react-map-gl"
-import React, { useCallback, useEffect } from "react"
-import { useWindowSize } from "@/app/useWindowSize"
-import { initialBounds } from "@/app/initialMapBounds"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
 import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
-import { ClusterLayers } from "@/app/clusterLayers"
-import { MapContext } from "@/app/mapContext"
+import { useWindowSize } from "@/lib/useWindowSize"
+import { initialBounds } from "@/map/initialMapBounds"
+import { ClusterLayers } from "@/map/clusterLayers"
+import { MapContext } from "@/map/mapContext"
 
 import validatedData from "@/data/clusters.geo.json"
-import { FloatingMapKey } from "./floatingMapKey"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
 ) => {
     const windowSize = useWindowSize()
 
-    const [ hoverFeature, setHoverFeature ] = React.useState<GeoJSONFeature | undefined>(undefined)
+    const [ hoverFeature, setHoverFeature ] = useState<GeoJSONFeature | undefined>(undefined)
 
     const onHover = useCallback((event: MapMouseEvent) => {
         const {
@@ -34,7 +33,7 @@ export const RegionMap = (
             setHoverFeature(newHoverFeature)
     }, [hoverFeature])
 
-    const mapRef = React.useRef<MapRef>(null)
+    const mapRef = useRef<MapRef>(null)
 
     useEffect(() => {
         const map = mapRef.current?.getMap()

@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { useLocalState } from "@/lib/useLocalState"
 import { ClusterGroup, clusterGroups } from "@/data/clusterGroups"
-import { milestoneColor } from "./clusterColor"
-import { Milestone } from "../data/milestoneLabels"
+import { milestoneColor } from "@/map/clusterColor"
+import { Milestone } from "@/data/milestoneLabels"
 import { objectEntries, objectKeys } from "ts-extras"
 
 // Remove the "Unknown" cluster group
