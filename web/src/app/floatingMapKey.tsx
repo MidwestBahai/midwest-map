@@ -1,7 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { useCallback } from "react"
+import { Fragment, useCallback, useEffect, useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -16,12 +15,12 @@ const displayClusterGroups = objectEntries(clusterGroups)
     .filter(([grouping]) => grouping !== "Unknown")
 
 const displayMilestones: Partial<Record<Milestone, string>> = {
-    m3r: "Reservoir",
-    m3: "Milestone 3",
-    m2: "Milestone 2",
-    m1: "Milestone 1",
-    e: "Emerging",
     n: "No Program of Growth",
+    e: "Emerging",
+    m1: "Milestone 1",
+    m2: "Milestone 2",
+    m3: "Milestone 3",
+    m3r: "Reservoir",
 }
 
 export const FloatingMapKey = () => {
@@ -29,6 +28,16 @@ export const FloatingMapKey = () => {
     // TODO animate open/close
     const [isOpen, setIsOpen] = useLocalState<boolean>("map-key-open", true)
     const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen])
+
+    // TODO remove this total hack to force re-rendering of colors
+    // useEffect(() => {
+    //     const h1 = setTimeout(() => setIsOpen(!isOpen), 100)
+    //     const h2 = setTimeout(() => setIsOpen(isOpen), 200)
+    //     return () => {
+    //         clearTimeout(h1)
+    //         clearTimeout(h2)
+    //     }
+    // }, [])
 
     return (
         <div className="fixed bottom-4 left-4">
@@ -55,15 +64,16 @@ export const FloatingMapKey = () => {
                         gridTemplateColumns: 'repeat(7, min-content)',
                     }}>
                         {displayClusterGroups.map(([group, details]) => (
-                            <>
+                            <Fragment key={group}>
                                 {objectKeys(displayMilestones).map((milestone) => (
                                     <ColorSwatch key={milestone} milestone={milestone} group={group} />
                                 ))}
                                 <span className="text-sm text-nowrap content-center">{details.cities[0]}</span>
-                            </>
+                            </Fragment>
                         ))}
                         {Object.entries(displayMilestones).map(([milestone, label]) => (
-                            <div className="text-sm text-nowrap origin-center rotate-90 -translate-x-14 -translate-y-16 w-2 h-36" key={milestone}>{label}</div>
+                            <div
+                                className="text-sm text-nowrap origin-center rotate-90 -translate-x-14 -translate-y-16 w-2 h-36" key={milestone}>{label}</div>
                         ))}
                         <span/>
                     </div>
@@ -78,12 +88,14 @@ const ColorSwatch = ({milestone, group}: {
     group: ClusterGroup
 }) => {
     // add hover effect
-
+    const [hovered, setHovered] = useState(false)
     return (
         <div
             className='w-6 h-6 rounded'
-            style={{backgroundColor: milestoneColor(milestone, clusterGroups[group].baseHue)}}
+            style={{backgroundColor: milestoneColor(milestone, clusterGroups[group].baseHue, hovered ? 90 : undefined)}}
             aria-hidden="true"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
         />
     )
 }

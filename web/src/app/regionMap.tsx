@@ -12,6 +12,7 @@ import { ClusterLayers } from "@/app/clusterLayers"
 import { MapContext } from "@/app/mapContext"
 
 import validatedData from "@/data/clusters.geo.json"
+import { FloatingMapKey } from "./floatingMapKey"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}

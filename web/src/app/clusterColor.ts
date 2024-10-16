@@ -1,3 +1,5 @@
+"use client" // canvas, which we use to compute colors, only exists on the browser
+
 import { GeoJSONFeature } from "zod-geojson"
 import { clusterGroups, getClusterGroup } from "@/data/clusterGroups"
 
@@ -31,7 +33,7 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
 const colorCache: Record<string, Uint8ClampedArray[]> = {}
 
 const milestoneRgba = (milestone: string, baseHue: number): Uint8ClampedArray => {
-    if (colorCache[milestone]?.[baseHue]) return colorCache[milestone][baseHue]
+    if (typeof document === 'undefined') return [255, 0, 0, 0] as unknown as Uint8ClampedArray
     const lch = milestoneColorInner(milestone, baseHue)
     // Use a canvas to convert the color to RGBA
     // From https://stackoverflow.com/questions/63929820/converting-css-lch-to-rgb
