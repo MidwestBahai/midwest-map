@@ -1,4 +1,4 @@
-import { WidthHeight } from "@/app/useWindowSize"
+import { WidthHeight } from "@/lib/useWindowSize"
 
 interface MapBounds {
     sw: { lat: number, lng: number },
