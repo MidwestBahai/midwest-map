@@ -82,14 +82,14 @@ body {
   @keyframes slideDown {
     from {
       opacity: 10%;
-      transform: translateY(-1rem);
+      transform: translateY(15rem);
     }
   }
 
   @keyframes slideUp {
     to {
       opacity: 10%;
-      transform: translateY(-1rem);
+      transform: translateY(15rem);
     }
   }
 }

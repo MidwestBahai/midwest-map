@@ -44,40 +44,42 @@ export const FloatingMapKey = () => {
             <Collapsible
                 open={isOpen}
                 onOpenChange={setIsOpen}
-                className={`${isOpen ? 'w-72' : 'w-40'} bg-white rounded-lg shadow-lg overflow-hidden transition-width duration-300`}
+                className={`${isOpen ? 'w-72' : 'w-36'} bg-white rounded-lg shadow-lg overflow-hidden transition-width duration-300`}
             >
-                <div className="p-4 bg-gray-100 flex justify-between items-center" onClick={toggleOpen}>
+                <CollapsibleContent className="CollapsibleContent">
+                    <div className="m-4 grid gap-1" style={{
+                        gridTemplateColumns: 'repeat(7, min-content)',
+                    }}>
+                        {Object.entries(displayMilestones).map(([milestone, label]) => (
+                            <div
+                                className="text-sm text-nowrap origin-left -rotate-90 w-2 h-36"
+                                style={{ transform: 'rotate(-90deg) translateX(-72px) translateY(74px)'}}
+                                key={milestone}>{label}</div>
+                        ))}
+                        <span/>
+                        {displayClusterGroups.map(([group, details]) => (
+                            <Fragment key={group}>
+                                {objectKeys(displayMilestones).map((milestone) => (
+                                    <ColorSwatch key={milestone} milestone={milestone} group={group}/>
+                                ))}
+                                <span className="text-sm text-nowrap content-center">{details.cities[0]}</span>
+                            </Fragment>
+                        ))}
+                    </div>
+                </CollapsibleContent>
+                <div className="p-4 bg-gray-100 flex justify-between items-center cursor-pointer" onClick={toggleOpen}>
                     <h2 className="text-lg font-semibold">Map Key</h2>
                     <CollapsibleTrigger asChild>
                         <Button variant="ghost" size="sm" className="w-9 p-0">
                             {isOpen ? (
-                                <ChevronDown className="h-4 w-4" />
+                                <ChevronUp className="h-4 w-4"/>
                             ) : (
-                                <ChevronUp className="h-4 w-4" />
+                                <ChevronDown className="h-4 w-4"/>
                             )}
                             <span className="sr-only">Toggle map key</span>
                         </Button>
                     </CollapsibleTrigger>
                 </div>
-                <CollapsibleContent>
-                    <div className="m-4 grid gap-1" style={{
-                        gridTemplateColumns: 'repeat(7, min-content)',
-                    }}>
-                        {displayClusterGroups.map(([group, details]) => (
-                            <Fragment key={group}>
-                                {objectKeys(displayMilestones).map((milestone) => (
-                                    <ColorSwatch key={milestone} milestone={milestone} group={group} />
-                                ))}
-                                <span className="text-sm text-nowrap content-center">{details.cities[0]}</span>
-                            </Fragment>
-                        ))}
-                        {Object.entries(displayMilestones).map(([milestone, label]) => (
-                            <div
-                                className="text-sm text-nowrap origin-center rotate-90 -translate-x-14 -translate-y-16 w-2 h-36" key={milestone}>{label}</div>
-                        ))}
-                        <span/>
-                    </div>
-                </CollapsibleContent>
             </Collapsible>
         </div>
     )
