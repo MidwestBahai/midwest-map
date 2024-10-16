@@ -9,6 +9,7 @@ import { ClusterGroup, clusterGroups } from "@/data/clusterGroups"
 import { milestoneColor } from "@/map/clusterColor"
 import { Milestone } from "@/data/milestoneLabels"
 import { objectEntries, objectKeys } from "ts-extras"
+import { useWindowSize } from "../lib/useWindowSize"
 
 // Remove the "Unknown" cluster group
 const displayClusterGroups = objectEntries(clusterGroups)
@@ -24,27 +25,28 @@ const displayMilestones: Partial<Record<Milestone, string>> = {
 }
 
 export const FloatingMapKey = () => {
-    // TODO handle small screen better — maybe start out closed?
-    // TODO animate open/close
+    const windowSize = useWindowSize()
+    const [initialOpen, setInitialOpen] = useState(false)
     const [isOpen, setIsOpen] = useLocalState<boolean>("map-key-open", true)
     const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen])
+    const isReallyOpen = isOpen && initialOpen
 
-    // TODO remove this total hack to force re-rendering of colors
-    // useEffect(() => {
-    //     const h1 = setTimeout(() => setIsOpen(!isOpen), 100)
-    //     const h2 = setTimeout(() => setIsOpen(isOpen), 200)
-    //     return () => {
-    //         clearTimeout(h1)
-    //         clearTimeout(h2)
-    //     }
-    // }, [])
+    // Run this exactly once, on load. Force colors to be rendered on client rather than pre-rendered
+    // during static generation, when Canvas isn't available.
+    useEffect(() => {
+        // start out closed on mobile
+        if (windowSize.width < 640)
+            setIsOpen(false)
+        setInitialOpen(true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="fixed bottom-4 left-4">
             <Collapsible
-                open={isOpen}
+                open={isReallyOpen}
                 onOpenChange={setIsOpen}
-                className={`${isOpen ? 'w-72' : 'w-36'} bg-white rounded-lg shadow-lg overflow-hidden transition-width duration-300`}
+                className={`${isReallyOpen ? 'w-72' : 'w-36'} bg-white rounded-lg shadow-lg overflow-hidden transition-width duration-300`}
             >
                 <CollapsibleContent className="CollapsibleContent">
                     <div className="m-4 grid gap-1" style={{
@@ -67,7 +69,10 @@ export const FloatingMapKey = () => {
                         ))}
                     </div>
                 </CollapsibleContent>
-                <div className="p-4 bg-gray-100 flex justify-between items-center cursor-pointer" onClick={toggleOpen}>
+                <div
+                    className="p-4 bg-gray-200 flex justify-between items-center cursor-pointer hover:bg-gray-300 transition-colors duration-200"
+                    onClick={toggleOpen}
+                >
                     <h2 className="text-lg font-semibold">Map Key</h2>
                     <CollapsibleTrigger asChild>
                         <Button variant="ghost" size="sm" className="w-9 p-0">
