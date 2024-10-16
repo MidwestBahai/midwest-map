@@ -1,22 +1,8 @@
 import { GeoJSONFeature } from "zod-geojson"
+import { clusterGroups, getClusterGroup } from "@/data/clusterGroups"
 
-const clusterBaseHue = (properties: GeoJSONFeature["properties"]) => {
-    const group = properties?.["Group"] ?? "Unknown"
-    switch (group) {
-        case "AA":
-            return 200 // aqua
-        case "GR":
-            return 80 // orange
-        case "INDY":
-            return 350 // red
-        case "CLV":
-            return 140 // green
-        case "CBUS":
-            return 280 // purplish
-        default:
-            return 0
-    }
-}
+const clusterBaseHue = (properties: GeoJSONFeature["properties"]) =>
+    clusterGroups[getClusterGroup(properties)].baseHue
 
 const alpha = .5
 
@@ -42,17 +28,6 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
     }
 }
 
-const milestoneLabels = {
-    m3: "M3",
-    m3r: "M3, Reservoir",
-    m2r: "M2, Reservoir",
-    m2: "M2",
-    m1: "M1",
-    m0: "Emerging",
-    e: "Emerging",
-    n: "No Program of Growth",
-}
-
 const colorCache: Record<string, Uint8ClampedArray[]> = {}
 
 const milestoneRgba = (milestone: string, baseHue: number): Uint8ClampedArray => {
@@ -73,7 +48,7 @@ const milestoneRgba = (milestone: string, baseHue: number): Uint8ClampedArray =>
     return rgbaValues
 }
 
-const milestoneColor = (milestone: string, baseHue: number, alpha?: number) =>
+export const milestoneColor = (milestone: string, baseHue: number, alpha?: number) =>
     rgbaString(milestoneRgba(milestone, baseHue), alpha)
 
 export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) => `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
