@@ -37,7 +37,7 @@ export const FloatingMapKey = () => {
             // (a mouseenter can fire, then the element disappears, and the mouseleave never fires)
             if (isOpen) setTimeout(() => clearCategoryHighlight(), 400)
         },
-        [isOpen, setIsOpen]
+        [clearCategoryHighlight, isOpen, setIsOpen]
     )
     const isReallyOpen = isOpen && initialOpen
 
