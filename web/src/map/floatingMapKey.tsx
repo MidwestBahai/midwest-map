@@ -30,7 +30,15 @@ export const FloatingMapKey = () => {
     const { categoryHighlight, setCategoryHighlight, clearCategoryHighlight } = useCategoryHighlight()
     const [initialOpen, setInitialOpen] = useState(false)
     const [isOpen, setIsOpen] = useLocalState<boolean>("map-key-open", true)
-    const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen])
+    const toggleOpen = useCallback(
+        () => {
+            setIsOpen(!isOpen)
+            // wait for the animation to finish and then clear highlights
+            // (a mouseenter can fire, then the element disappears, and the mouseleave never fires)
+            if (isOpen) setTimeout(() => clearCategoryHighlight(), 400)
+        },
+        [isOpen, setIsOpen]
+    )
     const isReallyOpen = isOpen && initialOpen
 
     // Run this exactly once, on load. Force colors to be rendered on client rather than pre-rendered
