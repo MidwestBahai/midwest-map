@@ -9,4 +9,13 @@ export const milestoneLabels = {
     n: "No Program of Growth",
 }
 
+export const reservoirs = ["m3r", "m2r"]
+
+export const isReservoir = (milestone: string) => reservoirs.includes(milestone)
+
+export const matchesIncludingReservoir = (a?: string, b?: string) =>
+    a && b && (
+        a === b || (isReservoir(a) && isReservoir(b))
+    )
+
 export type Milestone = keyof typeof milestoneLabels

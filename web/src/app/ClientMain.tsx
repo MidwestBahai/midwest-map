@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { RegionMap } from "@/map/regionMap"
 import { FloatingMapKey } from "@/map/floatingMapKey"
+import { CategoryHighlightProvider } from "../map/categoryHighlightContext"
 
 const queryClient = new QueryClient()
 
@@ -11,10 +12,12 @@ export const ClientMain = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
 ) => (
     <QueryClientProvider client={queryClient}>
-        <RegionMap
-            mapboxAccessToken={mapboxAccessToken}
-            debug={debug}
-        />
-        <FloatingMapKey/>
+        <CategoryHighlightProvider>
+            <RegionMap
+                mapboxAccessToken={mapboxAccessToken}
+                debug={debug}
+            />
+            <FloatingMapKey/>
+        </CategoryHighlightProvider>
     </QueryClientProvider>
 )

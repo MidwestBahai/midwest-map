@@ -10,6 +10,7 @@ import { milestoneColor } from "@/map/clusterColor"
 import { Milestone } from "@/data/milestoneLabels"
 import { objectEntries, objectKeys } from "ts-extras"
 import { useWindowSize } from "../lib/useWindowSize"
+import { useCategoryHighlight } from "./categoryHighlightContext"
 
 // Remove the "Unknown" cluster group
 const displayClusterGroups = objectEntries(clusterGroups)
@@ -26,6 +27,7 @@ const displayMilestones: Partial<Record<Milestone, string>> = {
 
 export const FloatingMapKey = () => {
     const windowSize = useWindowSize()
+    const { setCategoryHighlight, clearCategoryHighlight } = useCategoryHighlight()
     const [initialOpen, setInitialOpen] = useState(false)
     const [isOpen, setIsOpen] = useLocalState<boolean>("map-key-open", true)
     const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen])
@@ -52,19 +54,30 @@ export const FloatingMapKey = () => {
                     <div className="m-4 grid gap-1" style={{
                         gridTemplateColumns: 'repeat(7, min-content)',
                     }}>
-                        {Object.entries(displayMilestones).map(([milestone, label]) => (
+                        {objectEntries(displayMilestones).map(([milestone, label]) => (
                             <div
                                 className="text-sm text-nowrap origin-left -rotate-90 w-2 h-36"
                                 style={{ transform: 'rotate(-90deg) translateX(-72px) translateY(74px)'}}
-                                key={milestone}>{label}</div>
+                                key={milestone}
+                                onMouseEnter={() => setCategoryHighlight({milestone})}
+                                onMouseLeave={clearCategoryHighlight}
+                            >
+                                {label}
+                            </div>
                         ))}
                         <span/>
-                        {displayClusterGroups.map(([group, details]) => (
-                            <Fragment key={group}>
+                        {displayClusterGroups.map(([clusterGroup, details]) => (
+                            <Fragment key={clusterGroup}>
                                 {objectKeys(displayMilestones).map((milestone) => (
-                                    <ColorSwatch key={milestone} milestone={milestone} group={group}/>
+                                    <ColorSwatch key={milestone} milestone={milestone} clusterGroup={clusterGroup}/>
                                 ))}
-                                <span className="text-sm text-nowrap content-center">{details.cities[0]}</span>
+                                <span
+                                    className="text-sm text-nowrap content-center"
+                                    onMouseEnter={() => setCategoryHighlight({clusterGroup: clusterGroup})}
+                                    onMouseLeave={clearCategoryHighlight}
+                                >
+                                    {details.cities[0]}
+                                </span>
                             </Fragment>
                         ))}
                     </div>
@@ -90,19 +103,26 @@ export const FloatingMapKey = () => {
     )
 }
 
-const ColorSwatch = ({milestone, group}: {
+const ColorSwatch = ({milestone, clusterGroup}: {
     milestone: Milestone
-    group: ClusterGroup
+    clusterGroup: ClusterGroup
 }) => {
     // add hover effect
-    const [hovered, setHovered] = useState(false)
+    const { categoryHighlight, setCategoryHighlight, clearCategoryHighlight} = useCategoryHighlight()
+    const highlighted =
+        // both grouping & milestone are highlighted
+        categoryHighlight.milestone === milestone && categoryHighlight.clusterGroup === clusterGroup
+        // only a milestone is highlighted
+        || categoryHighlight.milestone === milestone && !categoryHighlight.clusterGroup
+        // only a grouping is highlighted
+        || categoryHighlight.clusterGroup === clusterGroup && !categoryHighlight.milestone
     return (
         <div
             className='w-6 h-6 rounded'
-            style={{backgroundColor: milestoneColor(milestone, clusterGroups[group].baseHue, hovered ? 90 : undefined)}}
+            style={{backgroundColor: milestoneColor(milestone, clusterGroups[clusterGroup].baseHue, highlighted ? 90 : undefined)}}
             aria-hidden="true"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+            onMouseEnter={() => setCategoryHighlight({milestone, clusterGroup: clusterGroup})}
+            onMouseLeave={clearCategoryHighlight}
         />
     )
 }
