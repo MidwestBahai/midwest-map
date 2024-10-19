@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { useLocalState } from "@/lib/useLocalState"
 import { ClusterGroup, clusterGroups } from "@/data/clusterGroups"
-import { milestoneColor } from "@/map/clusterColor"
+import { clusterLineColor, milestoneColor } from "@/map/clusterColor"
 import { Milestone } from "@/data/milestoneLabels"
 import { objectEntries, objectKeys } from "ts-extras"
 import { useWindowSize } from "../lib/useWindowSize"
@@ -27,7 +27,7 @@ const displayMilestones: Partial<Record<Milestone, string>> = {
 
 export const FloatingMapKey = () => {
     const windowSize = useWindowSize()
-    const { setCategoryHighlight, clearCategoryHighlight } = useCategoryHighlight()
+    const { categoryHighlight, setCategoryHighlight, clearCategoryHighlight } = useCategoryHighlight()
     const [initialOpen, setInitialOpen] = useState(false)
     const [isOpen, setIsOpen] = useLocalState<boolean>("map-key-open", true)
     const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen])
@@ -51,12 +51,12 @@ export const FloatingMapKey = () => {
                 className={`${isReallyOpen ? 'w-72' : 'w-36'} bg-white rounded-lg shadow-lg overflow-hidden transition-width duration-300`}
             >
                 <CollapsibleContent className="CollapsibleContent">
-                    <div className="m-4 grid gap-1" style={{
+                    <div className="m-4 grid" style={{
                         gridTemplateColumns: 'repeat(7, min-content)',
                     }}>
                         {objectEntries(displayMilestones).map(([milestone, label]) => (
                             <div
-                                className="text-sm text-nowrap origin-left -rotate-90 w-2 h-36"
+                                className={`cursor-pointer text-sm text-nowrap origin-left -rotate-90 w-2 h-36 ${categoryHighlight.milestone === milestone ? 'font-semibold' : ''}`}
                                 style={{ transform: 'rotate(-90deg) translateX(-72px) translateY(74px)'}}
                                 key={milestone}
                                 onMouseEnter={() => setCategoryHighlight({milestone})}
@@ -72,7 +72,7 @@ export const FloatingMapKey = () => {
                                     <ColorSwatch key={milestone} milestone={milestone} clusterGroup={clusterGroup}/>
                                 ))}
                                 <span
-                                    className="text-sm text-nowrap content-center"
+                                    className={`cursor-pointer text-sm text-nowrap content-center ${categoryHighlight.clusterGroup === clusterGroup ? 'font-semibold' : ''}`}
                                     onMouseEnter={() => setCategoryHighlight({clusterGroup: clusterGroup})}
                                     onMouseLeave={clearCategoryHighlight}
                                 >
@@ -118,8 +118,11 @@ const ColorSwatch = ({milestone, clusterGroup}: {
         || categoryHighlight.clusterGroup === clusterGroup && !categoryHighlight.milestone
     return (
         <div
-            className='w-6 h-6 rounded'
-            style={{backgroundColor: milestoneColor(milestone, clusterGroups[clusterGroup].baseHue, highlighted ? 90 : undefined)}}
+            className="w-6 h-6 rounded"
+            style={{
+                backgroundColor: milestoneColor(milestone, clusterGroups[clusterGroup].baseHue, highlighted ? 90 : undefined),
+                border: `3px solid ${highlighted ? milestoneColor(milestone, clusterGroups[clusterGroup].baseHue, 180) : 'white'}`,
+            }}
             aria-hidden="true"
             onMouseEnter={() => setCategoryHighlight({milestone, clusterGroup: clusterGroup})}
             onMouseLeave={clearCategoryHighlight}
