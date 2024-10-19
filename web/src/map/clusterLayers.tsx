@@ -1,6 +1,5 @@
-import { useMemo } from "react"
 import { GeoJSONFeature } from "zod-geojson"
-import { Layer, MapRef, Source } from "react-map-gl"
+import { Layer, Source } from "react-map-gl"
 import { clusterFillColor, clusterLabelColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "../data/clusterGroups"
