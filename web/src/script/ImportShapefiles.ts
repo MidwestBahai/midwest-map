@@ -2,6 +2,7 @@ import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
 import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { writeFile } from "node:fs/promises"
+
 // not sure why these require a relative path; can't compile otherwise
 import { ShapefileOutput, ValidatedShapefile } from "../lib/ShapefileTypes"
 import { fetchFile } from "../lib/FetchFile"
@@ -10,16 +11,9 @@ import { fetchFile } from "../lib/FetchFile"
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.
  *  This is a pre-build step to be run when cluster data changes.
  *
- *  TODO specific instructions to invoke
- *
- *  Note: This uses http to load the shapefiles, which requires a local webserver.
- *  This is a hack to work around node fetch()'s lack of support for file://... URLs.
- *  A better solution: https://loaders.gl/docs/modules/core/api-reference/fetch-file
- *  But when I tried it, I couldn't get fetchFile() to register, so it fell back to fetch().
- *  https://loaders.gl/docs/modules/core/api-reference/register-loaders
- *  I think fetchFile is included in https://www.npmjs.com/package/@loaders.gl/polyfills
- *
- *  It might work though to simply copy fetchFile() into code here and hot-wire it.
+ *  To run:
+ *    1. pnpm compile-importer
+ *    2. pnpm import-shapefiles
  */
 console.log("Importing shapefiles...")
 
