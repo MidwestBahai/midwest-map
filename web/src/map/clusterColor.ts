@@ -15,11 +15,11 @@ const milestoneColorInner = (milestone: string, baseHue: number) => {
             // alpha: make it less transparent
             return `oklch(.2 .35 ${baseHue} / ${1 - .6 * (1 - alpha)})`
         case "m3":
-            return `oklch(.25 .35 ${baseHue} / ${alpha})`
+            return `oklch(.2 .35 ${baseHue} / ${1 - .8 * (1 - alpha)})`
         case "m2":
-            return `oklch(.4 .3 ${baseHue} / ${alpha})`
+            return `oklch(.4 .35 ${baseHue} / ${alpha})`
         case "m1":
-            return `oklch(.7 .25 ${baseHue} / ${alpha})`
+            return `oklch(.7 .21 ${baseHue} / ${alpha})`
         case "e":
         case "m0":
             return `oklch(.8 .12 ${baseHue} / ${alpha})`
@@ -72,8 +72,8 @@ export const clusterLabelColor = (properties: GeoJSONFeature["properties"], high
     switch (milestone(properties).toLowerCase()) {
         case "m3r":
         case "m2r":
-            return highlighted ? "black" : "white"
         case "m3":
+            return highlighted ? "black" : "white"
         case "m2":
         case "m1":
         case "e":
