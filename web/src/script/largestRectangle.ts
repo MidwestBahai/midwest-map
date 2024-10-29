@@ -1,0 +1,88 @@
+import {
+    expandingRect,
+    expandRect,
+    isInsidePolygon,
+    LatLongRect,
+    rectArea,
+    removeContainedRects,
+    TwoDPoint
+} from "./expandRect"
+
+const boundingRect = (polygon: [number, number][]) => ({
+    minLat: Math.min(...polygon.map(([_, lat]) => lat)),
+    maxLat: Math.max(...polygon.map(([_, lat]) => lat)),
+    minLong: Math.min(...polygon.map(([long, _]) => long)),
+    maxLong: Math.max(...polygon.map(([long, _]) => long)),
+})
+
+const degenerateRect = (point: TwoDPoint): LatLongRect => ({
+    minLat: point[1],
+    maxLat: point[1],
+    minLong: point[0],
+    maxLong: point[0],
+})
+
+const pickRandomInteriorPoints = (
+    polygon: TwoDPoint[],
+    count: number,
+    maxTries: number,
+): TwoDPoint[] => {
+    const result: TwoDPoint[] = []
+    let tries = 0
+    while (result.length < count) {
+        const point: TwoDPoint = [
+            Math.random() * (boundingRect(polygon).maxLong - boundingRect(polygon).minLong) + boundingRect(polygon).minLong,
+            Math.random() * (boundingRect(polygon).maxLat - boundingRect(polygon).minLat) + boundingRect(polygon).minLat,
+        ]
+        if (isInsidePolygon(point, polygon)) result.push(point)
+        tries++
+        if (tries > maxTries) throw new Error(`Could not find ${count} interior points after ${maxTries} tries — only found ${result.length}.`)
+    }
+    return result
+}
+
+/**
+ * Approximate the largest rectangle inside a polygon — measured by area — aligned to the axes (that is, no rotated rectangles).
+ * @param polygon an array of [longitude, latitude] points that define the polygon.
+ * @param epsilon precision that is "good enough", in points of latitude or longitude. Default is 0.01, which is a little less than a mile at the equator.
+ */
+export const approximateLargestAlignedRectangle = (polygon: TwoDPoint[], epsilon: number = 0.01) => {
+    const bounding = boundingRect(polygon)
+    if (rectArea(bounding) < epsilon * epsilon * 4) throw new Error("Polygon is too small to contain a rectangle")
+
+    // 1. Pick starting points, at random
+    const interiorPoints = pickRandomInteriorPoints(polygon, 10, 100)
+    // Start with changes that are a 20th of the bounding box
+    let delta = Math.min(bounding.maxLat - bounding.minLat, bounding.maxLong - bounding.minLong) / 20
+    if (delta < epsilon) throw new Error(`Initial delta (${delta}) is smaller than epsilon (${
+        epsilon}); we may need to increase number of initial points or decrease epsilon.`)
+    const degenerateRects = interiorPoints.map(degenerateRect)
+    console.log(`Starting with ${degenerateRects.length} degenerate rectangles: ${JSON.stringify(degenerateRects)}`)
+
+    // 2. Initial expansion into rectangles
+    const initialRects = removeContainedRects(
+        degenerateRects
+            .map(rect => expandRect(rect, polygon, delta))
+            .map(expandingRect)
+            .filter(({area}) => area > 0)
+    )
+    if (initialRects.length === 0) throw new Error("No initial rectangles found; we may need to decrease delta or increase number of initial points.")
+
+    console.log(`Expanded to ${initialRects.length} initial rectangles: ${JSON.stringify(initialRects)}`)
+
+    // 3. Loop: Decrease delta, expand, and remove those contained in others — until we reach epsilon
+    // TODO actually use the rectangle's delta
+    // TODO track which have stalled
+    let rects = initialRects
+    while (delta > epsilon) {
+        delta *= 0.5
+        rects = removeContainedRects(
+            rects
+                .map(rect => expandRect(rect.rect, polygon, delta))
+                .map(expandingRect)
+        )
+    }
+
+    // 4. Find the largest rectangle
+    return rects.reduce((max, rect) => rect.area > max.area ? rect : max)
+}
