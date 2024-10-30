@@ -47,7 +47,7 @@ load<Loader<ShapefileOutput>>(
         else if (parsedFeature.geometry?.type === "Polygon") {
             const polygonRects: ExpandingRect[] = []
             parsedFeature.geometry.coordinates.forEach(polygon => {
-                console.log(`Processing ${clusterName} with ${polygon.length} points`)
+                // console.log(`Processing ${clusterName} with ${polygon.length} points`)
                 polygonRects.push(approximateLargestAlignedRectangle(polygon as [number, number][]))
             })
             if (polygonRects.length === 0)
@@ -62,5 +62,5 @@ load<Loader<ShapefileOutput>>(
     const validatedShapefile: ShapeFilePlusLargestRects = {...rest, features, largestClusterRects}
     // console.log(JSON.stringify(validatedShapefile, null, 2))
     await writeFile(OUTPUT_FILENAME, JSON.stringify(validatedShapefile, null, 1))
-    console.log(`Successfully wrote geoJSON data to ${OUTPUT_FILENAME}`)
+    console.log(`Wrote geoJSON data to ${OUTPUT_FILENAME}`)
 })

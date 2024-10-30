@@ -1,26 +1,13 @@
 import {
+    boundingRect,
+    degenerateRect,
     expandingRect,
     expandRect,
     isInsidePolygon,
-    LatLongRect,
     rectArea,
     removeContainedRects,
     TwoDPoint
 } from "./expandRect"
-
-const boundingRect = (polygon: [number, number][]) => ({
-    minLat: Math.min(...polygon.map(([_, lat]) => lat)),
-    maxLat: Math.max(...polygon.map(([_, lat]) => lat)),
-    minLong: Math.min(...polygon.map(([long, _]) => long)),
-    maxLong: Math.max(...polygon.map(([long, _]) => long)),
-})
-
-const degenerateRect = (point: TwoDPoint): LatLongRect => ({
-    minLat: point[1],
-    maxLat: point[1],
-    minLong: point[0],
-    maxLong: point[0],
-})
 
 const pickRandomInteriorPoints = (
     polygon: TwoDPoint[],
@@ -57,7 +44,7 @@ export const approximateLargestAlignedRectangle = (polygon: TwoDPoint[], epsilon
     if (delta < epsilon) throw new Error(`Initial delta (${delta}) is smaller than epsilon (${
         epsilon}); we may need to increase number of initial points or decrease epsilon.`)
     const degenerateRects = interiorPoints.map(degenerateRect)
-    console.log(`Starting with ${degenerateRects.length} degenerate rectangles: ${JSON.stringify(degenerateRects)}`)
+    // console.log(`Starting with ${degenerateRects.length} degenerate rectangles: ${JSON.stringify(degenerateRects)}`)
 
     // 2. Initial expansion into rectangles
     const initialRects = removeContainedRects(
@@ -68,7 +55,7 @@ export const approximateLargestAlignedRectangle = (polygon: TwoDPoint[], epsilon
     )
     if (initialRects.length === 0) throw new Error("No initial rectangles found; we may need to decrease delta or increase number of initial points.")
 
-    console.log(`Expanded to ${initialRects.length} initial rectangles: ${JSON.stringify(initialRects)}`)
+    // console.log(`Expanded to ${initialRects.length} initial rectangles: ${JSON.stringify(initialRects)}`)
 
     // 3. Loop: Decrease delta, expand, and remove those contained in others — until we reach epsilon
     // TODO actually use the rectangle's delta

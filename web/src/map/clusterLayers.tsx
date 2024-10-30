@@ -28,9 +28,9 @@ export const ClusterLayers = ({
     const fillLayerId = `cluster-${index}`
     const symbolLayerId = `symbol-${index}`
 
-    useEffect(() => {
-        if (data.properties?.Cluster === "IN-01") console.log({data})
-    }, [data])
+    // useEffect(() => {
+    //     if (data.properties?.Cluster === "IN-01") console.log({data})
+    // }, [data])
 
     return (
         <Source type="geojson" data={data}>

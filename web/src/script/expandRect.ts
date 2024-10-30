@@ -37,6 +37,20 @@ export const isInsidePolygon = (point: TwoDPoint, polygon: TwoDPoint[]) => {
     return isInside
 }
 
+export const boundingRect = (polygon: [number, number][]) => ({
+    minLat: Math.min(...polygon.map(([_, lat]) => lat)),
+    maxLat: Math.max(...polygon.map(([_, lat]) => lat)),
+    minLong: Math.min(...polygon.map(([long, _]) => long)),
+    maxLong: Math.max(...polygon.map(([long, _]) => long)),
+})
+
+export const degenerateRect = (point: TwoDPoint): LatLongRect => ({
+    minLat: point[1],
+    maxLat: point[1],
+    minLong: point[0],
+    maxLong: point[0],
+})
+
 /** Is a contained by b? */
 export const isContainedByRect = (a: LatLongRect, b: LatLongRect) =>
     a.minLat >= b.minLat && a.maxLat <= b.maxLat && a.minLong >= b.minLong && a.maxLong <= b.maxLong
@@ -73,14 +87,15 @@ const rectangleIntersectsPolygon = (rect: LatLongRect, polygon: TwoDPoint[]) => 
 export const expandRect = (rect: LatLongRect, polygon: TwoDPoint[], delta: number): LatLongRect => {
     let result = rect
     let tmpResult = rect
+    const bounding = boundingRect(polygon)
 
     // first go in all directions until we hit the edge
     do {
         result = tmpResult
         tmpResult = expandAllDirections(result, delta)
-        process.stdout.write('.')
-    } while (!rectangleIntersectsPolygon(tmpResult, polygon))
-    console.log(`Expanded in all directions to ${JSON.stringify(result)}`)
+        // process.stdout.write('.')
+    } while (isContainedByRect(tmpResult, bounding) && !rectangleIntersectsPolygon(tmpResult, polygon))
+    // console.log(`Expanded in all directions to ${JSON.stringify(result)}`)
 
     // then go in each direction, round-robin, until we hit the edge
     tmpResult = result // reset
@@ -89,14 +104,14 @@ export const expandRect = (rect: LatLongRect, polygon: TwoDPoint[], delta: numbe
         stalled = true
         for (const direction of directions) {
             tmpResult = expandInDirections(result, delta, direction)
-            if (!rectangleIntersectsPolygon(tmpResult, polygon)) {
-                process.stdout.write(`${direction}: ${rectArea(result)} –> ${rectArea(tmpResult)}; `)
+            if (isContainedByRect(tmpResult, bounding) && !rectangleIntersectsPolygon(tmpResult, polygon)) {
+                // process.stdout.write(`${direction}: ${rectArea(result)} –> ${rectArea(tmpResult)}; `)
                 result = tmpResult
                 stalled = false
             }
         }
     } while (!stalled)
-    console.log(`Expanded in each direction to ${JSON.stringify(result)}`)
+    // console.log(`Expanded in each direction to ${JSON.stringify(result)}`)
 
     return result
 }
