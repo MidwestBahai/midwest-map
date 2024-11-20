@@ -11,5 +11,5 @@ export const useButtonThrob = (elementId: string, isFullScreen: boolean = false)
             }
         }, 4000)
         return () => clearInterval(interval)
-    }, [])
+    }, [elementId, isFullScreen])
 }
