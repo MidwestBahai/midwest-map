@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useButtonThrob } from "./useButtonThrob"
 
 export const FullScreenButton = () => {
     // Entering full screen mode requires the attribute allow="fullscreen" on the iframe element.
@@ -14,16 +15,7 @@ export const FullScreenButton = () => {
     }, [])
 
     // add a periodic blue border glow to the Full Screen button to call attention to it
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const button = document.querySelector('#full-screen-button')
-            if (button) {
-                if (fullScreen) button.classList.remove('border-blue-300')
-                else button.classList.toggle('border-blue-300')
-            }
-        }, 4000)
-        return () => clearInterval(interval)
-    }, [])
+    useButtonThrob('full-screen-button', fullScreen)
 
     return (<>
         {iframe && !fullScreen && (
