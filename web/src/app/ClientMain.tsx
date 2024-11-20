@@ -5,6 +5,7 @@ import { RegionMap } from "@/map/regionMap"
 import { FloatingMapKey } from "@/map/floatingMapKey"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { FullScreenButton } from "@/components/FullScreenButton"
+import { FullScreenLinkButton } from "@/components/FullScreenLinkButton"
 
 const queryClient = new QueryClient()
 
@@ -18,7 +19,7 @@ export const ClientMain = (
                     mapboxAccessToken={mapboxAccessToken}
                     debug={debug}
                 />
-                <FullScreenButton/>
+                <FullScreenLinkButton/>
                 <FloatingMapKey/>
             </CategoryHighlightProvider>
         </QueryClientProvider>

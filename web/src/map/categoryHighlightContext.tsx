@@ -1,5 +1,5 @@
-import { ClusterGroup } from "../data/clusterGroups"
-import { Milestone } from "../data/milestoneLabels"
+import { ClusterGroup } from "@/data/clusterGroups"
+import { Milestone } from "@/data/milestoneLabels"
 import { createContext, PropsWithChildren, useCallback, useContext, useState } from "react"
 
 export interface CategoryHighlight {
