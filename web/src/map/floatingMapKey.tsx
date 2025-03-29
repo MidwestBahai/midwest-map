@@ -64,8 +64,7 @@ export const FloatingMapKey = () => {
                     }}>
                         {objectEntries(displayMilestones).map(([milestone, label]) => (
                             <div
-                                className={`cursor-pointer text-sm text-nowrap origin-left -rotate-90 w-2 h-36 ${categoryHighlight.milestone === milestone ? 'font-semibold' : ''}`}
-                                style={{ transform: 'rotate(-90deg) translateX(-72px) translateY(74px)'}}
+                                className={`cursor-pointer text-sm text-nowrap origin-left -rotate-90 translate-x-[74px] translate-y-[70px]  w-2 h-36 ${categoryHighlight.milestone === milestone ? 'font-semibold' : ''}`}
                                 key={milestone}
                                 onMouseEnter={() => setCategoryHighlight({milestone})}
                                 onMouseLeave={clearCategoryHighlight}

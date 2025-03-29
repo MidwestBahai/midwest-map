@@ -1,6 +1,6 @@
 "use client"
 
-import Map, { MapRef } from "react-map-gl"
+import Map, { MapRef } from "react-map-gl/mapbox"
 import { useCallback, useEffect, useRef, useState } from "react"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
