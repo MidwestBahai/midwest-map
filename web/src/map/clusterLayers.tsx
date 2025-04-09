@@ -4,6 +4,7 @@ import { clusterFillColor, clusterLabelColor, clusterLineColor } from "@/map/clu
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
+import { useDebugClusterFeature } from "@/map/useDebugClusterFeature"
 
 export const ClusterLayers = ({
     data, index, hoverFeature
@@ -28,13 +29,7 @@ export const ClusterLayers = ({
     const fillLayerId = `cluster-${index}`
     const symbolLayerId = `symbol-${index}`
 
-    // const map = useMap()
-    // useEffect(() => {
-    //     const fillLayer = map?.getLayer(fillLayerId)
-    //     const symbolLayer = map?.getLayer(symbolLayerId)
-    //     if (data.properties?.Cluster === "IN-01")
-    //         console.log({fillLayer, symbolLayer, properties: data.properties, map})
-    // }, [map, fillLayerId, symbolLayerId, data.properties])
+    useDebugClusterFeature(index, "IN-01", data)
 
     return (
         <Source type="geojson" data={data}>
@@ -75,14 +70,14 @@ export const ClusterLayers = ({
     )
 }
 
-interface LatLongBounds {
-    minLat: number,
-    maxLat: number,
-    minLong: number,
-    maxLong: number,
-}
-
 // TODO Precompute the largest rectangle or circle that fits inside the polygon
+// interface LatLongBounds {
+//     minLat: number,
+//     maxLat: number,
+//     minLong: number,
+//     maxLong: number,
+// }
+//
 // Or maybe see how it works in placements.ts in mapbox-gl-js
 // Or is there a way to directly access collisionCircleArray or the placements themselves?
 //
