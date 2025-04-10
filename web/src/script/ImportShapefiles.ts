@@ -4,8 +4,9 @@ import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { writeFile } from "node:fs/promises"
 
 // not sure why these require a relative path; can't compile otherwise
-import { ShapefileOutput, ValidatedShapefile } from "../lib/ShapefileTypes"
+import { ShapefileOutput, ValidatedShapefile, ZodValidatedShapefile } from "../lib/ShapefileTypes"
 import { fetchFile } from "../lib/FetchFile"
+import { Feature } from "geojson"
 
 /**
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.
@@ -25,12 +26,15 @@ if (!inputFilename) {
 
 const OUTPUT_FILENAME = './src/data/clusters.geo.json'
 
+// There is a TypeScript compiler error that may be fixed by https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1944:
+// Type 'SharedArrayBuffer' is missing the following properties from type 'ArrayBuffer': resizable, resize, detached, transfer, transferToFixedLength
 load<Loader<ShapefileOutput>>(
     `file://public/shapefiles/${inputFilename}`,
     ShapefileLoader,
     { fetch: fetchFile },
 ).then(async unvalidatedResult => {
-    const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
+    const validatedFeatures: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
+    const features = validatedFeatures as Feature[]
     // omit "data" from result, since it is now in "features"
     const {data, ...rest} = unvalidatedResult
     const validatedShapefile: ValidatedShapefile = {...rest, features}

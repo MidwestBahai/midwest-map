@@ -1,15 +1,15 @@
-import { GeoJSONFeature } from "zod-geojson"
 import { Layer, Source } from "react-map-gl/mapbox"
 import { clusterFillColor, clusterLabelColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
 import { useDebugClusterFeature } from "@/map/useDebugClusterFeature"
+import { Feature } from "geojson"
 
 export const ClusterLayers = ({
     data, index, hoverFeature
 }: {
-    data: GeoJSONFeature, index: number, hoverFeature?: GeoJSONFeature
+    data: Feature, index: number, hoverFeature?: Feature
 }) => {
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(data?.properties)

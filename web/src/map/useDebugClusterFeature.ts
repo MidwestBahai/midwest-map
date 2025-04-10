@@ -1,8 +1,8 @@
-import { GeoJSONFeature } from "zod-geojson"
 import { useMap } from "@/map/mapContext"
 import { useEffect } from "react"
+import { Feature } from "geojson"
 
-export const useDebugClusterFeature = (index: number, clusterName: string, feature: GeoJSONFeature) => {
+export const useDebugClusterFeature = (index: number, clusterName: string, feature: Feature) => {
     const map = useMap()
     useEffect(() => {
         if (map && feature.properties?.Cluster === clusterName) {

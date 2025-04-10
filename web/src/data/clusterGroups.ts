@@ -1,4 +1,4 @@
-import { GeoJSONFeature } from "zod-geojson"
+import { GeoJsonProperties } from "geojson"
 
 export const clusterGroups = {
     AA: {
@@ -31,7 +31,7 @@ export type ClusterGroup = keyof typeof clusterGroups
 
 const logged = new Set<string>()
 
-export const getClusterGroup = (properties: GeoJSONFeature["properties"]): ClusterGroup => {
+export const getClusterGroup = (properties: GeoJsonProperties): ClusterGroup => {
     const group = `${properties?.["Group"]}`
     if (group in clusterGroups) return group as ClusterGroup
     if (!logged.has(group)) {

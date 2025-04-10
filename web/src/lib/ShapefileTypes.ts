@@ -1,4 +1,5 @@
-import { GeoJSONFeature } from "zod-geojson"
+import { Feature } from "geojson"
+import { GeoJSONFeature } from "zod-geojson";
 
 // copied from @loaders.gl/shapefile package since it doesn't export these types
 export interface SHXOutput {
@@ -36,6 +37,11 @@ export interface ShapefileOutput {
 }
 
 export interface ValidatedShapefile extends Omit<ShapefileOutput, "data"> {
+    features?: Feature[]
+    parseError?: string
+}
+
+export interface ZodValidatedShapefile extends Omit<ShapefileOutput, "data"> {
     features?: GeoJSONFeature[]
     parseError?: string
 }
