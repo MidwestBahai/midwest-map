@@ -1,15 +1,15 @@
 import { load, Loader } from "@loaders.gl/core"
 import { ShapefileLoader } from "@loaders.gl/shapefile"
-import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
+import { GeoJSONFeatureSchema } from "zod-geojson"
 import { writeFile } from "node:fs/promises"
+import { Feature } from "geojson"
 
 // not sure why these require a relative path; can't compile otherwise
-import { ShapefileOutput, ValidatedShapefile, ZodValidatedShapefile } from "../lib/ShapefileTypes"
+import { ShapefileOutput, ValidatedShapefile } from "../lib/ShapefileTypes"
 import { fetchFile } from "../lib/FetchFile"
-import { Feature } from "geojson"
+import { LatLongRect } from "../lib/latLongRect"
 import { ExpandingRect } from "./expandRect"
 import { approximateLargestAlignedRectangle } from "./largestRectangle"
-import { LatLongRect } from "@/lib/latLongRect"
 
 /**
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.
