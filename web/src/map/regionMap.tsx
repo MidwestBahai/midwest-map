@@ -1,10 +1,9 @@
 "use client"
 
-import Map, { MapRef } from "react-map-gl"
+import Map, { MapRef } from "react-map-gl/mapbox"
 import { useCallback, useEffect, useRef, useState } from "react"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
-import { GeoJSONFeature } from "zod-geojson"
 import { deepEqual } from "fast-equals"
 import { useWindowSize } from "@/lib/useWindowSize"
 import { initialBounds } from "@/map/initialMapBounds"
@@ -12,20 +11,21 @@ import { ClusterLayers } from "@/map/clusterLayers"
 import { MapContext } from "@/map/mapContext"
 
 import validatedData from "@/data/clusters.geo.json"
+import { Feature } from "geojson"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
 ) => {
     const windowSize = useWindowSize()
 
-    const [ hoverFeature, setHoverFeature ] = useState<GeoJSONFeature | undefined>(undefined)
+    const [ hoverFeature, setHoverFeature ] = useState<Feature | undefined>(undefined)
 
     const onHover = useCallback((event: MapMouseEvent) => {
         const {
             features,
             point: { x, y},
         } = event
-        const newHoverFeature = (features && features[0]) as GeoJSONFeature | undefined
+        const newHoverFeature = (features && features[0])
         // Only compare properties to see if a new cluster is hovered — the feature object itself is different each time.
         // Technically could just compare ID, but deep equality seems more robust.
         // Maybe we should figure out why?
@@ -60,7 +60,7 @@ export const RegionMap = (
             >
                 <MapContext.Provider value={mapRef.current ?? undefined}>
                     {validatedData.features.map((feature, index) => (
-                        <ClusterLayers key={index} data={feature as GeoJSONFeature} index={index} hoverFeature={hoverFeature}/>
+                        <ClusterLayers key={index} data={feature as Feature} index={index} hoverFeature={hoverFeature} />
                     ))}
                     {hoverFeature && debug && (
                         <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>

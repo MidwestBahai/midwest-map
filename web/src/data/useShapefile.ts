@@ -4,12 +4,15 @@ import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { LoaderReturnType } from "@loaders.gl/loader-utils"
 import { ShapefileOutput, ValidatedShapefile } from "@/lib/ShapefileTypes"
+import { Feature } from "geojson"
 
 const makeShapefileQuery = (filename: string) => async (): Promise<ValidatedShapefile> => {
     const unvalidatedResult = await load<Loader<ShapefileOutput>>(`/shapefiles/${filename}`, ShapefileLoader)
     try {
-        const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
-        // console.log({filename, unvalidatedResult, features, filtered: features.filter(f => f.properties?.Cluster === "IN-07" || f.properties?.Cluster === "IN-04")})
+        const validatedFeatures: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
+        // console.log({filename, unvalidatedResult, features: validatedFeatures, filtered: validatedFeatures.filter(f => f.properties?.Cluster === "IN-07" || f.properties?.Cluster === "IN-04")})
+        // Cast from Zod GeoJSONFeature to Feature — they're practically compatible, just not TypeScript compatible
+        const features = validatedFeatures as Feature[]
         return {...unvalidatedResult, features}
     } catch (error) {
         console.error({message: "Error parsing geoJSON features.", error})

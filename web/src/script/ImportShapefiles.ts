@@ -4,8 +4,9 @@ import { GeoJSONFeature, GeoJSONFeatureSchema } from "zod-geojson"
 import { writeFile } from "node:fs/promises"
 
 // not sure why these require a relative path; can't compile otherwise
-import { ShapefileOutput, ValidatedShapefile } from "../lib/ShapefileTypes"
+import { ShapefileOutput, ValidatedShapefile, ZodValidatedShapefile } from "../lib/ShapefileTypes"
 import { fetchFile } from "../lib/FetchFile"
+import { Feature } from "geojson"
 import { ExpandingRect, LatLongRect } from "./expandRect"
 import { approximateLargestAlignedRectangle } from "./largestRectangle"
 
@@ -33,14 +34,16 @@ export interface ShapeFilePlusLargestRects extends ValidatedShapefile {
     largestClusterRects: Record<string, LatLongRect>
 }
 
+// There is a TypeScript compiler error after 5.6 that may be fixed by https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1944:
+// Type 'SharedArrayBuffer' is missing the following properties from type 'ArrayBuffer': resizable, resize, detached, transfer, transferToFixedLength
 load<Loader<ShapefileOutput>>(
     `file://public/shapefiles/${inputFilename}`,
     ShapefileLoader,
     { fetch: fetchFile },
 ).then(async unvalidatedResult => {
     const largestClusterRects: Record<string, LatLongRect> = {}
-    const features: GeoJSONFeature[] = unvalidatedResult.data.map(feature => {
-        const parsedFeature = GeoJSONFeatureSchema.parse(feature)
+    const features: Feature[] = unvalidatedResult.data.map(feature => {
+        const parsedFeature = GeoJSONFeatureSchema.parse(feature) as Feature
         const clusterName = parsedFeature.properties?.Cluster
         if (typeof clusterName !== "string")
             console.error(`Cluster name is not a string: ${clusterName}`)

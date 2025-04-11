@@ -1,9 +1,9 @@
 "use client" // canvas, which we use to compute colors, only exists on the browser
 
-import { GeoJSONFeature } from "zod-geojson"
 import { clusterGroups, getClusterGroup } from "@/data/clusterGroups"
+import { GeoJsonProperties } from "geojson"
 
-const clusterBaseHue = (properties: GeoJSONFeature["properties"]) =>
+const clusterBaseHue = (properties: GeoJsonProperties) =>
     clusterGroups[getClusterGroup(properties)].baseHue
 
 const alpha = .5
@@ -55,20 +55,20 @@ export const milestoneColor = (milestone: string, baseHue: number, alpha?: numbe
 
 export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) => `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
 
-export const clusterFillColor = (properties: GeoJSONFeature["properties"], highlighted: boolean) =>
+export const clusterFillColor = (properties: GeoJsonProperties, highlighted: boolean) =>
     clusterColor(properties, highlighted ? 90 : undefined)
 
-export const clusterLineColor = (properties: GeoJSONFeature["properties"], highlighted: boolean) =>
+export const clusterLineColor = (properties: GeoJsonProperties, highlighted: boolean) =>
     clusterColor(properties, highlighted ? 180 : undefined)
 
-export const clusterColor = (properties: GeoJSONFeature["properties"], alpha?: number) => {
+export const clusterColor = (properties: GeoJsonProperties, alpha?: number) => {
     const baseHue = clusterBaseHue(properties)
     return milestoneColor(milestone(properties), baseHue, alpha)
 }
 
-const milestone = (properties: GeoJSONFeature["properties"]) => `${properties?.["M"] ?? "Unknown"}`
+const milestone = (properties: GeoJsonProperties) => `${properties?.["M"] ?? "Unknown"}`
 
-export const clusterLabelColor = (properties: GeoJSONFeature["properties"], highlighted: boolean) => {
+export const clusterLabelColor = (properties: GeoJsonProperties, highlighted: boolean) => {
     switch (milestone(properties).toLowerCase()) {
         case "m3r":
         case "m2r":
