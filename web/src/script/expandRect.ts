@@ -39,6 +39,7 @@ export const boundingRect = (polygon: [number, number][]) => ({
     maxLong: Math.max(...polygon.map(([long, _]) => long)),
 })
 
+// Generate a degenerate rectangle from a point — width and height are both 0
 export const degenerateRect = (point: TwoDPoint): LatLongRect => ({
     minLat: point[1],
     maxLat: point[1],
@@ -46,7 +47,7 @@ export const degenerateRect = (point: TwoDPoint): LatLongRect => ({
     maxLong: point[0],
 })
 
-/** Is a contained by b? */
+/** Is a contained entirely inside b? */
 export const isContainedByRect = (a: LatLongRect, b: LatLongRect) =>
     a.minLat >= b.minLat && a.maxLat <= b.maxLat && a.minLong >= b.minLong && a.maxLong <= b.maxLong
 
