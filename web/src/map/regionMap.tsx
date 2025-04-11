@@ -12,6 +12,7 @@ import { MapContext } from "@/map/mapContext"
 
 import validatedData from "@/data/clusters.geo.json"
 import { Feature } from "geojson"
+import { LatLongRect } from "@/lib/latLongRect"
 
 export const RegionMap = (
     {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
@@ -41,6 +42,9 @@ export const RegionMap = (
             map.showCollisionBoxes = true
     })
 
+    // Zod validates, but the TypeScript types are not strictly compatible, so we have to cast.
+    const features = validatedData.features as Feature[]
+
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
     // See https://github.com/visgl/react-map-gl/issues/568
     return (
@@ -59,8 +63,14 @@ export const RegionMap = (
                 ref={mapRef}
             >
                 <MapContext.Provider value={mapRef.current ?? undefined}>
-                    {validatedData.features.map((feature, index) => (
-                        <ClusterLayers key={index} data={feature as Feature} index={index} hoverFeature={hoverFeature} />
+                    {features.map((feature, index) => (
+                        <ClusterLayers
+                            key={index}
+                            data={feature}
+                            index={index}
+                            hoverFeature={hoverFeature}
+                            largestRect={debug ? pickLargestRect(feature) : undefined}
+                        />
                     ))}
                     {hoverFeature && debug && (
                         <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>
@@ -71,4 +81,12 @@ export const RegionMap = (
             </Map>
         </>
     )
+}
+
+const pickLargestRect = (feature: Feature) => {
+    const clusterName = feature.properties?.Cluster
+    if (typeof clusterName === "string" && clusterName in validatedData.largestClusterRects) {
+        const largestRects = validatedData.largestClusterRects as Record<string, LatLongRect>
+        return largestRects[clusterName]
+    }
 }

@@ -5,11 +5,12 @@ import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
 import { useDebugClusterFeature } from "@/map/useDebugClusterFeature"
 import { Feature } from "geojson"
+import { LatLongRect } from "@/lib/latLongRect"
 
 export const ClusterLayers = ({
-    data, index, hoverFeature
+    data, index, hoverFeature, largestRect
 }: {
-    data: Feature, index: number, hoverFeature?: Feature
+    data: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect
 }) => {
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(data?.properties)
@@ -66,9 +67,35 @@ export const ClusterLayers = ({
                     }}
                 />
             )}
+            {largestRect && (
+                <Source type="geojson" data={rectToPolygon(largestRect)}>
+                    <Layer
+                        type="line"
+                        paint={{
+                            "line-color": clusterLineColor(data.properties, true),
+                            "line-width": 2,
+                        }}
+                    />
+                </Source>
+            )}
         </Source>
     )
 }
+
+const rectToPolygon = (rect: LatLongRect): Feature => ({
+    type: "Feature",
+    properties: {},
+    geometry: {
+        type: "Polygon",
+        coordinates: [[
+            [rect.minLong, rect.minLat],
+            [rect.minLong, rect.maxLat],
+            [rect.maxLong, rect.maxLat],
+            [rect.maxLong, rect.minLat],
+            [rect.minLong, rect.minLat],
+        ]],
+    },
+})
 
 // TODO Precompute the largest rectangle or circle that fits inside the polygon
 // interface LatLongBounds {

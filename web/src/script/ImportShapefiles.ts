@@ -7,8 +7,9 @@ import { writeFile } from "node:fs/promises"
 import { ShapefileOutput, ValidatedShapefile, ZodValidatedShapefile } from "../lib/ShapefileTypes"
 import { fetchFile } from "../lib/FetchFile"
 import { Feature } from "geojson"
-import { ExpandingRect, LatLongRect } from "./expandRect"
+import { ExpandingRect } from "./expandRect"
 import { approximateLargestAlignedRectangle } from "./largestRectangle"
+import { LatLongRect } from "@/lib/latLongRect"
 
 /**
  *  Import Shapefiles into GeoJSON and mix in the data from CSV files about clusters.

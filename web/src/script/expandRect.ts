@@ -1,11 +1,6 @@
 // Utility functions for expanding a rectangle to fit a polygon
 
-export interface LatLongRect {
-    minLat: number,
-    maxLat: number,
-    minLong: number,
-    maxLong: number,
-}
+import { LatLongRect } from "@/lib/latLongRect"
 
 export type TwoDPoint = [number, number]
 
