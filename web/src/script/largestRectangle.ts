@@ -6,15 +6,16 @@ import {
     isInsidePolygon,
     rectArea,
     removeContainedRects,
-    TwoDPoint
+    TwoDPoint,
+    Polygon, ExpandingRect
 } from "./expandRect"
 
 const pickRandomInteriorPoints = (
-    polygon: TwoDPoint[],
+    polygon: Polygon,
     count: number,
     maxTries: number,
-): TwoDPoint[] => {
-    const result: TwoDPoint[] = []
+): Polygon => {
+    const result: Polygon = []
     let tries = 0
     while (result.length < count) {
         const point: TwoDPoint = [
@@ -33,7 +34,7 @@ const pickRandomInteriorPoints = (
  * @param polygon an array of [longitude, latitude] points that define the polygon.
  * @param epsilon precision that is "good enough", in points of latitude or longitude. Default is 0.01, which is a little less than a mile at the equator.
  */
-export const approximateLargestAlignedRectangle = (polygon: TwoDPoint[], epsilon: number = 0.01) => {
+export const approximateLargestAlignedRectangle = (polygon: Polygon, epsilon: number = 0.01): ExpandingRect => {
     const bounding = boundingRect(polygon)
     if (rectArea(bounding) < epsilon * epsilon * 4) throw new Error("Polygon is too small to contain a rectangle")
 

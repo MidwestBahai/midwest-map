@@ -3,6 +3,7 @@
 import { LatLongRect } from "../lib/latLongRect"
 
 export type TwoDPoint = [number, number]
+export type Polygon = TwoDPoint[]
 
 export interface ExpandingRect {
     rect: LatLongRect,
@@ -20,7 +21,7 @@ export const expandingRect = (rect: LatLongRect, delta: number): ExpandingRect =
 /** See https://en.wikipedia.org/wiki/Point_in_polygon
  *  The ray casting algorithm where an odd number of intersections means the point is inside the polygon.
  *  Thank you copilot. */
-export const isInsidePolygon = (point: TwoDPoint, polygon: TwoDPoint[]) => {
+export const isInsidePolygon = (point: TwoDPoint, polygon: Polygon) => {
     let isInside = false
     const [x, y] = point
     for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
@@ -32,7 +33,7 @@ export const isInsidePolygon = (point: TwoDPoint, polygon: TwoDPoint[]) => {
     return isInside
 }
 
-export const boundingRect = (polygon: [number, number][]) => ({
+export const boundingRect = (polygon: Polygon) => ({
     minLat: Math.min(...polygon.map(([_, lat]) => lat)),
     maxLat: Math.max(...polygon.map(([_, lat]) => lat)),
     minLong: Math.min(...polygon.map(([long, _]) => long)),
@@ -54,18 +55,19 @@ export const isContainedByRect = (a: LatLongRect, b: LatLongRect) =>
 export const removeContainedRects = (rects: ExpandingRect[]): ExpandingRect[] =>
     rects.filter(rect => !rects.some(r => r !== rect && isContainedByRect(r.rect, rect.rect)))
 
-const intersects = (a1: TwoDPoint, a2: TwoDPoint, b1: TwoDPoint, b2: TwoDPoint) => {
-    const [x1, y1] = a1, [x2, y2] = a2, [x3, y3] = b1, [x4, y4] = b2
-    const d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
-    if (d === 0) return false
-    const u = ((x3 - x1) * (y3 - y4) - (y3 - y1) * (x3 - x4)) / d
-    const v = ((x3 - x1) * (y1 - y2) - (y3 - y1) * (x1 - x2)) / d
-    return u >= 0 && u <= 1 && v >= 0 && v <= 1
+export const intersects = (a1: TwoDPoint, a2: TwoDPoint, b1: TwoDPoint, b2: TwoDPoint) => {
+    const [x1, y1] = a1, [x2, y2] = a2
+    const [x3, y3] = b1, [x4, y4] = b2
+    const denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1)
+    if (denom === 0) return false // parallel lines
+    const ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom
+    const ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom
+    return ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1
 }
 
-const rectangleIntersectsPolygon = (rect: LatLongRect, polygon: TwoDPoint[]) => {
+const rectangleIntersectsPolygon = (rect: LatLongRect, polygon: Polygon) => {
     const [minLat, maxLat, minLong, maxLong] = [rect.minLat, rect.maxLat, rect.minLong, rect.maxLong]
-    const corners: TwoDPoint[] = [
+    const corners: Polygon = [
         [minLong, minLat], [maxLong, minLat], [maxLong, maxLat], [minLong, maxLat]
     ]
     for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
@@ -80,7 +82,7 @@ const rectangleIntersectsPolygon = (rect: LatLongRect, polygon: TwoDPoint[]) => 
 
 // TODO try expanding multiple directions and saving best from each
 /** Expand a rectangle in each direction, round-robin, until it hits the edge of the polygon. */
-export const expandRect = (rect: LatLongRect, polygon: TwoDPoint[], delta: number): LatLongRect => {
+export const expandRect = (rect: LatLongRect, polygon: Polygon, delta: number): LatLongRect => {
     let result = rect
     let tmpResult = rect
     const bounding = boundingRect(polygon)

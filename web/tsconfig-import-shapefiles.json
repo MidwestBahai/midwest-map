@@ -12,5 +12,5 @@
     "src/lib/**/*.ts",
     "src/script/**/*.ts",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "**/*.test.tsx", "**/*.spec.tsx"],
 }
