@@ -29,6 +29,7 @@ const pickRandomInteriorPoints = (
     return result
 }
 
+// TODO for a multi-polygon, either pick points in all or pick points in the largest — currently not finding any
 /**
  * Approximate the largest rectangle inside a polygon — measured by area — aligned to the axes (that is, no rotated rectangles).
  * @param polygon an array of [longitude, latitude] points that define the polygon.

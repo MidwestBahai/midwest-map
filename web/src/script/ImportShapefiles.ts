@@ -8,7 +8,7 @@ import { Feature } from "geojson"
 import { ShapefileOutput, ValidatedShapefile } from "../lib/ShapefileTypes"
 import { fetchFile } from "../lib/FetchFile"
 import { LatLongRect } from "../lib/latLongRect"
-import { ExpandingRect } from "./expandRect"
+import { boundingRect, ExpandingRect } from "./expandRect"
 import { approximateLargestAlignedRectangle } from "./largestRectangle"
 
 /**
@@ -48,12 +48,38 @@ load<Loader<ShapefileOutput>>(
         const clusterName = parsedFeature.properties?.Cluster
         if (typeof clusterName !== "string")
             console.error(`Cluster name is not a string: ${clusterName}`)
-        else if (parsedFeature.geometry?.type === "Polygon") {
+        else if (parsedFeature.geometry?.type === "Polygon" || parsedFeature.geometry?.type === "MultiPolygon") {
             const polygonRects: ExpandingRect[] = []
-            parsedFeature.geometry.coordinates.forEach(polygon => {
-                // console.log(`Processing ${clusterName} with ${polygon.length} points`)
-                polygonRects.push(approximateLargestAlignedRectangle(polygon as [number, number][]))
-            })
+
+            if (parsedFeature.geometry.type === "Polygon") {
+                parsedFeature.geometry.coordinates.forEach(polygon => {
+                    // const bounding = boundingRect(polygon as [number, number][])
+                    // const minDim = Math.min(bounding.maxLat - bounding.minLat, bounding.maxLong - bounding.minLong)
+                    // console.log(`Cluster ${clusterName} min dimension ${minDim} with ${polygon.length} points`)
+                    // console.log(`Processing ${clusterName} with ${polygon.length} points`)
+                    polygonRects.push(approximateLargestAlignedRectangle(polygon as [number, number][]))
+                })
+            }
+
+            // Multipolygon is an array of polygons, each of which is an array of points.
+            // It means the geographic region is disconnected. We can still just look for the largest single rectangle.
+            else parsedFeature.geometry.coordinates.forEach(multiPolygon =>
+                multiPolygon.forEach(polygon => {
+                    const bounding = boundingRect(polygon as [number, number][])
+                    const minDim = Math.min(bounding.maxLat - bounding.minLat, bounding.maxLong - bounding.minLong)
+                    if (bounding.maxLat - bounding.minLat < 0.2 || bounding.maxLong - bounding.minLong < 0.2) {
+                        console.debug(`Skipping tiny polygon for ${clusterName} with ${polygon.length} points and min dimension ${minDim}`)
+                    }
+                    else {
+                        try {
+                            polygonRects.push(approximateLargestAlignedRectangle(polygon as [number, number][]))
+                        } catch (e) {
+                            console.error(`Error processing ${clusterName}, min dimension ${minDim} with ${polygon.length} points: ${e}`)
+                        }
+                    }
+                })
+            )
+
             if (polygonRects.length === 0)
                 console.error(`No rectangles found for ${parsedFeature.properties?.Cluster}`)
             else
