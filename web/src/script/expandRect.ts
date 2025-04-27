@@ -11,7 +11,14 @@ export interface ExpandingRect {
     delta: number, // the last amount this was incremented by
 }
 
-export const rectArea = (rect: LatLongRect) => (rect.maxLat - rect.minLat) * (rect.maxLong - rect.minLong)
+export const rectArea = (rect: LatLongRect) => {
+    // correct for latitude distortion — approximately, as long as the rectangle is not too large or too far north
+    const latDistortion = Math.cos((rect.minLat + rect.maxLat) / 2 * Math.PI / 180)
+    const lngDelta = (rect.maxLong - rect.minLong) * latDistortion
+    const latDelta = rect.maxLat - rect.minLat
+    return latDelta * lngDelta
+    // return (rect.maxLat - rect.minLat) * (rect.maxLong - rect.minLong)
+}
 export const expandingRect = (rect: LatLongRect, delta: number): ExpandingRect => ({
     rect,
     area: rectArea(rect),
