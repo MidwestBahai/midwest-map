@@ -8,9 +8,9 @@ import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 
 export const ClusterLayers = ({
-    data, index, hoverFeature, largestRect
+    data, index, hoverFeature, largestRect, debug
 }: {
-    data: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect
+    data: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, debug?: boolean
 }) => {
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(data?.properties)
@@ -67,7 +67,7 @@ export const ClusterLayers = ({
                     }}
                 />
             )}
-            {largestRect && (
+            {largestRect && debug && (
                 <Source type="geojson" data={rectToPolygon(largestRect)}>
                     <Layer
                         type="line"

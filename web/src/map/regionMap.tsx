@@ -69,7 +69,8 @@ export const RegionMap = (
                             data={feature}
                             index={index}
                             hoverFeature={hoverFeature}
-                            largestRect={debug ? pickLargestRect(feature) : undefined}
+                            largestRect={pickLargestRect(feature)}
+                            debug={debug}
                         />
                     ))}
                     {hoverFeature && debug && (
