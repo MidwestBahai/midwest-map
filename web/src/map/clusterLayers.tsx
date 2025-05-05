@@ -1,25 +1,27 @@
 import { Layer, Source } from "react-map-gl/mapbox"
-import { clusterFillColor, clusterLabelColor, clusterLineColor } from "@/map/clusterColor"
+import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
 import { useDebugClusterFeature } from "@/map/useDebugClusterFeature"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
+import { useMap } from "@/map/mapContext"
+import { ClusterText } from "@/map/clusterText"
 
 export const ClusterLayers = ({
-    data, index, hoverFeature, largestRect, debug
+    feature, index, hoverFeature, largestRect, debug
 }: {
-    data: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, debug?: boolean
+    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, debug?: boolean
 }) => {
     const { categoryHighlight } = useCategoryHighlight()
-    const clusterGroup = getClusterGroup(data?.properties)
+    const clusterGroup = getClusterGroup(feature?.properties)
     // ensure that undefined is falsy (eg empty string)
-    const milestone = `${data?.properties?.M || ""}`.toLowerCase()
+    const milestone = `${feature?.properties?.M || ""}`.toLowerCase()
     const milestoneMatches = matchesIncludingReservoir(milestone, categoryHighlight.milestone)
     const highlighted =
         // specific cluster is hovered
-        data?.properties?.Cluster === hoverFeature?.properties?.Cluster
+        feature?.properties?.Cluster === hoverFeature?.properties?.Cluster
         // both milestone & grouping are highlighted
         || clusterGroup === categoryHighlight.clusterGroup && milestoneMatches
         // only milestone is highlighted
@@ -30,55 +32,55 @@ export const ClusterLayers = ({
     const fillLayerId = `cluster-${index}`
     const symbolLayerId = `symbol-${index}`
 
-    useDebugClusterFeature(index, "IN-01", data)
+    useDebugClusterFeature(index, "IN-01", feature)
+    const map = useMap()
+    // const scaleFactor = map?.getScaleFactor()
+    // useEffect(() => console.log({scaleFactor}), [scaleFactor])
 
     return (
-        <Source type="geojson" data={data}>
-            {data.properties && (
-                <Layer
-                    type="fill"
-                    paint={{
-                        "fill-color": clusterFillColor(data.properties, highlighted),
-                    }}
-                    id={fillLayerId}
+        <>
+            <Source type="geojson" data={feature}>
+                {feature.properties && (
+                    <Layer
+                        type="fill"
+                        paint={{
+                            "fill-color": clusterFillColor(feature.properties, highlighted),
+                        }}
+                        id={fillLayerId}
+                    />
+                )}
+                {highlighted && (
+                    <Layer
+                        type="line"
+                        paint={{
+                            "line-color": clusterLineColor(feature.properties, highlighted),
+                            "line-width": 3,
+                        }}
+                    />
+                )}
+            </Source>
+
+            {largestRect && (
+                <ClusterText
+                    symbolLayerId={symbolLayerId}
+                    largestRect={largestRect}
+                    feature={feature}
+                    highlighted={highlighted}
                 />
             )}
-            {data.properties && (
-                <Layer
-                    type="symbol"
-                    layout={{
-                        "text-field": "{Cluster}\n{M}",
-                        "text-size": 13,
-                        "text-anchor": "center",
-                        // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],
-                    }}
-                    paint={{
-                       "text-color": clusterLabelColor(data.properties, highlighted),
-                    }}
-                    id={symbolLayerId}
-                />
-            )}
-            {highlighted && (
-                <Layer
-                    type="line"
-                    paint={{
-                        "line-color": clusterLineColor(data.properties, highlighted),
-                        "line-width": 3,
-                    }}
-                />
-            )}
+
             {largestRect && debug && (
                 <Source type="geojson" data={rectToPolygon(largestRect)}>
                     <Layer
                         type="line"
                         paint={{
-                            "line-color": clusterLineColor(data.properties, true),
+                            "line-color": clusterLineColor(feature.properties, true),
                             "line-width": 2,
                         }}
                     />
                 </Source>
             )}
-        </Source>
+        </>
     )
 }
 

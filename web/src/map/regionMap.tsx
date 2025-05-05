@@ -9,6 +9,7 @@ import { useWindowSize } from "@/lib/useWindowSize"
 import { initialBounds } from "@/map/initialMapBounds"
 import { ClusterLayers } from "@/map/clusterLayers"
 import { MapContext } from "@/map/mapContext"
+import { MapExperiments } from "@/map/mapExperiments"
 
 import validatedData from "@/data/clusters.geo.json"
 import { Feature } from "geojson"
@@ -66,7 +67,7 @@ export const RegionMap = (
                     {features.map((feature, index) => (
                         <ClusterLayers
                             key={index}
-                            data={feature}
+                            feature={feature}
                             index={index}
                             hoverFeature={hoverFeature}
                             largestRect={pickLargestRect(feature)}
@@ -78,6 +79,7 @@ export const RegionMap = (
                             <p>{JSON.stringify(hoverFeature.properties, undefined, 1)}</p>
                         </div>
                     )}
+                    <MapExperiments/>
                 </MapContext.Provider>
             </Map>
         </>
