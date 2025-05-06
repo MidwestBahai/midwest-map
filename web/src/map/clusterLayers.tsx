@@ -3,17 +3,17 @@ import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
-import { useDebugClusterFeature } from "@/map/useDebugClusterFeature"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
-import { useMap } from "@/map/mapContext"
 import { ClusterText } from "@/map/clusterText"
+import { useDebug } from "@/app/DebugContext"
 
 export const ClusterLayers = ({
-    feature, index, hoverFeature, largestRect, debug
+    feature, index, hoverFeature, largestRect
 }: {
-    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, debug?: boolean
+    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect
 }) => {
+    const { debug } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(feature?.properties)
     // ensure that undefined is falsy (eg empty string)
@@ -32,8 +32,7 @@ export const ClusterLayers = ({
     const fillLayerId = `cluster-${index}`
     const symbolLayerId = `symbol-${index}`
 
-    useDebugClusterFeature(index, "IN-01", feature)
-    const map = useMap()
+    // useDebugClusterFeature(index, "IN-01", feature)
     // const scaleFactor = map?.getScaleFactor()
     // useEffect(() => console.log({scaleFactor}), [scaleFactor])
 

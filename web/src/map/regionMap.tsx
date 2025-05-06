@@ -8,17 +8,19 @@ import { deepEqual } from "fast-equals"
 import { useWindowSize } from "@/lib/useWindowSize"
 import { initialBounds } from "@/map/initialMapBounds"
 import { ClusterLayers } from "@/map/clusterLayers"
-import { MapContext } from "@/map/mapContext"
+import { MapContext, MapProvider } from "@/map/mapContext"
 import { MapExperiments } from "@/map/mapExperiments"
 
 import validatedData from "@/data/clusters.geo.json"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
+import { useDebug } from "@/app/DebugContext"
 
 export const RegionMap = (
-    {mapboxAccessToken, debug}: {mapboxAccessToken: string, debug: boolean}
+    {mapboxAccessToken}: {mapboxAccessToken: string}
 ) => {
     const windowSize = useWindowSize()
+    const { debug } = useDebug()
 
     const [ hoverFeature, setHoverFeature ] = useState<Feature | undefined>(undefined)
 
@@ -63,7 +65,7 @@ export const RegionMap = (
                 onMouseMove={onHover}
                 ref={mapRef}
             >
-                <MapContext.Provider value={mapRef.current ?? undefined}>
+                <MapProvider mapRef={mapRef.current ?? undefined}>
                     {features.map((feature, index) => (
                         <ClusterLayers
                             key={index}
@@ -71,7 +73,6 @@ export const RegionMap = (
                             index={index}
                             hoverFeature={hoverFeature}
                             largestRect={pickLargestRect(feature)}
-                            debug={debug}
                         />
                     ))}
                     {hoverFeature && debug && (
@@ -80,7 +81,7 @@ export const RegionMap = (
                         </div>
                     )}
                     <MapExperiments/>
-                </MapContext.Provider>
+                </MapProvider>
             </Map>
         </>
     )

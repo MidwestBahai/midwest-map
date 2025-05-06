@@ -1,7 +1,10 @@
-import { Feature, GeoJsonProperties } from "geojson"
+import { Feature } from "geojson"
 import { Layer, Source } from "react-map-gl/mapbox"
 import { clusterLabelColor } from "@/map/clusterColor"
 import { LatLongRect } from "@/lib/latLongRect"
+import { useMap } from "@/map/mapContext"
+import { useEffect, useState } from "react"
+import { useDebug } from "@/app/DebugContext"
 
 interface ClusterTextProps {
     feature: Feature,
@@ -10,33 +13,22 @@ interface ClusterTextProps {
     highlighted: boolean,
 }
 
-interface RemRect {
-    width: number,
-    height: number,
-}
-
-// convert lat/lng rectangle to REM units, based on map zoom level
-const latLongToRem = (
-    rect: LatLongRect,
-    zoom: number, // mapbox-gl zoom level
-): RemRect => {
-    // Mercator projection, so latitude gets stretched, and longitude can be considered rectangular
-    const midLat = (rect.minLat + rect.maxLat) * .5
-    const latCorrection = 1 / Math.cos(midLat * Math.PI / 180)
-    // size the rectangle is rendered in terms of geo units at the equator
-    const rectHeight = latCorrection * (rect.maxLat - rect.minLat)
-    const rectWidth = rect.maxLong - rect.minLong
-    // meters per pixel at the equator
-    const scale = Math.pow(2, zoom) * 156543
-    return {
-        width: rectWidth / scale,
-        height: rectHeight / scale,
-    }
+const truncate = ( str: any, maxLength: number ) => {
+    const s = `${str}`
+    return s.length > maxLength ? s.slice(0, maxLength) : str
 }
 
 export const ClusterText = (
     {feature, largestRect, symbolLayerId, highlighted}: ClusterTextProps
 ) => {
+    const { debug } = useDebug()
+    const {degreesToRem} = useMap()
+    const [remDescription, setRemDescription] = useState<string>("")
+    useEffect(() => {
+        const remRect = degreesToRem(largestRect)
+        setRemDescription(`${truncate(remRect.width, 6)} x ${truncate(remRect.height, 6)}`)
+    }, [largestRect, degreesToRem])
+    const displays = ["{Cluster}", "{M}", debug ? remDescription : ""].filter(Boolean)
     return feature.properties && (
         <Source
             type="geojson"
@@ -45,7 +37,7 @@ export const ClusterText = (
             <Layer
                 type="symbol"
                 layout={{
-                    "text-field": "{Cluster}\n{M}",
+                    "text-field": displays.join("\n"),
                     "text-size": 13,
                     "text-anchor": "center",
                     // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],

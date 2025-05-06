@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { Feature } from "geojson"
 
 export const useDebugClusterFeature = (index: number, clusterName: string, feature: Feature) => {
-    const map = useMap()
+    const {map} = useMap()
     useEffect(() => {
         if (map && feature.properties?.Cluster === clusterName) {
             const fillLayer = map.getLayer(`cluster-${index}`)

@@ -1,22 +1,55 @@
-import { useContext, createContext, useEffect, useState, PropsWithChildren } from "react"
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react"
 import { MapRef } from "react-map-gl/mapbox"
+import { LatLongRect } from "@/lib/latLongRect"
 
 interface MapContextValue {
-    mapRef: MapRef | undefined
-    // REM units per meter on the map, at the equator
-    remPerMeter: number
+    map: MapRef | undefined
+    degreesToRem: (latLongRect: LatLongRect) => RemRect
     initialized: boolean
 }
 
+export interface RemRect {
+    width: number,
+    height: number,
+}
+
+const PIXELS_PER_REM = 16
+const METERS_PER_DEGREE = 111215 // at the equator -- avg of latitude 111,111, longitude 111,320
+
+// https://docs.mapbox.com/help/glossary/zoom-level/#zoom-levels-and-geographical-distance
+const remPerDegreeAtEquator = (zoom: number): number => {
+    const metersPerPixel = Math.pow(2, zoom) * 156543 * 0.5
+    const degreesPerPixel = METERS_PER_DEGREE / metersPerPixel
+    return PIXELS_PER_REM * degreesPerPixel
+}
+
+const makeDegreesToRem = (zoom: number) => {
+    const remPerDegree = remPerDegreeAtEquator(zoom)
+    return (latLongRect: LatLongRect): RemRect => {
+        // Mercator projection, so latitude gets stretched, and longitude can be considered rectangular
+        const midLat = (latLongRect.minLat + latLongRect.maxLat) * .5
+        const latCorrection = 1 / Math.cos(midLat * Math.PI / 180)
+        // size the rectangle is rendered in terms of degrees at the equator
+        const degreesHeight = latCorrection * (latLongRect.maxLat - latLongRect.minLat)
+        const degreesWidth = latLongRect.maxLong - latLongRect.minLong
+        return {
+            width: degreesWidth * remPerDegree,
+            height: degreesHeight * remPerDegree,
+        }
+    }
+}
+
 const INITIAL_MAP_CONTEXT: MapContextValue = {
-    mapRef: undefined,
-    remPerMeter: 0,
+    map: undefined,
+    degreesToRem: makeDegreesToRem(0),
     initialized: true,
 }
 
 const UNINITIALIZED: MapContextValue = {
-    mapRef: undefined,
-    remPerMeter: 0,
+    map: undefined,
+    degreesToRem: () => {
+        throw new Error("MapContext not initialized; wrap with <MapProvider>")
+    },
     initialized: false,
 }
 
@@ -32,10 +65,17 @@ export const MapProvider = ({
     useEffect(() => {
         // listen to zoom changes
         if (map) {
-            const zoomListener = () => {
+            if (!context.map) {
                 setContext((prev) => ({
                     ...prev,
-                    remPerMeter: 1 / (156543 * Math.pow(2, map.getZoom())),
+                    map: mapRef,
+                }))
+            }
+            const zoomListener = () => {
+                // console.log("zoom changed", map.getZoom())
+                setContext((prev) => ({
+                    ...prev,
+                    degreesToRem: makeDegreesToRem(map.getZoom()),
                 }))
             }
             map.on("zoom", zoomListener)
@@ -53,8 +93,8 @@ export const MapProvider = ({
 
 export const useMap = () => {
     const result = useContext(MapContext)
-    if (result && !result.initialized) {
-        throw new Error("MapContext not initialized; wrap with <MapProvider>")
-    }
+    // if (result && !result.initialized) {
+    //     throw new Error("MapContext not initialized; wrap with <MapProvider>")
+    // }
     return result
 }
