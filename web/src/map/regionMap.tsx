@@ -46,6 +46,7 @@ export const RegionMap = (
     })
 
     // Zod validates, but the TypeScript types are not strictly compatible, so we have to cast.
+    // TODO See time series updates in comments here: https://docs.google.com/spreadsheets/d/1NplBKdFrqkTsiqxfHgh6wciuCb8wopp97s_h8eRRJIQ/edit?gid=1531826735#gid=1531826735
     const features = validatedData.features as Feature[]
 
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
