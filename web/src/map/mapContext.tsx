@@ -16,11 +16,18 @@ export interface RemRect {
 const PIXELS_PER_REM = 16
 const METERS_PER_DEGREE = 111215 // at the equator -- avg of latitude 111,111, longitude 111,320
 
-// https://docs.mapbox.com/help/glossary/zoom-level/#zoom-levels-and-geographical-distance
+/**
+ * Meters per pixel at zoom level 0, at the equator.
+ * The 0.5 is to correct for tile size, from 256 pixels square (OSM) to 512 (MapBox).
+ * https://wiki.openstreetmap.org/wiki/Zoom_levels
+ * https://docs.mapbox.com/help/glossary/zoom-level/#zoom-levels-and-geographical-distance
+ */
+const METERS_PER_PIXEL = 156543 * 0.5
+
 const remPerDegreeAtEquator = (zoom: number): number => {
-    const metersPerPixel = Math.pow(2, zoom) * 156543 * 0.5
-    const degreesPerPixel = METERS_PER_DEGREE / metersPerPixel
-    return PIXELS_PER_REM * degreesPerPixel
+    const metersPerPixel = METERS_PER_PIXEL / Math.pow(2, zoom)
+    const pixelsPerDegree = METERS_PER_DEGREE / metersPerPixel
+    return pixelsPerDegree / PIXELS_PER_REM
 }
 
 const makeDegreesToRem = (zoom: number) => {
