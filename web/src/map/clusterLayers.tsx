@@ -7,6 +7,7 @@ import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { ClusterText } from "@/map/clusterText"
 import { useDebug } from "@/app/DebugContext"
+import { RectangleLayer } from "@/map/rectangleLayer"
 
 export const ClusterLayers = ({
     feature, index, hoverFeature, largestRect
@@ -69,74 +70,11 @@ export const ClusterLayers = ({
             )}
 
             {largestRect && debug && (
-                <Source type="geojson" data={rectToPolygon(largestRect)}>
-                    <Layer
-                        type="line"
-                        paint={{
-                            "line-color": clusterLineColor(feature.properties, true),
-                            "line-width": 2,
-                        }}
-                    />
-                </Source>
+                <RectangleLayer
+                    rectangle={largestRect}
+                    color={clusterFillColor(feature.properties, true)}
+                />
             )}
         </>
     )
 }
-
-const rectToPolygon = (rect: LatLongRect): Feature => ({
-    type: "Feature",
-    properties: {},
-    geometry: {
-        type: "Polygon",
-        coordinates: [[
-            [rect.minLong, rect.minLat],
-            [rect.minLong, rect.maxLat],
-            [rect.maxLong, rect.maxLat],
-            [rect.maxLong, rect.minLat],
-            [rect.minLong, rect.minLat],
-        ]],
-    },
-})
-
-// TODO Precompute the largest rectangle or circle that fits inside the polygon
-// interface LatLongBounds {
-//     minLat: number,
-//     maxLat: number,
-//     minLong: number,
-//     maxLong: number,
-// }
-//
-// Or maybe see how it works in placements.ts in mapbox-gl-js
-// Or is there a way to directly access collisionCircleArray or the placements themselves?
-//
-// const featurePolygonInnerRect = (feature: GeoJSONFeature): LatLongBounds | undefined => {
-//     if (feature.geometry?.type !== "Polygon") return
-//     const coords = feature.geometry.coordinates[0]
-//
-// }
-//
-// const featurePolygonBounds = (feature: GeoJSONFeature): LatLongBounds | undefined => {
-//     if (feature.geometry?.type !== "Polygon") return
-//     const coords = feature.geometry.coordinates[0]
-//     let minLat = 90, maxLat = -90, minLong = 180, maxLong = -180
-//     for (const [long, lat] of coords) {
-//         if (lat < minLat) minLat = lat
-//         if (lat > maxLat) maxLat = lat
-//         if (long < minLong) minLong = long
-//         if (long > maxLong) maxLong = long
-//     }
-//     return {minLat, maxLat, minLong, maxLong}
-// }
-//
-// const featurePolygonPixelsApprox = (feature: GeoJSONFeature, map?: MapRef): heightWidth | undefined => {
-//     if (!map) return
-//     const bounds = featurePolygonBounds(feature)
-//     if (!bounds) return
-//     const sw = map.getMap().project([bounds.minLong, bounds.minLat])
-//     const ne = map.getMap().project([bounds.maxLong, bounds.maxLat])
-// }
-//
-// interface heightWidth {
-//     height: number,
-//     width: number,
-// }
