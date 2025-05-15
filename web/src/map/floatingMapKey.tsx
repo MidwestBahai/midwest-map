@@ -19,9 +19,9 @@ const displayClusterGroups = objectEntries(clusterGroups)
 const displayMilestones: Partial<Record<Milestone, string>> = {
     n: "No Program of Growth",
     e: "Emerging",
-    m1: "Milestone 1",
-    m2: "Milestone 2",
-    m3: "Milestone 3",
+    m1: "1st Milestone",
+    m2: "2nd Milestone",
+    m3: "3rd Milestone",
     m3r: "Reservoir",
 }
 
