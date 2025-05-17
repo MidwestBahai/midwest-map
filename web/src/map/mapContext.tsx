@@ -67,7 +67,9 @@ export const MapProvider = ({
 }: PropsWithChildren<{
     mapRef: MapRef | undefined,
 }>) => {
+    // TODO figure out why map is undefined until mouse moves, which delays text updates
     const map = mapRef?.getMap()
+    // console.log({map})
     const [context, setContext] = useState<MapContextValue>(INITIAL_MAP_CONTEXT)
     useEffect(() => {
         // listen to zoom changes
@@ -85,7 +87,11 @@ export const MapProvider = ({
                     degreesToRem: makeDegreesToRem(map.getZoom()),
                 }))
             }
+            // console.log("adding listeners")
             map.on("zoom", zoomListener)
+            // call once to initialize
+            zoomListener()
+            // console.log("listeners added")
             return () => map.off("zoom", zoomListener)
         }
         else return () => {}
