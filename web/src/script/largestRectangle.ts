@@ -32,6 +32,7 @@ const pickRandomInteriorPoints = (
 // TODO for a multi-polygon, either pick points in all or pick points in the largest — currently not finding any
 /**
  * Approximate the largest rectangle inside a polygon — measured by area — aligned to the axes (that is, no rotated rectangles).
+ * Round lat/long to 5 decimal places, which is about 1 meter.
  * @param polygon an array of [longitude, latitude] points that define the polygon.
  * @param epsilon precision that is "good enough", in points of latitude or longitude. Default is 0.01, which is a little less than a mile at the equator.
  */
@@ -73,5 +74,7 @@ export const approximateLargestAlignedRectangle = (polygon: Polygon, epsilon: nu
     }
 
     // 4. Find the largest rectangle
-    return rects.reduce((max, rect) => rect.area > max.area ? rect : max)
+    const rawResult = rects.reduce((max, rect) => rect.area > max.area ? rect : max)
+    // TODO round to 5 decimal places
+    return rawResult
 }
