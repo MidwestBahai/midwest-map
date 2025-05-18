@@ -14,7 +14,7 @@ export const ClusterLayers = ({
 }: {
     feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect
 }) => {
-    const { debug } = useDebug()
+    const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(feature?.properties)
     // ensure that undefined is falsy (eg empty string)
@@ -69,7 +69,7 @@ export const ClusterLayers = ({
                 />
             )}
 
-            {largestRect && debug && (
+            {largestRect && showMapGeometry && (
                 <RectangleLayer
                     rectangle={largestRect}
                     color={clusterFillColor(feature.properties, true)}

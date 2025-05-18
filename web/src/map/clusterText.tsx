@@ -53,7 +53,7 @@ const milestoneDescription = (properties: GeoJsonProperties, remAvailable: numbe
 export const ClusterText = (
     {feature, largestRect, symbolLayerId, highlighted}: ClusterTextProps
 ) => {
-    const { debug } = useDebug()
+    const { showMapGeometry } = useDebug()
     const {degreesToRem} = useMap()
     const [text, setText] = useState<string>("")
     useEffect(() => {
@@ -91,13 +91,12 @@ export const ClusterText = (
         if (milestone && remRect.width > 8)
             addLongLine(milestone)
 
-        if (debug && linesRemaining >= 1) {
+        if (showMapGeometry && linesRemaining >= 1) {
             lines.push(remDescription)
             --linesRemaining
         }
 
         setText(lines.filter(Boolean).join("\n"))
-        // const displays = ["{Cluster}", "{M}", debug ? remDescription : ""].filter(Boolean)
     }, [largestRect, degreesToRem])
     return feature.properties && (
         <Source

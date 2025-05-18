@@ -20,7 +20,7 @@ export const RegionMap = (
     {mapboxAccessToken}: {mapboxAccessToken: string}
 ) => {
     const windowSize = useWindowSize()
-    const { debug } = useDebug()
+    const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
 
     const [ hoverFeature, setHoverFeature ] = useState<Feature | undefined>(undefined)
 
@@ -41,7 +41,7 @@ export const RegionMap = (
 
     useEffect(() => {
         const map = mapRef.current?.getMap()
-        if (debug && map && !map.showCollisionBoxes)
+        if (showCollisionBoxes && map && !map.showCollisionBoxes)
             map.showCollisionBoxes = true
     })
 
@@ -76,7 +76,7 @@ export const RegionMap = (
                             largestRect={pickLargestRect(feature)}
                         />
                     ))}
-                    {hoverFeature && debug && (
+                    {hoverFeature && showGeoJsonDetails && (
                         <div style={{position: 'absolute', top: 0, left: 0, padding: '1em', backgroundColor: 'white', color: 'black'}}>
                             <p>{JSON.stringify(hoverFeature.properties, undefined, 1)}</p>
                         </div>
