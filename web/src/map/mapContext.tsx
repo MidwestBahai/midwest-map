@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react"
 import { MapRef } from "react-map-gl/mapbox"
 import { LatLongRect } from "@/lib/latLongRect"
+import { MapEventType } from "mapbox-gl"
 
 interface MapContextValue {
     map: MapRef | undefined
@@ -62,6 +63,11 @@ const UNINITIALIZED: MapContextValue = {
 
 export const MapContext = createContext<MapContextValue>(UNINITIALIZED)
 
+const EVENTS_TO_LISTEN: Array<MapEventType> = [
+    "zoom",
+    // "moveend",
+]
+
 export const MapProvider = ({
     mapRef, children
 }: PropsWithChildren<{
@@ -88,14 +94,20 @@ export const MapProvider = ({
                 }))
             }
             // console.log("adding listeners")
-            map.on("zoom", zoomListener)
+            for (const event of EVENTS_TO_LISTEN)
+                map.on(event, zoomListener)
             // call once to initialize
             zoomListener()
-            // console.log("listeners added")
-            return () => map.off("zoom", zoomListener)
+            return () => {
+                for (const event of EVENTS_TO_LISTEN)
+                    map.off(event, zoomListener)
+            }
         }
-        else return () => {}
-    }, [map])
+        else {
+            console.log("map is undefined, waiting for onLoad")
+            return () => {}
+        }
+    }, [map, mapRef])
     const remPerMeter = 1 / (156543 * Math.pow(2, mapRef?.getMap().getZoom() ?? 0))
     return (
         <MapContext.Provider value={context}>

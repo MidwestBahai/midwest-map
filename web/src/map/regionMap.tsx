@@ -38,6 +38,7 @@ export const RegionMap = (
     }, [hoverFeature])
 
     const mapRef = useRef<MapRef>(null)
+    const [mapRefState, setMapRefState] = useState<MapRef | undefined>()
 
     useEffect(() => {
         const map = mapRef.current?.getMap()
@@ -64,9 +65,10 @@ export const RegionMap = (
                 // mapStyle="mapbox://styles/mapbox/dark-v11"
                 interactiveLayerIds={validatedData.features.map((_, index) => `cluster-${index}`)}
                 onMouseMove={onHover}
+                onLoad={() => setMapRefState(mapRef.current ?? undefined)}
                 ref={mapRef}
             >
-                <MapProvider mapRef={mapRef.current ?? undefined}>
+                <MapProvider mapRef={mapRefState}>
                     {features.map((feature, index) => (
                         <ClusterLayers
                             key={index}
