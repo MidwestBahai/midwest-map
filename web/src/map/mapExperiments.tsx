@@ -14,9 +14,12 @@ const useZoomListeners = () => {
                 map.on(event, listener)
                 removers.push(() => map.off(event, listener))
             }
-            createListener("zoomstart")
+            // createListener("zoomstart")
             createListener("zoom")
-            createListener("zoomend")
+            createListener("move")
+            // createListener("zoomend")
+            createListener("touchstart")
+            createListener("touchend")
             return () =>
                 removers.forEach(remove => remove())
         }
