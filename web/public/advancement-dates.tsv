@@ -1,0 +1,102 @@
+Date Advanced	Milestone	Cluster	Name	Population
+2025-05-15	M3	IN-01	Indianapolis	957,337
+2011-11-30	M2	IN-01	Indianapolis	957,337
+2011-11-11	M1	IN-01	Indianapolis	957,337
+	N	IN-01S	Indianapolis South	347,462
+2022-12-06	M1	IN-01N	Indianapolis North	579,290
+2013-01-30	M1	IN-02	Ft Wayne	674,285
+2021-08-30	M2	IN-02	Ft Wayne	674,285
+2014-03-30	M1	IN-03	South Bend	601,557
+2023-09-02	M2	IN-04	West Lafayette	317,290
+2015-03-26	M1	IN-04	West Lafayette	317,290
+2015-01-30	M1	IN-05	Hollow Reed / Bloomington	420,569
+2025-06-09	M2	IN-05	Hollow Reed / Bloomington	420,569
+2015-03-13	M1	IN-06	Gary	765,491
+2022-05-08	M1	IN-07	Evansville	315,711
+2015-03-26	M1	IN-08	Muncie	301,264
+2017-01-09	M1	IN-09	Terre Haute	203,352
+	N	IN-10	Kokomo	273,219
+	N	IN-11	Monon	107,055
+	N	IN-12	Vincennes	122,931
+2015-03-26	M1	IN-13	Richmond	183,924
+	N	IN-14	Cinci-Indiana	167,730
+	N	IN-16	Jasper	112,123
+2016-03-28	M1	IN-17	Jeffersonville	235,453
+2014-10-15	M1	MI-01	Alpena	133,018
+2014-10-15	M1	MI-02	Travers City	265,823
+2016-07-18	M1	MI-03	Manistee-Newaygo	140,638
+	N	MI-04	Central Michigan Counties	206,760
+	N	MI-05	Tawas, Standish, West Branch Area	86,433
+2014-10-15	M1	MI-06	Midland, Bay City, Saginaw	418,809
+2023-05-14	M3	MI-08	Flint-Davison	562,921
+2014-04-30	M1	MI-08	Flint-Davison	562,921
+2020-01-20	M2	MI-08	Flint-Davison	562,921
+2011-11-10	M1	MI-09	Grand Rapids	1,122,209
+2011-11-30	M2	MI-09	Grand Rapids	1,122,209
+2021-07-12	M3	MI-09	Grand Rapids	1,122,209
+2011-11-30	M1	MI-11	Lansing	479,610
+2015-07-09	M2	MI-11	Lansing	479,610
+2024-03-20	M1	MI-12	St Joseph / Benton Harbor	452,224
+2024-02-15	M2	MI-13	Kalamazoo	459,054
+2014-04-30	M1	MI-13	Kalamazoo	459,054
+2015-10-12	M1	MI-14	Falling Waters	247,309
+2015-12-17	M1	MI-15	Adrian-Monroe	248,310
+	N	MI-16	Livingston County (Brighton)	190,832
+2011-11-30	M1	MI-17	Washtenaw / Ann Arbor	368,385
+2011-11-30	M2	MI-17	Washtenaw / Ann Arbor	368,385
+2021-07-21	M3	MI-17	Washtenaw / Ann Arbor	368,385
+2011-11-10	M1	MI-19	Tri-County / Detroit	3,879,292
+2019-10-01	M2	MI-19	Tri-County / Detroit	3,879,292
+	N	MI-31	Ionia Area	127,917
+	N	MIUP-01	Bessemer	20,517
+2015-10-21	M1	MIUP-02	Houghton	46,329
+	N	MIUP-03	Escanaba	95,248
+2014-10-15	M1	MIUP-04	Marquette	75,501
+2022-05-31	M2	MIUP-04	Marquette	75,501
+	N	MIUP-05	Manistique	14,317
+	N	MIUP-06	Sault Ste Marie	48,199
+2011-11-10	M1	OH-01	Emerald / Cuyahoga / Cleveland	1,241,475
+2011-11-30	M2	OH-01	Emerald / Cuyahoga / Cleveland	1,241,475
+2014-11-11	M1	OH-03	Franklin County / Columbus	1,339,896
+2014-11-30	M2	OH-03	Franklin County / Columbus	1,339,896
+2020-01-04	M3	OH-03	Franklin County / Columbus	1,339,896
+2011-11-11	M1	OH-05	Cincinnati / Hamilton County	826,640
+2011-11-30	M2	OH-05	Cincinnati / Hamilton County	826,640
+2011-11-11	M1	OH-06	Dayton / Montgomery County	531,988
+2011-11-30	M2	OH-06	Dayton / Montgomery County	531,988
+2014-10-15	M1	OH-07	Akron	540,810
+2024-01-30	M2	OH-07	Akron	540,810
+2021-01-30	M1	OH-08	Toledo / Lucas County	430,319
+2021-10-11	M2	OH-08	Toledo / Lucas County	430,319
+2013-01-30	M1	OH-10	Oberlin / Lorain County	302,508
+2015-11-30	M1	OH-11	Portage County	162,476
+2014-03-30	M1	OH-12	Geauga / Lake County	323,412
+2015-10-15	M1	OH-14	Stark County	371,516
+	N	OH-15	Mahoning	228,452
+	N	OH-16	Holmes	43,954
+	N	OH-17	Carroll	302,949
+2016-01-03	M1	OH-18	Appalachia I	209,431
+	N	OH-19	Muskingum	307,060
+2016-01-28	M1	OH-20	Athens	118,914
+	N	OH-21	Williams	196,616
+2015-10-15	M1	OH-22	Ottawa County	293,925
+2017-02-13	M1	OH-23	Wood	206,427
+2014-04-30	M1	OH-24	Crawford	216,179
+2021-10-16	M2	OH-24	Crawford	216,179
+	N	OH-25	Van Wert	66,317
+	N	OH-26	Allen	182,840
+2017-11-09	M1	OH-27	Wyandot	379,266
+2023-11-06	M2	OH-27	Wyandot	379,266
+2016-03-17	M1	OH-28	Morrow	302,774
+2023-06-10	M2	OH-29	Nur	244,932
+2016-01-03	M1	OH-29	Nur / Darke County	244,932
+2016-01-03	M1	OH-29	Nur (Darke County)	244,932
+2023-06-10	M2	OH-29	Nur (Darke County)	244,932
+2013-01-30	M1	OH-30	Green County (Yellow Springs)	302,276
+2018-05-15	M2	OH-30	Green County (Yellow Springs)	302,276
+2016-03-11	M1	OH-31	Fayette	207,785
+2024-02-26	M1	OH-32	Butler	423,124
+2015-10-12	M1	OH-33	Warren	274,540
+2016-01-14	M1	OH-34	Appalachia II	249,124
+2016-03-11	M1	OH-35	Appalachia III	266,461
+2022-05-20	M2	OH-35	Appalachia III	266,461
