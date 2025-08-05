@@ -73,14 +73,13 @@ export const MapProvider = ({
 }: PropsWithChildren<{
     mapRef: MapRef | undefined,
 }>) => {
-    // TODO figure out why map is undefined until mouse moves, which delays text updates
     const map = mapRef?.getMap()
     // console.log({map})
     const [context, setContext] = useState<MapContextValue>(INITIAL_MAP_CONTEXT)
     useEffect(() => {
         // listen to zoom changes
         if (map) {
-            if (!context.map) {
+            if (!context.map || context.map !== mapRef) {
                 setContext((prev) => ({
                     ...prev,
                     map: mapRef,
@@ -104,11 +103,10 @@ export const MapProvider = ({
             }
         }
         else {
-            console.log("map is undefined, waiting for onLoad")
+            console.debug("map is undefined, waiting for onLoad")
             return () => {}
         }
-    }, [map, mapRef])
-    const remPerMeter = 1 / (156543 * Math.pow(2, mapRef?.getMap().getZoom() ?? 0))
+    }, [map, mapRef, context.map])
     return (
         <MapContext.Provider value={context}>
             {children}

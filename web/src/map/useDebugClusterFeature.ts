@@ -10,5 +10,5 @@ export const useDebugClusterFeature = (index: number, clusterName: string, featu
             const symbolLayer = map.getLayer(`symbol-${index}`)
             console.log({fillLayer, symbolLayer, properties: feature.properties, map})
         }
-    }, [map, index])
+    }, [map, index, clusterName, feature.properties?.Cluster, feature.properties])
 }

@@ -97,7 +97,7 @@ export const ClusterText = (
         }
 
         setText(lines.filter(Boolean).join("\n"))
-    }, [largestRect, degreesToRem])
+    }, [largestRect, degreesToRem, feature.properties, showMapGeometry])
     return feature.properties && (
         <Source
             type="geojson"
