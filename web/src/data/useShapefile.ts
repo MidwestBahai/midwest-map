@@ -7,7 +7,7 @@ import { ShapefileOutput, ValidatedShapefile } from "@/lib/ShapefileTypes"
 import { Feature } from "geojson"
 
 const makeShapefileQuery = (filename: string) => async (): Promise<ValidatedShapefile> => {
-    const unvalidatedResult = await load<Loader<ShapefileOutput>>(`/shapefiles/${filename}`, ShapefileLoader)
+    const unvalidatedResult = await load(`/shapefiles/${filename}`, ShapefileLoader) as ShapefileOutput
     try {
         const validatedFeatures: GeoJSONFeature[] = unvalidatedResult.data.map(feature => GeoJSONFeatureSchema.parse(feature))
         // console.log({filename, unvalidatedResult, features: validatedFeatures, filtered: validatedFeatures.filter(f => f.properties?.Cluster === "IN-07" || f.properties?.Cluster === "IN-04")})

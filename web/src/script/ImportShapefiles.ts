@@ -37,13 +37,14 @@ export interface ShapeFilePlusLargestRects extends ValidatedShapefile {
 
 // There is a TypeScript compiler error after 5.6 that may be fixed by https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1944:
 // Type 'SharedArrayBuffer' is missing the following properties from type 'ArrayBuffer': resizable, resize, detached, transfer, transferToFixedLength
-load<Loader<ShapefileOutput>>(
+load(
     `file://public/shapefiles/${inputFilename}`,
-    ShapefileLoader,
+    { ...ShapefileLoader, tests: ShapefileLoader.tests as any[] },
     { fetch: fetchFile },
-).then(async unvalidatedResult => {
+).then(async (unvalidatedResult) => {
+    const typedUnvalidatedResult = unvalidatedResult as ShapefileOutput
     const largestClusterRects: Record<string, LatLongRect> = {}
-    const features: Feature[] = unvalidatedResult.data.map(feature => {
+    const features: Feature[] = typedUnvalidatedResult.data.map(feature => {
         const parsedFeature = GeoJSONFeatureSchema.parse(feature) as Feature
         const clusterName = parsedFeature.properties?.Cluster
         if (typeof clusterName !== "string")
@@ -88,7 +89,7 @@ load<Loader<ShapefileOutput>>(
         return parsedFeature
     })
     // omit "data" from result, since it is now in "features"
-    const {data, ...rest} = unvalidatedResult
+    const {data, ...rest} = typedUnvalidatedResult
     const validatedShapefile: ShapeFilePlusLargestRects = {...rest, features, largestClusterRects}
     // console.log(JSON.stringify(validatedShapefile, null, 2))
     await writeFile(OUTPUT_FILENAME, JSON.stringify(validatedShapefile, null, 1))
