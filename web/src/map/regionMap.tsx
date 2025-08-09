@@ -11,7 +11,7 @@ import { ClusterLayers } from "@/map/clusterLayers"
 import { MapContext, MapProvider } from "@/map/mapContext"
 import { MapExperiments } from "@/map/mapExperiments"
 
-import validatedData from "@/data/clusters.geo.json"
+import validatedData from "@/data/clusters-timeline.geo.json"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { useDebug } from "@/app/DebugContext"

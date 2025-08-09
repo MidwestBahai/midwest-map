@@ -27,7 +27,7 @@ if (!inputFilename) {
     process.exit(1)
 }
 
-const OUTPUT_FILENAME = './src/data/clusters.geo.json'
+const OUTPUT_FILENAME = './src/data/clusters-static.geo.json'
 
 export interface ShapeFilePlusLargestRects extends ValidatedShapefile {
     // Largest aligned rectangles in each cluster (approximately), labeled by Cluster code (which is keyed by "Cluster" in the GeoJSON properties).

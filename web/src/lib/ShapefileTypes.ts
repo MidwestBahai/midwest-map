@@ -45,3 +45,23 @@ export interface ZodValidatedShapefile extends Omit<ShapefileOutput, "data"> {
     features?: GeoJSONFeature[]
     parseError?: string
 }
+
+export interface TimelineEntry {
+    milestone: string
+    date: string
+}
+
+export interface TimelineProperties {
+    population?: number
+    currentMilestone: string
+    timeline: TimelineEntry[]
+    firstAdvancement: string | null
+    latestAdvancement: string | null
+}
+
+export interface TimelineShapefile extends ValidatedShapefile {
+    timelineBounds: {
+        minDate: string | null
+        maxDate: string | null
+    }
+}
