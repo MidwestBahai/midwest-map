@@ -62,7 +62,7 @@ export const ClusterText = (
         // allow line height of about 1.2 REM
         let linesRemaining = remRect.height * 0.8
         // guesstimate how many characters will fit
-        const widthToDisplay = remRect.width * 1.7
+        const widthToDisplay = remRect.width * 1.25
 
         // first line: Cluster code, for example "OH-03"
         // Top separator candidates so far: slash "/", interpunct "·", en-dash "–"
