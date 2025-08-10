@@ -1,19 +1,14 @@
-# Midwest Map
+# Midwest Map - Web Application
 
-The current status of [Bahá’í](https://bahai.org) communities by [cluster](https://bahaipedia.org/Cluster) in the [Midwest Region](https://midwestbahai.org) of the United States.
-
-This is a [Next.js 15 rc](https://nextjs.org/blog/next-15-rc) bootstrapped via [`pnpx create-next-app@rc --usepnpm next-15-rc`](https://nextjs.org/docs/app/api-reference/create-next-app).
+Next.js 15 application for visualizing Bahá'í [clusters](https://bahaipedia.org/Cluster) (geographic areas for systematic growth) and their milestone advancement in the Midwest Region.
 
 ## Development
 
-Run the development server (requires [pnpm](https://pnpm.io)):
-
 ```bash
-pnpm install  # first time only
-pnpm dev
+pnpm install  # Install dependencies
+pnpm dev      # Start development server at http://localhost:3000
+pnpm build    # Production build
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Data Pipeline
 
@@ -38,8 +33,8 @@ pnpm prepare-data      # Runs all steps: compile, import, merge
 ```
 
 ### Data Files
-- **Input:** `public/shapefiles/clusters-2025.shp` - Geographic boundaries
-- **Input:** `public/advancement-dates.tsv` - Milestone advancement dates and populations
+- **Input:** `data-sources/shapefiles/clusters-2025.shp` - Geographic boundaries
+- **Input:** `data-sources/advancement-dates.tsv` - Milestone advancement dates and populations
 - **Intermediate:** `src/data/clusters-static.geo.json` - Pure geographic data
 - **Output:** `src/data/clusters-timeline.geo.json` - Complete data with timeline
 
@@ -50,10 +45,9 @@ The final data includes for each cluster:
 - Timeline of milestone advancements with dates
 - First and latest advancement dates for filtering
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load PT Sans, a custom Google Font
+## Tech Stack
 
-## More about Next.js
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- Deploy on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) — [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework:** Next.js 15 with React
+- **Map:** react-map-gl / Mapbox GL JS
+- **Styling:** Tailwind CSS v4
+- **Font:** PT Sans (Google Fonts)

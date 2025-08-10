@@ -3,7 +3,7 @@
 This document provides context for AI assistants working on the Midwest Map project.
 
 ## Project Overview
-Interactive map showing Bahá'í community clusters in the US Midwest region with milestone advancement tracking over time.
+Interactive map showing Bahá'í clusters (geographic areas for systematic growth) in the US Midwest region with milestone advancement tracking over time.
 
 ## Architecture
 - **Framework:** Next.js 15 with React
@@ -39,12 +39,13 @@ interface ClusterProperties {
 ```
 
 ## Key Components
-- `src/map/regionMap.tsx` - Main map component
-- `src/map/clusterLayers.tsx` - Renders cluster polygons
-- `src/map/floatingMapKey.tsx` - Map legend
-- `src/data/milestoneLabels.ts` - Milestone definitions (M1, M2, M3, etc.)
+- `web/src/map/regionMap.tsx` - Main map component
+- `web/src/map/clusterLayers.tsx` - Renders cluster polygons
+- `web/src/map/floatingMapKey.tsx` - Map legend
+- `web/src/data/milestoneLabels.ts` - Milestone definitions (M1, M2, M3, etc.)
 
 ## Commands
+Run from the `web/` directory:
 ```bash
 pnpm dev          # Development server
 pnpm build        # Production build
@@ -52,8 +53,8 @@ pnpm prepare-data # Rebuild all data files
 ```
 
 ## Data Sources
-- Shapefiles: `public/shapefiles/clusters-YYYY.shp`
-- Timeline: `public/advancement-dates.tsv`
+- Shapefiles: `web/data-sources/shapefiles/clusters-YYYY.shp`
+- Timeline: `web/data-sources/advancement-dates.tsv`
 
 ## Important Notes
 - Cluster IDs are unique (IN-01N and IN-01S are separate from IN-01)
@@ -65,7 +66,7 @@ pnpm prepare-data # Rebuild all data files
 - Timeline data structure is implemented
 - Map displays current milestone status
 - Timeline animation/filtering UI not yet implemented
-- TimelineControl component exists but is disabled
+- TimelineControl component exists but not yet integrated
 
 ## TypeScript Compilation for Scripts
-The import scripts use a separate TypeScript config: `tsconfig-import-shapefiles.json`
+The import scripts use a separate TypeScript config: `web/tsconfig-import-shapefiles.json`

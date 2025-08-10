@@ -15,7 +15,7 @@ import { ShapeFilePlusLargestRects } from "./ImportShapefiles"
  */
 
 const STATIC_CLUSTERS_FILE = './src/data/clusters-static.geo.json'
-const ADVANCEMENT_DATES_FILE = './public/advancement-dates.tsv'
+const ADVANCEMENT_DATES_FILE = './data-sources/advancement-dates.tsv'
 const OUTPUT_FILE = './src/data/clusters-timeline.geo.json'
 
 interface AdvancementRecord {

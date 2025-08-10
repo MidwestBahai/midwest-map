@@ -1,10 +1,19 @@
-# Midwest Bahá’í Cluster Map
+# Midwest Bahá'í Cluster Map
 
 Ohio, Michigan, and Indiana
 
-Draft deployed to https://map.midwestbahai.org/
+Deployed to https://map.midwestbahai.org/ and linked from https://midwestbahai.org/map/.
 
-A [cluster](https://bahaipedia.org/Cluster)-level map of the [Midwest region](https://midwestbahai.org).
+A [cluster](https://bahaipedia.org/Cluster)-level map of the [Midwest region](https://midwestbahai.org), showing geographic shapes and [milestones of growth](https://midwestbahai.org/pathway-to-milestones/).
 
-* Currently shows cluster shapes and [milestones of growth](https://midwestbahai.org/pathway-to-milestones/).
-* Needs updates to both milestone data and cluster shapes (Detroit, Indianapolis).
+## Quick Start
+
+```bash
+cd web
+pnpm install
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the map.
+
+See [web/README.md](web/README.md) for detailed documentation on the data pipeline and development.

@@ -38,7 +38,7 @@ export interface ShapeFilePlusLargestRects extends ValidatedShapefile {
 // There is a TypeScript compiler error after 5.6 that may be fixed by https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1944:
 // Type 'SharedArrayBuffer' is missing the following properties from type 'ArrayBuffer': resizable, resize, detached, transfer, transferToFixedLength
 load(
-    `file://public/shapefiles/${inputFilename}`,
+    `file://data-sources/shapefiles/${inputFilename}`,
     { ...ShapefileLoader, tests: ShapefileLoader.tests as any[] },
     { fetch: fetchFile },
 ).then(async (unvalidatedResult) => {
