@@ -125,9 +125,9 @@ export const TimelineControl = ({
     
     return (
         <div 
-            className={`fixed ${
-                isVertical ? 'right-2 top-24 bottom-24' : 'bottom-2 left-24 right-24'
-            } z-10 pointer-events-none`}
+            className={`${
+                isVertical ? 'h-full' : 'w-full'
+            } pointer-events-none`}
         >
             <svg
                 ref={svgRef}
