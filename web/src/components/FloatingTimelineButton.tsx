@@ -13,12 +13,32 @@ interface FloatingTimelineButtonProps {
 // Constants for maintainability
 const ANIMATION_DURATION_MS = 500
 const TIMELINE_PADDING = 96  // Space from top/bottom of viewport
-const CIRCLE_PADDING = 60    // Space for year circles
+const CIRCLE_PADDING = 90    // Space for year circles (increased for larger circles)
 const SVG_WIDTH = 60
 const CENTER_X = 30
-const YEAR_CIRCLE_RADIUS = 12
-const DRAG_CIRCLE_RADIUS = 14
-const DRAG_CIRCLE_RADIUS_ACTIVE = 16
+
+// Circle sizes
+const YEAR_CIRCLE_RADIUS = 21  // Larger to match clock button size
+const DRAG_CIRCLE_RADIUS = 22  // Bigger to accommodate year and month text
+const DRAG_CIRCLE_RADIUS_ACTIVE = 24  // Slightly larger when dragging
+const MILESTONE_MARKER_RADIUS = 3
+
+// Typography
+const YEAR_FONT_SIZE = 12
+const YEAR_FONT_WEIGHT = "600"
+
+// Colors
+const TRACK_COLOR = "#e5e7eb"
+const YEAR_CIRCLE_STROKE = "#d1d5db"
+const YEAR_CIRCLE_STROKE_HOVER = "#9ca3af"
+const YEAR_TEXT_COLOR = "#374151"
+const DRAG_CIRCLE_COLOR = "#3b82f6"
+const MILESTONE_COLOR_DEFAULT = "#fb923c"
+
+// Strokes
+const LINE_STROKE_WIDTH = 2
+const CIRCLE_STROKE_WIDTH = 2
+const X_STROKE_WIDTH = 1.5
 
 export const FloatingTimelineButton = ({
     startDate,
@@ -44,10 +64,11 @@ export const FloatingTimelineButton = ({
         )), [currentDate, startDate, endDate]
     )
     
-    const formatDate = useCallback((date: Date) => {
+    // Get month abbreviation
+    const currentMonth = useMemo(() => {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        return `${months[date.getMonth()]} ${date.getFullYear()}`
-    }, [])
+        return months[currentDate.getMonth()]
+    }, [currentDate])
     
     const handleInteraction = useCallback((clientY: number) => {
         if (!svgRef.current) return
@@ -160,11 +181,13 @@ export const FloatingTimelineButton = ({
 
             {isOpen && (
                 <>
+                    {/* Backdrop click-to-close disabled for now - users may want to interact with map
                     <div 
                         className="fixed inset-0 z-10" 
                         onClick={handleClose}
                         aria-label="Close timeline"
                     />
+                    */}
                     
                     {/* Container for sliding animation */}
                     <div 
@@ -212,8 +235,8 @@ export const FloatingTimelineButton = ({
                                 y1={CENTER_X}
                                 x2={CENTER_X}
                                 y2={timelineHeight - CENTER_X}
-                                stroke="#e5e7eb"
-                                strokeWidth="2"
+                                stroke={TRACK_COLOR}
+                                strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
                             />
                             
@@ -224,7 +247,7 @@ export const FloatingTimelineButton = ({
                                 x2={CENTER_X}
                                 y2={timelineHeight - CENTER_X}
                                 stroke="url(#progressGradient)"
-                                strokeWidth="2"
+                                strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
                             />
                             
@@ -238,8 +261,8 @@ export const FloatingTimelineButton = ({
                                         key={index}
                                         cx={CENTER_X}
                                         cy={eventY}
-                                        r="3"
-                                        fill={event.color || "#fb923c"}
+                                        r={MILESTONE_MARKER_RADIUS}
+                                        fill={event.color || MILESTONE_COLOR_DEFAULT}
                                         opacity="0.7"
                                     />
                                 )
@@ -252,16 +275,16 @@ export const FloatingTimelineButton = ({
                                     cy={CENTER_X}
                                     r={YEAR_CIRCLE_RADIUS}
                                     fill="white"
-                                    stroke="#d1d5db"
-                                    strokeWidth="2"
+                                    stroke={YEAR_CIRCLE_STROKE}
+                                    strokeWidth={CIRCLE_STROKE_WIDTH}
                                     filter="url(#dropshadow)"
                                 />
                                 <text
                                     x={CENTER_X}
                                     y={CENTER_X}
-                                    fontSize="10"
-                                    fontWeight="600"
-                                    fill="#374151"
+                                    fontSize={YEAR_FONT_SIZE}
+                                    fontWeight={YEAR_FONT_WEIGHT}
+                                    fill={YEAR_TEXT_COLOR}
                                     textAnchor="middle"
                                     alignmentBaseline="middle"
                                 >
@@ -283,8 +306,8 @@ export const FloatingTimelineButton = ({
                                     cy={timelineHeight - CENTER_X}
                                     r={YEAR_CIRCLE_RADIUS}
                                     fill="white"
-                                    stroke={isHoveringClose ? "#9ca3af" : "#d1d5db"}
-                                    strokeWidth="2"
+                                    stroke={isHoveringClose ? YEAR_CIRCLE_STROKE_HOVER : YEAR_CIRCLE_STROKE}
+                                    strokeWidth={CIRCLE_STROKE_WIDTH}
                                     filter="url(#dropshadow)"
                                     style={{ transition: 'stroke 0.2s ease' }}
                                 />
@@ -295,8 +318,8 @@ export const FloatingTimelineButton = ({
                                             y1={timelineHeight - CENTER_X - 4}
                                             x2={CENTER_X + 4}
                                             y2={timelineHeight - CENTER_X + 4}
-                                            stroke="#374151"
-                                            strokeWidth="1.5"
+                                            stroke={YEAR_TEXT_COLOR}
+                                            strokeWidth={X_STROKE_WIDTH}
                                             strokeLinecap="round"
                                         />
                                         <line
@@ -304,8 +327,8 @@ export const FloatingTimelineButton = ({
                                             y1={timelineHeight - CENTER_X - 4}
                                             x2={CENTER_X - 4}
                                             y2={timelineHeight - CENTER_X + 4}
-                                            stroke="#374151"
-                                            strokeWidth="1.5"
+                                            stroke={YEAR_TEXT_COLOR}
+                                            strokeWidth={X_STROKE_WIDTH}
                                             strokeLinecap="round"
                                         />
                                     </g>
@@ -313,9 +336,9 @@ export const FloatingTimelineButton = ({
                                     <text
                                         x={CENTER_X}
                                         y={timelineHeight - CENTER_X}
-                                        fontSize="10"
-                                        fontWeight="600"
-                                        fill="#374151"
+                                        fontSize={YEAR_FONT_SIZE}
+                                        fontWeight={YEAR_FONT_WEIGHT}
+                                        fill={YEAR_TEXT_COLOR}
                                         textAnchor="middle"
                                         alignmentBaseline="middle"
                                         style={{ pointerEvents: 'none' }}
@@ -331,14 +354,14 @@ export const FloatingTimelineButton = ({
                                     cx={CENTER_X}
                                     cy={currentPos}
                                     r={isDragging ? DRAG_CIRCLE_RADIUS_ACTIVE : DRAG_CIRCLE_RADIUS}
-                                    fill="#3b82f6"
+                                    fill={DRAG_CIRCLE_COLOR}
                                     filter="url(#dropshadow)"
                                     style={{ transition: 'r 0.2s ease-out' }}
                                 />
                                 <text
                                     x={CENTER_X}
-                                    y={currentPos}
-                                    fontSize="11"
+                                    y={currentPos - 3}
+                                    fontSize={YEAR_FONT_SIZE}
                                     fontWeight="700"
                                     fill="white"
                                     textAnchor="middle"
@@ -346,31 +369,17 @@ export const FloatingTimelineButton = ({
                                 >
                                     {currentDate.getFullYear()}
                                 </text>
-                                
-                                {/* Hover tooltip */}
-                                {isDragging && (
-                                    <g>
-                                        <rect
-                                            x={CENTER_X - 60}
-                                            y={currentPos - 10}
-                                            width="70"
-                                            height="20"
-                                            rx="4"
-                                            fill="#1f2937"
-                                            opacity="0.9"
-                                        />
-                                        <text
-                                            x={CENTER_X - 25}
-                                            y={currentPos}
-                                            fontSize="11"
-                                            fill="white"
-                                            textAnchor="middle"
-                                            alignmentBaseline="middle"
-                                        >
-                                            {formatDate(currentDate)}
-                                        </text>
-                                    </g>
-                                )}
+                                <text
+                                    x={CENTER_X}
+                                    y={currentPos + 8}
+                                    fontSize="10"
+                                    fontWeight="400"
+                                    fill="white"
+                                    textAnchor="middle"
+                                    alignmentBaseline="middle"
+                                >
+                                    {currentMonth}
+                                </text>
                             </g>
                         </svg>
                     </div>
