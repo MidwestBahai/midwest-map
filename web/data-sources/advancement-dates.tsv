@@ -26,8 +26,10 @@ Date Advanced	Milestone	Cluster	Name	Population
 2014-10-15	M1	MI-02	Travers City	265,823
 2016-07-18	M1	MI-03	Manistee-Newaygo	140,638
 	N	MI-04	Central Michigan Counties	206,760
+2025-11-26	M1	MI-04	Central Michigan Counties	206,760
 	N	MI-05	Tawas, Standish, West Branch Area	86,433
 2014-10-15	M1	MI-06	Midland, Bay City, Saginaw	418,809
+2025-11-26	M1	MI-07	Thumb Area Counties	283,148
 2023-05-14	M3	MI-08	Flint-Davison	562,921
 2014-04-30	M1	MI-08	Flint-Davison	562,921
 2020-01-20	M2	MI-08	Flint-Davison	562,921
@@ -55,6 +57,7 @@ Date Advanced	Milestone	Cluster	Name	Population
 2022-05-31	M2	MIUP-04	Marquette	75,501
 	N	MIUP-05	Manistique	14,317
 	N	MIUP-06	Sault Ste Marie	48,199
+2025-11-26	M1	MIUP-06	Sault Ste Marie	48,199
 2011-11-10	M1	OH-01	Emerald / Cuyahoga / Cleveland	1,241,475
 2011-11-30	M2	OH-01	Emerald / Cuyahoga / Cleveland	1,241,475
 2014-11-11	M1	OH-03	Franklin County / Columbus	1,339,896
