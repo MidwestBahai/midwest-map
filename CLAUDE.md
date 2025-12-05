@@ -68,5 +68,11 @@ pnpm prepare-data # Rebuild all data files
 - Timeline animation/filtering UI not yet implemented
 - TimelineControl component exists but not yet integrated
 
+## Deployment
+
+Static export (`next build` produces `out/`). Configure host cache headers:
+- `index.html`: `max-age=0, must-revalidate` (always check for updates)
+- `/_next/static/*`: `max-age=31536000, immutable` (fingerprinted, cache forever)
+
 ## TypeScript Compilation for Scripts
 The import scripts use a separate TypeScript config: `web/tsconfig-import-shapefiles.json`
