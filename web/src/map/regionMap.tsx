@@ -11,7 +11,6 @@ import { ClusterLayers } from "@/map/clusterLayers"
 import { MapContext, MapProvider } from "@/map/mapContext"
 import { MapExperiments } from "@/map/mapExperiments"
 import { FloatingTimelineButton } from "@/components/FloatingTimelineButton"
-import { FloatingLayerToggle } from "@/components/FloatingLayerToggle"
 
 import validatedData from "@/data/clusters-timeline.geo.json"
 import type { TimelineEntry } from "@/data/getMilestoneAtDate"
@@ -20,14 +19,13 @@ import { LatLongRect } from "@/lib/latLongRect"
 import { useDebug } from "@/app/DebugContext"
 
 export const RegionMap = (
-    {mapboxAccessToken}: {mapboxAccessToken: string}
+    {mapboxAccessToken, showClusters}: {mapboxAccessToken: string, showClusters: boolean}
 ) => {
     const windowSize = useWindowSize()
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
 
     const [ hoverFeature, setHoverFeature ] = useState<Feature | undefined>(undefined)
     const [ currentDate, setCurrentDate ] = useState<Date>(new Date())
-    const [ showClusters, setShowClusters ] = useState(true)
 
     const onHover = useCallback((event: MapMouseEvent) => {
         const {
@@ -110,10 +108,6 @@ export const RegionMap = (
                     <MapExperiments/>
                 </MapProvider>
             </Map>
-            <FloatingLayerToggle
-                showClusters={showClusters}
-                onToggle={() => setShowClusters(!showClusters)}
-            />
             <FloatingTimelineButton
                 startDate={new Date('2011-01-01')}
                 endDate={new Date('2025-12-31')}
