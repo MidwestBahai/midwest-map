@@ -184,7 +184,7 @@ export const FloatingTimelineButton = ({
     }, [])
 
     // Timeline dimensions - memoized to avoid recalculation
-    const { timelineHeight, lineLength, currentPos, bottomOffset } = useMemo(() => {
+    const { timelineHeight, lineLength, currentPos, bottomOffset, bottomY } = useMemo(() => {
         // Align bottom circle with collapsed button center
         const offset = BUTTON_CENTER_FROM_BOTTOM - BOTTOM_PADDING
         // Calculate height for symmetry: both circles at BUTTON_CENTER_FROM_BOTTOM from their edges
@@ -192,9 +192,10 @@ export const FloatingTimelineButton = ({
         // Bottom circle (at height - BOTTOM_PADDING) should be 48px from viewport bottom
         const viewportHeight = windowSize.height || 700
         const height = viewportHeight - offset - BUTTON_CENTER_FROM_BOTTOM + CENTER_X
+        const bottom = height - BOTTOM_PADDING
         const length = height - CENTER_X - BOTTOM_PADDING
         const pos = CENTER_X + length * (1 - currentProgress)
-        return { timelineHeight: height, lineLength: length, currentPos: pos, bottomOffset: offset }
+        return { timelineHeight: height, lineLength: length, currentPos: pos, bottomOffset: offset, bottomY: bottom }
     }, [currentProgress, windowSize.height])
 
     return (
@@ -275,7 +276,7 @@ export const FloatingTimelineButton = ({
                                 x1={CENTER_X}
                                 y1={CENTER_X}
                                 x2={CENTER_X}
-                                y2={timelineHeight - BOTTOM_PADDING}
+                                y2={bottomY}
                                 stroke={TRACK_COLOR}
                                 strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
@@ -286,7 +287,7 @@ export const FloatingTimelineButton = ({
                                 x1={CENTER_X}
                                 y1={currentPos}
                                 x2={CENTER_X}
-                                y2={timelineHeight - BOTTOM_PADDING}
+                                y2={bottomY}
                                 stroke="url(#progressGradient)"
                                 strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
@@ -346,7 +347,7 @@ export const FloatingTimelineButton = ({
                             >
                                 <circle
                                     cx={CENTER_X}
-                                    cy={timelineHeight - BOTTOM_PADDING}
+                                    cy={bottomY}
                                     r={sizes.yearCircle}
                                     fill="white"
                                     stroke={isHoveringClose ? YEAR_CIRCLE_STROKE_HOVER : YEAR_CIRCLE_STROKE}
@@ -358,18 +359,18 @@ export const FloatingTimelineButton = ({
                                     <g style={{ pointerEvents: 'none' }}>
                                         <line
                                             x1={CENTER_X - 4}
-                                            y1={timelineHeight - BOTTOM_PADDING - 4}
+                                            y1={bottomY - 4}
                                             x2={CENTER_X + 4}
-                                            y2={timelineHeight - BOTTOM_PADDING + 4}
+                                            y2={bottomY + 4}
                                             stroke={YEAR_TEXT_COLOR}
                                             strokeWidth={X_STROKE_WIDTH}
                                             strokeLinecap="round"
                                         />
                                         <line
                                             x1={CENTER_X + 4}
-                                            y1={timelineHeight - BOTTOM_PADDING - 4}
+                                            y1={bottomY - 4}
                                             x2={CENTER_X - 4}
-                                            y2={timelineHeight - BOTTOM_PADDING + 4}
+                                            y2={bottomY + 4}
                                             stroke={YEAR_TEXT_COLOR}
                                             strokeWidth={X_STROKE_WIDTH}
                                             strokeLinecap="round"
@@ -378,7 +379,7 @@ export const FloatingTimelineButton = ({
                                 ) : (
                                     <text
                                         x={CENTER_X}
-                                        y={timelineHeight - BOTTOM_PADDING}
+                                        y={bottomY}
                                         fontSize={fonts.yearFontSize}
                                         fontWeight={YEAR_FONT_WEIGHT}
                                         fill={YEAR_TEXT_COLOR}
