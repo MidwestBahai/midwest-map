@@ -228,14 +228,6 @@ export const FloatingTimelineButton = ({
 
             {isOpen && (
                 <>
-                    {/* Backdrop click-to-close disabled for now - users may want to interact with map
-                    <div 
-                        className="fixed inset-0 z-10" 
-                        onClick={handleClose}
-                        aria-label="Close timeline"
-                    />
-                    */}
-                    
                     {/* Container for sliding animation */}
                     <div 
                         className="fixed z-20"
