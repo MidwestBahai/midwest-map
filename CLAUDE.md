@@ -42,6 +42,8 @@ interface ClusterProperties {
 - `web/src/map/regionMap.tsx` - Main map component
 - `web/src/map/clusterLayers.tsx` - Renders cluster polygons
 - `web/src/map/floatingMapKey.tsx` - Map legend
+- `web/src/components/FloatingTimelineButton.tsx` - Timeline slider for viewing historical milestones
+- `web/src/components/FloatingLayerToggle.tsx` - Toggle between cluster overlay and reference map
 - `web/src/data/milestoneLabels.ts` - Milestone definitions (M1, M2, M3, etc.)
 
 ## Commands
@@ -64,9 +66,9 @@ pnpm prepare-data # Rebuild all data files
 
 ## Current Status
 - Timeline data structure is implemented
-- Map displays current milestone status
-- Timeline animation/filtering UI not yet implemented
-- TimelineControl component exists but not yet integrated
+- Map displays current milestone status with colored polygons and labels
+- Timeline slider (FloatingTimelineButton) allows viewing historical milestone states
+- Layer toggle allows switching to reference map view with cluster boundaries only
 
 ## Deployment
 

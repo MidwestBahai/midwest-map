@@ -52,12 +52,6 @@ const truncate = ( str: any, maxLength: number, ellipsis: boolean = false ) => {
         )
 }
 
-const milestoneDescriptions = {
-    "1": "1st Milestone",
-    "2": "2nd Milestone",
-    "3": "3rd Milestone",
-}
-
 const cleanupClusterName = (original: string) => {
     let result = original
     if (result.endsWith(" Co"))

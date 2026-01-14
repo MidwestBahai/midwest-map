@@ -19,7 +19,7 @@ import { LatLongRect } from "@/lib/latLongRect"
 import { useDebug } from "@/app/DebugContext"
 
 export const RegionMap = (
-    {mapboxAccessToken}: {mapboxAccessToken: string}
+    {mapboxAccessToken, showClusters}: {mapboxAccessToken: string, showClusters: boolean}
 ) => {
     const windowSize = useWindowSize()
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
@@ -82,8 +82,7 @@ export const RegionMap = (
                 mapboxAccessToken={mapboxAccessToken}
                 initialViewState={initialBounds(windowSize)}
                 style={{width: '100vw', height: '100vh'}}
-                mapStyle="mapbox://styles/mapbox/light-v11"
-                // mapStyle="mapbox://styles/mapbox/dark-v11"
+                mapStyle={showClusters ? "mapbox://styles/mapbox/light-v11" : "mapbox://styles/mapbox/streets-v12"}
                 interactiveLayerIds={validatedData.features.map((_, index) => `cluster-${index}`)}
                 onMouseMove={onHover}
                 onLoad={() => setMapRefState(mapRef.current ?? undefined)}
@@ -98,6 +97,7 @@ export const RegionMap = (
                             hoverFeature={hoverFeature}
                             largestRect={pickLargestRect(feature)}
                             currentDate={currentDate}
+                            boundariesOnly={!showClusters}
                         />
                     ))}
                     {hoverFeature && showGeoJsonDetails && (
