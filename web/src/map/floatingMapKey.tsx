@@ -96,7 +96,7 @@ export const FloatingMapKey = () => {
                     <h2 className="text-lg font-semibold">Map Key</h2>
                     <CollapsibleTrigger asChild>
                         <Button variant="ghost" size="sm" className="w-9 p-0">
-                            {isOpen ? (
+                            {isReallyOpen ? (
                                 <ChevronUp className="h-4 w-4"/>
                             ) : (
                                 <ChevronDown className="h-4 w-4"/>
