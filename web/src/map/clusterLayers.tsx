@@ -10,10 +10,13 @@ import { ClusterText } from "@/map/clusterText"
 import { useDebug } from "@/app/DebugContext"
 import { RectangleLayer } from "@/map/rectangleLayer"
 
+// Color for boundaries-only mode (when viewing reference map)
+const BOUNDARY_ONLY_COLOR = "#5c4d7d"
+
 export const ClusterLayers = ({
-    feature, index, hoverFeature, largestRect, currentDate
+    feature, index, hoverFeature, largestRect, currentDate, boundariesOnly = false
 }: {
-    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, currentDate: Date
+    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, currentDate: Date, boundariesOnly?: boolean
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
@@ -43,6 +46,23 @@ export const ClusterLayers = ({
     // useDebugClusterFeature(index, "IN-01", feature)
     // const scaleFactor = map?.getScaleFactor()
     // useEffect(() => console.log({scaleFactor}), [scaleFactor])
+
+    // Boundaries-only mode: just show outlines, no fill or labels
+    if (boundariesOnly) {
+        return (
+            <Source type="geojson" data={feature}>
+                <Layer
+                    type="line"
+                    paint={{
+                        "line-color": BOUNDARY_ONLY_COLOR,
+                        "line-width": 1.5,
+                        "line-opacity": 0.6,
+                    }}
+                    id={fillLayerId}
+                />
+            </Source>
+        )
+    }
 
     return (
         <>
