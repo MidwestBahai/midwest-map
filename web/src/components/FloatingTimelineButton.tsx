@@ -355,7 +355,7 @@ export const FloatingTimelineButton = ({
                                     filter="url(#dropshadow)"
                                     style={{ transition: 'stroke 0.2s ease' }}
                                 />
-                                {isHoveringClose ? (
+                                {isHoveringClose && !isMobile ? (
                                     <g style={{ pointerEvents: 'none' }}>
                                         <line
                                             x1={CENTER_X - 4}
