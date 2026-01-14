@@ -67,6 +67,11 @@ const LINE_STROKE_WIDTH = 2
 const CIRCLE_STROKE_WIDTH = 2
 const X_STROKE_WIDTH = 1.5
 
+// Attention pulse timing (for undiscovered timeline)
+const PULSE_INITIAL_DELAY_MS = 20000
+const PULSE_INTERVAL_MS = 30000
+const PULSE_ANIMATION_DURATION_MS = 1500
+
 export const FloatingTimelineButton = ({
     startDate,
     endDate,
@@ -78,8 +83,11 @@ export const FloatingTimelineButton = ({
     const [isAnimatingOpen, setIsAnimatingOpen] = useState(false)
     const [isDragging, setIsDragging] = useState(false)
     const [isHoveringClose, setIsHoveringClose] = useState(false)
+    const [hasBeenOpened, setHasBeenOpened] = useState(false)
+    const [showPulse, setShowPulse] = useState(false)
     const svgRef = useRef<SVGSVGElement>(null)
-    const animationTimeoutRef = useRef<NodeJS.Timeout>()
+    const animationTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
+    const pulseIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined)
     const windowSize = useWindowSize()
 
     // Responsive sizes based on viewport width
@@ -124,6 +132,7 @@ export const FloatingTimelineButton = ({
     
     const handleOpen = useCallback(() => {
         setIsOpen(true)
+        setHasBeenOpened(true)
         // Small delay to trigger animation after render
         requestAnimationFrame(() => {
             setIsAnimatingOpen(true)
@@ -183,6 +192,36 @@ export const FloatingTimelineButton = ({
         }
     }, [])
 
+    // Attention-grabbing pulse if timeline hasn't been opened
+    // First pulse after PULSE_INITIAL_DELAY_MS, then every PULSE_INTERVAL_MS
+    useEffect(() => {
+        if (hasBeenOpened) {
+            if (pulseIntervalRef.current) {
+                clearTimeout(pulseIntervalRef.current)
+            }
+            return
+        }
+
+        const triggerPulse = () => {
+            setShowPulse(true)
+            setTimeout(() => setShowPulse(false), PULSE_ANIMATION_DURATION_MS)
+        }
+
+        // Initial pulse after shorter delay
+        pulseIntervalRef.current = setTimeout(() => {
+            triggerPulse()
+            // Then set up recurring interval
+            pulseIntervalRef.current = setInterval(triggerPulse, PULSE_INTERVAL_MS)
+        }, PULSE_INITIAL_DELAY_MS)
+
+        return () => {
+            if (pulseIntervalRef.current) {
+                clearTimeout(pulseIntervalRef.current)
+                clearInterval(pulseIntervalRef.current)
+            }
+        }
+    }, [hasBeenOpened])
+
     // Timeline dimensions - memoized to avoid recalculation
     const { timelineHeight, lineLength, currentPos, bottomOffset, bottomY } = useMemo(() => {
         // Align bottom circle with collapsed button center
@@ -200,31 +239,67 @@ export const FloatingTimelineButton = ({
 
     return (
         <>
-            <button
-                className="fixed bottom-6 right-6 z-30 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
-                onClick={handleOpen}
-                aria-label="Show timeline"
-                style={{
-                    opacity: (isOpen && isAnimatingOpen) ? 0 : 1,
-                    pointerEvents: isOpen ? 'none' : 'auto',
-                    transition: 'opacity 0.3s ease-out'
-                }}
+            {/* Pulse animation styles */}
+            <style>{`
+                @keyframes timeline-pulse {
+                    0% {
+                        transform: scale(1);
+                        opacity: 0.6;
+                    }
+                    100% {
+                        transform: scale(2.5);
+                        opacity: 0;
+                    }
+                }
+                .timeline-pulse-ring {
+                    animation: timeline-pulse 1.5s ease-out forwards;
+                }
+            `}</style>
+
+            <div
+                className="fixed bottom-6 right-6 z-30"
+                style={{ pointerEvents: isOpen ? 'none' : 'auto' }}
             >
-                <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-gray-700"
+                {/* Pulse rings */}
+                {showPulse && !isOpen && (
+                    <>
+                        <div
+                            className="absolute inset-0 rounded-full bg-blue-400 timeline-pulse-ring"
+                            style={{ animationDelay: '0s' }}
+                        />
+                        <div
+                            className="absolute inset-0 rounded-full bg-blue-400 timeline-pulse-ring"
+                            style={{ animationDelay: '0.3s' }}
+                        />
+                    </>
+                )}
+
+                <button
+                    className="relative bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
+                    onClick={handleOpen}
+                    aria-label="Show timeline"
+                    style={{
+                        opacity: (isOpen && isAnimatingOpen) ? 0 : 1,
+                        pointerEvents: isOpen ? 'none' : 'auto',
+                        transition: 'opacity 0.3s ease-out'
+                    }}
                 >
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                </svg>
-            </button>
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-gray-700"
+                    >
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                </button>
+            </div>
 
             {isOpen && (
                 <>
