@@ -55,21 +55,22 @@ export const milestoneColor = (milestone: string, baseHue: number, alpha?: numbe
 
 export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) => `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
 
-export const clusterFillColor = (properties: GeoJsonProperties, highlighted: boolean) =>
-    clusterColor(properties, highlighted ? 90 : undefined)
+export const clusterFillColor = (properties: GeoJsonProperties, highlighted: boolean, milestoneOverride?: string) =>
+    clusterColor(properties, highlighted ? 90 : undefined, milestoneOverride)
 
-export const clusterLineColor = (properties: GeoJsonProperties, highlighted: boolean) =>
-    clusterColor(properties, highlighted ? 180 : undefined)
+export const clusterLineColor = (properties: GeoJsonProperties, highlighted: boolean, milestoneOverride?: string) =>
+    clusterColor(properties, highlighted ? 180 : undefined, milestoneOverride)
 
-export const clusterColor = (properties: GeoJsonProperties, alpha?: number) => {
+export const clusterColor = (properties: GeoJsonProperties, alpha?: number, milestoneOverride?: string) => {
     const baseHue = clusterBaseHue(properties)
-    return milestoneColor(milestone(properties), baseHue, alpha)
+    return milestoneColor(milestoneOverride ?? milestone(properties), baseHue, alpha)
 }
 
 const milestone = (properties: GeoJsonProperties) => `${properties?.["M"] ?? "Unknown"}`
 
-export const clusterLabelColor = (properties: GeoJsonProperties, highlighted: boolean) => {
-    switch (milestone(properties).toLowerCase()) {
+export const clusterLabelColor = (properties: GeoJsonProperties, highlighted: boolean, milestoneOverride?: string) => {
+    const m = milestoneOverride ?? milestone(properties)
+    switch (m.toLowerCase()) {
         case "m3r":
         case "m2r":
         case "m3":

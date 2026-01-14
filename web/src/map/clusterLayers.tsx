@@ -3,6 +3,7 @@ import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
+import { getMilestoneAtDate } from "@/data/getMilestoneAtDate"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { ClusterText } from "@/map/clusterText"
@@ -10,15 +11,21 @@ import { useDebug } from "@/app/DebugContext"
 import { RectangleLayer } from "@/map/rectangleLayer"
 
 export const ClusterLayers = ({
-    feature, index, hoverFeature, largestRect
+    feature, index, hoverFeature, largestRect, currentDate
 }: {
-    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect
+    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, currentDate: Date
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(feature?.properties)
-    // ensure that undefined is falsy (eg empty string)
-    const milestone = `${feature?.properties?.M || ""}`.toLowerCase()
+
+    // Calculate milestone at the current date from timeline data
+    const initialMilestone = `${feature?.properties?.M || "N"}`
+    const timeline = feature?.properties?.timeline as Array<{ milestone: string; date: string }> | undefined
+    const { milestone: effectiveMilestone, advancementDate } = getMilestoneAtDate(initialMilestone, timeline, currentDate)
+
+    // Use effective milestone for display (lowercase for comparison)
+    const milestone = effectiveMilestone.toLowerCase()
     const milestoneMatches = matchesIncludingReservoir(milestone, categoryHighlight.milestone)
     const highlighted =
         // specific cluster is hovered
@@ -44,7 +51,7 @@ export const ClusterLayers = ({
                     <Layer
                         type="fill"
                         paint={{
-                            "fill-color": clusterFillColor(feature.properties, highlighted),
+                            "fill-color": clusterFillColor(feature.properties, highlighted, effectiveMilestone),
                         }}
                         id={fillLayerId}
                     />
@@ -53,7 +60,7 @@ export const ClusterLayers = ({
                     <Layer
                         type="line"
                         paint={{
-                            "line-color": clusterLineColor(feature.properties, highlighted),
+                            "line-color": clusterLineColor(feature.properties, highlighted, effectiveMilestone),
                             "line-width": 3,
                         }}
                     />
@@ -66,13 +73,15 @@ export const ClusterLayers = ({
                     largestRect={largestRect}
                     feature={feature}
                     highlighted={highlighted}
+                    effectiveMilestone={effectiveMilestone}
+                    advancementDate={advancementDate}
                 />
             )}
 
             {largestRect && showMapGeometry && (
                 <RectangleLayer
                     rectangle={largestRect}
-                    color={clusterFillColor(feature.properties, true)}
+                    color={clusterFillColor(feature.properties, true, effectiveMilestone)}
                 />
             )}
         </>

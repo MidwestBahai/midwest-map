@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react"
+import { useWindowSize } from "@/lib/useWindowSize"
 
 interface FloatingTimelineButtonProps {
     startDate: Date
@@ -12,19 +13,46 @@ interface FloatingTimelineButtonProps {
 
 // Constants for maintainability
 const ANIMATION_DURATION_MS = 500
-const TIMELINE_PADDING = 96  // Space from top/bottom of viewport
-const CIRCLE_PADDING = 90    // Space for year circles (increased for larger circles)
 const SVG_WIDTH = 60
 const CENTER_X = 30
+const BOTTOM_PADDING = 25    // Less padding at bottom to align with clock button
 
-// Circle sizes
-const YEAR_CIRCLE_RADIUS = 21  // Larger to match clock button size
-const DRAG_CIRCLE_RADIUS = 22  // Bigger to accommodate year and month text
-const DRAG_CIRCLE_RADIUS_ACTIVE = 24  // Slightly larger when dragging
-const MILESTONE_MARKER_RADIUS = 3
+// Button positioning (must match collapsed button's Tailwind classes)
+const BUTTON_BOTTOM = 24     // bottom-6 = 1.5rem = 24px
+const BUTTON_RIGHT = 24      // right-6 = 1.5rem = 24px
+const BUTTON_SIZE = 48       // p-3 (12px) * 2 + 24px icon = 48px
+const BUTTON_CENTER_FROM_BOTTOM = BUTTON_BOTTOM + BUTTON_SIZE / 2  // 48px
 
-// Typography
-const YEAR_FONT_SIZE = 12
+// Responsive circle sizes (mobile / desktop)
+const MOBILE_BREAKPOINT = 768
+const CIRCLE_SIZES = {
+    mobile: {
+        yearCircle: 22,       // 44px diameter - meets touch target
+        dragCircle: 26,       // 52px diameter - primary interaction
+        dragCircleActive: 28, // 56px diameter - visual feedback
+        milestoneMarker: 4,
+    },
+    desktop: {
+        yearCircle: 18,       // 36px diameter - secondary element
+        dragCircle: 22,       // 44px diameter - meets minimum
+        dragCircleActive: 24, // 48px diameter
+        milestoneMarker: 3,
+    }
+}
+
+// Responsive typography
+const TYPOGRAPHY = {
+    mobile: {
+        yearFontSize: 14,
+        dragYearFontSize: 14,
+        dragMonthFontSize: 11,
+    },
+    desktop: {
+        yearFontSize: 12,
+        dragYearFontSize: 12,
+        dragMonthFontSize: 10,
+    }
+}
 const YEAR_FONT_WEIGHT = "600"
 
 // Colors
@@ -53,7 +81,13 @@ export const FloatingTimelineButton = ({
     const [isHoveringClose, setIsHoveringClose] = useState(false)
     const svgRef = useRef<SVGSVGElement>(null)
     const animationTimeoutRef = useRef<NodeJS.Timeout>()
-    
+    const windowSize = useWindowSize()
+
+    // Responsive sizes based on viewport width
+    const isMobile = windowSize.width > 0 && windowSize.width < MOBILE_BREAKPOINT
+    const sizes = isMobile ? CIRCLE_SIZES.mobile : CIRCLE_SIZES.desktop
+    const fonts = isMobile ? TYPOGRAPHY.mobile : TYPOGRAPHY.desktop
+
     const startYear = startDate.getFullYear()
     const endYear = endDate.getFullYear()
     
@@ -72,10 +106,10 @@ export const FloatingTimelineButton = ({
     
     const handleInteraction = useCallback((clientY: number) => {
         if (!svgRef.current) return
-        
+
         const rect = svgRef.current.getBoundingClientRect()
         const progress = 1 - ((clientY - rect.top) / rect.height)
-        
+
         const clampedProgress = Math.max(0, Math.min(1, progress))
         const totalTime = endDate.getTime() - startDate.getTime()
         const newTime = startDate.getTime() + (clampedProgress * totalTime)
@@ -98,6 +132,8 @@ export const FloatingTimelineButton = ({
     }, [])
     
     const handleClose = useCallback(() => {
+        // Reset to present immediately when starting to close
+        onDateChange(new Date())
         setIsAnimatingOpen(false)
         // Wait for animation to complete
         if (animationTimeoutRef.current) {
@@ -106,26 +142,31 @@ export const FloatingTimelineButton = ({
         animationTimeoutRef.current = setTimeout(() => {
             setIsOpen(false)
         }, ANIMATION_DURATION_MS)
-    }, [])
+    }, [onDateChange])
     
     useEffect(() => {
         if (!isDragging) return
-        
+
         const handleMove = (e: MouseEvent | TouchEvent) => {
+            // Prevent map panning on mobile during timeline drag
+            if ('touches' in e) {
+                e.preventDefault()
+            }
             const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
             handleInteraction(clientY)
         }
-        
+
         const handleEnd = () => {
             setIsDragging(false)
         }
-        
+
         // Add both mouse and touch listeners
+        // passive: false required to allow preventDefault() on touch events
         document.addEventListener('mousemove', handleMove)
-        document.addEventListener('touchmove', handleMove)
+        document.addEventListener('touchmove', handleMove, { passive: false })
         document.addEventListener('mouseup', handleEnd)
         document.addEventListener('touchend', handleEnd)
-        
+
         return () => {
             document.removeEventListener('mousemove', handleMove)
             document.removeEventListener('touchmove', handleMove)
@@ -144,12 +185,18 @@ export const FloatingTimelineButton = ({
     }, [])
 
     // Timeline dimensions - memoized to avoid recalculation
-    const { timelineHeight, lineLength, currentPos } = useMemo(() => {
-        const height = typeof window !== 'undefined' ? window.innerHeight - TIMELINE_PADDING : 600
-        const length = height - CIRCLE_PADDING
+    const { timelineHeight, lineLength, currentPos, bottomOffset } = useMemo(() => {
+        // Align bottom circle with collapsed button center
+        const offset = BUTTON_CENTER_FROM_BOTTOM - BOTTOM_PADDING
+        // Calculate height for symmetry: both circles at BUTTON_CENTER_FROM_BOTTOM from their edges
+        // Top circle (at CENTER_X in SVG) should be 48px from viewport top
+        // Bottom circle (at height - BOTTOM_PADDING) should be 48px from viewport bottom
+        const viewportHeight = windowSize.height || 700
+        const height = viewportHeight - offset - BUTTON_CENTER_FROM_BOTTOM + CENTER_X
+        const length = height - CENTER_X - BOTTOM_PADDING
         const pos = CENTER_X + length * (1 - currentProgress)
-        return { timelineHeight: height, lineLength: length, currentPos: pos }
-    }, [currentProgress])
+        return { timelineHeight: height, lineLength: length, currentPos: pos, bottomOffset: offset }
+    }, [currentProgress, windowSize.height])
 
     return (
         <>
@@ -191,8 +238,10 @@ export const FloatingTimelineButton = ({
                     
                     {/* Container for sliding animation */}
                     <div 
-                        className="fixed right-6 bottom-6 z-20"
+                        className="fixed z-20"
                         style={{
+                            right: '18px',  // Adjusted to align with clock button center
+                            bottom: `${bottomOffset}px`,  // Center vertically
                             height: timelineHeight,
                             width: SVG_WIDTH,
                             overflow: 'hidden'
@@ -206,6 +255,7 @@ export const FloatingTimelineButton = ({
                             style={{
                                 transform: isAnimatingOpen ? 'translateY(0)' : `translateY(${timelineHeight}px)`,
                                 transition: `transform ${ANIMATION_DURATION_MS}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                                touchAction: 'none',  // Prevent default touch behaviors (map pan)
                             }}
                             onMouseDown={handleMouseDown}
                             onTouchStart={handleMouseDown}
@@ -234,7 +284,7 @@ export const FloatingTimelineButton = ({
                                 x1={CENTER_X}
                                 y1={CENTER_X}
                                 x2={CENTER_X}
-                                y2={timelineHeight - CENTER_X}
+                                y2={timelineHeight - BOTTOM_PADDING}
                                 stroke={TRACK_COLOR}
                                 strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
@@ -245,7 +295,7 @@ export const FloatingTimelineButton = ({
                                 x1={CENTER_X}
                                 y1={currentPos}
                                 x2={CENTER_X}
-                                y2={timelineHeight - CENTER_X}
+                                y2={timelineHeight - BOTTOM_PADDING}
                                 stroke="url(#progressGradient)"
                                 strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
@@ -261,7 +311,7 @@ export const FloatingTimelineButton = ({
                                         key={index}
                                         cx={CENTER_X}
                                         cy={eventY}
-                                        r={MILESTONE_MARKER_RADIUS}
+                                        r={sizes.milestoneMarker}
                                         fill={event.color || MILESTONE_COLOR_DEFAULT}
                                         opacity="0.7"
                                     />
@@ -273,7 +323,7 @@ export const FloatingTimelineButton = ({
                                 <circle
                                     cx={CENTER_X}
                                     cy={CENTER_X}
-                                    r={YEAR_CIRCLE_RADIUS}
+                                    r={sizes.yearCircle}
                                     fill="white"
                                     stroke={YEAR_CIRCLE_STROKE}
                                     strokeWidth={CIRCLE_STROKE_WIDTH}
@@ -282,7 +332,7 @@ export const FloatingTimelineButton = ({
                                 <text
                                     x={CENTER_X}
                                     y={CENTER_X}
-                                    fontSize={YEAR_FONT_SIZE}
+                                    fontSize={fonts.yearFontSize}
                                     fontWeight={YEAR_FONT_WEIGHT}
                                     fill={YEAR_TEXT_COLOR}
                                     textAnchor="middle"
@@ -293,8 +343,10 @@ export const FloatingTimelineButton = ({
                             </g>
                             
                             {/* Bottom year (start date) - aligned with button, acts as close button */}
-                            <g 
+                            <g
                                 onClick={handleClose}
+                                onMouseDown={(e) => e.stopPropagation()}
+                                onTouchStart={(e) => e.stopPropagation()}
                                 onMouseEnter={() => setIsHoveringClose(true)}
                                 onMouseLeave={() => setIsHoveringClose(false)}
                                 style={{ cursor: 'pointer' }}
@@ -303,8 +355,8 @@ export const FloatingTimelineButton = ({
                             >
                                 <circle
                                     cx={CENTER_X}
-                                    cy={timelineHeight - CENTER_X}
-                                    r={YEAR_CIRCLE_RADIUS}
+                                    cy={timelineHeight - BOTTOM_PADDING}
+                                    r={sizes.yearCircle}
                                     fill="white"
                                     stroke={isHoveringClose ? YEAR_CIRCLE_STROKE_HOVER : YEAR_CIRCLE_STROKE}
                                     strokeWidth={CIRCLE_STROKE_WIDTH}
@@ -315,18 +367,18 @@ export const FloatingTimelineButton = ({
                                     <g style={{ pointerEvents: 'none' }}>
                                         <line
                                             x1={CENTER_X - 4}
-                                            y1={timelineHeight - CENTER_X - 4}
+                                            y1={timelineHeight - BOTTOM_PADDING - 4}
                                             x2={CENTER_X + 4}
-                                            y2={timelineHeight - CENTER_X + 4}
+                                            y2={timelineHeight - BOTTOM_PADDING + 4}
                                             stroke={YEAR_TEXT_COLOR}
                                             strokeWidth={X_STROKE_WIDTH}
                                             strokeLinecap="round"
                                         />
                                         <line
                                             x1={CENTER_X + 4}
-                                            y1={timelineHeight - CENTER_X - 4}
+                                            y1={timelineHeight - BOTTOM_PADDING - 4}
                                             x2={CENTER_X - 4}
-                                            y2={timelineHeight - CENTER_X + 4}
+                                            y2={timelineHeight - BOTTOM_PADDING + 4}
                                             stroke={YEAR_TEXT_COLOR}
                                             strokeWidth={X_STROKE_WIDTH}
                                             strokeLinecap="round"
@@ -335,8 +387,8 @@ export const FloatingTimelineButton = ({
                                 ) : (
                                     <text
                                         x={CENTER_X}
-                                        y={timelineHeight - CENTER_X}
-                                        fontSize={YEAR_FONT_SIZE}
+                                        y={timelineHeight - BOTTOM_PADDING}
+                                        fontSize={fonts.yearFontSize}
                                         fontWeight={YEAR_FONT_WEIGHT}
                                         fill={YEAR_TEXT_COLOR}
                                         textAnchor="middle"
@@ -353,7 +405,7 @@ export const FloatingTimelineButton = ({
                                 <circle
                                     cx={CENTER_X}
                                     cy={currentPos}
-                                    r={isDragging ? DRAG_CIRCLE_RADIUS_ACTIVE : DRAG_CIRCLE_RADIUS}
+                                    r={isDragging ? sizes.dragCircleActive : sizes.dragCircle}
                                     fill={DRAG_CIRCLE_COLOR}
                                     filter="url(#dropshadow)"
                                     style={{ transition: 'r 0.2s ease-out' }}
@@ -361,7 +413,7 @@ export const FloatingTimelineButton = ({
                                 <text
                                     x={CENTER_X}
                                     y={currentPos - 3}
-                                    fontSize={YEAR_FONT_SIZE}
+                                    fontSize={fonts.dragYearFontSize}
                                     fontWeight="700"
                                     fill="white"
                                     textAnchor="middle"
@@ -371,8 +423,8 @@ export const FloatingTimelineButton = ({
                                 </text>
                                 <text
                                     x={CENTER_X}
-                                    y={currentPos + 8}
-                                    fontSize="10"
+                                    y={currentPos + 9}
+                                    fontSize={fonts.dragMonthFontSize}
                                     fontWeight="400"
                                     fill="white"
                                     textAnchor="middle"

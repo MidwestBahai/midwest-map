@@ -52,12 +52,23 @@ export const RegionMap = (
     // TODO See time series updates in comments here: https://docs.google.com/spreadsheets/d/1NplBKdFrqkTsiqxfHgh6wciuCb8wopp97s_h8eRRJIQ/edit?gid=1531826735#gid=1531826735
     const features = validatedData.features as Feature[]
 
-    // Extract milestone events for timeline (simplified for now)
+    // Extract all milestone advancement events from all clusters for timeline markers
     const milestoneEvents = useMemo(() => {
         const events: { date: Date; label: string; color?: string }[] = []
-        // We'll populate this properly later
+        for (const feature of features) {
+            const timeline = feature.properties?.timeline as Array<{ milestone: string; date: string }> | undefined
+            const clusterName = feature.properties?.Cluster as string | undefined
+            if (timeline && clusterName) {
+                for (const entry of timeline) {
+                    events.push({
+                        date: new Date(entry.date),
+                        label: `${clusterName}: ${entry.milestone}`,
+                    })
+                }
+            }
+        }
         return events
-    }, [])
+    }, [features])
 
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
     // See https://github.com/visgl/react-map-gl/issues/568
@@ -85,6 +96,7 @@ export const RegionMap = (
                             index={index}
                             hoverFeature={hoverFeature}
                             largestRect={pickLargestRect(feature)}
+                            currentDate={currentDate}
                         />
                     ))}
                     {hoverFeature && showGeoJsonDetails && (
