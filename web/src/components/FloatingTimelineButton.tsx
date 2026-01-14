@@ -19,7 +19,6 @@ const BOTTOM_PADDING = 25    // Less padding at bottom to align with clock butto
 
 // Button positioning (must match collapsed button's Tailwind classes)
 const BUTTON_BOTTOM = 24     // bottom-6 = 1.5rem = 24px
-const BUTTON_RIGHT = 24      // right-6 = 1.5rem = 24px
 const BUTTON_SIZE = 48       // p-3 (12px) * 2 + 24px icon = 48px
 const BUTTON_CENTER_FROM_BOTTOM = BUTTON_BOTTOM + BUTTON_SIZE / 2  // 48px
 

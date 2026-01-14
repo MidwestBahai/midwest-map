@@ -3,7 +3,7 @@ import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
 import { matchesIncludingReservoir } from "@/data/milestoneLabels"
-import { getMilestoneAtDate } from "@/data/getMilestoneAtDate"
+import { getMilestoneAtDate, TimelineEntry } from "@/data/getMilestoneAtDate"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { ClusterText } from "@/map/clusterText"
@@ -21,7 +21,7 @@ export const ClusterLayers = ({
 
     // Calculate milestone at the current date from timeline data
     const initialMilestone = `${feature?.properties?.M || "N"}`
-    const timeline = feature?.properties?.timeline as Array<{ milestone: string; date: string }> | undefined
+    const timeline = feature?.properties?.timeline as TimelineEntry[] | undefined
     const { milestone: effectiveMilestone, advancementDate } = getMilestoneAtDate(initialMilestone, timeline, currentDate)
 
     // Use effective milestone for display (lowercase for comparison)

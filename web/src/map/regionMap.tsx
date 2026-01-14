@@ -13,6 +13,7 @@ import { MapExperiments } from "@/map/mapExperiments"
 import { FloatingTimelineButton } from "@/components/FloatingTimelineButton"
 
 import validatedData from "@/data/clusters-timeline.geo.json"
+import type { TimelineEntry } from "@/data/getMilestoneAtDate"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { useDebug } from "@/app/DebugContext"
@@ -56,7 +57,7 @@ export const RegionMap = (
     const milestoneEvents = useMemo(() => {
         const events: { date: Date; label: string; color?: string }[] = []
         for (const feature of features) {
-            const timeline = feature.properties?.timeline as Array<{ milestone: string; date: string }> | undefined
+            const timeline = feature.properties?.timeline as TimelineEntry[] | undefined
             const clusterName = feature.properties?.Cluster as string | undefined
             if (timeline && clusterName) {
                 for (const entry of timeline) {

@@ -1,3 +1,8 @@
+export interface TimelineEntry {
+    milestone: string
+    date: string
+}
+
 export interface MilestoneAtDate {
     milestone: string
     advancementDate: Date | null  // null if base state (no advancement yet)
@@ -13,7 +18,7 @@ export interface MilestoneAtDate {
  */
 export function getMilestoneAtDate(
     currentMilestone: string,
-    timeline: Array<{ milestone: string; date: string }> | undefined,
+    timeline: TimelineEntry[] | undefined,
     targetDate: Date
 ): MilestoneAtDate {
     // Clusters without timeline data never advanced - use their current milestone
