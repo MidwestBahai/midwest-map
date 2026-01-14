@@ -1,7 +1,7 @@
 "use client"
 
 import Map, { MapRef } from "react-map-gl/mapbox"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Head from "next/head"
 import { MapMouseEvent } from "mapbox-gl"
 import { deepEqual } from "fast-equals"
@@ -10,8 +10,10 @@ import { initialBounds } from "@/map/initialMapBounds"
 import { ClusterLayers } from "@/map/clusterLayers"
 import { MapContext, MapProvider } from "@/map/mapContext"
 import { MapExperiments } from "@/map/mapExperiments"
+import { FloatingTimelineButton } from "@/components/FloatingTimelineButton"
 
 import validatedData from "@/data/clusters-timeline.geo.json"
+import type { TimelineEntry } from "@/data/getMilestoneAtDate"
 import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { useDebug } from "@/app/DebugContext"
@@ -23,6 +25,7 @@ export const RegionMap = (
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
 
     const [ hoverFeature, setHoverFeature ] = useState<Feature | undefined>(undefined)
+    const [ currentDate, setCurrentDate ] = useState<Date>(new Date())
 
     const onHover = useCallback((event: MapMouseEvent) => {
         const {
@@ -50,6 +53,24 @@ export const RegionMap = (
     // TODO See time series updates in comments here: https://docs.google.com/spreadsheets/d/1NplBKdFrqkTsiqxfHgh6wciuCb8wopp97s_h8eRRJIQ/edit?gid=1531826735#gid=1531826735
     const features = validatedData.features as Feature[]
 
+    // Extract all milestone advancement events from all clusters for timeline markers
+    const milestoneEvents = useMemo(() => {
+        const events: { date: Date; label: string; color?: string }[] = []
+        for (const feature of features) {
+            const timeline = feature.properties?.timeline as TimelineEntry[] | undefined
+            const clusterName = feature.properties?.Cluster as string | undefined
+            if (timeline && clusterName) {
+                for (const entry of timeline) {
+                    events.push({
+                        date: new Date(entry.date),
+                        label: `${clusterName}: ${entry.milestone}`,
+                    })
+                }
+            }
+        }
+        return events
+    }, [features])
+
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
     // See https://github.com/visgl/react-map-gl/issues/568
     return (
@@ -76,6 +97,7 @@ export const RegionMap = (
                             index={index}
                             hoverFeature={hoverFeature}
                             largestRect={pickLargestRect(feature)}
+                            currentDate={currentDate}
                         />
                     ))}
                     {hoverFeature && showGeoJsonDetails && (
@@ -86,6 +108,13 @@ export const RegionMap = (
                     <MapExperiments/>
                 </MapProvider>
             </Map>
+            <FloatingTimelineButton
+                startDate={new Date('2011-01-01')}
+                endDate={new Date('2025-12-31')}
+                currentDate={currentDate}
+                onDateChange={setCurrentDate}
+                milestoneEvents={milestoneEvents}
+            />
         </>
     )
 }

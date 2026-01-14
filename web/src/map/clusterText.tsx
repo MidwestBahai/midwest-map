@@ -12,6 +12,35 @@ interface ClusterTextProps {
     largestRect: LatLongRect,
     symbolLayerId: string,
     highlighted: boolean,
+    effectiveMilestone: string,
+    advancementDate: Date | null,
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+/**
+ * Format advancement date responsively based on available width.
+ * Returns null if no date or not enough space.
+ */
+const formatAdvancementDate = (date: Date | null, widthAvailable: number): string | null => {
+    if (!date) return null
+
+    const month = MONTHS[date.getMonth()]
+    const year = date.getFullYear()
+
+    // Responsive formats:
+    // Wide (14+ chars): "Since Jan 2017"
+    // Medium (8+ chars): "Jan 2017"
+    // Narrow (4+ chars): "2017"
+    // Tiny: null (omit)
+    if (widthAvailable >= 14) {
+        return `Since ${month} ${year}`
+    } else if (widthAvailable >= 8) {
+        return `${month} ${year}`
+    } else if (widthAvailable >= 4) {
+        return `${year}`
+    }
+    return null
 }
 
 const truncate = ( str: any, maxLength: number, ellipsis: boolean = false ) => {
@@ -38,8 +67,7 @@ const cleanupClusterName = (original: string) => {
     return result
 }
 
-const milestoneDescription = (properties: GeoJsonProperties, remAvailable: number) => {
-    const milestoneString = properties?.["M"]
+const milestoneDescription = (milestoneString: string) => {
     const milestoneLabelKey = milestoneString?.toLowerCase()
     if (milestoneLabelKey in milestoneLabels) {
         const milestone = milestoneLabelKey as Milestone
@@ -51,7 +79,7 @@ const milestoneDescription = (properties: GeoJsonProperties, remAvailable: numbe
 }
 
 export const ClusterText = (
-    {feature, largestRect, symbolLayerId, highlighted}: ClusterTextProps
+    {feature, largestRect, symbolLayerId, highlighted, effectiveMilestone, advancementDate}: ClusterTextProps
 ) => {
     const { showMapGeometry } = useDebug()
     const {degreesToRem} = useMap()
@@ -66,7 +94,8 @@ export const ClusterText = (
 
         // first line: Cluster code, for example "OH-03"
         // Top separator candidates so far: slash "/", interpunct "·", en-dash "–"
-        const lines: Array<string> = remRect.width > 5 ? ["{Cluster} · {M}"] : ["{Cluster}", "{M}"]
+        const milestoneCode = effectiveMilestone.toUpperCase()
+        const lines: Array<string> = remRect.width > 5 ? [`{Cluster} · ${milestoneCode}`] : ["{Cluster}", milestoneCode]
         --linesRemaining
 
         // if there's room, we can leave space for 2 lines
@@ -87,9 +116,16 @@ export const ClusterText = (
             addLongLine(clusterName)
 
         // third line: milestone, for example "M3" or "3rd Milestone"
-        const milestone = milestoneDescription(feature.properties, remRect.width)
+        const milestone = milestoneDescription(effectiveMilestone)
         if (milestone && remRect.width > 8)
             addLongLine(milestone)
+
+        // fourth line: advancement date (if applicable)
+        const dateStr = formatAdvancementDate(advancementDate, widthToDisplay)
+        if (dateStr && linesRemaining >= 1) {
+            lines.push(dateStr)
+            --linesRemaining
+        }
 
         if (showMapGeometry && linesRemaining >= 1) {
             lines.push(remDescription)
@@ -97,7 +133,7 @@ export const ClusterText = (
         }
 
         setText(lines.filter(Boolean).join("\n"))
-    }, [largestRect, degreesToRem, feature.properties, showMapGeometry])
+    }, [largestRect, degreesToRem, feature.properties, showMapGeometry, effectiveMilestone, advancementDate])
     return feature.properties && (
         <Source
             type="geojson"
@@ -112,7 +148,7 @@ export const ClusterText = (
                     // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],
                 }}
                 paint={{
-                    "text-color": clusterLabelColor(feature.properties, highlighted),
+                    "text-color": clusterLabelColor(feature.properties, highlighted, effectiveMilestone),
                 }}
                 id={symbolLayerId}
             />
