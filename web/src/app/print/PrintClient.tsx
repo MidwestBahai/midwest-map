@@ -1,15 +1,17 @@
 "use client"
 
-import { useSearchParams } from "next/navigation"
-import { Suspense, useCallback, useState, useRef, useEffect } from "react"
-import { RegionMap, ViewState } from "@/map/regionMap"
-import { initialBounds } from "@/map/initialMapBounds"
-import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
-import { DebugProvider } from "@/app/DebugContext"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { DraggableLegend, LegendPosition } from "./DraggableLegend"
-import { DraggableBox, DraggablePosition } from "./DraggableBox"
-import { ClusterGroup } from "@/data/clusterGroups"
+import { useSearchParams } from "next/navigation"
+import { Suspense, useCallback, useEffect, useRef, useState } from "react"
+import { DebugProvider } from "@/app/DebugContext"
+import { FloatingControls } from "@/components/FloatingControls"
+import type { ClusterGroup } from "@/data/clusterGroups"
+import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
+import { initialBounds } from "@/map/initialMapBounds"
+import { RegionMap, type ViewState } from "@/map/regionMap"
+import { DraggableBox, type DraggablePosition } from "./DraggableBox"
+import { DraggableLegend, type LegendPosition } from "./DraggableLegend"
+import { PrintToolbar } from "./PrintToolbar"
 
 const queryClient = new QueryClient()
 
@@ -24,16 +26,22 @@ const VIEW_STORAGE_KEY = "print-map-view"
 
 // Default legend positions as viewport percentages
 // These get converted to pixels on mount based on actual viewport size
-const defaultPositionsPercent: Record<DisplayClusterGroup, { xPercent: number; yPercent: number }> = {
-    INDY: { xPercent: 3, yPercent: 15 },     // Indianapolis: left side, upper
-    GR: { xPercent: 3, yPercent: 35 },       // Grand Rapids: left side, middle
-    AA: { xPercent: 3, yPercent: 55 },       // Ann Arbor: left side, lower
-    CLV: { xPercent: 85, yPercent: 15 },     // Cleveland: right side, upper
-    CBUS: { xPercent: 85, yPercent: 45 },    // Columbus: right side, lower
+const defaultPositionsPercent: Record<
+    DisplayClusterGroup,
+    { xPercent: number; yPercent: number }
+> = {
+    INDY: { xPercent: 3, yPercent: 15 }, // Indianapolis: left side, upper
+    GR: { xPercent: 3, yPercent: 35 }, // Grand Rapids: left side, middle
+    AA: { xPercent: 3, yPercent: 55 }, // Ann Arbor: left side, lower
+    CLV: { xPercent: 85, yPercent: 15 }, // Cleveland: right side, upper
+    CBUS: { xPercent: 85, yPercent: 45 }, // Columbus: right side, lower
 }
 
 // Convert percentage positions to pixels based on viewport
-function getDefaultPixelPositions(width: number, height: number): Record<DisplayClusterGroup, LegendPosition> {
+function getDefaultPixelPositions(
+    width: number,
+    height: number,
+): Record<DisplayClusterGroup, LegendPosition> {
     const result = {} as Record<DisplayClusterGroup, LegendPosition>
     for (const key of displayGroups) {
         const { xPercent, yPercent } = defaultPositionsPercent[key]
@@ -46,7 +54,10 @@ function getDefaultPixelPositions(width: number, height: number): Record<Display
 }
 
 // Load legend positions from localStorage
-function loadLegendPositions(): Record<DisplayClusterGroup, LegendPosition> | null {
+function loadLegendPositions(): Record<
+    DisplayClusterGroup,
+    LegendPosition
+> | null {
     if (typeof window === "undefined") return null
     try {
         const stored = localStorage.getItem(LEGEND_STORAGE_KEY)
@@ -60,7 +71,9 @@ function loadLegendPositions(): Record<DisplayClusterGroup, LegendPosition> | nu
 }
 
 // Save legend positions to localStorage
-function saveLegendPositions(positions: Record<DisplayClusterGroup, LegendPosition>) {
+function saveLegendPositions(
+    positions: Record<DisplayClusterGroup, LegendPosition>,
+) {
     if (typeof window === "undefined") return
     try {
         localStorage.setItem(LEGEND_STORAGE_KEY, JSON.stringify(positions))
@@ -73,7 +86,10 @@ function saveLegendPositions(positions: Record<DisplayClusterGroup, LegendPositi
 const defaultTitlePositionPercent = { xPercent: 75, yPercent: 2 }
 
 // Convert title percentage position to pixels based on viewport
-function getDefaultTitlePosition(width: number, height: number): DraggablePosition {
+function getDefaultTitlePosition(
+    width: number,
+    height: number,
+): DraggablePosition {
     return {
         x: Math.round((defaultTitlePositionPercent.xPercent / 100) * width),
         y: Math.round((defaultTitlePositionPercent.yPercent / 100) * height),
@@ -134,10 +150,14 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     const containerRef = useRef<HTMLDivElement>(null)
 
     // Legend positions state - null until initialized on client
-    const [legendPositions, setLegendPositions] = useState<Record<DisplayClusterGroup, LegendPosition> | null>(null)
+    const [legendPositions, setLegendPositions] = useState<Record<
+        DisplayClusterGroup,
+        LegendPosition
+    > | null>(null)
 
     // Title position state - null until initialized on client
-    const [titlePosition, setTitlePosition] = useState<DraggablePosition | null>(null)
+    const [titlePosition, setTitlePosition] =
+        useState<DraggablePosition | null>(null)
 
     // Map view state - null until initialized on client
     const [viewState, setViewState] = useState<ViewState | null>(null)
@@ -150,7 +170,10 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
             setLegendPositions(stored)
         } else {
             // Calculate defaults based on viewport size
-            const defaults = getDefaultPixelPositions(window.innerWidth, window.innerHeight)
+            const defaults = getDefaultPixelPositions(
+                window.innerWidth,
+                window.innerHeight,
+            )
             setLegendPositions(defaults)
         }
     }, [])
@@ -161,7 +184,10 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         if (stored) {
             setTitlePosition(stored)
         } else {
-            const defaultPos = getDefaultTitlePosition(window.innerWidth, window.innerHeight)
+            const defaultPos = getDefaultTitlePosition(
+                window.innerWidth,
+                window.innerHeight,
+            )
             setTitlePosition(defaultPos)
         }
     }, [])
@@ -173,7 +199,10 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
             setViewState(stored)
         } else {
             // Use default bounds based on window size
-            const defaults = initialBounds({ width: window.innerWidth, height: window.innerHeight })
+            const defaults = initialBounds({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
             if (defaults) {
                 setViewState(defaults)
             }
@@ -206,14 +235,21 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // Parse date from query param, default to today
     const dateParam = searchParams.get("date")
     const initialDate = dateParam ? new Date(dateParam) : new Date()
+    const isValidDate = !Number.isNaN(initialDate.getTime())
 
-    // Validate date
-    const isValidDate = !isNaN(initialDate.getTime())
-    const effectiveDate = isValidDate ? initialDate : new Date()
+    // Current date state - can be changed via timeline
+    const [currentDate, setCurrentDate] = useState<Date>(
+        isValidDate ? initialDate : new Date(),
+    )
+
+    // Layer toggle state (for future use)
+    const [showClusters, setShowClusters] = useState(true)
 
     // Check if this is current data (within 1 day of today)
     const today = new Date()
-    const daysDiff = Math.abs(today.getTime() - effectiveDate.getTime()) / (1000 * 60 * 60 * 24)
+    const daysDiff =
+        Math.abs(today.getTime() - currentDate.getTime()) /
+        (1000 * 60 * 60 * 24)
     const isCurrentData = daysDiff < 1
 
     const handleMapLoaded = useCallback(() => {
@@ -222,24 +258,35 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         document.documentElement.classList.add("map-loaded")
     }, [])
 
-    const handleLegendPositionChange = useCallback((groupKey: DisplayClusterGroup, position: LegendPosition) => {
-        setLegendPositions(prev => prev ? {
-            ...prev,
-            [groupKey]: position,
-        } : null)
-    }, [])
+    const handleLegendPositionChange = useCallback(
+        (groupKey: DisplayClusterGroup, position: LegendPosition) => {
+            setLegendPositions((prev) =>
+                prev
+                    ? {
+                          ...prev,
+                          [groupKey]: position,
+                      }
+                    : null,
+            )
+        },
+        [],
+    )
 
     return (
         <DebugProvider debug={false}>
             <QueryClientProvider client={queryClient}>
                 <CategoryHighlightProvider>
-                    <div ref={containerRef} className="relative w-screen h-screen bg-white">
+                    <div
+                        ref={containerRef}
+                        className="relative w-screen h-screen bg-white"
+                    >
                         {viewState && (
                             <RegionMap
                                 mapboxAccessToken={mapboxAccessToken}
                                 showClusters={true}
                                 printMode={true}
-                                initialDate={effectiveDate}
+                                currentDate={currentDate}
+                                onDateChange={setCurrentDate}
                                 onMapLoaded={handleMapLoaded}
                                 viewState={viewState}
                                 onViewStateChange={setViewState}
@@ -247,15 +294,22 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                         )}
 
                         {/* Draggable legends - one per cluster group */}
-                        {mapLoaded && legendPositions && displayGroups.map(groupKey => (
-                            <DraggableLegend
-                                key={groupKey}
-                                groupKey={groupKey}
-                                position={legendPositions[groupKey]}
-                                onPositionChange={(pos) => handleLegendPositionChange(groupKey, pos)}
-                                containerRef={containerRef}
-                            />
-                        ))}
+                        {mapLoaded &&
+                            legendPositions &&
+                            displayGroups.map((groupKey) => (
+                                <DraggableLegend
+                                    key={groupKey}
+                                    groupKey={groupKey}
+                                    position={legendPositions[groupKey]}
+                                    onPositionChange={(pos) =>
+                                        handleLegendPositionChange(
+                                            groupKey,
+                                            pos,
+                                        )
+                                    }
+                                    containerRef={containerRef}
+                                />
+                            ))}
 
                         {/* Draggable Title */}
                         {mapLoaded && titlePosition && (
@@ -267,18 +321,48 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                 zIndex={20}
                                 zIndexDragging={100}
                             >
-                                <h1 className="text-xl font-bold text-center">Midwest Region Cluster Advancement</h1>
+                                <h1 className="text-xl font-bold text-center">
+                                    Midwest Region Cluster Advancement
+                                </h1>
                                 <p className="text-sm text-gray-600 text-center">
-                                    As of {effectiveDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })} · map.midwestbahai.org
+                                    As of{" "}
+                                    {currentDate.toLocaleDateString("en-US", {
+                                        month: "long",
+                                        year: "numeric",
+                                    })}{" "}
+                                    · map.midwestbahai.org
                                 </p>
                             </DraggableBox>
                         )}
 
-                        {/* Warning banner for historical data */}
+                        {/* Print toolbar - hidden during actual print */}
+                        {mapLoaded && (
+                            <PrintToolbar currentDate={currentDate} />
+                        )}
+
+                        {/* Floating controls - hidden during actual print */}
+                        {mapLoaded && (
+                            <FloatingControls
+                                mode="print"
+                                currentDate={currentDate}
+                                onDateChange={setCurrentDate}
+                                showClusters={showClusters}
+                                onToggleClusters={() =>
+                                    setShowClusters(!showClusters)
+                                }
+                            />
+                        )}
+
+                        {/* Warning banner for historical data - hidden during print */}
                         {!isCurrentData && mapLoaded && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-amber-100 border border-amber-400 text-amber-800 px-4 py-2 rounded shadow">
+                            <div className="print-hidden absolute top-4 left-1/2 -translate-x-1/2 bg-amber-100 border border-amber-400 text-amber-800 px-4 py-2 rounded shadow">
                                 <p className="text-sm font-medium">
-                                    Historical view: {effectiveDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                                    Historical view:{" "}
+                                    {currentDate.toLocaleDateString("en-US", {
+                                        month: "long",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    })}
                                 </p>
                             </div>
                         )}
@@ -296,7 +380,11 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     )
 }
 
-export function PrintClient({ mapboxAccessToken }: { mapboxAccessToken: string }) {
+export function PrintClient({
+    mapboxAccessToken,
+}: {
+    mapboxAccessToken: string
+}) {
     if (!mapboxAccessToken) {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -306,7 +394,13 @@ export function PrintClient({ mapboxAccessToken }: { mapboxAccessToken: string }
     }
 
     return (
-        <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+        <Suspense
+            fallback={
+                <div className="flex items-center justify-center h-screen">
+                    Loading...
+                </div>
+            }
+        >
             <PrintMapInner mapboxAccessToken={mapboxAccessToken} />
         </Suspense>
     )
