@@ -1,4 +1,5 @@
 import { Layer, Source } from "react-map-gl/mapbox"
+import type { Expression } from "mapbox-gl"
 import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 import { getClusterGroup } from "@/data/clusterGroups"
@@ -12,11 +13,25 @@ import { RectangleLayer } from "@/map/rectangleLayer"
 
 // Color for boundaries-only mode (when viewing reference map)
 const BOUNDARY_ONLY_COLOR = "#5c4d7d"
+// Print mode: black borders for clarity
+const PRINT_BORDER_COLOR = "#000000"
+
+// Zoom-responsive line width for print mode
+// Makes borders scale proportionally with map size/zoom level
+// At zoom 5 (regional): 1.5px, at zoom 7 (state): 3px, at zoom 9 (local): 6px
+const PRINT_BORDER_WIDTH: Expression = [
+    "interpolate",
+    ["exponential", 2],
+    ["zoom"],
+    5, 1.5,
+    7, 3,
+    9, 6
+]
 
 export const ClusterLayers = ({
-    feature, index, hoverFeature, largestRect, currentDate, boundariesOnly = false
+    feature, index, hoverFeature, largestRect, currentDate, boundariesOnly = false, printMode = false
 }: {
-    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, currentDate: Date, boundariesOnly?: boolean
+    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, currentDate: Date, boundariesOnly?: boolean, printMode?: boolean
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
@@ -71,17 +86,18 @@ export const ClusterLayers = ({
                     <Layer
                         type="fill"
                         paint={{
-                            "fill-color": clusterFillColor(feature.properties, highlighted, effectiveMilestone),
+                            "fill-color": clusterFillColor(feature.properties, highlighted, effectiveMilestone, printMode),
                         }}
                         id={fillLayerId}
                     />
                 )}
-                {highlighted && (
+                {/* In print mode, always show borders; otherwise only when highlighted */}
+                {(highlighted || printMode) && (
                     <Layer
                         type="line"
                         paint={{
-                            "line-color": clusterLineColor(feature.properties, highlighted, effectiveMilestone),
-                            "line-width": 3,
+                            "line-color": printMode ? PRINT_BORDER_COLOR : clusterLineColor(feature.properties, highlighted, effectiveMilestone),
+                            "line-width": printMode ? PRINT_BORDER_WIDTH : 3,
                         }}
                     />
                 )}
@@ -95,13 +111,14 @@ export const ClusterLayers = ({
                     highlighted={highlighted}
                     effectiveMilestone={effectiveMilestone}
                     advancementDate={advancementDate}
+                    printMode={printMode}
                 />
             )}
 
             {largestRect && showMapGeometry && (
                 <RectangleLayer
                     rectangle={largestRect}
-                    color={clusterFillColor(feature.properties, true, effectiveMilestone)}
+                    color={clusterFillColor(feature.properties, true, effectiveMilestone, printMode)}
                 />
             )}
         </>

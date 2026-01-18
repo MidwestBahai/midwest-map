@@ -14,6 +14,7 @@ interface ClusterTextProps {
     highlighted: boolean,
     effectiveMilestone: string,
     advancementDate: Date | null,
+    printMode?: boolean,
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -73,12 +74,21 @@ const milestoneDescription = (milestoneString: string) => {
 }
 
 export const ClusterText = (
-    {feature, largestRect, symbolLayerId, highlighted, effectiveMilestone, advancementDate}: ClusterTextProps
+    {feature, largestRect, symbolLayerId, highlighted, effectiveMilestone, advancementDate, printMode = false}: ClusterTextProps
 ) => {
     const { showMapGeometry } = useDebug()
     const {degreesToRem} = useMap()
     const [text, setText] = useState<string>("")
     useEffect(() => {
+        // Print mode: show cluster code and milestone (e.g., "IN-01\nM3")
+        if (printMode) {
+            const clusterCode = feature.properties?.Cluster ?? ""
+            // Format milestone for display: "m3" -> "M3", "n" -> "N", "e" -> "E"
+            const milestoneDisplay = effectiveMilestone.toUpperCase().replace(/R$/, "") // Strip reservoir suffix
+            setText(`${clusterCode}\n${milestoneDisplay}`)
+            return
+        }
+
         const remRect = degreesToRem(largestRect)
         const remDescription = `${truncate(remRect.width, 4)} x ${truncate(remRect.height, 4)}`
         // allow line height of about 1.2 REM
@@ -127,7 +137,7 @@ export const ClusterText = (
         }
 
         setText(lines.filter(Boolean).join("\n"))
-    }, [largestRect, degreesToRem, feature.properties, showMapGeometry, effectiveMilestone, advancementDate])
+    }, [largestRect, degreesToRem, feature.properties, showMapGeometry, effectiveMilestone, advancementDate, printMode])
     return feature.properties && (
         <Source
             type="geojson"

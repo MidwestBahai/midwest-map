@@ -11,8 +11,9 @@
     "lint": "next lint",
     "compile-importer": "tsc -p tsconfig-import-shapefiles.json",
     "import-shapefiles": "node out-scripts/src/script/ImportShapefiles.js clusters-2025.shp",
+    "import-counties": "node out-scripts/src/script/ImportCounties.js",
     "merge-timeline": "node out-scripts/src/script/MergeAdvancementData.js",
-    "prepare-data": "pnpm compile-importer && pnpm import-shapefiles && pnpm merge-timeline"
+    "prepare-data": "pnpm compile-importer && pnpm import-shapefiles && pnpm import-counties && pnpm merge-timeline"
   },
   "dependencies": {
     "@loaders.gl/core": "^4.3.4",

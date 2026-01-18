@@ -8,6 +8,7 @@ import { deepEqual } from "fast-equals"
 import { useWindowSize } from "@/lib/useWindowSize"
 import { initialBounds } from "@/map/initialMapBounds"
 import { ClusterLayers } from "@/map/clusterLayers"
+import { CountyBoundaries } from "@/map/countyBoundaries"
 import { MapContext, MapProvider } from "@/map/mapContext"
 import { MapExperiments } from "@/map/mapExperiments"
 import { FloatingTimelineButton } from "@/components/FloatingTimelineButton"
@@ -18,14 +19,39 @@ import { Feature } from "geojson"
 import { LatLongRect } from "@/lib/latLongRect"
 import { useDebug } from "@/app/DebugContext"
 
+// Simple view state for persistence (subset of mapbox's full ViewState)
+export interface ViewState {
+    latitude: number
+    longitude: number
+    zoom: number
+}
+
+export interface RegionMapProps {
+    mapboxAccessToken: string
+    showClusters: boolean
+    printMode?: boolean
+    initialDate?: Date
+    onMapLoaded?: () => void
+    // For controlled mode (when parent manages date state)
+    currentDate?: Date
+    onDateChange?: (date: Date) => void
+    // For controlled view state (zoom/pan)
+    viewState?: ViewState
+    onViewStateChange?: (viewState: ViewState) => void
+}
+
 export const RegionMap = (
-    {mapboxAccessToken, showClusters}: {mapboxAccessToken: string, showClusters: boolean}
+    {mapboxAccessToken, showClusters, printMode = false, initialDate, onMapLoaded, currentDate: controlledDate, onDateChange, viewState: controlledViewState, onViewStateChange}: RegionMapProps
 ) => {
     const windowSize = useWindowSize()
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
 
     const [ hoverFeature, setHoverFeature ] = useState<Feature | undefined>(undefined)
-    const [ currentDate, setCurrentDate ] = useState<Date>(new Date())
+    const [ internalDate, setInternalDate ] = useState<Date>(initialDate ?? new Date())
+
+    // Support both controlled and uncontrolled modes
+    const currentDate = controlledDate ?? internalDate
+    const setCurrentDate = onDateChange ?? setInternalDate
 
     const onHover = useCallback((event: MapMouseEvent) => {
         const {
@@ -80,24 +106,68 @@ export const RegionMap = (
             </Head>
             <Map
                 mapboxAccessToken={mapboxAccessToken}
-                initialViewState={initialBounds(windowSize)}
+                {...(controlledViewState
+                    ? {
+                        viewState: {
+                            ...controlledViewState,
+                            bearing: 0,
+                            pitch: 0,
+                            padding: { top: 0, bottom: 0, left: 0, right: 0 },
+                            width: windowSize.width,
+                            height: windowSize.height,
+                        },
+                        onMove: (e) => onViewStateChange?.({
+                            latitude: e.viewState.latitude,
+                            longitude: e.viewState.longitude,
+                            zoom: e.viewState.zoom,
+                        })
+                    }
+                    : { initialViewState: initialBounds(windowSize) }
+                )}
                 style={{width: '100vw', height: '100vh'}}
-                mapStyle={showClusters ? "mapbox://styles/mapbox/light-v11" : "mapbox://styles/mapbox/streets-v12"}
-                interactiveLayerIds={validatedData.features.map((_, index) => `cluster-${index}`)}
-                onMouseMove={onHover}
-                onLoad={() => setMapRefState(mapRef.current ?? undefined)}
+                mapStyle={
+                    printMode
+                        ? "mapbox://styles/mapbox/empty-v9"  // Minimal style for print
+                        : showClusters
+                            ? "mapbox://styles/mapbox/light-v11"
+                            : "mapbox://styles/mapbox/streets-v12"
+                }
+                interactiveLayerIds={printMode ? [] : validatedData.features.map((_, index) => `cluster-${index}`)}
+                onMouseMove={printMode ? undefined : onHover}
+                onLoad={() => {
+                    setMapRefState(mapRef.current ?? undefined)
+                    // For print mode, notify when map is loaded
+                    if (printMode && onMapLoaded) {
+                        // Wait for tiles to render
+                        const map = mapRef.current?.getMap()
+                        if (map) {
+                            const checkIdle = () => {
+                                if (map.isStyleLoaded() && map.areTilesLoaded()) {
+                                    onMapLoaded()
+                                } else {
+                                    map.once('idle', checkIdle)
+                                }
+                            }
+                            checkIdle()
+                        }
+                    }
+                }}
                 ref={mapRef}
             >
                 <MapProvider mapRef={mapRefState}>
+                    {/* County boundaries - only visible in print mode */}
+                    {printMode && <CountyBoundaries visible={printMode} />}
+
                     {features.map((feature, index) => (
                         <ClusterLayers
                             key={index}
                             feature={feature}
                             index={index}
-                            hoverFeature={hoverFeature}
+                            hoverFeature={printMode ? undefined : hoverFeature}
                             largestRect={pickLargestRect(feature)}
                             currentDate={currentDate}
                             boundariesOnly={!showClusters}
+                            printMode={printMode}
                         />
                     ))}
                     {hoverFeature && showGeoJsonDetails && (
@@ -108,13 +178,15 @@ export const RegionMap = (
                     <MapExperiments/>
                 </MapProvider>
             </Map>
-            <FloatingTimelineButton
-                startDate={new Date('2011-01-01')}
-                endDate={new Date('2025-12-31')}
-                currentDate={currentDate}
-                onDateChange={setCurrentDate}
-                milestoneEvents={milestoneEvents}
-            />
+            {!printMode && (
+                <FloatingTimelineButton
+                    startDate={new Date('2011-01-01')}
+                    endDate={new Date('2025-12-31')}
+                    currentDate={currentDate}
+                    onDateChange={setCurrentDate}
+                    milestoneEvents={milestoneEvents}
+                />
+            )}
         </>
     )
 }
