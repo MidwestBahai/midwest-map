@@ -31,6 +31,26 @@ The print system allows users to generate printable maps with:
 | Color swatches in print | ✅ Done | `print-color-adjust: exact` on legend swatches |
 | Pan/zoom persistence | ✅ Done | Map view state persists in localStorage |
 
+### Recent Architecture Changes
+
+The floating controls have been reorganized for better maintainability:
+
+**FloatingControls component** (`src/components/FloatingControls.tsx`):
+- Unified rendering of Print, Layers, and Timeline buttons
+- Accepts `mode: "main" | "print"` prop
+- Print button shows "active" dark style when in `/print` mode
+- Clicking print button in `/print` navigates back to `/`
+
+**FloatingButton component** (`src/components/FloatingButton.tsx`):
+- Shared button styling and positioning constants
+- Exports `FLOATING_BUTTON` constants used by other components
+- All floating buttons share `z-[60]` (above slide-up panel `z-50`)
+
+**Z-index organization:**
+- `z-50`: PrintToolbar slide-up panel
+- `z-60`: All floating buttons (Print, Layers, Timeline)
+- This ensures buttons remain clickable when panel is expanded
+
 ### What's Missing
 
 | Feature | Priority | Notes |
@@ -39,11 +59,11 @@ The print system allows users to generate printable maps with:
 | Label toggles | High | Show/hide codes, milestones, names, dates |
 | Scoped persistence | High | Each view saves its own legend positions |
 | Print CSS (`@media print`) | High | Hide UI, preserve colors globally |
-| Page size selector | High | Letter, Tabloid, A4, poster sizes |
+| Page size selector | ✅ Done | Letter/Tabloid/Poster presets in PrintToolbar |
 | Aspect ratio matching | High | WYSIWYG - viewport matches paper |
 | "On-page" indicator | Medium | Gray overlay showing print boundary |
-| Print button + instructions | Medium | Trigger print dialog, show tips |
-| Toolbar (hidden in print) | Medium | Contains controls, help |
+| Print button + instructions | ✅ Done | Print/Save PDF button in PrintToolbar |
+| Toolbar (hidden in print) | ✅ Done | Slide-up PrintToolbar panel |
 | Guaranteed labels | Future | All clusters labeled; see `PRINT-LABELS-ADVANCED.md` |
 
 ---
@@ -285,24 +305,34 @@ Show users what will print vs what's outside the page boundary:
 
 Implementation: Four absolutely-positioned divs around the page container, with `print:hidden` class.
 
-#### 8. Print Toolbar
+#### 8. Print Toolbar (Implemented)
 
-Collapsible toolbar with controls (hidden during print):
+Slide-up panel from the bottom of the screen with export controls:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────┐
-│ View: [Full Region ▼]  Paper: [Tabloid ▼]  [✓] Codes [✓] Milestones  [🖨 Print] │
+│                                    [▼]                                           │ ← Collapse chevron
+├──────────────────────────────────────────────────────────────────────────────────┤
+│  Export Size:  [Letter]  [Tabloid]  [Poster]                                     │
+│                                                                                  │
+│  [ 🖨 Print / Save PDF ]    [ ⬇ Download PNG ]                                   │
+│                                                                                  │
+│                    Drag legends and title to position them                       │
 └──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **View selector**: Scope dropdown (Region, Indiana, Michigan, Ohio, or individual groups)
-- **Paper selector**: Dropdown with common sizes
-- **Label toggles**: Checkboxes for cluster codes and milestones
-- **Print button**: Triggers `window.print()`
-- **Reset Layout** (overflow menu): Reset legends and title to defaults for current view
-- **Help** (overflow menu): Tips for print dialog settings
+**Features:**
+- **Chevron toggle**: Expand/collapse panel (header bar always visible)
+- **Size presets**: Letter/Tabloid/Poster buttons for export dimensions
+- **Print / Save PDF**: Calls `window.print()` for native browser print dialog
+- **Download PNG**: Calls external export service (if available)
+- **Starts expanded**: Panel opens automatically on navigation to `/print`
+- **Slide animation**: Uses `translateY` with 400ms cubic-bezier easing
 
-The toolbar uses `print:hidden` to hide during printing.
+**Implementation details:**
+- Panel has `z-50`, floating buttons have `z-60` (buttons stay above panel)
+- Uses `print-hidden` class to hide during actual printing
+- Error handling for export service failures with inline error message
 
 #### 9. Print Instructions
 
@@ -348,8 +378,8 @@ On first visit or via help button, show tips:
 - [ ] Add gray overlay for off-page indicator
 
 **Toolbar & UX:**
-- [ ] Create `PrintToolbar` component with all controls
-- [ ] Add print button that calls `window.print()`
+- [x] Create `PrintToolbar` component with all controls
+- [x] Add print button that calls `window.print()`
 - [ ] Add help/tips in overflow menu
 
 **Testing:**
@@ -486,12 +516,20 @@ Would require:
 | File | Purpose |
 |------|---------|
 | `src/app/print/PrintClient.tsx` | Main print page component |
+| `src/app/print/PrintToolbar.tsx` | Slide-up panel with export controls |
 | `src/app/print/DraggableLegend.tsx` | Per-group legend component |
 | `src/app/print/DraggableBox.tsx` | Generic draggable container |
+| `src/components/FloatingControls.tsx` | Unified floating button bar (Print, Layers, Timeline) |
+| `src/components/FloatingButton.tsx` | Shared button component + positioning constants |
+| `src/components/FloatingTimelineButton.tsx` | Timeline slider component |
 | `src/map/regionMap.tsx` | Map component with `printMode` support |
 | `src/map/clusterColor.ts` | Color functions with print alpha |
 | `src/data/clusterGroups.ts` | Cluster group definitions |
 | `docs/PRINT-LABELS-ADVANCED.md` | Future: HTML overlay labels for guaranteed visibility |
+
+**Removed files:**
+- `src/components/ExportModal.tsx` - Deleted; functionality moved to PrintToolbar
+- `src/components/FloatingLayerToggle.tsx` - Deleted; merged into FloatingControls
 
 ### ArcGIS Reference Maps
 
