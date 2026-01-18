@@ -1,7 +1,13 @@
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react"
-import { MapRef } from "react-map-gl/mapbox"
-import { LatLongRect } from "@/lib/latLongRect"
-import { MapEventType } from "mapbox-gl"
+import type { MapEventType } from "mapbox-gl"
+import {
+    createContext,
+    type PropsWithChildren,
+    useContext,
+    useEffect,
+    useState,
+} from "react"
+import type { MapRef } from "react-map-gl/mapbox"
+import type { LatLongRect } from "@/lib/latLongRect"
 
 interface MapContextValue {
     map: MapRef | undefined
@@ -10,8 +16,8 @@ interface MapContextValue {
 }
 
 export interface RemRect {
-    width: number,
-    height: number,
+    width: number
+    height: number
 }
 
 const PIXELS_PER_REM = 16
@@ -26,7 +32,7 @@ const METERS_PER_DEGREE = 111215 // at the equator -- avg of latitude 111,111, l
 const METERS_PER_PIXEL = 156543 * 0.5
 
 const remPerDegreeAtEquator = (zoom: number): number => {
-    const metersPerPixel = METERS_PER_PIXEL / Math.pow(2, zoom)
+    const metersPerPixel = METERS_PER_PIXEL / 2 ** zoom
     const pixelsPerDegree = METERS_PER_DEGREE / metersPerPixel
     return pixelsPerDegree / PIXELS_PER_REM
 }
@@ -35,10 +41,11 @@ const makeDegreesToRem = (zoom: number) => {
     const remPerDegree = remPerDegreeAtEquator(zoom)
     return (latLongRect: LatLongRect): RemRect => {
         // Mercator projection, so latitude gets stretched, and longitude can be considered rectangular
-        const midLat = (latLongRect.minLat + latLongRect.maxLat) * .5
-        const latCorrection = 1 / Math.cos(midLat * Math.PI / 180)
+        const midLat = (latLongRect.minLat + latLongRect.maxLat) * 0.5
+        const latCorrection = 1 / Math.cos((midLat * Math.PI) / 180)
         // size the rectangle is rendered in terms of degrees at the equator
-        const degreesHeight = latCorrection * (latLongRect.maxLat - latLongRect.minLat)
+        const degreesHeight =
+            latCorrection * (latLongRect.maxLat - latLongRect.minLat)
         const degreesWidth = latLongRect.maxLong - latLongRect.minLong
         return {
             width: degreesWidth * remPerDegree,
@@ -69,9 +76,10 @@ const EVENTS_TO_LISTEN: Array<MapEventType> = [
 ]
 
 export const MapProvider = ({
-    mapRef, children
+    mapRef,
+    children,
 }: PropsWithChildren<{
-    mapRef: MapRef | undefined,
+    mapRef: MapRef | undefined
 }>) => {
     const map = mapRef?.getMap()
     // console.log({map})
@@ -93,25 +101,19 @@ export const MapProvider = ({
                 }))
             }
             // console.log("adding listeners")
-            for (const event of EVENTS_TO_LISTEN)
-                map.on(event, zoomListener)
+            for (const event of EVENTS_TO_LISTEN) map.on(event, zoomListener)
             // call once to initialize
             zoomListener()
             return () => {
                 for (const event of EVENTS_TO_LISTEN)
                     map.off(event, zoomListener)
             }
-        }
-        else {
+        } else {
             console.debug("map is undefined, waiting for onLoad")
             return () => {}
         }
     }, [map, mapRef, context.map])
-    return (
-        <MapContext.Provider value={context}>
-            {children}
-        </MapContext.Provider>
-    )
+    return <MapContext.Provider value={context}>{children}</MapContext.Provider>
 }
 
 export const useMap = () => {

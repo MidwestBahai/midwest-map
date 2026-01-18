@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { ClusterGroup, clusterGroups } from "@/data/clusterGroups"
+import { useEffect, useState } from "react"
+import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
+import type { Milestone } from "@/data/milestoneLabels"
 import { milestoneColor } from "@/map/clusterColor"
-import { Milestone } from "@/data/milestoneLabels"
-import { DraggableBox, DraggablePosition } from "./DraggableBox"
+import { DraggableBox, type DraggablePosition } from "./DraggableBox"
 
 // Re-export for backwards compatibility
 export type { DraggablePosition }
@@ -73,12 +73,19 @@ export function DraggableLegend({
                         <div
                             className="w-5 h-4 border border-black flex-shrink-0"
                             style={{
-                                backgroundColor: milestoneColor(key, groupData.baseHue, undefined, true),
-                                printColorAdjust: 'exact',
-                                WebkitPrintColorAdjust: 'exact',
+                                backgroundColor: milestoneColor(
+                                    key,
+                                    groupData.baseHue,
+                                    undefined,
+                                    true,
+                                ),
+                                printColorAdjust: "exact",
+                                WebkitPrintColorAdjust: "exact",
                             }}
                         />
-                        <span className="text-xs whitespace-nowrap">{label}</span>
+                        <span className="text-xs whitespace-nowrap">
+                            {label}
+                        </span>
                     </div>
                 ))}
             </div>

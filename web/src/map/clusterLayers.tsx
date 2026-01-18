@@ -1,15 +1,18 @@
-import { Layer, Source } from "react-map-gl/mapbox"
+import type { Feature } from "geojson"
 import type { Expression } from "mapbox-gl"
-import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
-import { useCategoryHighlight } from "./categoryHighlightContext"
-import { getClusterGroup } from "@/data/clusterGroups"
-import { matchesIncludingReservoir } from "@/data/milestoneLabels"
-import { getMilestoneAtDate, TimelineEntry } from "@/data/getMilestoneAtDate"
-import { Feature } from "geojson"
-import { LatLongRect } from "@/lib/latLongRect"
-import { ClusterText } from "@/map/clusterText"
+import { Layer, Source } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
+import { getClusterGroup } from "@/data/clusterGroups"
+import {
+    getMilestoneAtDate,
+    type TimelineEntry,
+} from "@/data/getMilestoneAtDate"
+import { matchesIncludingReservoir } from "@/data/milestoneLabels"
+import type { LatLongRect } from "@/lib/latLongRect"
+import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
+import { ClusterText } from "@/map/clusterText"
 import { RectangleLayer } from "@/map/rectangleLayer"
+import { useCategoryHighlight } from "./categoryHighlightContext"
 
 // Color for boundaries-only mode (when viewing reference map)
 const BOUNDARY_ONLY_COLOR = "#5c4d7d"
@@ -23,15 +26,30 @@ const PRINT_BORDER_WIDTH: Expression = [
     "interpolate",
     ["exponential", 2],
     ["zoom"],
-    5, 1.5,
-    7, 3,
-    9, 6
+    5,
+    1.5,
+    7,
+    3,
+    9,
+    6,
 ]
 
 export const ClusterLayers = ({
-    feature, index, hoverFeature, largestRect, currentDate, boundariesOnly = false, printMode = false
+    feature,
+    index,
+    hoverFeature,
+    largestRect,
+    currentDate,
+    boundariesOnly = false,
+    printMode = false,
 }: {
-    feature: Feature, index: number, hoverFeature?: Feature, largestRect?: LatLongRect, currentDate: Date, boundariesOnly?: boolean, printMode?: boolean
+    feature: Feature
+    index: number
+    hoverFeature?: Feature
+    largestRect?: LatLongRect
+    currentDate: Date
+    boundariesOnly?: boolean
+    printMode?: boolean
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
@@ -39,21 +57,28 @@ export const ClusterLayers = ({
 
     // Calculate milestone at the current date from timeline data
     const initialMilestone = `${feature?.properties?.M || "N"}`
-    const timeline = feature?.properties?.timeline as TimelineEntry[] | undefined
-    const { milestone: effectiveMilestone, advancementDate } = getMilestoneAtDate(initialMilestone, timeline, currentDate)
+    const timeline = feature?.properties?.timeline as
+        | TimelineEntry[]
+        | undefined
+    const { milestone: effectiveMilestone, advancementDate } =
+        getMilestoneAtDate(initialMilestone, timeline, currentDate)
 
     // Use effective milestone for display (lowercase for comparison)
     const milestone = effectiveMilestone.toLowerCase()
-    const milestoneMatches = matchesIncludingReservoir(milestone, categoryHighlight.milestone)
+    const milestoneMatches = matchesIncludingReservoir(
+        milestone,
+        categoryHighlight.milestone,
+    )
     const highlighted =
         // specific cluster is hovered
-        feature?.properties?.Cluster === hoverFeature?.properties?.Cluster
+        feature?.properties?.Cluster === hoverFeature?.properties?.Cluster ||
         // both milestone & grouping are highlighted
-        || clusterGroup === categoryHighlight.clusterGroup && milestoneMatches
+        (clusterGroup === categoryHighlight.clusterGroup && milestoneMatches) ||
         // only milestone is highlighted
-        || !categoryHighlight.clusterGroup && milestoneMatches
+        (!categoryHighlight.clusterGroup && milestoneMatches) ||
         // only grouping is highlighted
-        || !categoryHighlight.milestone && clusterGroup === categoryHighlight.clusterGroup
+        (!categoryHighlight.milestone &&
+            clusterGroup === categoryHighlight.clusterGroup)
     // const bounds = useMemo(() => featurePolygonBounds(data), [data])
     const fillLayerId = `cluster-${index}`
     const symbolLayerId = `symbol-${index}`
@@ -86,7 +111,12 @@ export const ClusterLayers = ({
                     <Layer
                         type="fill"
                         paint={{
-                            "fill-color": clusterFillColor(feature.properties, highlighted, effectiveMilestone, printMode),
+                            "fill-color": clusterFillColor(
+                                feature.properties,
+                                highlighted,
+                                effectiveMilestone,
+                                printMode,
+                            ),
                         }}
                         id={fillLayerId}
                     />
@@ -96,7 +126,13 @@ export const ClusterLayers = ({
                     <Layer
                         type="line"
                         paint={{
-                            "line-color": printMode ? PRINT_BORDER_COLOR : clusterLineColor(feature.properties, highlighted, effectiveMilestone),
+                            "line-color": printMode
+                                ? PRINT_BORDER_COLOR
+                                : clusterLineColor(
+                                      feature.properties,
+                                      highlighted,
+                                      effectiveMilestone,
+                                  ),
                             "line-width": printMode ? PRINT_BORDER_WIDTH : 3,
                         }}
                     />
@@ -118,7 +154,12 @@ export const ClusterLayers = ({
             {largestRect && showMapGeometry && (
                 <RectangleLayer
                     rectangle={largestRect}
-                    color={clusterFillColor(feature.properties, true, effectiveMilestone, printMode)}
+                    color={clusterFillColor(
+                        feature.properties,
+                        true,
+                        effectiveMilestone,
+                        printMode,
+                    )}
                 />
             )}
         </>

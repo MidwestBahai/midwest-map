@@ -1,23 +1,27 @@
 "use client" // canvas, which we use to compute colors, only exists on the browser
 
+import type { GeoJsonProperties } from "geojson"
 import { clusterGroups, getClusterGroup } from "@/data/clusterGroups"
-import { GeoJsonProperties } from "geojson"
 
 const clusterBaseHue = (properties: GeoJsonProperties) =>
     clusterGroups[getClusterGroup(properties)].baseHue
 
-const alpha = .5
-const printAlpha = .85
+const alpha = 0.5
+const printAlpha = 0.85
 
-const milestoneColorInner = (milestone: string, baseHue: number, printMode: boolean = false) => {
+const milestoneColorInner = (
+    milestone: string,
+    baseHue: number,
+    printMode: boolean = false,
+) => {
     const a = printMode ? printAlpha : alpha
     switch (milestone.toLowerCase()) {
         case "m3r":
         case "m2r":
             // alpha: make it less transparent
-            return `oklch(.2 .35 ${baseHue} / ${1 - .6 * (1 - a)})`
+            return `oklch(.2 .35 ${baseHue} / ${1 - 0.6 * (1 - a)})`
         case "m3":
-            return `oklch(.2 .35 ${baseHue} / ${1 - .8 * (1 - a)})`
+            return `oklch(.2 .35 ${baseHue} / ${1 - 0.8 * (1 - a)})`
         case "m2":
             return `oklch(.4 .35 ${baseHue} / ${a})`
         case "m1":
@@ -32,19 +36,28 @@ const milestoneColorInner = (milestone: string, baseHue: number, printMode: bool
     }
 }
 
-const colorCache: Record<string, Record<string, Uint8ClampedArray[]>> = { normal: {}, print: {} }
+const colorCache: Record<string, Record<string, Uint8ClampedArray[]>> = {
+    normal: {},
+    print: {},
+}
 
-const milestoneRgba = (milestone: string, baseHue: number, printMode: boolean = false): Uint8ClampedArray => {
-    if (typeof document === 'undefined') return [255, 0, 0, 0] as unknown as Uint8ClampedArray
-    const cacheKey = printMode ? 'print' : 'normal'
-    if (colorCache[cacheKey][milestone]?.[baseHue]) return colorCache[cacheKey][milestone][baseHue]
+const milestoneRgba = (
+    milestone: string,
+    baseHue: number,
+    printMode: boolean = false,
+): Uint8ClampedArray => {
+    if (typeof document === "undefined")
+        return [255, 0, 0, 0] as unknown as Uint8ClampedArray
+    const cacheKey = printMode ? "print" : "normal"
+    if (colorCache[cacheKey][milestone]?.[baseHue])
+        return colorCache[cacheKey][milestone][baseHue]
     const lch = milestoneColorInner(milestone, baseHue, printMode)
     // Use a canvas to convert the color to RGBA
     // From https://stackoverflow.com/questions/63929820/converting-css-lch-to-rgb
     const canvas = document.createElement("canvas")
     canvas.width = 1
     canvas.height = 1
-    const ctx = canvas.getContext("2d", {willReadFrequently: true})
+    const ctx = canvas.getContext("2d", { willReadFrequently: true })
     if (!ctx) return [255, 0, 0, 0] as unknown as Uint8ClampedArray
     ctx.fillStyle = lch
     ctx.fillRect(0, 0, 1, 1)
@@ -54,36 +67,71 @@ const milestoneRgba = (milestone: string, baseHue: number, printMode: boolean = 
     return rgbaValues
 }
 
-export const milestoneColor = (milestone: string, baseHue: number, alpha?: number, printMode: boolean = false) =>
-    rgbaString(milestoneRgba(milestone, baseHue, printMode), alpha)
+export const milestoneColor = (
+    milestone: string,
+    baseHue: number,
+    alpha?: number,
+    printMode: boolean = false,
+) => rgbaString(milestoneRgba(milestone, baseHue, printMode), alpha)
 
-export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) => `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
+export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) =>
+    `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
 
-export const clusterFillColor = (properties: GeoJsonProperties, highlighted: boolean, milestoneOverride?: string, printMode: boolean = false) =>
-    clusterColor(properties, highlighted ? 90 : undefined, milestoneOverride, printMode)
+export const clusterFillColor = (
+    properties: GeoJsonProperties,
+    highlighted: boolean,
+    milestoneOverride?: string,
+    printMode: boolean = false,
+) =>
+    clusterColor(
+        properties,
+        highlighted ? 90 : undefined,
+        milestoneOverride,
+        printMode,
+    )
 
-export const clusterLineColor = (properties: GeoJsonProperties, highlighted: boolean, milestoneOverride?: string, printMode: boolean = false) =>
-    clusterColor(properties, highlighted ? 180 : undefined, milestoneOverride, printMode)
+export const clusterLineColor = (
+    properties: GeoJsonProperties,
+    highlighted: boolean,
+    milestoneOverride?: string,
+    printMode: boolean = false,
+) =>
+    clusterColor(
+        properties,
+        highlighted ? 180 : undefined,
+        milestoneOverride,
+        printMode,
+    )
 
-export const clusterColor = (properties: GeoJsonProperties, alpha?: number, milestoneOverride?: string, printMode: boolean = false) => {
+export const clusterColor = (
+    properties: GeoJsonProperties,
+    alpha?: number,
+    milestoneOverride?: string,
+    printMode: boolean = false,
+) => {
     const baseHue = clusterBaseHue(properties)
-    return milestoneColor(milestoneOverride ?? milestone(properties), baseHue, alpha, printMode)
+    return milestoneColor(
+        milestoneOverride ?? milestone(properties),
+        baseHue,
+        alpha,
+        printMode,
+    )
 }
 
-const milestone = (properties: GeoJsonProperties) => `${properties?.["M"] ?? "Unknown"}`
+const milestone = (properties: GeoJsonProperties) =>
+    `${properties?.M ?? "Unknown"}`
 
-export const clusterLabelColor = (properties: GeoJsonProperties, highlighted: boolean, milestoneOverride?: string) => {
+export const clusterLabelColor = (
+    properties: GeoJsonProperties,
+    highlighted: boolean,
+    milestoneOverride?: string,
+) => {
     const m = milestoneOverride ?? milestone(properties)
     switch (m.toLowerCase()) {
         case "m3r":
         case "m2r":
         case "m3":
             return highlighted ? "black" : "white"
-        case "m2":
-        case "m1":
-        case "e":
-        case "m0":
-        case "n":
         default:
             return "black"
     }

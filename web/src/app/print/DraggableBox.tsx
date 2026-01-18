@@ -1,7 +1,7 @@
 "use client"
 
-import { ReactNode } from "react"
-import { useDraggable, DraggablePosition } from "./useDraggable"
+import type { ReactNode } from "react"
+import { type DraggablePosition, useDraggable } from "./useDraggable"
 
 export type { DraggablePosition }
 
@@ -30,12 +30,7 @@ export function DraggableBox({
     zIndex = 10,
     zIndexDragging = 100,
 }: DraggableBoxProps) {
-    const {
-        elementRef,
-        isDragging,
-        clampedPosition,
-        handlers,
-    } = useDraggable({
+    const { elementRef, isDragging, clampedPosition, handlers } = useDraggable({
         position,
         onPositionChange,
         containerRef,

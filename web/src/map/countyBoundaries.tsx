@@ -1,5 +1,5 @@
-import { Layer, Source } from "react-map-gl/mapbox"
 import type { Expression } from "mapbox-gl"
+import { Layer, Source } from "react-map-gl/mapbox"
 import countiesData from "@/data/counties.geo.json"
 
 // Style for county boundaries in print mode
@@ -13,9 +13,12 @@ const COUNTY_LINE_WIDTH: Expression = [
     "interpolate",
     ["exponential", 2],
     ["zoom"],
-    5, 0.5,
-    7, 1,
-    9, 2
+    5,
+    0.5,
+    7,
+    1,
+    9,
+    2,
 ]
 
 interface CountyBoundariesProps {

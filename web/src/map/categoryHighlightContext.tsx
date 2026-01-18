@@ -1,6 +1,12 @@
-import { ClusterGroup } from "@/data/clusterGroups"
-import { Milestone } from "@/data/milestoneLabels"
-import { createContext, PropsWithChildren, useCallback, useContext, useState } from "react"
+import {
+    createContext,
+    type PropsWithChildren,
+    useCallback,
+    useContext,
+    useState,
+} from "react"
+import type { ClusterGroup } from "@/data/clusterGroups"
+import type { Milestone } from "@/data/milestoneLabels"
 
 export interface CategoryHighlight {
     clusterGroup?: ClusterGroup
@@ -22,14 +28,24 @@ const HighlightContext = createContext<CategoryHighlightContext>({
     },
     clearCategoryHighlight: () => {
         throw new Error("clearCategoryHighlight not implemented")
-    }
+    },
 })
 
-export const CategoryHighlightProvider = ({children}: PropsWithChildren<{}>) => {
-    const [categoryHighlight, setCategoryHighlight] = useState<CategoryHighlight>({})
-    const clearCategoryHighlight = useCallback(() => setCategoryHighlight(defaultCategoryHighlight), [])
+export const CategoryHighlightProvider = ({ children }: PropsWithChildren) => {
+    const [categoryHighlight, setCategoryHighlight] =
+        useState<CategoryHighlight>({})
+    const clearCategoryHighlight = useCallback(
+        () => setCategoryHighlight(defaultCategoryHighlight),
+        [],
+    )
     return (
-        <HighlightContext.Provider value={{ categoryHighlight, setCategoryHighlight, clearCategoryHighlight }}>
+        <HighlightContext.Provider
+            value={{
+                categoryHighlight,
+                setCategoryHighlight,
+                clearCategoryHighlight,
+            }}
+        >
             {children}
         </HighlightContext.Provider>
     )

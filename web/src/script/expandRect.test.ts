@@ -1,57 +1,71 @@
+import type { LatLongRect } from "@/lib/latLongRect"
 import {
-    intersects,
-    TwoDPoint,
-    Polygon,
-    isInsidePolygon,
     boundingRect,
     degenerateRect,
-    isContainedByRect,
     expandRect,
-    rectArea
-} from './expandRect'
+    intersects,
+    isContainedByRect,
+    isInsidePolygon,
+    type Polygon,
+    rectArea,
+    type TwoDPoint,
+} from "./expandRect"
 
-import { LatLongRect } from "@/lib/latLongRect"
-
-describe('line segment intersection', () => {
-    it('confirms line segments intersect', () => {
+describe("line segment intersection", () => {
+    it("confirms line segments intersect", () => {
         const leftPoint: TwoDPoint = [0, 0]
         const rightPoint: TwoDPoint = [10, 0]
         const topPoint: TwoDPoint = [5, 5]
         const bottomPoint: TwoDPoint = [5, -5]
 
-        expect(intersects(leftPoint, rightPoint, topPoint, bottomPoint)).toBe(true)
+        expect(intersects(leftPoint, rightPoint, topPoint, bottomPoint)).toBe(
+            true,
+        )
 
         // Test all combinations of horizontal/vertical lines and flipping
         for (const horizontalFirst of [true, false]) {
             for (const flipFirst of [true, false]) {
                 for (const flipSecond of [true, false]) {
-                    let firstLine = horizontalFirst ? [leftPoint, rightPoint] : [topPoint, bottomPoint]
-                    let secondLine = horizontalFirst ? [topPoint, bottomPoint] : [leftPoint, rightPoint]
+                    let firstLine = horizontalFirst
+                        ? [leftPoint, rightPoint]
+                        : [topPoint, bottomPoint]
+                    let secondLine = horizontalFirst
+                        ? [topPoint, bottomPoint]
+                        : [leftPoint, rightPoint]
                     if (flipFirst) firstLine = [firstLine[1], firstLine[0]]
                     if (flipSecond) secondLine = [secondLine[1], secondLine[0]]
-                    expect(intersects(firstLine[0], firstLine[1], secondLine[0], secondLine[1])).toBe(true)
+                    expect(
+                        intersects(
+                            firstLine[0],
+                            firstLine[1],
+                            secondLine[0],
+                            secondLine[1],
+                        ),
+                    ).toBe(true)
                 }
             }
         }
     })
 
-    it('confirms parallel lines do not intersect', () => {
+    it("confirms parallel lines do not intersect", () => {
         const line1Start: TwoDPoint = [0, 0]
         const line1End: TwoDPoint = [10, 0]
         const line2Start: TwoDPoint = [0, 5]
         const line2End: TwoDPoint = [10, 5]
 
-        expect(intersects(line1Start, line1End, line2Start, line2End)).toBe(false)
+        expect(intersects(line1Start, line1End, line2Start, line2End)).toBe(
+            false,
+        )
     })
 })
 
-describe('point in polygon', () => {
-    it('correctly identifies points inside a polygon', () => {
+describe("point in polygon", () => {
+    it("correctly identifies points inside a polygon", () => {
         const square: Polygon = [
             [0, 0],
             [10, 0],
             [10, 10],
-            [0, 10]
+            [0, 10],
         ]
 
         expect(isInsidePolygon([5, 5], square)).toBe(true)
@@ -62,13 +76,13 @@ describe('point in polygon', () => {
     })
 })
 
-describe('bounding rectangle', () => {
-    it('calculates the correct bounding rectangle for a polygon', () => {
+describe("bounding rectangle", () => {
+    it("calculates the correct bounding rectangle for a polygon", () => {
         const polygon: Polygon = [
             [10, 20],
             [30, 40],
             [50, 30],
-            [20, 10]
+            [20, 10],
         ]
 
         const rect = boundingRect(polygon)
@@ -80,8 +94,8 @@ describe('bounding rectangle', () => {
     })
 })
 
-describe('degenerate rectangle', () => {
-    it('creates a zero-area rectangle from a point', () => {
+describe("degenerate rectangle", () => {
+    it("creates a zero-area rectangle from a point", () => {
         const point: TwoDPoint = [15, 25]
         const rect = degenerateRect(point)
 
@@ -93,27 +107,27 @@ describe('degenerate rectangle', () => {
     })
 })
 
-describe('rectangle containment', () => {
-    it('correctly identifies when one rectangle contains another', () => {
+describe("rectangle containment", () => {
+    it("correctly identifies when one rectangle contains another", () => {
         const outerRect: LatLongRect = {
             minLong: 0,
             maxLong: 10,
             minLat: 0,
-            maxLat: 10
+            maxLat: 10,
         }
 
         const innerRect: LatLongRect = {
             minLong: 2,
             maxLong: 8,
             minLat: 2,
-            maxLat: 8
+            maxLat: 8,
         }
 
         const overlappingRect: LatLongRect = {
             minLong: 5,
             maxLong: 15,
             minLat: 5,
-            maxLat: 15
+            maxLat: 15,
         }
 
         expect(isContainedByRect(innerRect, outerRect)).toBe(true)
@@ -123,23 +137,23 @@ describe('rectangle containment', () => {
     })
 })
 
-describe('rectangle expansion', () => {
-    it('expands a rectangle within a square polygon', () => {
+describe("rectangle expansion", () => {
+    it("expands a rectangle within a square polygon", () => {
         const square: Polygon = [
             [0, 0],
             [10, 0],
             [10, 10],
-            [0, 10]
+            [0, 10],
         ]
 
         const initialRect: LatLongRect = {
             minLong: 4,
             maxLong: 6,
             minLat: 4,
-            maxLat: 6
+            maxLat: 6,
         }
 
-        const expanded = expandRect(initialRect, square, .5)
+        const expanded = expandRect(initialRect, square, 0.5)
 
         // Should expand close to the bounds of the square
         expect(expanded.minLong).toBeLessThan(1)
@@ -154,4 +168,3 @@ describe('rectangle expansion', () => {
         expect(expanded.maxLat).toBeLessThanOrEqual(10)
     })
 })
-

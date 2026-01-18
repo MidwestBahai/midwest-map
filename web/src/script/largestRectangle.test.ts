@@ -1,13 +1,18 @@
-import { approximateLargestAlignedRectangle } from './largestRectangle'
-import { boundingRect, rectArea, TwoDPoint, Polygon } from './expandRect'
+import {
+    boundingRect,
+    type Polygon,
+    rectArea,
+    type TwoDPoint,
+} from "./expandRect"
+import { approximateLargestAlignedRectangle } from "./largestRectangle"
 
-describe('largest rectangle approximation', () => {
-    it('finds a rectangle inside a square', () => {
+describe("largest rectangle approximation", () => {
+    it("finds a rectangle inside a square", () => {
         const square: Polygon = [
             [0, 0],
             [10, 0],
             [10, 10],
-            [0, 10]
+            [0, 10],
         ]
 
         const result = approximateLargestAlignedRectangle(square, 0.1)
@@ -23,15 +28,15 @@ describe('largest rectangle approximation', () => {
         expect(result.rect.maxLat).toBeLessThanOrEqual(10)
     })
 
-    it('finds a rectangle inside an L-shaped polygon', () => {
+    it("finds a rectangle inside an L-shaped polygon", () => {
         // L-shaped polygon
         const lShape: Polygon = [
-            [0, 0],   // bottom-left
-            [10, 0],  // bottom-right
-            [10, 5],  // middle-right
-            [5, 5],   // middle-center
-            [5, 10],  // top-center
-            [0, 10]   // top-left
+            [0, 0], // bottom-left
+            [10, 0], // bottom-right
+            [10, 5], // middle-right
+            [5, 5], // middle-center
+            [5, 10], // top-center
+            [0, 10], // top-left
         ]
 
         const result = approximateLargestAlignedRectangle(lShape, 0.1)
@@ -55,17 +60,17 @@ describe('largest rectangle approximation', () => {
         expect(isInHorizontalPart || isInVerticalPart).toBe(true)
     })
 
-    it('finds rectangles inside triangles', () => {
+    it("finds rectangles inside triangles", () => {
         const triangles: TwoDPoint[][] = [
             [
                 [0, 0],
                 [10, 0],
-                [5, 5]
+                [5, 5],
             ],
             [
                 [0, 0],
                 [0, 10],
-                [10, 0]
+                [10, 0],
             ],
         ]
         for (const triangle of triangles) {

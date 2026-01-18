@@ -1,4 +1,4 @@
-import { GeoJsonProperties } from "geojson"
+import type { GeoJsonProperties } from "geojson"
 
 export const clusterGroups = {
     AA: {
@@ -31,8 +31,10 @@ export type ClusterGroup = keyof typeof clusterGroups
 
 const logged = new Set<string>()
 
-export const getClusterGroup = (properties: GeoJsonProperties): ClusterGroup => {
-    const group = `${properties?.["Group"]}`
+export const getClusterGroup = (
+    properties: GeoJsonProperties,
+): ClusterGroup => {
+    const group = `${properties?.Group}`
     if (group in clusterGroups) return group as ClusterGroup
     if (!logged.has(group)) {
         console.warn(`Unknown cluster group: ${group}`)
