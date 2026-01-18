@@ -8,7 +8,7 @@ interface ExportButtonProps {
 
 export const ExportButton = ({ onClick }: ExportButtonProps) => {
     return (
-        <div className="fixed bottom-6 right-6 z-30">
+        <div className="fixed bottom-6 right-42 z-30">
             <button
                 className="relative bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
                 onClick={onClick}

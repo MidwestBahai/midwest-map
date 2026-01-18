@@ -50,8 +50,8 @@ export const RegionMap = (
     const [ internalDate, setInternalDate ] = useState<Date>(initialDate ?? new Date())
 
     // Support both controlled and uncontrolled modes
-    const currentDate = controlledDate ?? internalDate
-    const setCurrentDate = onDateChange ?? setInternalDate
+    const selectedDate = controlledDate ?? internalDate
+    const setSelectedDate = onDateChange ?? setInternalDate
 
     const onHover = useCallback((event: MapMouseEvent) => {
         const {
@@ -165,7 +165,7 @@ export const RegionMap = (
                             index={index}
                             hoverFeature={printMode ? undefined : hoverFeature}
                             largestRect={pickLargestRect(feature)}
-                            currentDate={currentDate}
+                            currentDate={selectedDate}
                             boundariesOnly={!showClusters}
                             printMode={printMode}
                         />
@@ -180,10 +180,10 @@ export const RegionMap = (
             </Map>
             {!printMode && (
                 <FloatingTimelineButton
-                    startDate={new Date('2011-01-01')}
-                    endDate={new Date('2025-12-31')}
-                    currentDate={currentDate}
-                    onDateChange={setCurrentDate}
+                    startDate={new Date(validatedData.timelineBounds.minDate)}
+                    endDate={new Date(validatedData.timelineBounds.maxDate)}
+                    currentDate={selectedDate}
+                    onDateChange={setSelectedDate}
                     milestoneEvents={milestoneEvents}
                 />
             )}

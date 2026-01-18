@@ -1,435 +1,470 @@
-# Print Export Roadmap
+# Print Roadmap
 
-Planned enhancements for the print/export feature. See the README for what's currently implemented.
+This document covers the print/export feature for generating high-quality printable maps.
 
 ## Overview
 
-The print system allows users to generate high-quality printable maps with customizable:
-- **Scope**: Full region, single state, or subregion (cluster group area)
-- **Legend positioning**: Draggable legends that can be placed in empty map areas
-- **Label options**: Toggle cluster code and/or milestone display
-- **Date selection**: Current or historical view
+The print system allows users to generate printable maps with:
+- **Draggable legends**: Position legends in empty map areas (lakes, neighboring states)
+- **Draggable title**: Position the map title where it fits best
+- **Date selection**: Current or historical view via URL param
+- **Vector output**: All content is vector-based for crisp printing at any size
+
+**Current approach**: Native browser print (Cmd+P → PDF). This produces high-quality vector PDFs suitable for professional printing, including large format posters.
+
+**Deferred**: PNG export service via Puppeteer (see bottom of doc). Not yet requested by users; browser print covers the primary use case.
 
 ---
 
-## Architecture
+## Current Status
 
-### Two Entry Points
+### What's Working
 
-| Entry Point | Use Case |
-|-------------|----------|
-| Main app → Export modal | Quick export with preview, size selection, download |
-| Direct `/print` route | Fine-tune settings, browser print, or bookmark specific views |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| `/print` route | ✅ Done | Dedicated print view |
+| Draggable legends | ✅ Done | One per cluster group, positions persist in localStorage |
+| Draggable title | ✅ Done | Position persists in localStorage |
+| Vector map style | ✅ Done | Uses `empty-v9` Mapbox style (no raster tiles) |
+| County boundaries | ✅ Done | Visible in print mode |
+| Opaque fill colors | ✅ Done | `printMode` flag adjusts alpha |
+| Color swatches in print | ✅ Done | `print-color-adjust: exact` on legend swatches |
+| Pan/zoom persistence | ✅ Done | Map view state persists in localStorage |
 
-### Data Flow
+### What's Missing
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Main App (/)                            │
-│                                                                 │
-│  [Export Button] ──→ Opens ExportModal                          │
-│                      ├── Preview iframe: /print?...             │
-│                      ├── Size selector (Letter/Tabloid/Poster)  │
-│                      └── Download button → calls export service │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      Print Route (/print)                       │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐    │
-│  │ Print Toolbar (collapsible, hidden during export)       │    │
-│  │ Scope: [Region ▼]  Area: [All ▼]  Date: [Jan 2025]     │    │
-│  │ Labels: [✓] Code  [✓] Milestone  [Reset legends]        │    │
-│  └─────────────────────────────────────────────────────────┘    │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐    │
-│  │                                                         │    │
-│  │                    Map Canvas                           │    │
-│  │                                                         │    │
-│  │   [Draggable Legend 1]          [Draggable Legend 2]   │    │
-│  │                                                         │    │
-│  └─────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼ (Puppeteer captures)
-┌─────────────────────────────────────────────────────────────────┐
-│                     Export Service                              │
-│  Receives: /print?scope=state&area=IN&legends=...&hideToolbar   │
-│  Returns: PNG at requested resolution                           │
-└─────────────────────────────────────────────────────────────────┘
-```
+| Feature | Priority | Notes |
+|---------|----------|-------|
+| Scope/area selector | High | Region, state, or cluster group view |
+| Label toggles | High | Show/hide cluster codes and milestones |
+| Scoped persistence | High | Each view saves its own legend positions |
+| Print CSS (`@media print`) | High | Hide UI, preserve colors globally |
+| Page size selector | High | Letter, Tabloid, A4, poster sizes |
+| Aspect ratio matching | High | WYSIWYG - viewport matches paper |
+| "On-page" indicator | Medium | Gray overlay showing print boundary |
+| Print button + instructions | Medium | Trigger print dialog, show tips |
+| Toolbar (hidden in print) | Medium | Contains controls, help |
 
 ---
 
-## Scope Hierarchy
+## Immediate: Native Browser Print
 
-### Three Levels
+### Why Browser Print?
 
-```
-Region (full midwest - IN, MI, OH)
-│
-├── State
-│   ├── Indiana (Indianapolis cluster group)
-│   ├── Michigan (Ann Arbor + Grand Rapids cluster groups)
-│   └── Ohio (Cleveland + Columbus cluster groups)
-│
-└── Subregion (single cluster group)
-    ├── Indianapolis (centered on IN-01)
-    ├── Grand Rapids (western MI)
-    ├── Ann Arbor (eastern MI)
-    ├── Cleveland (northeast OH + northwest MI border area)
-    └── Columbus (central/southern OH)
-```
+The `/print` route uses a blank Mapbox style with all vector content:
+- Cluster polygons (vector)
+- County boundaries (vector)
+- Labels and text (vector)
+- Legends (HTML/CSS, rendered as vector in PDF)
 
-### Cluster Groups by State
+**Vector PDFs scale infinitely** - a 24"×36" poster at 300 DPI will be perfectly crisp. This is ideal for professional print shops, which typically prefer PDF over PNG anyway.
 
-| State | Cluster Groups | Notes |
-|-------|----------------|-------|
-| Indiana | Indianapolis | Single group |
-| Michigan | Ann Arbor, Grand Rapids | Two groups |
-| Ohio | Cleveland, Columbus | Cleveland extends slightly into MI |
+### Implementation Plan
 
-### Bounds Calculation
+#### 1. Print CSS Foundation
 
-For each scope, compute bounding box from cluster polygons:
+Add `@media print` rules to `globals.css`:
 
-```typescript
-function getScopeBounds(scope: Scope, area?: string): LngLatBounds {
-  const clusters = getFilteredClusters(scope, area)
-  return clusters.reduce((bounds, cluster) => {
-    return bounds.extend(getClusterBounds(cluster))
-  }, new LngLatBounds())
-}
-```
+```css
+@media print {
+  /* Preserve all background colors */
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 
----
+  /* Hide screen-only UI */
+  .print-hidden,
+  [data-print-hidden] {
+    display: none !important;
+  }
 
-## Data Model
+  /* Remove decorative shadows */
+  .shadow, .shadow-sm, .shadow-lg {
+    box-shadow: none !important;
+  }
 
-### PrintSettings Interface
-
-```typescript
-interface PrintSettings {
-  // Scope & area
-  scope: 'region' | 'state' | 'subregion'
-  area?: string  // State: 'IN' | 'OH' | 'MI'
-                 // Subregion: 'indianapolis' | 'cleveland' | 'ann-arbor' | 'grand-rapids' | 'columbus'
-
-  // Date for timeline
-  date: string  // ISO format: '2025-01-14'
-
-  // Legend positioning (one per visible cluster group)
-  legends: Record<ClusterGroupKey, LegendPosition>
-
-  // Label display options
-  labels: {
-    showCode: boolean      // e.g., "IN-01"
-    showMilestone: boolean // e.g., "M3"
+  /* Ensure white background */
+  body {
+    background: white !important;
   }
 }
-
-interface LegendPosition {
-  x: number      // pixels from left
-  y: number      // pixels from top
-  visible: boolean
-}
-
-type ClusterGroupKey = 'indianapolis' | 'cleveland' | 'ann-arbor' | 'grand-rapids' | 'columbus'
 ```
 
-### URL Parameter Encoding
+#### 2. Scope & Area Selector
 
-All settings are encoded in URL params for Puppeteer compatibility:
-
-```
-/print?scope=state
-       &area=OH
-       &date=2025-01-14
-       &legends={"cleveland":{"x":50,"y":100},"columbus":{"x":600,"y":500}}
-       &showCode=true
-       &showMilestone=true
-       &hideToolbar=true
-```
-
-### LocalStorage Persistence
-
-Settings persist across sessions via localStorage:
+Users want to print different views:
+- **Region poster**: Full 3-state view for conferences
+- **State posters**: Indiana, Michigan, or Ohio focus
+- **Zone posters**: Individual cluster group areas (Indianapolis, Cleveland, etc.)
 
 ```typescript
-// Key: 'print-settings'
-// Value: JSON-serialized PrintSettings
+type Scope = 'region' | 'state' | 'subregion'
 
-const saveSettings = (settings: PrintSettings) => {
-  localStorage.setItem('print-settings', JSON.stringify(settings))
+interface ScopeOption {
+  scope: Scope
+  area?: string
+  label: string
+  visibleGroups: ClusterGroupKey[]  // Which legends to show
 }
 
-const loadSettings = (): PrintSettings | null => {
-  const stored = localStorage.getItem('print-settings')
-  return stored ? JSON.parse(stored) : null
+const scopeOptions: ScopeOption[] = [
+  { scope: 'region', label: 'Full Region', visibleGroups: ['INDY', 'CLV', 'CBUS', 'AA', 'GR'] },
+  { scope: 'state', area: 'IN', label: 'Indiana', visibleGroups: ['INDY'] },
+  { scope: 'state', area: 'MI', label: 'Michigan', visibleGroups: ['AA', 'GR'] },
+  { scope: 'state', area: 'OH', label: 'Ohio', visibleGroups: ['CLV', 'CBUS'] },
+  { scope: 'subregion', area: 'indianapolis', label: 'Indianapolis Group', visibleGroups: ['INDY'] },
+  { scope: 'subregion', area: 'cleveland', label: 'Cleveland Group', visibleGroups: ['CLV'] },
+  { scope: 'subregion', area: 'columbus', label: 'Columbus Group', visibleGroups: ['CBUS'] },
+  { scope: 'subregion', area: 'ann-arbor', label: 'Ann Arbor Group', visibleGroups: ['AA'] },
+  { scope: 'subregion', area: 'grand-rapids', label: 'Grand Rapids Group', visibleGroups: ['GR'] },
+]
+```
+
+When scope changes:
+1. Filter visible clusters to those in the selected area
+2. Compute bounding box from filtered clusters
+3. Fit map to new bounds
+4. Show only relevant legends
+5. Load saved positions for this specific view (see scoped persistence)
+
+#### 3. Label Toggles
+
+Control what text appears on clusters:
+
+```typescript
+interface LabelOptions {
+  showCode: boolean      // "IN-01", "MI-03", etc.
+  showMilestone: boolean // "M1", "M2", "M3"
 }
 ```
+
+UI: Two checkboxes in toolbar
+- [✓] Cluster codes
+- [✓] Milestones
+
+Both default to checked. Useful to uncheck for cleaner visuals or when labels overlap.
+
+#### 4. Scoped Persistence
+
+**Key insight**: Each view needs its own saved layout.
+
+When user switches to "Cleveland Group" view:
+- Legend position should be optimized for Cleveland's shape
+- Title might be in a different spot
+- Map zoom/pan is specific to that area
+
+**Storage key scheme**:
+```typescript
+// Generate storage key based on current view
+function getStorageKey(prefix: string, scope: Scope, area?: string): string {
+  if (scope === 'region') return `${prefix}-region`
+  return `${prefix}-${scope}-${area}`
+}
+
+// Examples:
+// print-layout-region
+// print-layout-state-IN
+// print-layout-state-MI
+// print-layout-subregion-cleveland
+// print-layout-subregion-indianapolis
+```
+
+**What's stored per view**:
+```typescript
+interface ViewLayout {
+  legendPositions: Record<ClusterGroupKey, { x: number, y: number }>
+  titlePosition: { x: number, y: number }
+  mapView: { latitude: number, longitude: number, zoom: number }
+}
+```
+
+**Shared across all views** (not scoped):
+```typescript
+interface GlobalPrintSettings {
+  paperSize: string           // "letter-landscape", "tabloid", etc.
+  labelOptions: LabelOptions  // showCode, showMilestone
+}
+```
+
+**Flow when switching views**:
+1. User selects "Indiana" from scope dropdown
+2. Save current view's layout to localStorage
+3. Load Indiana's saved layout (or compute defaults if first time)
+4. Filter clusters, fit bounds, show relevant legend(s)
+5. User adjusts legend position
+6. Position auto-saves to Indiana's storage key
+
+#### 5. Page Size Selector
+
+Let users choose paper size to match their intended output:
+
+```typescript
+type PaperSize = {
+  name: string
+  width: number   // inches
+  height: number  // inches
+  aspect: number  // width / height
+}
+
+const paperSizes: PaperSize[] = [
+  { name: "Letter", width: 8.5, height: 11, aspect: 0.773 },
+  { name: "Letter Landscape", width: 11, height: 8.5, aspect: 1.294 },
+  { name: "Tabloid", width: 11, height: 17, aspect: 0.647 },
+  { name: "Tabloid Landscape", width: 17, height: 11, aspect: 1.545 },
+  { name: "A4", width: 8.27, height: 11.69, aspect: 0.707 },
+  { name: "Poster 18×24", width: 18, height: 24, aspect: 0.75 },
+  { name: "Poster 24×36", width: 24, height: 36, aspect: 0.667 },
+]
+```
+
+#### 6. Aspect Ratio Matching (WYSIWYG)
+
+The key to good print UX: **what you see matches what prints**.
+
+```typescript
+// Container sized to match paper aspect ratio
+function PrintContainer({ paperSize, children }) {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+
+  useEffect(() => {
+    // Fit paper aspect ratio within viewport
+    const vw = window.innerWidth
+    const vh = window.innerHeight
+    const paperAspect = paperSize.width / paperSize.height
+
+    let width, height
+    if (vw / vh > paperAspect) {
+      // Viewport is wider than paper - constrain by height
+      height = vh
+      width = vh * paperAspect
+    } else {
+      // Viewport is taller than paper - constrain by width
+      width = vw
+      height = vw / paperAspect
+    }
+
+    setDimensions({ width, height })
+  }, [paperSize])
+
+  return (
+    <div style={{ width: dimensions.width, height: dimensions.height }}>
+      {children}
+    </div>
+  )
+}
+```
+
+#### 7. "On-Page" Visual Indicator
+
+Show users what will print vs what's outside the page boundary:
+
+```
+┌────────────────────────────────────────────┐
+│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│  ← Gray overlay
+│░░┌──────────────────────────────────┐░░░░░░│    (screen only)
+│░░│                                  │░░░░░░│
+│░░│         Printable Area           │░░░░░░│  ← White/visible
+│░░│                                  │░░░░░░│
+│░░│    [Map with legends]            │░░░░░░│
+│░░│                                  │░░░░░░│
+│░░└──────────────────────────────────┘░░░░░░│
+│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│
+└────────────────────────────────────────────┘
+```
+
+Implementation: Four absolutely-positioned divs around the page container, with `print:hidden` class.
+
+#### 8. Print Toolbar
+
+Collapsible toolbar with controls (hidden during print):
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ View: [Full Region ▼]  Paper: [Tabloid ▼]  [✓] Codes [✓] Milestones  [🖨 Print] │
+└──────────────────────────────────────────────────────────────────────────────────┘
+```
+
+- **View selector**: Scope dropdown (Region, Indiana, Michigan, Ohio, or individual groups)
+- **Paper selector**: Dropdown with common sizes
+- **Label toggles**: Checkboxes for cluster codes and milestones
+- **Print button**: Triggers `window.print()`
+- **Reset Layout** (overflow menu): Reset legends and title to defaults for current view
+- **Help** (overflow menu): Tips for print dialog settings
+
+The toolbar uses `print:hidden` to hide during printing.
+
+#### 9. Print Instructions
+
+On first visit or via help button, show tips:
+
+> **Printing Tips**
+> 1. Click **Print** or press **Cmd+P** (Mac) / **Ctrl+P** (Windows)
+> 2. Set **Margins** to "None" for full-bleed output
+> 3. Disable **Headers and footers** to remove URL/date
+> 4. Choose **Save as PDF** or send directly to printer
+> 5. For posters: take PDF to print shop (FedEx, Staples, etc.)
+
+### Implementation Checklist
+
+**Scope & Filtering:**
+- [ ] Define `ScopeOption` type and options list
+- [ ] Create `ScopeSelector` dropdown component
+- [ ] Implement cluster filtering by scope/area
+- [ ] Implement bounds calculation for filtered clusters
+- [ ] Auto-fit map to computed bounds on scope change
+
+**Label Controls:**
+- [ ] Add `showCode` / `showMilestone` state
+- [ ] Wire toggles to `ClusterText` component
+- [ ] Add checkbox UI to toolbar
+
+**Scoped Persistence:**
+- [ ] Implement `getStorageKey(prefix, scope, area)` function
+- [ ] Migrate existing localStorage to scoped keys
+- [ ] Save current layout before switching views
+- [ ] Load view-specific layout on scope change
+- [ ] Compute smart defaults for first-time views
+
+**Print CSS:**
+- [ ] Add `@media print` rules to `globals.css`
+- [ ] Add `print-color-adjust: exact` globally
+- [ ] Hide toolbar and overlays in print
+
+**Page Size & Layout:**
+- [ ] Create `PaperSizeSelector` component
+- [ ] Create `PrintContainer` with aspect ratio logic
+- [ ] Add gray overlay for off-page indicator
+
+**Toolbar & UX:**
+- [ ] Create `PrintToolbar` component with all controls
+- [ ] Add print button that calls `window.print()`
+- [ ] Add help/tips in overflow menu
+
+**Testing:**
+- [ ] Test scope switching preserves/restores layouts
+- [ ] Test in Chrome, Safari, Firefox print preview
+- [ ] Test PDF output at various paper sizes
+- [ ] Test each scope option (region, states, groups)
 
 ---
 
-## Legend Design
+## Existing Features (Reference)
 
-### Per-Subregion Legends
+### Legend Design
 
-Each cluster group gets its own small legend (like the ArcGIS reference maps):
+Each cluster group gets its own small legend:
 
 ```
 ┌──────────────────┐
 │ Indianapolis     │
 ├──────────────────┤
-│ ██ No PoG / Emg  │  ← Combined category
+│ ██ No PoG        │
 │ ██ M1            │
 │ ██ M2            │
 │ ██ M3            │
 └──────────────────┘
 ```
 
-### Simplifications for Print
+**Simplifications for print:**
+- Combine "No PoG" + "Emerging" (both pre-M1)
+- Omit "Reservoir" (it's just darker M3)
 
-| Change | Rationale |
-|--------|-----------|
-| Combine "No PoG" + "Emerging" | Both are pre-M1, similar appearance |
-| Omit "Reservoir" | All reservoirs are M3, just slightly darker |
+### Default Legend Positions
 
-### Draggable Implementation
-
-```typescript
-interface DraggableLegendProps {
-  groupKey: ClusterGroupKey
-  position: LegendPosition
-  onPositionChange: (pos: {x: number, y: number}) => void
-}
-
-// Drag behavior:
-// - mousedown on legend header starts drag
-// - mousemove updates position
-// - mouseup ends drag, saves to state
-// - Position clamped to viewport bounds
-```
-
-### Default Positions
-
-Sensible defaults based on typical empty areas:
+Positioned in typically empty areas (lakes, neighboring states):
 
 | Cluster Group | Default Position | Rationale |
 |---------------|------------------|-----------|
-| Indianapolis | bottom-left | Lake Michigan area when showing IN |
-| Grand Rapids | top-left | Upper peninsula area |
-| Ann Arbor | bottom-right | Ohio area when showing MI |
-| Cleveland | top-right | Lake Erie area |
-| Columbus | bottom-right | Kentucky/WV area |
+| Indianapolis | Left side, upper | Lake Michigan area |
+| Grand Rapids | Left side, middle | Upper peninsula area |
+| Ann Arbor | Left side, lower | Western empty area |
+| Cleveland | Right side, upper | Lake Erie area |
+| Columbus | Right side, lower | Kentucky/WV area |
 
----
+### URL Parameters
 
-## Print Toolbar
-
-### Layout
+Settings can be passed via URL for bookmarking specific views:
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│ ▼ Print Settings                                            [Collapse] │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  Scope    ┌─────────────┐   Area   ┌─────────────┐                     │
-│           │ Region    ▼ │          │ All       ▼ │                     │
-│           └─────────────┘          └─────────────┘                     │
-│                                                                         │
-│  Date     ┌─────────────┐   Labels  [✓] Code  [✓] Milestone            │
-│           │ Jan 2025  ▼ │                                              │
-│           └─────────────┘                                              │
-│                                                                         │
-│  Legends  [Reset to defaults]  Tip: Drag legends to reposition         │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
+/print?date=2024-10-01
 ```
 
-### Visibility
+Future params (not yet implemented):
+- `scope=state&area=IN` - Filter to specific state
+- `paper=tabloid-landscape` - Pre-select paper size
 
-- **In browser**: Visible, collapsible
-- **During export**: Hidden via `?hideToolbar=true` URL param
-- **CSS**: `data-print-toolbar` attribute for easy hiding
+### LocalStorage Keys
 
----
+**Per-view layout** (scoped by view):
+| Key Pattern | Example | Purpose |
+|-------------|---------|---------|
+| `print-layout-{scope}-{area}` | `print-layout-region` | Legend positions, title position, map view |
+| | `print-layout-state-IN` | |
+| | `print-layout-subregion-cleveland` | |
 
-## Implementation Phases
-
-### Phase 1: URL Params & Basic Settings
-- [ ] Parse URL params in `/print` route
-- [ ] Add `scope` and `area` params
-- [ ] Filter clusters based on scope/area
-- [ ] Adjust map bounds for selected scope
-
-### Phase 2: Draggable Legends
-- [ ] Refactor PrintLegend to support multiple instances
-- [ ] Add drag handlers (mousedown/move/up)
-- [ ] Store positions in component state
-- [ ] Clamp to viewport bounds
-
-### Phase 3: Print Toolbar
-- [ ] Create PrintToolbar component
-- [ ] Scope/area dropdowns
-- [ ] Label toggle checkboxes
-- [ ] Reset legends button
-- [ ] Collapsible behavior
-
-### Phase 4: Persistence
-- [ ] Save settings to localStorage on change
-- [ ] Load settings from localStorage on mount
-- [ ] Merge URL params with stored settings (URL wins)
-
-### Phase 5: Export Modal Integration
-- [ ] Add scope/area selectors to ExportModal
-- [ ] Preview updates as settings change
-- [ ] Serialize current settings to URL for Puppeteer
-
-### Phase 6: Polish
-- [ ] Default legend positions per scope
-- [ ] Smooth drag animation
-- [ ] Keyboard accessibility for toolbar
-- [ ] Mobile-friendly toolbar layout
+**Global settings** (shared across views):
+| Key | Purpose |
+|-----|---------|
+| `print-global-settings` | Paper size, label options |
 
 ---
 
-## Deployment Architecture
+## Deferred: PNG Export Service
 
-### Overview
+> **Status**: Not yet implemented. Browser print to PDF covers the primary use case. This section is retained for future reference if PNG export becomes needed.
 
-The system uses a split architecture optimized for reliability and cost:
+### When Would We Need This?
+
+- Users specifically request PNG downloads
+- Batch automation (generate all historical views)
+- Precise pixel-level control (social media images)
+- API-driven exports for other systems
+
+### Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │              map.midwestbahai.org                           │
-│              (Static hosting - high reliability)            │
+│              (Static hosting)                               │
 │                                                             │
-│  - Statically compiled Next.js (HTML/JS/CSS/JSON)          │
-│  - No server-side runtime required                          │
-│  - Can be hosted on any static file server or CDN           │
-│  - /print route works for browser print (Cmd+P)             │
-│  - Always available, fast, zero ongoing compute cost        │
+│  /print route works for browser print (Cmd+P)              │
+│  Export button → calls export service (if available)       │
 └─────────────────────────────────────────────────────────────┘
               │
               │ fetch(`https://export.midwestbahai.org/render`)
               ▼
 ┌─────────────────────────────────────────────────────────────┐
 │           export.midwestbahai.org                           │
-│           (Container hosting - best-effort reliability)     │
+│           (Container hosting - optional)                    │
 │                                                             │
-│  - Docker container running Puppeteer/Chrome                │
-│  - RAM-intensive (benefits from beefy hardware)             │
-│  - Only needed for high-res PNG export                      │
-│  - If unavailable, main app still fully functional          │
-│  - Browser print always works as fallback                   │
+│  - Docker container running Puppeteer/Chrome               │
+│  - Navigates to /print?...&hideToolbar=true                │
+│  - Screenshots at requested resolution                      │
+│  - Returns PNG binary                                       │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ### Graceful Degradation
 
-The main app checks export service availability before showing the Export button:
-
-```typescript
-// On app load or Export button click
-const isExportAvailable = await fetch('https://export.midwestbahai.org/health')
-  .then(r => r.ok)
-  .catch(() => false)
-
-// If unavailable:
-// - Hide or disable Export button
-// - Show "Use browser print (Cmd+P) as alternative"
-// - /print route always works for browser printing
-```
-
-### Why This Split?
-
-| Concern | Static Site | Export Service |
-|---------|-------------|----------------|
-| Availability | Critical (always up) | Best-effort (OK if occasionally down) |
-| Scaling | Infinite (CDN) | Limited (single container) |
-| Cost | ~Free | RAM/CPU for Puppeteer |
-| Complexity | Zero runtime | Docker + Chrome |
+If export service is unavailable, the main app still works:
+- Hide or disable PNG export button
+- Browser print (Cmd+P) always works as fallback
 
 ### Service Endpoints
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/health` | GET | Health check, returns `{"status": "ok"}` |
-| `/render` | POST | Render map to PNG, returns image binary |
+| `/health` | GET | Health check |
+| `/render` | POST | Render map to PNG |
 
-The export service URL (`export.midwestbahai.org`) is resolved via DNS, allowing the backing server to change without code updates.
+### Deployment Notes
 
-### Deploying the Export Service
-
-The export service runs as a Docker container with auto-restart. Setup on the container host:
-
-```bash
-# Clone repo (one-time)
-mkdir -p ~/source && cd ~/source
-git clone https://github.com/MidwestBahai/midwest-map.git
-cd midwest-map/web
-
-# Start the service (first time or after changes)
-docker compose up -d --build export-service
-
-# View logs
-docker compose logs -f export-service
-```
-
-**Deploy script** (`export-service/deploy.sh`):
-
-```bash
-#!/bin/bash
-set -e
-
-cd "$(dirname "$0")/.."  # Go to web/ directory
-git pull
-docker compose up -d --build export-service
-docker compose logs --tail=20 export-service
-```
-
-**Auto-restart on reboot**: Docker's restart policy handles this. The `compose.yml` should include:
-
-```yaml
-export-service:
-  restart: unless-stopped
-  # ... rest of config
-```
-
-**Cron for auto-deploy** (optional, on container host):
-
-```cron
-# Deploy export service daily at 4 AM UTC (after main site deploys at 3 AM)
-0 4 * * * /home/user/source/midwest-map/web/export-service/deploy.sh >> /var/log/export-deploy.log 2>&1
-```
-
-### TODO: Deployment Tasks
-
-- [ ] Add `restart: unless-stopped` to compose.yml export-service
-- [ ] Create `export-service/deploy.sh` script
-- [ ] Set up DNS: `export.midwestbahai.org` → container host
-- [ ] Enable cron on main site host (neo)
-- [ ] Set up cron on container host for export service
-- [ ] Test end-to-end: push to git → auto-deploy → verify health endpoint
-
----
-
-## Open Questions
-
-1. **Legend collision detection**: Should we warn if legends overlap clusters?
-
-2. **Preset positions**: Offer corner presets (TL, TR, BL, BR) in addition to free drag?
-
-3. **Multiple legend layout**: For Ohio (2 groups), side-by-side or stacked?
-
-4. **Reservoir handling**:
-   - Option A: Omit from legend entirely (current plan)
-   - Option B: Show with footnote "* Reservoir clusters shown darker"
-   - Option C: Keep in legend for completeness
-
-5. **Historical views**: Should legend positions be date-aware? (Probably not needed)
+Would require:
+- Docker container with Puppeteer/Chrome
+- DNS setup for `export.midwestbahai.org`
+- Auto-restart on reboot (`restart: unless-stopped`)
+- RAM-intensive (~500MB+ per render)
 
 ---
 
@@ -437,64 +472,35 @@ export-service:
 
 ### Related Files
 
-- `src/app/print/PrintClient.tsx` - Main print page component
-- `src/app/print/PrintLegend.tsx` - Legend component (to be refactored)
-- `src/map/regionMap.tsx` - Map component with printMode support
-- `src/data/clusterGroups.ts` - Cluster group definitions
-- `docs/PRINT-EXPORT-IMPLEMENTATION.md` - Original export service design
+| File | Purpose |
+|------|---------|
+| `src/app/print/PrintClient.tsx` | Main print page component |
+| `src/app/print/DraggableLegend.tsx` | Per-group legend component |
+| `src/app/print/DraggableBox.tsx` | Generic draggable container |
+| `src/map/regionMap.tsx` | Map component with `printMode` support |
+| `src/map/clusterColor.ts` | Color functions with print alpha |
+| `src/data/clusterGroups.ts` | Cluster group definitions |
 
-### ArcGIS Reference Maps (moc 2409)
+### ArcGIS Reference Maps
 
-The `moc 2409 *.png` files in the project root are **handcrafted maps created in ArcGIS** that serve as the design reference for our print output. These were manually produced for the October 2024 timeframe and represent the "gold standard" we're trying to match.
-
-#### Files
+The `moc 2409 *.png` files are handcrafted ArcGIS maps that serve as design reference:
 
 | File | Description |
 |------|-------------|
-| `moc 2409 region.png` | Full 3-state region with all cluster groups |
+| `moc 2409 region.png` | Full 3-state region |
 | `moc 2409 indiana.png` | Indiana-focused view |
 | `moc 2409 ohio.png` | Ohio-focused view |
 | `moc 2409 michigan.png` | Michigan-focused view |
 
-#### Design Lessons Learned
+**Design principles from these maps:**
+- Legends in empty areas (lakes, neighboring states)
+- One legend per cluster group, vertical list format
+- Clean black borders, opaque fills
+- County boundaries as thin gray lines
+- White background (no base map tiles)
 
-**Legend placement:**
-- Legends are placed in **empty areas** (Lake Michigan, Lake Erie, neighboring states)
-- **Indiana**: Single legend (Indianapolis) in upper-left corner
-- **Ohio**: Two separate legends - Cleveland (top-right near Lake Erie), Columbus (bottom-right)
-- **Region**: Multiple legends distributed around the map edges
-- A human manually found optimal positions - our draggable approach lets users do the same
+### Open Questions
 
-**Legend format:**
-- Simple **vertical list** format (color swatch + label), not a grid
-- One legend **per cluster group**, not one giant combined legend
-- Shows: No PoG, Emerging, M1, M2, M3 (vertical stack of swatches)
-
-**Labels:**
-- Cluster code (e.g., "IN-01") prominently displayed
-- City names shown for notable clusters (Indianapolis, Fort Wayne, etc.)
-- Clean black borders around all clusters
-
-**Visual style:**
-- County boundaries visible as thin gray lines
-- Opaque fill colors (not semi-transparent like web view)
-- Bold black cluster borders
-- White/minimal background (no Mapbox base map tiles)
-
-#### What We're Automating
-
-The ArcGIS maps required manual effort for each update:
-1. Export data to ArcGIS
-2. Manually position legends in empty spots
-3. Adjust for any layout changes
-4. Export to PNG
-
-Our web-based approach automates this:
-1. Data updates automatically from source
-2. User drags legends to preferred positions (persisted)
-3. Export via Puppeteer at any resolution
-4. Historical views via timeline parameter
-
-### Web App Screenshot
-
-`map-webapp-screenshot.png` shows the interactive web UI for comparison - note the differences in legend style (grid vs. vertical), label detail (multi-line vs. simple), and fill opacity (semi-transparent vs. opaque).
+1. **Legend collision detection**: Warn if legends overlap clusters?
+2. **Preset positions**: Offer corner presets (TL, TR, BL, BR)?
+3. **Reservoir handling**: Omit from legend, or show with footnote?

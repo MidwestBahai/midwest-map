@@ -74,6 +74,8 @@ export function DraggableLegend({
                             className="w-5 h-4 border border-black flex-shrink-0"
                             style={{
                                 backgroundColor: milestoneColor(key, groupData.baseHue, undefined, true),
+                                printColorAdjust: 'exact',
+                                WebkitPrintColorAdjust: 'exact',
                             }}
                         />
                         <span className="text-xs whitespace-nowrap">{label}</span>
