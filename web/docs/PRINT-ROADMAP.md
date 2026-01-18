@@ -36,7 +36,7 @@ The print system allows users to generate printable maps with:
 | Feature | Priority | Notes |
 |---------|----------|-------|
 | Scope/area selector | High | Region, state, or cluster group view |
-| Label toggles | High | Show/hide cluster codes and milestones |
+| Label toggles | High | Show/hide codes, milestones, names, dates |
 | Scoped persistence | High | Each view saves its own legend positions |
 | Print CSS (`@media print`) | High | Hide UI, preserve colors globally |
 | Page size selector | High | Letter, Tabloid, A4, poster sizes |
@@ -44,6 +44,7 @@ The print system allows users to generate printable maps with:
 | "On-page" indicator | Medium | Gray overlay showing print boundary |
 | Print button + instructions | Medium | Trigger print dialog, show tips |
 | Toolbar (hidden in print) | Medium | Contains controls, help |
+| Guaranteed labels | Future | All clusters labeled; see `PRINT-LABELS-ADVANCED.md` |
 
 ---
 
@@ -134,16 +135,25 @@ Control what text appears on clusters:
 
 ```typescript
 interface LabelOptions {
-  showCode: boolean      // "IN-01", "MI-03", etc.
-  showMilestone: boolean // "M1", "M2", "M3"
+  showCode: boolean      // "IN-01", "MI-03", etc. (default: true)
+  showMilestone: boolean // "M1", "M2", "M3" (default: true)
+  showName: boolean      // "Franklin", "Darke", etc. (default: false)
+  showDate: boolean      // "2021" (advancement year) (default: false)
 }
 ```
 
-UI: Two checkboxes in toolbar
-- [✓] Cluster codes
-- [✓] Milestones
+UI: Checkboxes in toolbar
+```
+[✓] Codes   [✓] Milestones   [ ] Names   [ ] Dates
+```
 
-Both default to checked. Useful to uncheck for cleaner visuals or when labels overlap.
+- **Codes + Milestones** default to checked (matches current print behavior)
+- **Names** useful for detailed views; cluster names are somewhat arbitrary currently (may evolve to short nickname + longer systematic name)
+- **Dates** shows advancement year when applicable
+
+**Note on cluster names:** Current names reflect historical familiarity and may need generalization. Plan for future: short nickname + longer systematic name. Keep flexible.
+
+**Mapbox limitation:** With current Mapbox labels, collision detection may hide labels on small clusters. For guaranteed complete labeling, see `PRINT-LABELS-ADVANCED.md`.
 
 #### 4. Scoped Persistence
 
@@ -315,9 +325,10 @@ On first visit or via help button, show tips:
 - [ ] Auto-fit map to computed bounds on scope change
 
 **Label Controls:**
-- [ ] Add `showCode` / `showMilestone` state
-- [ ] Wire toggles to `ClusterText` component
+- [ ] Add `LabelOptions` state (showCode, showMilestone, showName, showDate)
+- [ ] Wire toggles to `ClusterText` component via props
 - [ ] Add checkbox UI to toolbar
+- [ ] Persist label options in `print-global-settings`
 
 **Scoped Persistence:**
 - [ ] Implement `getStorageKey(prefix, scope, area)` function
@@ -480,6 +491,7 @@ Would require:
 | `src/map/regionMap.tsx` | Map component with `printMode` support |
 | `src/map/clusterColor.ts` | Color functions with print alpha |
 | `src/data/clusterGroups.ts` | Cluster group definitions |
+| `docs/PRINT-LABELS-ADVANCED.md` | Future: HTML overlay labels for guaranteed visibility |
 
 ### ArcGIS Reference Maps
 
