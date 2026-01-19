@@ -1,11 +1,9 @@
 "use client"
 
-import type { Feature } from "geojson"
 import { Printer } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useMemo } from "react"
 import validatedData from "@/data/clusters-timeline.geo.json"
-import type { TimelineEntry } from "@/data/getMilestoneAtDate"
+import { useMilestoneEvents } from "@/lib/useMilestoneEvents"
 import { FLOATING_ICON_CLASS, FloatingButton } from "./FloatingButton"
 import { FloatingTimelineButton } from "./FloatingTimelineButton"
 
@@ -15,31 +13,7 @@ interface FloatingControlsProps {
     onDateChange: (date: Date) => void
     showClusters?: boolean
     onToggleClusters?: () => void
-}
-
-// Extract milestone events from cluster data for timeline markers
-function useMilestoneEvents() {
-    return useMemo(() => {
-        const features = validatedData.features as Feature[]
-        const events: { date: Date; label: string; color?: string }[] = []
-        for (const feature of features) {
-            const timeline = feature.properties?.timeline as
-                | TimelineEntry[]
-                | undefined
-            const clusterName = feature.properties?.Cluster as
-                | string
-                | undefined
-            if (timeline && clusterName) {
-                for (const entry of timeline) {
-                    events.push({
-                        date: new Date(entry.date),
-                        label: `${clusterName}: ${entry.milestone}`,
-                    })
-                }
-            }
-        }
-        return events
-    }, [])
+    initialTimelineOpen?: boolean
 }
 
 // Layer toggle icons
@@ -87,21 +61,49 @@ export const FloatingControls = ({
     onDateChange,
     showClusters = true,
     onToggleClusters,
+    initialTimelineOpen = false,
 }: FloatingControlsProps) => {
     const router = useRouter()
     const milestoneEvents = useMilestoneEvents()
     const isPrintMode = mode === "print"
 
+    // Check if current date is today (meaning timeline is effectively "closed")
+    const isToday =
+        currentDate.toISOString().split("T")[0] ===
+        new Date().toISOString().split("T")[0]
+
     const handlePrintButtonClick = () => {
         if (isPrintMode) {
-            router.push("/")
+            if (isToday) {
+                router.push("/")
+            } else {
+                const dateParam = currentDate.toISOString().split("T")[0]
+                router.push(`/?date=${dateParam}`)
+            }
         } else {
-            router.push("/print")
+            if (isToday) {
+                router.push("/print")
+            } else {
+                const dateParam = currentDate.toISOString().split("T")[0]
+                router.push(`/print?date=${dateParam}`)
+            }
         }
     }
 
     return (
         <>
+            {/* Layer toggle only in non-print mode */}
+            {onToggleClusters && !isPrintMode && (
+                <FloatingButton
+                    position="layers"
+                    onClick={onToggleClusters}
+                    ariaLabel={showClusters ? "Hide clusters" : "Show clusters"}
+                    title={showClusters ? "Hide clusters" : "Show clusters"}
+                >
+                    {showClusters ? <LayersIcon /> : <MapIcon />}
+                </FloatingButton>
+            )}
+
             {/* Print/Export button */}
             <FloatingButton
                 position="print"
@@ -117,18 +119,6 @@ export const FloatingControls = ({
                 <Printer className={FLOATING_ICON_CLASS} />
             </FloatingButton>
 
-            {/* Layer toggle */}
-            {onToggleClusters && (
-                <FloatingButton
-                    position="layers"
-                    onClick={onToggleClusters}
-                    ariaLabel={showClusters ? "Hide clusters" : "Show clusters"}
-                    title={showClusters ? "Hide clusters" : "Show clusters"}
-                >
-                    {showClusters ? <LayersIcon /> : <MapIcon />}
-                </FloatingButton>
-            )}
-
             {/* Timeline button */}
             <div className="print-hidden">
                 <FloatingTimelineButton
@@ -137,6 +127,7 @@ export const FloatingControls = ({
                     currentDate={currentDate}
                     onDateChange={onDateChange}
                     milestoneEvents={milestoneEvents}
+                    initialOpen={initialTimelineOpen}
                 />
             </div>
         </>

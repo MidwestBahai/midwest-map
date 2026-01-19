@@ -10,6 +10,7 @@ interface FloatingTimelineButtonProps {
     currentDate: Date
     onDateChange: (date: Date) => void
     milestoneEvents?: { date: Date; label: string; color?: string }[]
+    initialOpen?: boolean
 }
 
 // Constants for maintainability
@@ -74,12 +75,13 @@ export const FloatingTimelineButton = ({
     currentDate,
     onDateChange,
     milestoneEvents = [],
+    initialOpen = false,
 }: FloatingTimelineButtonProps) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [isAnimatingOpen, setIsAnimatingOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(initialOpen)
+    const [isAnimatingOpen, setIsAnimatingOpen] = useState(initialOpen)
     const [isDragging, setIsDragging] = useState(false)
     const [isHoveringClose, setIsHoveringClose] = useState(false)
-    const [hasBeenOpened, setHasBeenOpened] = useState(false)
+    const [hasBeenOpened, setHasBeenOpened] = useState(initialOpen)
     const [showPulse, setShowPulse] = useState(false)
     const svgRef = useRef<SVGSVGElement>(null)
     const animationTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
@@ -350,9 +352,9 @@ export const FloatingTimelineButton = ({
                             overflow: "hidden",
                         }}
                     >
-                        {/* biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: SVG is made interactive via mouse/touch handlers */}
                         <svg
                             ref={svgRef}
+                            // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: SVG is made interactive via mouse/touch handlers
                             role="slider"
                             aria-label="Timeline date selector"
                             aria-valuemin={startDate.getFullYear()}

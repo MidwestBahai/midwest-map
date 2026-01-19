@@ -17,8 +17,8 @@ export const FLOATING_BUTTON = {
     // Positions from right edge (Tailwind classes)
     positions: {
         timeline: "right-6", // 24px
-        layers: "right-24", // 96px
-        print: "right-42", // 168px
+        print: "right-24", // 96px
+        layers: "right-42", // 168px
     },
 } as const
 

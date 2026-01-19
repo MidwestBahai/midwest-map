@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
 import { Suspense, useCallback, useEffect, useRef, useState } from "react"
 import { DebugProvider } from "@/app/DebugContext"
-import { FloatingControls } from "@/components/FloatingControls"
 import type { ClusterGroup } from "@/data/clusterGroups"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { initialBounds } from "@/map/initialMapBounds"
@@ -242,16 +241,6 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         isValidDate ? initialDate : new Date(),
     )
 
-    // Layer toggle state (for future use)
-    const [showClusters, setShowClusters] = useState(true)
-
-    // Check if this is current data (within 1 day of today)
-    const today = new Date()
-    const daysDiff =
-        Math.abs(today.getTime() - currentDate.getTime()) /
-        (1000 * 60 * 60 * 24)
-    const isCurrentData = daysDiff < 1
-
     const handleMapLoaded = useCallback(() => {
         setMapLoaded(true)
         // Add a class to the document for Puppeteer to detect
@@ -337,34 +326,13 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
 
                         {/* Print toolbar - hidden during actual print */}
                         {mapLoaded && (
-                            <PrintToolbar currentDate={currentDate} />
-                        )}
-
-                        {/* Floating controls - hidden during actual print */}
-                        {mapLoaded && (
-                            <FloatingControls
-                                mode="print"
+                            <PrintToolbar
                                 currentDate={currentDate}
                                 onDateChange={setCurrentDate}
-                                showClusters={showClusters}
-                                onToggleClusters={() =>
-                                    setShowClusters(!showClusters)
-                                }
+                                initialShowTimeline={Boolean(
+                                    dateParam && isValidDate,
+                                )}
                             />
-                        )}
-
-                        {/* Warning banner for historical data - hidden during print */}
-                        {!isCurrentData && mapLoaded && (
-                            <div className="print-hidden absolute top-4 left-1/2 -translate-x-1/2 bg-amber-100 border border-amber-400 text-amber-800 px-4 py-2 rounded shadow">
-                                <p className="text-sm font-medium">
-                                    Historical view:{" "}
-                                    {currentDate.toLocaleDateString("en-US", {
-                                        month: "long",
-                                        day: "numeric",
-                                        year: "numeric",
-                                    })}
-                                </p>
-                            </div>
                         )}
 
                         {/* Loading indicator (hidden when loaded) */}
