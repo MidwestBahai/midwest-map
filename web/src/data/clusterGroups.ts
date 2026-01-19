@@ -2,7 +2,7 @@ import type { GeoJsonProperties } from "geojson"
 
 export const clusterGroups = {
     AA: {
-        cities: ["Ann Arbor"],
+        cities: ["Ann Arbor", "Detroit", "Flint"],
         baseHue: 200,
     },
     GR: {

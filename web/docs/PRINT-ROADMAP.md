@@ -145,7 +145,7 @@ const scopeOptions: ScopeOption[] = [
   { scope: 'subregion', area: 'indianapolis', label: 'Indianapolis Group', visibleGroups: ['INDY'] },
   { scope: 'subregion', area: 'cleveland', label: 'Cleveland Group', visibleGroups: ['CLV'] },
   { scope: 'subregion', area: 'columbus', label: 'Columbus Group', visibleGroups: ['CBUS'] },
-  { scope: 'subregion', area: 'ann-arbor', label: 'Ann Arbor Group', visibleGroups: ['AA'] },
+  { scope: 'subregion', area: 'ann-arbor', label: 'Washtenaw Group', visibleGroups: ['AA'] },
   { scope: 'subregion', area: 'grand-rapids', label: 'Grand Rapids Group', visibleGroups: ['GR'] },
 ]
 ```
