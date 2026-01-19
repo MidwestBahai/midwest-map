@@ -1,6 +1,15 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { isMobileWidth } from "@/lib/constants"
+import { getMonthAbbreviation } from "@/lib/monthAbbreviations"
+import {
+    TIMELINE_COLORS,
+    TIMELINE_STROKES,
+    calculateDateProgress,
+    dateFromProgress,
+} from "@/lib/timelineConfig"
+import { useDragInteraction } from "@/lib/useDragInteraction"
 import { useWindowSize } from "@/lib/useWindowSize"
 import { BUTTON_CENTER_FROM_BOTTOM } from "./FloatingButton"
 
@@ -20,7 +29,6 @@ const CENTER_X = 30
 const BOTTOM_PADDING = 25 // Less padding at bottom to align with clock button
 
 // Responsive circle sizes (mobile / desktop)
-const MOBILE_BREAKPOINT = 768
 const CIRCLE_SIZES = {
     mobile: {
         yearCircle: 22, // 44px diameter - meets touch target
@@ -51,18 +59,17 @@ const TYPOGRAPHY = {
 }
 const YEAR_FONT_WEIGHT = "600"
 
-// Colors
-const TRACK_COLOR = "#e5e7eb"
-const YEAR_CIRCLE_STROKE = "#d1d5db"
-const YEAR_CIRCLE_STROKE_HOVER = "#9ca3af"
-const YEAR_TEXT_COLOR = "#374151"
-const DRAG_CIRCLE_COLOR = "#3b82f6"
-const MILESTONE_COLOR_DEFAULT = "#fb923c"
+// Re-export shared colors and strokes for easy access
+const TRACK_COLOR = TIMELINE_COLORS.track
+const YEAR_CIRCLE_STROKE = TIMELINE_COLORS.yearCircleStroke
+const YEAR_CIRCLE_STROKE_HOVER = TIMELINE_COLORS.yearCircleStrokeHover
+const YEAR_TEXT_COLOR = TIMELINE_COLORS.yearText
+const DRAG_CIRCLE_COLOR = TIMELINE_COLORS.dragCircle
+const MILESTONE_COLOR_DEFAULT = TIMELINE_COLORS.milestoneDefault
 
-// Strokes
-const LINE_STROKE_WIDTH = 2
-const CIRCLE_STROKE_WIDTH = 2
-const X_STROKE_WIDTH = 1.5
+const LINE_STROKE_WIDTH = TIMELINE_STROKES.line
+const CIRCLE_STROKE_WIDTH = TIMELINE_STROKES.circle
+const X_STROKE_WIDTH = TIMELINE_STROKES.closeX
 
 // Attention pulse timing (for undiscovered timeline)
 const PULSE_INITIAL_DELAY_MS = 20000
@@ -89,58 +96,33 @@ export const FloatingTimelineButton = ({
     const windowSize = useWindowSize()
 
     // Responsive sizes based on viewport width
-    const isMobile =
-        windowSize.width > 0 && windowSize.width < MOBILE_BREAKPOINT
+    const isMobile = isMobileWidth(windowSize.width)
     const sizes = isMobile ? CIRCLE_SIZES.mobile : CIRCLE_SIZES.desktop
     const fonts = isMobile ? TYPOGRAPHY.mobile : TYPOGRAPHY.desktop
 
     const startYear = startDate.getFullYear()
     const endYear = endDate.getFullYear()
 
-    // Calculate current progress
+    // Calculate current progress using shared utility
     const currentProgress = useMemo(
-        () =>
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    (currentDate.getTime() - startDate.getTime()) /
-                        (endDate.getTime() - startDate.getTime()),
-                ),
-            ),
+        () => calculateDateProgress(currentDate, startDate, endDate),
         [currentDate, startDate, endDate],
     )
 
-    // Get month abbreviation
-    const currentMonth = useMemo(() => {
-        const months = [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-        ]
-        return months[currentDate.getMonth()]
-    }, [currentDate])
+    // Get month abbreviation using shared utility
+    const currentMonth = useMemo(
+        () => getMonthAbbreviation(currentDate),
+        [currentDate],
+    )
 
     const handleInteraction = useCallback(
         (clientY: number) => {
             if (!svgRef.current) return
 
             const rect = svgRef.current.getBoundingClientRect()
+            // Vertical timeline: top = end date (progress 1), bottom = start date (progress 0)
             const progress = 1 - (clientY - rect.top) / rect.height
-
-            const clampedProgress = Math.max(0, Math.min(1, progress))
-            const totalTime = endDate.getTime() - startDate.getTime()
-            const newTime = startDate.getTime() + clampedProgress * totalTime
-            onDateChange(new Date(newTime))
+            onDateChange(dateFromProgress(progress, startDate, endDate))
         },
         [startDate, endDate, onDateChange],
     )

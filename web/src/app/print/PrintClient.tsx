@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
 import { Suspense, useCallback, useEffect, useRef, useState } from "react"
 import { DebugProvider } from "@/app/DebugContext"
+import { TIMING } from "@/lib/constants"
 import type { ClusterGroup } from "@/data/clusterGroups"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { initialBounds } from "@/map/initialMapBounds"
@@ -227,7 +228,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         if (!viewState) return
         const timeout = setTimeout(() => {
             saveViewState(viewState)
-        }, 500) // Only save after 500ms of no changes
+        }, TIMING.debounceMs)
         return () => clearTimeout(timeout)
     }, [viewState])
 

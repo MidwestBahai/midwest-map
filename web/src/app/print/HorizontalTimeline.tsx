@@ -1,6 +1,16 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { getMonthAbbreviation } from "@/lib/monthAbbreviations"
+import {
+    MILESTONE_MARKER_RADIUS,
+    TIMELINE_COLORS,
+    TIMELINE_STROKES,
+    TIMELINE_TYPOGRAPHY,
+    calculateDateProgress,
+    dateFromProgress,
+} from "@/lib/timelineConfig"
+import { useDragInteraction } from "@/lib/useDragInteraction"
 import type { MilestoneEvent } from "@/lib/useMilestoneEvents"
 
 interface HorizontalTimelineProps {
@@ -11,27 +21,24 @@ interface HorizontalTimelineProps {
     milestoneEvents?: MilestoneEvent[]
 }
 
-// Constants
+// Layout constants specific to horizontal timeline
 const SVG_HEIGHT = 50
 const PADDING_X = 40 // Padding for year labels
 const TRACK_Y = 25
-const MILESTONE_MARKER_RADIUS = 3
 
-// Colors (consistent with FloatingTimelineButton)
-const TRACK_COLOR = "#e5e7eb"
-const YEAR_CIRCLE_STROKE = "#d1d5db"
-const YEAR_TEXT_COLOR = "#374151"
-const DRAG_CIRCLE_COLOR = "#3b82f6"
-const MILESTONE_COLOR_DEFAULT = "#fb923c"
-const PROGRESS_COLOR = "#3b82f6"
+// Re-export shared constants for local use
+const TRACK_COLOR = TIMELINE_COLORS.track
+const YEAR_CIRCLE_STROKE = TIMELINE_COLORS.yearCircleStroke
+const YEAR_TEXT_COLOR = TIMELINE_COLORS.yearText
+const DRAG_CIRCLE_COLOR = TIMELINE_COLORS.dragCircle
+const MILESTONE_COLOR_DEFAULT = TIMELINE_COLORS.milestoneDefault
+const PROGRESS_COLOR = TIMELINE_COLORS.progress
 
-// Typography
-const YEAR_FONT_SIZE = 12
-const DRAG_LABEL_FONT_SIZE = 11
+const YEAR_FONT_SIZE = TIMELINE_TYPOGRAPHY.yearFontSize
+const DRAG_LABEL_FONT_SIZE = TIMELINE_TYPOGRAPHY.dragLabelFontSize
 
-// Strokes
-const LINE_STROKE_WIDTH = 2
-const CIRCLE_STROKE_WIDTH = 2
+const LINE_STROKE_WIDTH = TIMELINE_STROKES.line
+const CIRCLE_STROKE_WIDTH = TIMELINE_STROKES.circle
 
 export function HorizontalTimeline({
     startDate,
@@ -40,7 +47,6 @@ export function HorizontalTimeline({
     onDateChange,
     milestoneEvents = [],
 }: HorizontalTimelineProps) {
-    const [isDragging, setIsDragging] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
     const [containerWidth, setContainerWidth] = useState(0)
 
@@ -64,95 +70,39 @@ export function HorizontalTimeline({
     const trackEndX = containerWidth - PADDING_X
     const trackWidth = trackEndX - trackStartX
 
-    // Calculate current progress
+    // Calculate current progress using shared utility
     const currentProgress = useMemo(
-        () =>
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    (currentDate.getTime() - startDate.getTime()) /
-                        (endDate.getTime() - startDate.getTime()),
-                ),
-            ),
+        () => calculateDateProgress(currentDate, startDate, endDate),
         [currentDate, startDate, endDate],
     )
 
     // Current position on track
     const currentX = trackStartX + trackWidth * currentProgress
 
-    // Get month abbreviation
-    const currentMonth = useMemo(() => {
-        const months = [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-        ]
-        return months[currentDate.getMonth()]
-    }, [currentDate])
+    // Get month abbreviation using shared utility
+    const currentMonth = useMemo(
+        () => getMonthAbbreviation(currentDate),
+        [currentDate],
+    )
 
-    const handleInteraction = useCallback(
+    // Handle drag interaction - convert clientX to date
+    const handleDrag = useCallback(
         (clientX: number) => {
             if (!containerRef.current || trackWidth <= 0) return
 
             const rect = containerRef.current.getBoundingClientRect()
             const x = clientX - rect.left
             const progress = (x - trackStartX) / trackWidth
-
-            const clampedProgress = Math.max(0, Math.min(1, progress))
-            const totalTime = endDate.getTime() - startDate.getTime()
-            const newTime = startDate.getTime() + clampedProgress * totalTime
-            onDateChange(new Date(newTime))
+            onDateChange(dateFromProgress(progress, startDate, endDate))
         },
         [startDate, endDate, onDateChange, trackStartX, trackWidth],
     )
 
-    const handleMouseDown = useCallback(
-        (e: React.MouseEvent | React.TouchEvent) => {
-            e.preventDefault()
-            setIsDragging(true)
-            const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
-            handleInteraction(clientX)
-        },
-        [handleInteraction],
-    )
-
-    useEffect(() => {
-        if (!isDragging) return
-
-        const handleMove = (e: MouseEvent | TouchEvent) => {
-            if ("touches" in e) {
-                e.preventDefault()
-            }
-            const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
-            handleInteraction(clientX)
-        }
-
-        const handleEnd = () => {
-            setIsDragging(false)
-        }
-
-        document.addEventListener("mousemove", handleMove)
-        document.addEventListener("touchmove", handleMove, { passive: false })
-        document.addEventListener("mouseup", handleEnd)
-        document.addEventListener("touchend", handleEnd)
-
-        return () => {
-            document.removeEventListener("mousemove", handleMove)
-            document.removeEventListener("touchmove", handleMove)
-            document.removeEventListener("mouseup", handleEnd)
-            document.removeEventListener("touchend", handleEnd)
-        }
-    }, [isDragging, handleInteraction])
+    // Use shared drag interaction hook
+    const { isDragging, handleDragStart } = useDragInteraction({
+        onDrag: handleDrag,
+        orientation: "horizontal",
+    })
 
     return (
         <div ref={containerRef} className="w-full py-2">
@@ -169,8 +119,8 @@ export function HorizontalTimeline({
                     className="w-full cursor-pointer"
                     height={SVG_HEIGHT}
                     style={{ touchAction: "none" }}
-                    onMouseDown={handleMouseDown}
-                    onTouchStart={handleMouseDown}
+                    onMouseDown={handleDragStart}
+                    onTouchStart={handleDragStart}
                 >
                     <defs>
                         <linearGradient

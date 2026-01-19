@@ -9,6 +9,7 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import { BREAKPOINTS, TIMING } from "@/lib/constants"
 import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
 import type { Milestone } from "@/data/milestoneLabels"
 import { useLocalState } from "@/lib/useLocalState"
@@ -40,15 +41,15 @@ export const FloatingMapKey = () => {
         setIsOpen(!isOpen)
         // wait for the animation to finish and then clear highlights
         // (a mouseenter can fire, then the element disappears, and the mouseleave never fires)
-        if (isOpen) setTimeout(() => clearCategoryHighlight(), 400)
+        if (isOpen) setTimeout(() => clearCategoryHighlight(), TIMING.highlightClearMs)
     }, [clearCategoryHighlight, isOpen, setIsOpen])
     const isReallyOpen = isOpen && initialOpen
 
     // Run this exactly once, on load. Force colors to be rendered on client rather than pre-rendered
     // during static generation, when Canvas isn't available.
     useEffect(() => {
-        // start out closed on mobile
-        if (windowSize.width < 640) setIsOpen(false)
+        // start out closed on small screens (phones)
+        if (windowSize.width < BREAKPOINTS.sm) setIsOpen(false)
         setInitialOpen(true)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setIsOpen, windowSize.width])

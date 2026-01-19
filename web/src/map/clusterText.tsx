@@ -4,6 +4,7 @@ import { Layer, Source } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
 import { type Milestone, milestoneLabels } from "@/data/milestoneLabels"
 import type { LatLongRect } from "@/lib/latLongRect"
+import { MONTH_ABBREVIATIONS } from "@/lib/monthAbbreviations"
 import { clusterLabelColor } from "@/map/clusterColor"
 import { useMap } from "@/map/mapContext"
 
@@ -17,20 +18,8 @@ interface ClusterTextProps {
     printMode?: boolean
 }
 
-const MONTHS = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-]
+// Use shared month abbreviations
+const MONTHS = MONTH_ABBREVIATIONS
 
 /**
  * Format advancement date responsively based on available width.

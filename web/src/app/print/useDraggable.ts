@@ -116,9 +116,10 @@ export function useDraggable({
     }, [])
 
     // Touch handlers
+    // Note: We rely on touchAction: "none" CSS on the element to prevent scrolling.
+    // Don't call preventDefault() here as React synthetic touch events are passive.
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
         if (!elementRef.current || e.touches.length !== 1) return
-        e.preventDefault() // Prevent page scroll
 
         const touch = e.touches[0]
         const rect = elementRef.current.getBoundingClientRect()
