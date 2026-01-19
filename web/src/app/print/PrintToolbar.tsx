@@ -33,11 +33,11 @@ const SCOPE_OPTIONS = [
     { key: "state-IN", label: "Indiana" },
     { key: "state-MI", label: "Michigan" },
     { key: "state-OH", label: "Ohio" },
-    { key: "group-INDY", label: "Indianapolis Group" },
+    { key: "group-AA", label: "Ann Arbor Group" },
     { key: "group-CLV", label: "Cleveland Group" },
     { key: "group-CBUS", label: "Columbus Group" },
-    { key: "group-AA", label: "Ann Arbor Group" },
     { key: "group-GR", label: "Grand Rapids Group" },
+    { key: "group-INDY", label: "Indianapolis Group" },
 ] as const
 
 export function PrintToolbar({

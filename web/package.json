@@ -15,7 +15,8 @@
     "import-shapefiles": "node out-scripts/src/script/ImportShapefiles.js clusters-2025.shp",
     "import-counties": "node out-scripts/src/script/ImportCounties.js",
     "merge-timeline": "node out-scripts/src/script/MergeAdvancementData.js",
-    "prepare-data": "pnpm compile-importer && pnpm import-shapefiles && pnpm import-counties && pnpm merge-timeline"
+    "map-counties": "node out-scripts/src/script/MapCountiesToClusters.js",
+    "prepare-data": "pnpm compile-importer && pnpm import-shapefiles && pnpm import-counties && pnpm merge-timeline && pnpm map-counties"
   },
   "dependencies": {
     "@loaders.gl/core": "^4.3.4",
@@ -25,6 +26,9 @@
     "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/react-slot": "^1.2.4",
     "@tanstack/react-query": "^5.90.16",
+    "@turf/boolean-point-in-polygon": "^7.3.2",
+    "@turf/helpers": "^7.3.2",
+    "@turf/point-on-feature": "^7.3.2",
     "@types/geojson": "^7946.0.16",
     "@types/mapbox-gl": "^3.4.1",
     "class-variance-authority": "^0.7.1",
@@ -32,7 +36,7 @@
     "fast-equals": "^5.4.0",
     "lucide-react": "^0.536.0",
     "mapbox-gl": "^3.17.0",
-    "next": "15.4.5",
+    "next": "15.5.9",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-map-gl": "^8.1.0",

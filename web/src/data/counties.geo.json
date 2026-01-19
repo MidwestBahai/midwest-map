@@ -67,7 +67,10 @@
     "NAME": "Martin",
     "LSAD": "06",
     "ALAND": 869615714,
-    "AWATER": 12033246
+    "AWATER": 12033246,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -184,7 +187,10 @@
     "NAME": "Allegan",
     "LSAD": "06",
     "ALAND": 2137349551,
-    "AWATER": 2610845118
+    "AWATER": 2610845118,
+    "clusterCode": "MI-12",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -329,7 +335,10 @@
     "NAME": "St. Joseph",
     "LSAD": "06",
     "ALAND": 1296553523,
-    "AWATER": 52912989
+    "AWATER": 52912989,
+    "clusterCode": "MI-13",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -382,7 +391,10 @@
     "NAME": "Johnson",
     "LSAD": "06",
     "ALAND": 829909420,
-    "AWATER": 3525572
+    "AWATER": 3525572,
+    "clusterCode": "IN-01S",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -439,7 +451,10 @@
     "NAME": "Blackford",
     "LSAD": "06",
     "ALAND": 427554634,
-    "AWATER": 1303566
+    "AWATER": 1303566,
+    "clusterCode": "IN-08",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -536,7 +551,10 @@
     "NAME": "Van Wert",
     "LSAD": "06",
     "ALAND": 1059698927,
-    "AWATER": 3281853
+    "AWATER": 3281853,
+    "clusterCode": "OH-25",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -589,7 +607,10 @@
     "NAME": "Calhoun",
     "LSAD": "06",
     "ALAND": 1829249870,
-    "AWATER": 31275675
+    "AWATER": 31275675,
+    "clusterCode": "MI-13",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -666,7 +687,10 @@
     "NAME": "Clinton",
     "LSAD": "06",
     "ALAND": 1049119210,
-    "AWATER": 461117
+    "AWATER": 461117,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -727,7 +751,10 @@
     "NAME": "Brown",
     "LSAD": "06",
     "ALAND": 808043861,
-    "AWATER": 12025993
+    "AWATER": 12025993,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -828,7 +855,10 @@
     "NAME": "Jennings",
     "LSAD": "06",
     "ALAND": 975364209,
-    "AWATER": 4546213
+    "AWATER": 4546213,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -873,7 +903,10 @@
     "NAME": "Osceola",
     "LSAD": "06",
     "ALAND": 1467044588,
-    "AWATER": 17266828
+    "AWATER": 17266828,
+    "clusterCode": "MI-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -922,7 +955,10 @@
     "NAME": "Clinton",
     "LSAD": "06",
     "ALAND": 1466991661,
-    "AWATER": 21105919
+    "AWATER": 21105919,
+    "clusterCode": "MI-11",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -975,7 +1011,10 @@
     "NAME": "Lake",
     "LSAD": "06",
     "ALAND": 1469857281,
-    "AWATER": 17521848
+    "AWATER": 17521848,
+    "clusterCode": "MI-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -1048,7 +1087,10 @@
     "NAME": "Benton",
     "LSAD": "06",
     "ALAND": 1052616452,
-    "AWATER": 236033
+    "AWATER": 236033,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -1113,7 +1155,10 @@
     "NAME": "Boone",
     "LSAD": "06",
     "ALAND": 1095336141,
-    "AWATER": 877936
+    "AWATER": 877936,
+    "clusterCode": "IN-01N",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -1170,7 +1215,10 @@
     "NAME": "Shelby",
     "LSAD": "06",
     "ALAND": 1064898914,
-    "AWATER": 4135270
+    "AWATER": 4135270,
+    "clusterCode": "IN-01S",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -1271,7 +1319,10 @@
     "NAME": "Licking",
     "LSAD": "06",
     "ALAND": 1767343170,
-    "AWATER": 12918986
+    "AWATER": 12918986,
+    "clusterCode": "OH-28",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -1320,7 +1371,10 @@
     "NAME": "Wexford",
     "LSAD": "06",
     "ALAND": 1463348860,
-    "AWATER": 27098944
+    "AWATER": 27098944,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -1373,7 +1427,10 @@
     "NAME": "Missaukee",
     "LSAD": "06",
     "ALAND": 1462638198,
-    "AWATER": 23575303
+    "AWATER": 23575303,
+    "clusterCode": "MI-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -1454,7 +1511,10 @@
     "NAME": "Harrison",
     "LSAD": "06",
     "ALAND": 1042034970,
-    "AWATER": 21847164
+    "AWATER": 21847164,
+    "clusterCode": "OH-17",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -1535,7 +1595,10 @@
     "NAME": "DeKalb",
     "LSAD": "06",
     "ALAND": 939732061,
-    "AWATER": 2657419
+    "AWATER": 2657419,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -1596,7 +1659,10 @@
     "NAME": "Genesee",
     "LSAD": "06",
     "ALAND": 1649729500,
-    "AWATER": 32693085
+    "AWATER": 32693085,
+    "clusterCode": "MI-08",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -1673,7 +1739,10 @@
     "NAME": "Clinton",
     "LSAD": "06",
     "ALAND": 1058487159,
-    "AWATER": 9351754
+    "AWATER": 9351754,
+    "clusterCode": "OH-33",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -1802,7 +1871,10 @@
     "NAME": "Darke",
     "LSAD": "06",
     "ALAND": 1549120893,
-    "AWATER": 4245786
+    "AWATER": 4245786,
+    "clusterCode": "OH-29",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -1871,7 +1943,10 @@
     "NAME": "Cass",
     "LSAD": "06",
     "ALAND": 1067475977,
-    "AWATER": 6974424
+    "AWATER": 6974424,
+    "clusterCode": "IN-10",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -1972,7 +2047,10 @@
     "NAME": "Jasper",
     "LSAD": "06",
     "ALAND": 1449431947,
-    "AWATER": 4560470
+    "AWATER": 4560470,
+    "clusterCode": "IN-11",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2025,7 +2103,10 @@
     "NAME": "Fayette",
     "LSAD": "06",
     "ALAND": 556901540,
-    "AWATER": 366408
+    "AWATER": 366408,
+    "clusterCode": "IN-13",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2070,7 +2151,10 @@
     "NAME": "Isabella",
     "LSAD": "06",
     "ALAND": 1483226454,
-    "AWATER": 12959626
+    "AWATER": 12959626,
+    "clusterCode": "MI-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -2135,7 +2219,10 @@
     "NAME": "Marshall",
     "LSAD": "06",
     "ALAND": 1148993902,
-    "AWATER": 15834723
+    "AWATER": 15834723,
+    "clusterCode": "IN-03",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2180,7 +2267,10 @@
     "NAME": "Pulaski",
     "LSAD": "06",
     "ALAND": 1123146088,
-    "AWATER": 2291536
+    "AWATER": 2291536,
+    "clusterCode": "IN-11",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2285,7 +2375,10 @@
     "NAME": "Porter",
     "LSAD": "06",
     "ALAND": 1082777920,
-    "AWATER": 268688087
+    "AWATER": 268688087,
+    "clusterCode": "IN-06",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2358,7 +2451,10 @@
     "NAME": "Clay",
     "LSAD": "06",
     "ALAND": 926109960,
-    "AWATER": 7118039
+    "AWATER": 7118039,
+    "clusterCode": "IN-09",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2455,7 +2551,10 @@
     "NAME": "Union",
     "LSAD": "06",
     "ALAND": 417568568,
-    "AWATER": 10238515
+    "AWATER": 10238515,
+    "clusterCode": "IN-13",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -2500,7 +2599,10 @@
     "NAME": "Crawford",
     "LSAD": "06",
     "ALAND": 1440763922,
-    "AWATER": 18025856
+    "AWATER": 18025856,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -2565,7 +2667,10 @@
     "NAME": "Roscommon",
     "LSAD": "06",
     "ALAND": 1345852870,
-    "AWATER": 156421369
+    "AWATER": 156421369,
+    "clusterCode": "MI-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -2674,7 +2779,10 @@
     "NAME": "Carroll",
     "LSAD": "06",
     "ALAND": 1022030958,
-    "AWATER": 11192655
+    "AWATER": 11192655,
+    "clusterCode": "OH-17",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -2735,7 +2843,10 @@
     "NAME": "Champaign",
     "LSAD": "06",
     "ALAND": 1109623490,
-    "AWATER": 3639845
+    "AWATER": 3639845,
+    "clusterCode": "OH-29",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -2820,7 +2931,10 @@
     "NAME": "Hardin",
     "LSAD": "06",
     "ALAND": 1218342693,
-    "AWATER": 629922
+    "AWATER": 629922,
+    "clusterCode": "OH-26",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -2945,7 +3059,10 @@
     "NAME": "St. Joseph",
     "LSAD": "06",
     "ALAND": 1185912669,
-    "AWATER": 9070408
+    "AWATER": 9070408,
+    "clusterCode": "IN-03",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -3030,7 +3147,10 @@
     "NAME": "Medina",
     "LSAD": "06",
     "ALAND": 1091406446,
-    "AWATER": 4198457
+    "AWATER": 4198457,
+    "clusterCode": "OH-13",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -3103,7 +3223,10 @@
     "NAME": "Warren",
     "LSAD": "06",
     "ALAND": 1039437341,
-    "AWATER": 15502922
+    "AWATER": 15502922,
+    "clusterCode": "OH-33",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -3164,7 +3287,10 @@
     "NAME": "Crawford",
     "LSAD": "06",
     "ALAND": 1040619676,
-    "AWATER": 2359515
+    "AWATER": 2359515,
+    "clusterCode": "OH-24",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -3221,7 +3347,10 @@
     "NAME": "Fayette",
     "LSAD": "06",
     "ALAND": 1052470875,
-    "AWATER": 1693045
+    "AWATER": 1693045,
+    "clusterCode": "OH-31",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -3294,7 +3423,10 @@
     "NAME": "Huron",
     "LSAD": "06",
     "ALAND": 1272965337,
-    "AWATER": 8615925
+    "AWATER": 8615925,
+    "clusterCode": "OH-22",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -3375,7 +3507,10 @@
     "NAME": "Delaware",
     "LSAD": "06",
     "ALAND": 1147867059,
-    "AWATER": 36610531
+    "AWATER": 36610531,
+    "clusterCode": "OH-27",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -3460,7 +3595,10 @@
     "NAME": "Allen",
     "LSAD": "06",
     "ALAND": 1042470095,
-    "AWATER": 11266164
+    "AWATER": 11266164,
+    "clusterCode": "OH-26",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -3613,7 +3751,10 @@
     "NAME": "Lorain",
     "LSAD": "06",
     "ALAND": 1272000372,
-    "AWATER": 1119442372
+    "AWATER": 1119442372,
+    "clusterCode": "OH-10",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -3718,7 +3859,10 @@
     "NAME": "Portage",
     "LSAD": "06",
     "ALAND": 1262374971,
-    "AWATER": 43121843
+    "AWATER": 43121843,
+    "clusterCode": "OH-11",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -4927,7 +5071,10 @@
     "NAME": "Menominee",
     "LSAD": "06",
     "ALAND": 2704030473,
-    "AWATER": 761792643
+    "AWATER": 761792643,
+    "clusterCode": "MIUP-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5036,7 +5183,10 @@
     "NAME": "Wood",
     "LSAD": "06",
     "ALAND": 1598508434,
-    "AWATER": 8545552
+    "AWATER": 8545552,
+    "clusterCode": "OH-23",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -5085,7 +5235,10 @@
     "NAME": "Ionia",
     "LSAD": "06",
     "ALAND": 1479671935,
-    "AWATER": 22641047
+    "AWATER": 22641047,
+    "clusterCode": "MI-31",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5134,7 +5287,10 @@
     "NAME": "Kalamazoo",
     "LSAD": "06",
     "ALAND": 1456081718,
-    "AWATER": 46881014
+    "AWATER": 46881014,
+    "clusterCode": "MI-13",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5187,7 +5343,10 @@
     "NAME": "Newaygo",
     "LSAD": "06",
     "ALAND": 2112559448,
-    "AWATER": 119204427
+    "AWATER": 119204427,
+    "clusterCode": "MI-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5300,7 +5459,10 @@
     "NAME": "Ottawa",
     "LSAD": "06",
     "ALAND": 1459662264,
-    "AWATER": 2765669102
+    "AWATER": 2765669102,
+    "clusterCode": "MI-09",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5373,7 +5535,10 @@
     "NAME": "Van Buren",
     "LSAD": "06",
     "ALAND": 1574150150,
-    "AWATER": 1248671273
+    "AWATER": 1248671273,
+    "clusterCode": "MI-12",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5478,7 +5643,10 @@
     "NAME": "Perry",
     "LSAD": "06",
     "ALAND": 1056682425,
-    "AWATER": 11653682
+    "AWATER": 11653682,
+    "clusterCode": "OH-19",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -5587,7 +5755,10 @@
     "NAME": "Richland",
     "LSAD": "06",
     "ALAND": 1282720855,
-    "AWATER": 12470884
+    "AWATER": 12470884,
+    "clusterCode": "OH-24",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -5656,7 +5827,10 @@
     "NAME": "Seneca",
     "LSAD": "06",
     "ALAND": 1427146050,
-    "AWATER": 4582482
+    "AWATER": 4582482,
+    "clusterCode": "OH-22",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -5729,7 +5903,10 @@
     "NAME": "Shelby",
     "LSAD": "06",
     "ALAND": 1055876814,
-    "AWATER": 7808224
+    "AWATER": 7808224,
+    "clusterCode": "OH-29",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -5818,7 +5995,10 @@
     "NAME": "Defiance",
     "LSAD": "06",
     "ALAND": 1065649893,
-    "AWATER": 7073999
+    "AWATER": 7073999,
+    "clusterCode": "OH-21",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -5871,7 +6051,10 @@
     "NAME": "Kalkaska",
     "LSAD": "06",
     "ALAND": 1450060290,
-    "AWATER": 28061562
+    "AWATER": 28061562,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5916,7 +6099,10 @@
     "NAME": "Clare",
     "LSAD": "06",
     "ALAND": 1461621715,
-    "AWATER": 28500716
+    "AWATER": 28500716,
+    "clusterCode": "MI-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -5977,7 +6163,10 @@
     "NAME": "Gladwin",
     "LSAD": "06",
     "ALAND": 1299615518,
-    "AWATER": 36636103
+    "AWATER": 36636103,
+    "clusterCode": "MI-05",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -6030,7 +6219,10 @@
     "NAME": "Ogemaw",
     "LSAD": "06",
     "ALAND": 1459438802,
-    "AWATER": 29680532
+    "AWATER": 29680532,
+    "clusterCode": "MI-05",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -6099,7 +6291,10 @@
     "NAME": "Wabash",
     "LSAD": "06",
     "ALAND": 1068206218,
-    "AWATER": 22115988
+    "AWATER": 22115988,
+    "clusterCode": "IN-10",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6168,7 +6363,10 @@
     "NAME": "Marion",
     "LSAD": "06",
     "ALAND": 1026612130,
-    "AWATER": 17179347
+    "AWATER": 17179347,
+    "clusterCode": "IN-01",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6233,7 +6431,10 @@
     "NAME": "Montgomery",
     "LSAD": "06",
     "ALAND": 1306954200,
-    "AWATER": 2144021
+    "AWATER": 2144021,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6290,7 +6491,10 @@
     "NAME": "Tipton",
     "LSAD": "06",
     "ALAND": 674797598,
-    "AWATER": 68028
+    "AWATER": 68028,
+    "clusterCode": "IN-01N",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6435,7 +6639,10 @@
     "NAME": "Wayne",
     "LSAD": "06",
     "ALAND": 1040508998,
-    "AWATER": 6732251
+    "AWATER": 6732251,
+    "clusterCode": "IN-13",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6620,7 +6827,10 @@
     "NAME": "Macomb",
     "LSAD": "06",
     "ALAND": 1240902197,
-    "AWATER": 237590352
+    "AWATER": 237590352,
+    "clusterCode": "MI-19",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -6729,7 +6939,10 @@
     "NAME": "Vinton",
     "LSAD": "06",
     "ALAND": 1068008731,
-    "AWATER": 6781201
+    "AWATER": 6781201,
+    "clusterCode": "OH-19",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -6786,7 +6999,10 @@
     "NAME": "Orange",
     "LSAD": "06",
     "ALAND": 1031818419,
-    "AWATER": 25393791
+    "AWATER": 25393791,
+    "clusterCode": "IN-16",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6875,7 +7091,10 @@
     "NAME": "Hendricks",
     "LSAD": "06",
     "ALAND": 1053848884,
-    "AWATER": 4881142
+    "AWATER": 4881142,
+    "clusterCode": "IN-01N",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -6928,7 +7147,10 @@
     "NAME": "Henry",
     "LSAD": "06",
     "ALAND": 1077461474,
-    "AWATER": 9687645
+    "AWATER": 9687645,
+    "clusterCode": "OH-21",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -7013,7 +7235,10 @@
     "NAME": "Knox",
     "LSAD": "06",
     "ALAND": 1361054324,
-    "AWATER": 10718576
+    "AWATER": 10718576,
+    "clusterCode": "OH-28",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -7194,7 +7419,10 @@
     "NAME": "Floyd",
     "LSAD": "06",
     "ALAND": 383288360,
-    "AWATER": 2645487
+    "AWATER": 2645487,
+    "clusterCode": "IN-17",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -7255,7 +7483,10 @@
     "NAME": "Midland",
     "LSAD": "06",
     "ALAND": 1337099821,
-    "AWATER": 30589808
+    "AWATER": 30589808,
+    "clusterCode": "MI-06",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -7336,7 +7567,10 @@
     "NAME": "Kosciusko",
     "LSAD": "06",
     "ALAND": 1376372904,
-    "AWATER": 59498373
+    "AWATER": 59498373,
+    "clusterCode": "IN-03",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -7473,7 +7707,10 @@
     "NAME": "Warren",
     "LSAD": "06",
     "ALAND": 944520564,
-    "AWATER": 4466121
+    "AWATER": 4466121,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -7542,7 +7779,10 @@
     "NAME": "Fulton",
     "LSAD": "06",
     "ALAND": 954118209,
-    "AWATER": 7454415
+    "AWATER": 7454415,
+    "clusterCode": "IN-10",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -7619,7 +7859,10 @@
     "NAME": "Union",
     "LSAD": "06",
     "ALAND": 1118207229,
-    "AWATER": 13286144
+    "AWATER": 13286144,
+    "clusterCode": "OH-27",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -7676,7 +7919,10 @@
     "NAME": "Hamilton",
     "LSAD": "06",
     "ALAND": 1021224501,
-    "AWATER": 21082234
+    "AWATER": 21082234,
+    "clusterCode": "IN-01N",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -7773,7 +8019,10 @@
     "NAME": "Luce",
     "LSAD": "06",
     "ALAND": 2328606181,
-    "AWATER": 2624713509
+    "AWATER": 2624713509,
+    "clusterCode": "MIUP-05",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -7946,7 +8195,10 @@
     "NAME": "Jackson",
     "LSAD": "06",
     "ALAND": 1319119300,
-    "AWATER": 11910481
+    "AWATER": 11910481,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -8003,7 +8255,10 @@
     "NAME": "Gratiot",
     "LSAD": "06",
     "ALAND": 1472309904,
-    "AWATER": 8154670
+    "AWATER": 8154670,
+    "clusterCode": "MI-06",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -8088,7 +8343,10 @@
     "NAME": "Paulding",
     "LSAD": "06",
     "ALAND": 1078561239,
-    "AWATER": 6245392
+    "AWATER": 6245392,
+    "clusterCode": "OH-21",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -8173,7 +8431,10 @@
     "NAME": "Muskingum",
     "LSAD": "06",
     "ALAND": 1721328761,
-    "AWATER": 20656658
+    "AWATER": 20656658,
+    "clusterCode": "OH-19",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -8238,7 +8499,10 @@
     "NAME": "Miami",
     "LSAD": "06",
     "ALAND": 1053028422,
-    "AWATER": 7967436
+    "AWATER": 7967436,
+    "clusterCode": "OH-29",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -8355,7 +8619,10 @@
     "NAME": "Alcona",
     "LSAD": "06",
     "ALAND": 1747141585,
-    "AWATER": 2890419325
+    "AWATER": 2890419325,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -8404,7 +8671,10 @@
     "NAME": "Barry",
     "LSAD": "06",
     "ALAND": 1432507987,
-    "AWATER": 62021607
+    "AWATER": 62021607,
+    "clusterCode": "MI-12",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -8453,7 +8723,10 @@
     "NAME": "Eaton",
     "LSAD": "06",
     "ALAND": 1489703574,
-    "AWATER": 11020019
+    "AWATER": 11020019,
+    "clusterCode": "MI-11",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -8514,7 +8787,10 @@
     "NAME": "Tippecanoe",
     "LSAD": "06",
     "ALAND": 1294484142,
-    "AWATER": 8910174
+    "AWATER": 8910174,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -8667,7 +8943,10 @@
     "NAME": "Berrien",
     "LSAD": "06",
     "ALAND": 1470467019,
-    "AWATER": 2625526479
+    "AWATER": 2625526479,
+    "clusterCode": "MI-12",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -8724,7 +9003,10 @@
     "NAME": "Livingston",
     "LSAD": "06",
     "ALAND": 1463696909,
-    "AWATER": 52499169
+    "AWATER": 52499169,
+    "clusterCode": "MI-16",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -8793,7 +9075,10 @@
     "NAME": "Washtenaw",
     "LSAD": "06",
     "ALAND": 1828428383,
-    "AWATER": 42628874
+    "AWATER": 42628874,
+    "clusterCode": "MI-17",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -8890,7 +9175,10 @@
     "NAME": "Jackson",
     "LSAD": "06",
     "ALAND": 1088581966,
-    "AWATER": 3184785
+    "AWATER": 3184785,
+    "clusterCode": "OH-35",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -8955,7 +9243,10 @@
     "NAME": "Jackson",
     "LSAD": "06",
     "ALAND": 1817308326,
-    "AWATER": 56538564
+    "AWATER": 56538564,
+    "clusterCode": "MI-14",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -8996,7 +9287,10 @@
     "NAME": "Mecosta",
     "LSAD": "06",
     "ALAND": 1437626842,
-    "AWATER": 41759537
+    "AWATER": 41759537,
+    "clusterCode": "MI-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -9077,7 +9371,10 @@
     "NAME": "Montgomery",
     "LSAD": "06",
     "ALAND": 1195426527,
-    "AWATER": 7203231
+    "AWATER": 7203231,
+    "clusterCode": "OH-06",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -9226,7 +9523,10 @@
     "NAME": "Cheboygan",
     "LSAD": "06",
     "ALAND": 1852528263,
-    "AWATER": 440607039
+    "AWATER": 440607039,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -9319,7 +9619,10 @@
     "NAME": "Jay",
     "LSAD": "06",
     "ALAND": 994310101,
-    "AWATER": 458556
+    "AWATER": 458556,
+    "clusterCode": "IN-08",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -9516,7 +9819,10 @@
     "NAME": "Dearborn",
     "LSAD": "06",
     "ALAND": 790034484,
-    "AWATER": 6167882
+    "AWATER": 6167882,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -9609,7 +9915,10 @@
     "NAME": "Oakland",
     "LSAD": "06",
     "ALAND": 2246702102,
-    "AWATER": 103171713
+    "AWATER": 103171713,
+    "clusterCode": "MI-19",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -9662,7 +9971,10 @@
     "NAME": "Huntington",
     "LSAD": "06",
     "ALAND": 991054480,
-    "AWATER": 13135918
+    "AWATER": 13135918,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -9743,7 +10055,10 @@
     "NAME": "Franklin",
     "LSAD": "06",
     "ALAND": 995670496,
-    "AWATER": 17143494
+    "AWATER": 17143494,
+    "clusterCode": "IN-13",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -9952,7 +10267,10 @@
     "NAME": "Cuyahoga",
     "LSAD": "06",
     "ALAND": 1184014460,
-    "AWATER": 2041889938
+    "AWATER": 2041889938,
+    "clusterCode": "OH-01",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -10025,7 +10343,10 @@
     "NAME": "Henry",
     "LSAD": "06",
     "ALAND": 1014954779,
-    "AWATER": 7655158
+    "AWATER": 7655158,
+    "clusterCode": "IN-13",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -10174,7 +10495,10 @@
     "NAME": "Bay",
     "LSAD": "06",
     "ALAND": 1145557693,
-    "AWATER": 487990590
+    "AWATER": 487990590,
+    "clusterCode": "MI-06",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -10551,7 +10875,10 @@
     "NAME": "Gibson",
     "LSAD": "06",
     "ALAND": 1262606257,
-    "AWATER": 30223914
+    "AWATER": 30223914,
+    "clusterCode": "IN-07",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -10624,7 +10951,10 @@
     "NAME": "Hancock",
     "LSAD": "06",
     "ALAND": 792580849,
-    "AWATER": 2610512
+    "AWATER": 2610512,
+    "clusterCode": "IN-01S",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -10849,7 +11179,10 @@
     "NAME": "Columbiana",
     "LSAD": "06",
     "ALAND": 1377697739,
-    "AWATER": 7237745
+    "AWATER": 7237745,
+    "clusterCode": "OH-17",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -10982,7 +11315,10 @@
     "NAME": "LaGrange",
     "LSAD": "06",
     "ALAND": 983237254,
-    "AWATER": 18317909
+    "AWATER": 18317909,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -11151,7 +11487,10 @@
     "NAME": "LaPorte",
     "LSAD": "06",
     "ALAND": 1549659083,
-    "AWATER": 38675577
+    "AWATER": 38675577,
+    "clusterCode": "IN-06",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -11216,7 +11555,10 @@
     "NAME": "Lawrence",
     "LSAD": "06",
     "ALAND": 1163367147,
-    "AWATER": 7122898
+    "AWATER": 7122898,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -11309,7 +11651,10 @@
     "NAME": "Carroll",
     "LSAD": "06",
     "ALAND": 964066240,
-    "AWATER": 7227489
+    "AWATER": 7227489,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -12202,7 +12547,10 @@
     "NAME": "Iron",
     "LSAD": "06",
     "ALAND": 3020278450,
-    "AWATER": 116739058
+    "AWATER": 116739058,
+    "clusterCode": "MIUP-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -12279,7 +12627,10 @@
     "NAME": "Pickaway",
     "LSAD": "06",
     "ALAND": 1298053079,
-    "AWATER": 13912322
+    "AWATER": 13912322,
+    "clusterCode": "OH-31",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -12348,7 +12699,10 @@
     "NAME": "Bartholomew",
     "LSAD": "06",
     "ALAND": 1053850605,
-    "AWATER": 6814131
+    "AWATER": 6814131,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -12461,7 +12815,10 @@
     "NAME": "Dubois",
     "LSAD": "06",
     "ALAND": 1106624776,
-    "AWATER": 20884565
+    "AWATER": 20884565,
+    "clusterCode": "IN-16",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -12578,7 +12935,10 @@
     "NAME": "Parke",
     "LSAD": "06",
     "ALAND": 1151747431,
-    "AWATER": 13683945
+    "AWATER": 13683945,
+    "clusterCode": "IN-09",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -12777,7 +13137,10 @@
     "NAME": "Erie",
     "LSAD": "06",
     "ALAND": 651628988,
-    "AWATER": 969654879
+    "AWATER": 969654879,
+    "clusterCode": "OH-22",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -13034,7 +13397,10 @@
     "NAME": "Grand Traverse",
     "LSAD": "06",
     "ALAND": 1202643276,
-    "AWATER": 354756753
+    "AWATER": 354756753,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -13721,7 +14087,10 @@
     "NAME": "Leelanau",
     "LSAD": "06",
     "ALAND": 899207290,
-    "AWATER": 5659134006
+    "AWATER": 5659134006,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -13962,7 +14331,10 @@
     "NAME": "Alpena",
     "LSAD": "06",
     "ALAND": 1481125303,
-    "AWATER": 2908714548
+    "AWATER": 2908714548,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -14211,7 +14583,10 @@
     "NAME": "Crawford",
     "LSAD": "06",
     "ALAND": 791601708,
-    "AWATER": 7974816
+    "AWATER": 7974816,
+    "clusterCode": "IN-16",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -14336,7 +14711,10 @@
     "NAME": "Fountain",
     "LSAD": "06",
     "ALAND": 1024769250,
-    "AWATER": 5734092
+    "AWATER": 5734092,
+    "clusterCode": "IN-04",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -14477,7 +14855,10 @@
     "NAME": "Newton",
     "LSAD": "06",
     "ALAND": 1040539917,
-    "AWATER": 4349506
+    "AWATER": 4349506,
+    "clusterCode": "IN-11",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -14794,7 +15175,10 @@
     "NAME": "Switzerland",
     "LSAD": "06",
     "ALAND": 571509734,
-    "AWATER": 7193744
+    "AWATER": 7193744,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -15825,7 +16209,10 @@
     "NAME": "Chippewa",
     "LSAD": "06",
     "ALAND": 4036315424,
-    "AWATER": 2952479423
+    "AWATER": 2952479423,
+    "clusterCode": "MIUP-06",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -15938,7 +16325,10 @@
     "NAME": "Benzie",
     "LSAD": "06",
     "ALAND": 828029228,
-    "AWATER": 1398237386
+    "AWATER": 1398237386,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -16027,7 +16417,10 @@
     "NAME": "Monroe",
     "LSAD": "06",
     "ALAND": 1021811645,
-    "AWATER": 43504254
+    "AWATER": 43504254,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -16200,7 +16593,10 @@
     "NAME": "Arenac",
     "LSAD": "06",
     "ALAND": 940660641,
-    "AWATER": 822319329
+    "AWATER": 822319329,
+    "clusterCode": "MI-05",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -16281,7 +16677,10 @@
     "NAME": "Lenawee",
     "LSAD": "06",
     "ALAND": 1941350734,
-    "AWATER": 30688197
+    "AWATER": 30688197,
+    "clusterCode": "MI-15",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -16406,7 +16805,10 @@
     "NAME": "Mercer",
     "LSAD": "06",
     "ALAND": 1197738405,
-    "AWATER": 28425902
+    "AWATER": 28425902,
+    "clusterCode": "OH-25",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -16467,7 +16869,10 @@
     "NAME": "Grant",
     "LSAD": "06",
     "ALAND": 1072452767,
-    "AWATER": 2133507
+    "AWATER": 2133507,
+    "clusterCode": "IN-10",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -16876,7 +17281,10 @@
     "NAME": "Spencer",
     "LSAD": "06",
     "ALAND": 1027689680,
-    "AWATER": 11999892
+    "AWATER": 11999892,
+    "clusterCode": "IN-16",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -17093,7 +17501,10 @@
     "NAME": "Lake",
     "LSAD": "06",
     "ALAND": 1292119563,
-    "AWATER": 330902305
+    "AWATER": 330902305,
+    "clusterCode": "IN-06",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -17586,7 +17997,10 @@
     "NAME": "Perry",
     "LSAD": "06",
     "ALAND": 988668629,
-    "AWATER": 11817654
+    "AWATER": 11817654,
+    "clusterCode": "IN-16",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -17859,7 +18273,10 @@
     "NAME": "Brown",
     "LSAD": "06",
     "ALAND": 1269138601,
-    "AWATER": 8895019
+    "AWATER": 8895019,
+    "clusterCode": "OH-34",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -18108,7 +18525,10 @@
     "NAME": "Daviess",
     "LSAD": "06",
     "ALAND": 1112370958,
-    "AWATER": 19127827
+    "AWATER": 19127827,
+    "clusterCode": "IN-12",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -18209,7 +18629,10 @@
     "NAME": "Auglaize",
     "LSAD": "06",
     "ALAND": 1039599278,
-    "AWATER": 1345186
+    "AWATER": 1345186,
+    "clusterCode": "OH-26",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -18274,7 +18697,10 @@
     "NAME": "Wayne",
     "LSAD": "06",
     "ALAND": 1437257217,
-    "AWATER": 4885102
+    "AWATER": 4885102,
+    "clusterCode": "OH-13",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -18867,7 +19293,10 @@
     "NAME": "Meigs",
     "LSAD": "06",
     "ALAND": 1113958479,
-    "AWATER": 7519824
+    "AWATER": 7519824,
+    "clusterCode": "OH-20",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -18932,7 +19361,10 @@
     "NAME": "Ripley",
     "LSAD": "06",
     "ALAND": 1156236794,
-    "AWATER": 4237459
+    "AWATER": 4237459,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -19097,7 +19529,10 @@
     "NAME": "Pike",
     "LSAD": "06",
     "ALAND": 865686068,
-    "AWATER": 17743893
+    "AWATER": 17743893,
+    "clusterCode": "IN-07",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -19186,7 +19621,10 @@
     "NAME": "Putnam",
     "LSAD": "06",
     "ALAND": 1244585902,
-    "AWATER": 5585892
+    "AWATER": 5585892,
+    "clusterCode": "IN-09",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -19307,7 +19745,10 @@
     "NAME": "Fairfield",
     "LSAD": "06",
     "ALAND": 1306415680,
-    "AWATER": 10752450
+    "AWATER": 10752450,
+    "clusterCode": "OH-19",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -19408,7 +19849,10 @@
     "NAME": "Elkhart",
     "LSAD": "06",
     "ALAND": 1199614702,
-    "AWATER": 12423390
+    "AWATER": 12423390,
+    "clusterCode": "IN-03",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -19657,7 +20101,10 @@
     "NAME": "Warrick",
     "LSAD": "06",
     "ALAND": 996664714,
-    "AWATER": 16155578
+    "AWATER": 16155578,
+    "clusterCode": "IN-07",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -19714,7 +20161,10 @@
     "NAME": "Ingham",
     "LSAD": "06",
     "ALAND": 1440346359,
-    "AWATER": 11891440
+    "AWATER": 11891440,
+    "clusterCode": "MI-11",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -19779,7 +20229,10 @@
     "NAME": "Montmorency",
     "LSAD": "06",
     "ALAND": 1415851589,
-    "AWATER": 41410946
+    "AWATER": 41410946,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -20460,7 +20913,10 @@
     "NAME": "Posey",
     "LSAD": "06",
     "ALAND": 1060787801,
-    "AWATER": 25259380
+    "AWATER": 25259380,
+    "clusterCode": "IN-07",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -21211,7 +21667,10 @@
     "NAME": "Keweenaw",
     "LSAD": "06",
     "ALAND": 1398883253,
-    "AWATER": 14053673397
+    "AWATER": 14053673397,
+    "clusterCode": "MIUP-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -21352,7 +21811,10 @@
     "NAME": "Vigo",
     "LSAD": "06",
     "ALAND": 1044993095,
-    "AWATER": 18068475
+    "AWATER": 18068475,
+    "clusterCode": "IN-09",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -21405,7 +21867,10 @@
     "NAME": "Otsego",
     "LSAD": "06",
     "ALAND": 1333825812,
-    "AWATER": 28997739
+    "AWATER": 28997739,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -21546,7 +22011,10 @@
     "NAME": "Ashtabula",
     "LSAD": "06",
     "ALAND": 1818008351,
-    "AWATER": 1724849868
+    "AWATER": 1724849868,
+    "clusterCode": "OH-09",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -21731,7 +22199,10 @@
     "NAME": "Ohio",
     "LSAD": "06",
     "ALAND": 223101879,
-    "AWATER": 3352213
+    "AWATER": 3352213,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -22112,7 +22583,10 @@
     "NAME": "Marquette",
     "LSAD": "06",
     "ALAND": 4683963838,
-    "AWATER": 4185358819
+    "AWATER": 4185358819,
+    "clusterCode": "MIUP-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -22345,7 +22819,10 @@
     "NAME": "Ontonagon",
     "LSAD": "06",
     "ALAND": 3396305812,
-    "AWATER": 6292488315
+    "AWATER": 6292488315,
+    "clusterCode": "MIUP-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -22458,7 +22935,10 @@
     "NAME": "Branch",
     "LSAD": "06",
     "ALAND": 1311513992,
-    "AWATER": 34440013
+    "AWATER": 34440013,
+    "clusterCode": "MI-14",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -22555,7 +23035,10 @@
     "NAME": "Guernsey",
     "LSAD": "06",
     "ALAND": 1352631187,
-    "AWATER": 15666075
+    "AWATER": 15666075,
+    "clusterCode": "OH-18",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -22708,7 +23191,10 @@
     "NAME": "Mahoning",
     "LSAD": "06",
     "ALAND": 1065799604,
-    "AWATER": 35434368
+    "AWATER": 35434368,
+    "clusterCode": "OH-15",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -22769,7 +23255,10 @@
     "NAME": "Noble",
     "LSAD": "06",
     "ALAND": 1064072501,
-    "AWATER": 17073555
+    "AWATER": 17073555,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -22854,7 +23343,10 @@
     "NAME": "Owen",
     "LSAD": "06",
     "ALAND": 997921791,
-    "AWATER": 6541718
+    "AWATER": 6541718,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -22951,7 +23443,10 @@
     "NAME": "Marion",
     "LSAD": "06",
     "ALAND": 1045726876,
-    "AWATER": 908577
+    "AWATER": 908577,
+    "clusterCode": "OH-27",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -23252,7 +23747,10 @@
     "NAME": "Houghton",
     "LSAD": "06",
     "ALAND": 2613513997,
-    "AWATER": 1275354815
+    "AWATER": 1275354815,
+    "clusterCode": "MIUP-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -23297,7 +23795,10 @@
     "NAME": "Oscoda",
     "LSAD": "06",
     "ALAND": 1465256288,
-    "AWATER": 15133747
+    "AWATER": 15133747,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -23398,7 +23899,10 @@
     "NAME": "Oceana",
     "LSAD": "06",
     "ALAND": 1326431592,
-    "AWATER": 2055963785
+    "AWATER": 2055963785,
+    "clusterCode": "MI-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -23507,7 +24011,10 @@
     "NAME": "Madison",
     "LSAD": "06",
     "ALAND": 1206646148,
-    "AWATER": 1919019
+    "AWATER": 1919019,
+    "clusterCode": "OH-31",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -23954,7 +24461,10 @@
     "NAME": "Charlevoix",
     "LSAD": "06",
     "ALAND": 1078324745,
-    "AWATER": 2522960018
+    "AWATER": 2522960018,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -24207,7 +24717,10 @@
     "NAME": "Schoolcraft",
     "LSAD": "06",
     "ALAND": 3033820559,
-    "AWATER": 1845664244
+    "AWATER": 1845664244,
+    "clusterCode": "MIUP-05",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -24296,7 +24809,10 @@
     "NAME": "Starke",
     "LSAD": "06",
     "ALAND": 800657644,
-    "AWATER": 7951314
+    "AWATER": 7951314,
+    "clusterCode": "IN-11",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -24509,7 +25025,10 @@
     "NAME": "Vermillion",
     "LSAD": "06",
     "ALAND": 665311752,
-    "AWATER": 7904759
+    "AWATER": 7904759,
+    "clusterCode": "IN-09",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -24650,7 +25169,10 @@
     "NAME": "Steuben",
     "LSAD": "06",
     "ALAND": 799725143,
-    "AWATER": 35458838
+    "AWATER": 35458838,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -25147,7 +25669,10 @@
     "NAME": "Dickinson",
     "LSAD": "06",
     "ALAND": 1972018818,
-    "AWATER": 40533053
+    "AWATER": 40533053,
+    "clusterCode": "MIUP-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -25224,7 +25749,10 @@
     "NAME": "Putnam",
     "LSAD": "06",
     "ALAND": 1249724511,
-    "AWATER": 4603965
+    "AWATER": 4603965,
+    "clusterCode": "OH-21",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -25293,7 +25821,10 @@
     "NAME": "Hancock",
     "LSAD": "06",
     "ALAND": 1376210233,
-    "AWATER": 5959837
+    "AWATER": 5959837,
+    "clusterCode": "OH-23",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -25642,7 +26173,10 @@
     "NAME": "Vanderburgh",
     "LSAD": "06",
     "ALAND": 605227462,
-    "AWATER": 7655294
+    "AWATER": 7655294,
+    "clusterCode": "IN-07",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -25755,7 +26289,10 @@
     "NAME": "Williams",
     "LSAD": "06",
     "ALAND": 1090296605,
-    "AWATER": 5507083
+    "AWATER": 5507083,
+    "clusterCode": "OH-21",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -26006,7 +26543,10 @@
     "NAME": "Ottawa",
     "LSAD": "06",
     "ALAND": 660275593,
-    "AWATER": 855032692
+    "AWATER": 855032692,
+    "clusterCode": "OH-22",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -26087,7 +26627,10 @@
     "NAME": "Muskegon",
     "LSAD": "06",
     "ALAND": 1295054825,
-    "AWATER": 2486391724
+    "AWATER": 2486391724,
+    "clusterCode": "MI-09",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -26902,7 +27445,10 @@
     "NAME": "Mackinac",
     "LSAD": "06",
     "ALAND": 2646811928,
-    "AWATER": 2793797829
+    "AWATER": 2793797829,
+    "clusterCode": "MIUP-06",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -26995,7 +27541,10 @@
     "NAME": "Fulton",
     "LSAD": "06",
     "ALAND": 1050089558,
-    "AWATER": 4621138
+    "AWATER": 4621138,
+    "clusterCode": "OH-21",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -27136,7 +27685,10 @@
     "NAME": "Noble",
     "LSAD": "06",
     "ALAND": 1030845400,
-    "AWATER": 16985543
+    "AWATER": 16985543,
+    "clusterCode": "OH-18",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -27213,7 +27765,10 @@
     "NAME": "Geauga",
     "LSAD": "06",
     "ALAND": 1036429792,
-    "AWATER": 21045380
+    "AWATER": 21045380,
+    "clusterCode": "OH-12",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -27266,7 +27821,10 @@
     "NAME": "Madison",
     "LSAD": "06",
     "ALAND": 1170457570,
-    "AWATER": 2559344
+    "AWATER": 2559344,
+    "clusterCode": "IN-08",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -27703,7 +28261,10 @@
     "NAME": "Hamilton",
     "LSAD": "06",
     "ALAND": 1051349243,
-    "AWATER": 17355289
+    "AWATER": 17355289,
+    "clusterCode": "OH-05",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -28292,7 +28853,10 @@
     "NAME": "Washington",
     "LSAD": "06",
     "ALAND": 1636799191,
-    "AWATER": 20784924
+    "AWATER": 20784924,
+    "clusterCode": "OH-18",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -28541,7 +29105,10 @@
     "NAME": "Lucas",
     "LSAD": "06",
     "ALAND": 882812509,
-    "AWATER": 660504435
+    "AWATER": 660504435,
+    "clusterCode": "OH-08",
+    "clusterState": "OH",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -28650,7 +29217,10 @@
     "NAME": "Ashland",
     "LSAD": "06",
     "ALAND": 1095444135,
-    "AWATER": 9962880
+    "AWATER": 9962880,
+    "clusterCode": "OH-24",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -28763,7 +29333,10 @@
     "NAME": "Cass",
     "LSAD": "06",
     "ALAND": 1269354633,
-    "AWATER": 47180822
+    "AWATER": 47180822,
+    "clusterCode": "MI-12",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -29112,7 +29685,10 @@
     "NAME": "Gallia",
     "LSAD": "06",
     "ALAND": 1208307869,
-    "AWATER": 12085303
+    "AWATER": 12085303,
+    "clusterCode": "OH-20",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -29465,7 +30041,10 @@
     "NAME": "Clark",
     "LSAD": "06",
     "ALAND": 965626378,
-    "AWATER": 9244303
+    "AWATER": 9244303,
+    "clusterCode": "IN-17",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -29554,7 +30133,10 @@
     "NAME": "Wyandot",
     "LSAD": "06",
     "ALAND": 1053773836,
-    "AWATER": 1783531
+    "AWATER": 1783531,
+    "clusterCode": "OH-27",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -29715,7 +30297,10 @@
     "NAME": "Iosco",
     "LSAD": "06",
     "ALAND": 1422205035,
-    "AWATER": 3473020950
+    "AWATER": 3473020950,
+    "clusterCode": "MI-05",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -29812,7 +30397,10 @@
     "NAME": "Hillsdale",
     "LSAD": "06",
     "ALAND": 1549199574,
-    "AWATER": 22938608
+    "AWATER": 22938608,
+    "clusterCode": "MI-14",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -29921,7 +30509,10 @@
     "NAME": "Ross",
     "LSAD": "06",
     "ALAND": 1784987272,
-    "AWATER": 9938174
+    "AWATER": 9938174,
+    "clusterCode": "OH-31",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -30222,7 +30813,10 @@
     "NAME": "Emmet",
     "LSAD": "06",
     "ALAND": 1210886743,
-    "AWATER": 1073475707
+    "AWATER": 1073475707,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -31007,7 +31601,10 @@
     "NAME": "Gogebic",
     "LSAD": "06",
     "ALAND": 2853813312,
-    "AWATER": 969951123
+    "AWATER": 969951123,
+    "clusterCode": "MIUP-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -31136,7 +31733,10 @@
     "NAME": "Preble",
     "LSAD": "06",
     "ALAND": 1098738400,
-    "AWATER": 6065437
+    "AWATER": 6065437,
+    "clusterCode": "OH-32",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -31229,7 +31829,10 @@
     "NAME": "Randolph",
     "LSAD": "06",
     "ALAND": 1171656633,
-    "AWATER": 2420286
+    "AWATER": 2420286,
+    "clusterCode": "IN-08",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -31334,7 +31937,10 @@
     "NAME": "Adams",
     "LSAD": "06",
     "ALAND": 878079482,
-    "AWATER": 2429955
+    "AWATER": 2429955,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -31615,7 +32221,10 @@
     "NAME": "Jefferson",
     "LSAD": "06",
     "ALAND": 934033344,
-    "AWATER": 5844616
+    "AWATER": 5844616,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -31888,7 +32497,10 @@
     "NAME": "Monroe",
     "LSAD": "06",
     "ALAND": 1423002774,
-    "AWATER": 338237702
+    "AWATER": 338237702,
+    "clusterCode": "MI-15",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -32041,7 +32653,10 @@
     "NAME": "Tuscola",
     "LSAD": "06",
     "ALAND": 2080717684,
-    "AWATER": 286300240
+    "AWATER": 286300240,
+    "clusterCode": "MI-07",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -32106,7 +32721,10 @@
     "NAME": "Greene",
     "LSAD": "06",
     "ALAND": 1405093029,
-    "AWATER": 8826699
+    "AWATER": 8826699,
+    "clusterCode": "IN-12",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -32159,7 +32777,10 @@
     "NAME": "Shiawassee",
     "LSAD": "06",
     "ALAND": 1374710887,
-    "AWATER": 26336215
+    "AWATER": 26336215,
+    "clusterCode": "MI-08",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -32240,7 +32861,10 @@
     "NAME": "Coshocton",
     "LSAD": "06",
     "ALAND": 1460530890,
-    "AWATER": 9243185
+    "AWATER": 9243185,
+    "clusterCode": "OH-28",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -32337,7 +32961,10 @@
     "NAME": "White",
     "LSAD": "06",
     "ALAND": 1308269853,
-    "AWATER": 9203227
+    "AWATER": 9203227,
+    "clusterCode": "IN-11",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -32454,7 +33081,10 @@
     "NAME": "Manistee",
     "LSAD": "06",
     "ALAND": 1404203525,
-    "AWATER": 1912441687
+    "AWATER": 1912441687,
+    "clusterCode": "MI-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -32543,7 +33173,10 @@
     "NAME": "Greene",
     "LSAD": "06",
     "ALAND": 1071562447,
-    "AWATER": 6534702
+    "AWATER": 6534702,
+    "clusterCode": "OH-30",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -32672,7 +33305,10 @@
     "NAME": "Franklin",
     "LSAD": "06",
     "ALAND": 1378855894,
-    "AWATER": 29122804
+    "AWATER": 29122804,
+    "clusterCode": "OH-03",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -33169,7 +33805,10 @@
     "NAME": "Knox",
     "LSAD": "06",
     "ALAND": 1336508529,
-    "AWATER": 20760770
+    "AWATER": 20760770,
+    "clusterCode": "IN-12",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -33234,7 +33873,10 @@
     "NAME": "Wells",
     "LSAD": "06",
     "ALAND": 953341274,
-    "AWATER": 5596377
+    "AWATER": 5596377,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -33299,7 +33941,10 @@
     "NAME": "Miami",
     "LSAD": "06",
     "ALAND": 968246955,
-    "AWATER": 9184624
+    "AWATER": 9184624,
+    "clusterCode": "IN-10",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -33400,7 +34045,10 @@
     "NAME": "Morgan",
     "LSAD": "06",
     "ALAND": 1046324519,
-    "AWATER": 14089948
+    "AWATER": 14089948,
+    "clusterCode": "IN-01S",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -33505,7 +34153,10 @@
     "NAME": "Hocking",
     "LSAD": "06",
     "ALAND": 1091232272,
-    "AWATER": 5959003
+    "AWATER": 5959003,
+    "clusterCode": "OH-19",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -33638,7 +34289,10 @@
     "NAME": "Butler",
     "LSAD": "06",
     "ALAND": 1209528851,
-    "AWATER": 7833380
+    "AWATER": 7833380,
+    "clusterCode": "OH-32",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -33995,7 +34649,10 @@
     "NAME": "Belmont",
     "LSAD": "06",
     "ALAND": 1378212725,
-    "AWATER": 23682244
+    "AWATER": 23682244,
+    "clusterCode": "OH-18",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -34108,7 +34765,10 @@
     "NAME": "Allen",
     "LSAD": "06",
     "ALAND": 1702454351,
-    "AWATER": 6999604
+    "AWATER": 6999604,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -34245,7 +34905,10 @@
     "NAME": "Athens",
     "LSAD": "06",
     "ALAND": 1304383720,
-    "AWATER": 12463892
+    "AWATER": 12463892,
+    "clusterCode": "OH-20",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -34370,7 +35033,10 @@
     "NAME": "Summit",
     "LSAD": "06",
     "ALAND": 1069244605,
-    "AWATER": 18896599
+    "AWATER": 18896599,
+    "clusterCode": "OH-07",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -34451,7 +35117,10 @@
     "NAME": "Logan",
     "LSAD": "06",
     "ALAND": 1187336848,
-    "AWATER": 21598324
+    "AWATER": 21598324,
+    "clusterCode": "OH-27",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -34684,7 +35353,10 @@
     "NAME": "Wayne",
     "LSAD": "06",
     "ALAND": 1585112017,
-    "AWATER": 157118555
+    "AWATER": 157118555,
+    "clusterCode": "MI-19",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -34853,7 +35525,10 @@
     "NAME": "Trumbull",
     "LSAD": "06",
     "ALAND": 1601379251,
-    "AWATER": 47321072
+    "AWATER": 47321072,
+    "clusterCode": "OH-09",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -35114,7 +35789,10 @@
     "NAME": "Baraga",
     "LSAD": "06",
     "ALAND": 2326506042,
-    "AWATER": 441604306
+    "AWATER": 441604306,
+    "clusterCode": "MIUP-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -35203,7 +35881,10 @@
     "NAME": "Saginaw",
     "LSAD": "06",
     "ALAND": 2073181589,
-    "AWATER": 40159719
+    "AWATER": 40159719,
+    "clusterCode": "MI-06",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -35252,7 +35933,10 @@
     "NAME": "Delaware",
     "LSAD": "06",
     "ALAND": 1015607220,
-    "AWATER": 9792807
+    "AWATER": 9792807,
+    "clusterCode": "IN-08",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -35477,7 +36161,10 @@
     "NAME": "Clermont",
     "LSAD": "06",
     "ALAND": 1170958174,
-    "AWATER": 19831175
+    "AWATER": 19831175,
+    "clusterCode": "OH-34",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -35582,7 +36269,10 @@
     "NAME": "Tuscarawas",
     "LSAD": "06",
     "ALAND": 1469659271,
-    "AWATER": 10390938
+    "AWATER": 10390938,
+    "clusterCode": "OH-17",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -35643,7 +36333,10 @@
     "NAME": "Decatur",
     "LSAD": "06",
     "ALAND": 964946206,
-    "AWATER": 1955471
+    "AWATER": 1955471,
+    "clusterCode": "IN-05",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -35732,7 +36425,10 @@
     "NAME": "Clark",
     "LSAD": "06",
     "ALAND": 1029469371,
-    "AWATER": 13070242
+    "AWATER": 13070242,
+    "clusterCode": "OH-30",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -35805,7 +36501,10 @@
     "NAME": "Holmes",
     "LSAD": "06",
     "ALAND": 1094356036,
-    "AWATER": 3745075
+    "AWATER": 3745075,
+    "clusterCode": "OH-16",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -36250,7 +36949,10 @@
     "NAME": "Harrison",
     "LSAD": "06",
     "ALAND": 1254889453,
-    "AWATER": 5193189
+    "AWATER": 5193189,
+    "clusterCode": "IN-17",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -36319,7 +37021,10 @@
     "NAME": "Kent",
     "LSAD": "06",
     "ALAND": 2195453261,
-    "AWATER": 62871179
+    "AWATER": 62871179,
+    "clusterCode": "MI-09",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -36396,7 +37101,10 @@
     "NAME": "Howard",
     "LSAD": "06",
     "ALAND": 758858972,
-    "AWATER": 2394185
+    "AWATER": 2394185,
+    "clusterCode": "IN-10",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -36521,7 +37229,10 @@
     "NAME": "Scott",
     "LSAD": "06",
     "ALAND": 493126045,
-    "AWATER": 6089001
+    "AWATER": 6089001,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -36878,7 +37589,10 @@
     "NAME": "Lawrence",
     "LSAD": "06",
     "ALAND": 1174224656,
-    "AWATER": 10110032
+    "AWATER": 10110032,
+    "clusterCode": "OH-35",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -36931,7 +37645,10 @@
     "NAME": "Rush",
     "LSAD": "06",
     "ALAND": 1057035490,
-    "AWATER": 872270
+    "AWATER": 872270,
+    "clusterCode": "IN-13",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -37120,7 +37837,10 @@
     "NAME": "Washington",
     "LSAD": "06",
     "ALAND": 1330542464,
-    "AWATER": 7441979
+    "AWATER": 7441979,
+    "clusterCode": "IN-14",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -37457,7 +38177,10 @@
     "NAME": "Huron",
     "LSAD": "06",
     "ALAND": 2165436311,
-    "AWATER": 3368857517
+    "AWATER": 3368857517,
+    "clusterCode": "MI-07",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -37582,7 +38305,10 @@
     "NAME": "Lake",
     "LSAD": "06",
     "ALAND": 593799763,
-    "AWATER": 1942309063
+    "AWATER": 1942309063,
+    "clusterCode": "OH-12",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -37691,7 +38417,10 @@
     "NAME": "Morgan",
     "LSAD": "06",
     "ALAND": 1078543401,
-    "AWATER": 13869506
+    "AWATER": 13869506,
+    "clusterCode": "OH-18",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -38096,7 +38825,10 @@
     "NAME": "Alger",
     "LSAD": "06",
     "ALAND": 2370036407,
-    "AWATER": 10703535571
+    "AWATER": 10703535571,
+    "clusterCode": "MIUP-04",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -38497,7 +39229,10 @@
     "NAME": "Scioto",
     "LSAD": "06",
     "ALAND": 1580451539,
-    "AWATER": 15363856
+    "AWATER": 15363856,
+    "clusterCode": "OH-35",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -38618,7 +39353,10 @@
     "NAME": "Highland",
     "LSAD": "06",
     "ALAND": 1432479994,
-    "AWATER": 12194983
+    "AWATER": 12194983,
+    "clusterCode": "OH-35",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -38699,7 +39437,10 @@
     "NAME": "Pike",
     "LSAD": "06",
     "ALAND": 1140324458,
-    "AWATER": 9567612
+    "AWATER": 9567612,
+    "clusterCode": "OH-35",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -39048,7 +39789,10 @@
     "NAME": "Jefferson",
     "LSAD": "06",
     "ALAND": 1057248944,
-    "AWATER": 7120754
+    "AWATER": 7120754,
+    "clusterCode": "OH-17",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -39117,7 +39861,10 @@
     "NAME": "Montcalm",
     "LSAD": "06",
     "ALAND": 1826967219,
-    "AWATER": 39965455
+    "AWATER": 39965455,
+    "clusterCode": "MI-31",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -39522,7 +40269,10 @@
     "NAME": "St. Clair",
     "LSAD": "06",
     "ALAND": 1867861159,
-    "AWATER": 298681155
+    "AWATER": 298681155,
+    "clusterCode": "MI-07",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -39659,7 +40409,10 @@
     "NAME": "Antrim",
     "LSAD": "06",
     "ALAND": 1232064099,
-    "AWATER": 326512927
+    "AWATER": 326512927,
+    "clusterCode": "MI-02",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -39944,7 +40697,10 @@
     "NAME": "Presque Isle",
     "LSAD": "06",
     "ALAND": 1706067766,
-    "AWATER": 4957327257
+    "AWATER": 4957327257,
+    "clusterCode": "MI-01",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -40069,7 +40825,10 @@
     "NAME": "Stark",
     "LSAD": "06",
     "ALAND": 1490089723,
-    "AWATER": 13610824
+    "AWATER": 13610824,
+    "clusterCode": "OH-14",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   },
   {
@@ -40138,7 +40897,10 @@
     "NAME": "Lapeer",
     "LSAD": "06",
     "ALAND": 1668449552,
-    "AWATER": 48310219
+    "AWATER": 48310219,
+    "clusterCode": "MI-08",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -40279,7 +41041,10 @@
     "NAME": "Mason",
     "LSAD": "06",
     "ALAND": 1282237606,
-    "AWATER": 1935672193
+    "AWATER": 1935672193,
+    "clusterCode": "MI-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -41026,7 +41791,10 @@
     "NAME": "Delta",
     "LSAD": "06",
     "ALAND": 3033119057,
-    "AWATER": 2124391646
+    "AWATER": 2124391646,
+    "clusterCode": "MIUP-03",
+    "clusterState": "MI",
+    "clusterGroup": "GR"
    }
   },
   {
@@ -41203,7 +41971,10 @@
     "NAME": "Sullivan",
     "LSAD": "06",
     "ALAND": 1158058302,
-    "AWATER": 18096342
+    "AWATER": 18096342,
+    "clusterCode": "IN-12",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -41532,7 +42303,10 @@
     "NAME": "Monroe",
     "LSAD": "06",
     "ALAND": 1180317768,
-    "AWATER": 4495382
+    "AWATER": 4495382,
+    "clusterCode": "OH-18",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -41609,7 +42383,10 @@
     "NAME": "Whitley",
     "LSAD": "06",
     "ALAND": 869120483,
-    "AWATER": 6073937
+    "AWATER": 6073937,
+    "clusterCode": "IN-02",
+    "clusterState": "IN",
+    "clusterGroup": "INDY"
    }
   },
   {
@@ -41902,7 +42679,10 @@
     "NAME": "Adams",
     "LSAD": "06",
     "ALAND": 1512208937,
-    "AWATER": 6165939
+    "AWATER": 6165939,
+    "clusterCode": "OH-35",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -42039,7 +42819,10 @@
     "NAME": "Sanilac",
     "LSAD": "06",
     "ALAND": 2493045863,
-    "AWATER": 1624882489
+    "AWATER": 1624882489,
+    "clusterCode": "MI-07",
+    "clusterState": "MI",
+    "clusterGroup": "AA"
    }
   },
   {
@@ -42152,7 +42935,10 @@
     "NAME": "Morrow",
     "LSAD": "06",
     "ALAND": 1051881046,
-    "AWATER": 2819351
+    "AWATER": 2819351,
+    "clusterCode": "OH-28",
+    "clusterState": "OH",
+    "clusterGroup": "CBUS"
    }
   },
   {
@@ -42233,7 +43019,10 @@
     "NAME": "Sandusky",
     "LSAD": "06",
     "ALAND": 1057906596,
-    "AWATER": 23958604
+    "AWATER": 23958604,
+    "clusterCode": "OH-22",
+    "clusterState": "OH",
+    "clusterGroup": "CLV"
    }
   }
  ]
