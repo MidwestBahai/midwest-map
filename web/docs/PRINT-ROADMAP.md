@@ -30,6 +30,7 @@ The print system allows users to generate printable maps with:
 | Opaque fill colors | ✅ Done | `printMode` flag adjusts alpha |
 | Color swatches in print | ✅ Done | `print-color-adjust: exact` on legend swatches |
 | Pan/zoom persistence | ✅ Done | Map view state persists in localStorage |
+| History timeline | ✅ Done | HorizontalTimeline component with animated expand/collapse |
 
 ### Recent Architecture Changes
 
@@ -311,28 +312,35 @@ Slide-up panel from the bottom of the screen with export controls:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────┐
-│                                    [▼]                                           │ ← Collapse chevron
+│                              ∨ Print Controls ∨                                  │ ← Collapse toggle
 ├──────────────────────────────────────────────────────────────────────────────────┤
-│  Export Size:  [Letter]  [Tabloid]  [Poster]                                     │
+│  Area: [Full Region ▼]    Paper: [Poster 24×36 ▼]    [History] [Print] [Exit]   │
 │                                                                                  │
-│  [ 🖨 Print / Save PDF ]    [ ⬇ Download PNG ]                                   │
+│  Labels: [✓] Codes  [✓] Milestones  [ ] Names  [ ] Dates                        │
 │                                                                                  │
-│                    Drag legends and title to position them                       │
+│  ═══════════════════════════════════════════════════════════════════════════════│ ← Timeline (when active)
+│  ○ 2011 ────●────────────────────────────────────────────────────────────○ 2025 │
 └──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 **Features:**
 - **Chevron toggle**: Expand/collapse panel (header bar always visible)
-- **Size presets**: Letter/Tabloid/Poster buttons for export dimensions
+- **Area selector**: Region, state, or cluster group view
+- **Paper selector**: Letter/Tabloid/A4/Poster presets
+- **History button**: Toggle horizontal timeline for historical views
 - **Print / Save PDF**: Calls `window.print()` for native browser print dialog
-- **Download PNG**: Calls external export service (if available)
+- **Exit button**: Returns to main map (preserves date if timeline active)
+- **Label toggles**: Show/hide codes, milestones, names, dates
 - **Starts expanded**: Panel opens automatically on navigation to `/print`
 - **Slide animation**: Uses `translateY` with 400ms cubic-bezier easing
+- **Timeline animation**: Uses CSS Grid `grid-template-rows` for smooth expand/collapse
+- **Responsive layout**: Centers controls at narrow widths (below `md` breakpoint)
 
 **Implementation details:**
 - Panel has `z-50`, floating buttons have `z-60` (buttons stay above panel)
 - Uses `print-hidden` class to hide during actual printing
-- Error handling for export service failures with inline error message
+- Timeline uses separate `HorizontalTimeline` component (not shared with floating timeline)
+- Milestone events extracted via `useMilestoneEvents` hook from cluster data
 
 #### 9. Print Instructions
 
@@ -517,11 +525,13 @@ Would require:
 |------|---------|
 | `src/app/print/PrintClient.tsx` | Main print page component |
 | `src/app/print/PrintToolbar.tsx` | Slide-up panel with export controls |
+| `src/app/print/HorizontalTimeline.tsx` | Horizontal timeline slider for print mode |
 | `src/app/print/DraggableLegend.tsx` | Per-group legend component |
 | `src/app/print/DraggableBox.tsx` | Generic draggable container |
+| `src/lib/useMilestoneEvents.ts` | Hook to extract milestone events from cluster data |
 | `src/components/FloatingControls.tsx` | Unified floating button bar (Print, Layers, Timeline) |
 | `src/components/FloatingButton.tsx` | Shared button component + positioning constants |
-| `src/components/FloatingTimelineButton.tsx` | Timeline slider component |
+| `src/components/FloatingTimelineButton.tsx` | Vertical timeline slider for main view |
 | `src/map/regionMap.tsx` | Map component with `printMode` support |
 | `src/map/clusterColor.ts` | Color functions with print alpha |
 | `src/data/clusterGroups.ts` | Cluster group definitions |
