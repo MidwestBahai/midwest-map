@@ -1,3 +1,4 @@
+import seedrandom from "seedrandom"
 import {
     boundingRect,
     degenerateRect,
@@ -11,22 +12,30 @@ import {
     type TwoDPoint,
 } from "./expandRect"
 
+/**
+ * Create a deterministic hash from polygon coordinates.
+ * Uses a simple string representation — same polygon always produces same seed.
+ */
+const hashPolygon = (polygon: Polygon): string => {
+    // Round to 6 decimal places to avoid floating-point noise in seeds
+    return polygon
+        .map(([lng, lat]) => `${lng.toFixed(6)},${lat.toFixed(6)}`)
+        .join(";")
+}
+
 const pickRandomInteriorPoints = (
     polygon: Polygon,
     count: number,
     maxTries: number,
+    rng: () => number,
 ): Polygon => {
     const result: Polygon = []
     let tries = 0
+    const bounding = boundingRect(polygon)
     while (result.length < count) {
         const point: TwoDPoint = [
-            Math.random() *
-                (boundingRect(polygon).maxLong -
-                    boundingRect(polygon).minLong) +
-                boundingRect(polygon).minLong,
-            Math.random() *
-                (boundingRect(polygon).maxLat - boundingRect(polygon).minLat) +
-                boundingRect(polygon).minLat,
+            rng() * (bounding.maxLong - bounding.minLong) + bounding.minLong,
+            rng() * (bounding.maxLat - bounding.minLat) + bounding.minLat,
         ]
         if (isInsidePolygon(point, polygon)) result.push(point)
         tries++
@@ -53,8 +62,11 @@ export const approximateLargestAlignedRectangle = (
     if (rectArea(bounding) < epsilon * epsilon * 4)
         throw new Error("Polygon is too small to contain a rectangle")
 
-    // 1. Pick starting points, at random
-    const interiorPoints = pickRandomInteriorPoints(polygon, 10, 100)
+    // Create a seeded RNG for deterministic results — same polygon always produces same rectangle
+    const rng = seedrandom(hashPolygon(polygon))
+
+    // 1. Pick starting points, using seeded random for reproducibility
+    const interiorPoints = pickRandomInteriorPoints(polygon, 10, 100, rng)
     // Start with changes that are a 20th of the bounding box
     let delta =
         Math.min(
