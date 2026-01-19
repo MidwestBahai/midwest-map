@@ -2,15 +2,19 @@
 
 import { ChevronDown, ChevronUp, Clock, X } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getTimelineBounds, useMilestoneEvents } from "@/lib/useMilestoneEvents"
 import { HorizontalTimeline } from "./HorizontalTimeline"
+import { DEFAULT_LABEL_OPTIONS, type LabelOptions } from "./types"
 
 interface PrintToolbarProps {
     className?: string
     currentDate: Date
     onDateChange: (date: Date) => void
     initialShowTimeline?: boolean
+    onLabelOptionsChange?: (options: LabelOptions) => void
+    onScopeChange?: (scope: string) => void
+    onPaperChange?: (paper: string) => void
 }
 
 const PAPER_SIZES = [
@@ -41,6 +45,9 @@ export function PrintToolbar({
     currentDate,
     onDateChange,
     initialShowTimeline = false,
+    onLabelOptionsChange,
+    onScopeChange,
+    onPaperChange,
 }: PrintToolbarProps) {
     const router = useRouter()
     const [isExpanded, setIsExpanded] = useState(true)
@@ -55,12 +62,21 @@ export function PrintToolbar({
     }
     const [selectedPaper, setSelectedPaper] = useState("poster-24x36")
     const [selectedScope, setSelectedScope] = useState("region")
-    const [labelOptions, setLabelOptions] = useState({
-        showCode: true,
-        showMilestone: true,
-        showName: false,
-        showDate: false,
-    })
+    const [labelOptions, setLabelOptions] =
+        useState<LabelOptions>(DEFAULT_LABEL_OPTIONS)
+
+    // Notify parent of initial state and changes
+    useEffect(() => {
+        onLabelOptionsChange?.(labelOptions)
+    }, [labelOptions, onLabelOptionsChange])
+
+    useEffect(() => {
+        onScopeChange?.(selectedScope)
+    }, [selectedScope, onScopeChange])
+
+    useEffect(() => {
+        onPaperChange?.(selectedPaper)
+    }, [selectedPaper, onPaperChange])
 
     const milestoneEvents = useMilestoneEvents()
     const { startDate, endDate } = getTimelineBounds()

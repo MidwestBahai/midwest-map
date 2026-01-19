@@ -1,17 +1,20 @@
 "use client"
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import type { Feature } from "geojson"
 import { useSearchParams } from "next/navigation"
-import { Suspense, useCallback, useEffect, useRef, useState } from "react"
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { DebugProvider } from "@/app/DebugContext"
 import { TIMING } from "@/lib/constants"
 import type { ClusterGroup } from "@/data/clusterGroups"
+import validatedData from "@/data/clusters-timeline.geo.json"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { initialBounds } from "@/map/initialMapBounds"
 import { RegionMap, type ViewState } from "@/map/regionMap"
 import { DraggableBox, type DraggablePosition } from "./DraggableBox"
 import { DraggableLegend, type LegendPosition } from "./DraggableLegend"
 import { PrintToolbar } from "./PrintToolbar"
+import { DEFAULT_LABEL_OPTIONS, type LabelOptions } from "./types"
 
 const queryClient = new QueryClient()
 
@@ -144,6 +147,46 @@ function saveViewState(viewState: ViewState) {
     }
 }
 
+/**
+ * Filter clusters based on scope selection.
+ * Returns true if the feature should be visible.
+ */
+function matchesScope(feature: Feature, scope: string): boolean {
+    if (scope === "region") return true
+
+    const clusterCode = feature.properties?.Cluster as string | undefined
+    const groupCode = feature.properties?.Group as string | undefined
+
+    if (scope.startsWith("state-")) {
+        const stateCode = scope.replace("state-", "") // "IN", "MI", "OH"
+        return clusterCode?.startsWith(stateCode) ?? false
+    }
+    if (scope.startsWith("group-")) {
+        const targetGroup = scope.replace("group-", "") // "INDY", "CLV", etc.
+        return groupCode === targetGroup
+    }
+    return true
+}
+
+/**
+ * Get which cluster groups have visible clusters in the current scope
+ */
+function getVisibleGroups(
+    features: Feature[],
+    scope: string,
+): Set<DisplayClusterGroup> {
+    const visibleGroups = new Set<DisplayClusterGroup>()
+    for (const feature of features) {
+        if (matchesScope(feature, scope)) {
+            const group = feature.properties?.Group as string | undefined
+            if (group && displayGroups.includes(group as DisplayClusterGroup)) {
+                visibleGroups.add(group as DisplayClusterGroup)
+            }
+        }
+    }
+    return visibleGroups
+}
+
 function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     const searchParams = useSearchParams()
     const [mapLoaded, setMapLoaded] = useState(false)
@@ -161,6 +204,20 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
 
     // Map view state - null until initialized on client
     const [viewState, setViewState] = useState<ViewState | null>(null)
+
+    // Print controls state
+    const [labelOptions, setLabelOptions] =
+        useState<LabelOptions>(DEFAULT_LABEL_OPTIONS)
+    const [selectedScope, setSelectedScope] = useState("region")
+
+    // Cast features for filtering (TypeScript compatibility)
+    const allFeatures = validatedData.features as Feature[]
+
+    // Compute which groups are visible based on current scope
+    const visibleGroups = useMemo(
+        () => getVisibleGroups(allFeatures, selectedScope),
+        [allFeatures, selectedScope],
+    )
 
     // Initialize legend positions on mount (client-side only)
     useEffect(() => {
@@ -280,26 +337,32 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                 onMapLoaded={handleMapLoaded}
                                 viewState={viewState}
                                 onViewStateChange={setViewState}
+                                labelOptions={labelOptions}
+                                scope={selectedScope}
                             />
                         )}
 
-                        {/* Draggable legends - one per cluster group */}
+                        {/* Draggable legends - one per cluster group (filtered by scope) */}
                         {mapLoaded &&
                             legendPositions &&
-                            displayGroups.map((groupKey) => (
-                                <DraggableLegend
-                                    key={groupKey}
-                                    groupKey={groupKey}
-                                    position={legendPositions[groupKey]}
-                                    onPositionChange={(pos) =>
-                                        handleLegendPositionChange(
-                                            groupKey,
-                                            pos,
-                                        )
-                                    }
-                                    containerRef={containerRef}
-                                />
-                            ))}
+                            displayGroups
+                                .filter((groupKey) =>
+                                    visibleGroups.has(groupKey),
+                                )
+                                .map((groupKey) => (
+                                    <DraggableLegend
+                                        key={groupKey}
+                                        groupKey={groupKey}
+                                        position={legendPositions[groupKey]}
+                                        onPositionChange={(pos) =>
+                                            handleLegendPositionChange(
+                                                groupKey,
+                                                pos,
+                                            )
+                                        }
+                                        containerRef={containerRef}
+                                    />
+                                ))}
 
                         {/* Draggable Title */}
                         {mapLoaded && titlePosition && (
@@ -333,6 +396,8 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                 initialShowTimeline={Boolean(
                                     dateParam && isValidDate,
                                 )}
+                                onLabelOptionsChange={setLabelOptions}
+                                onScopeChange={setSelectedScope}
                             />
                         )}
 

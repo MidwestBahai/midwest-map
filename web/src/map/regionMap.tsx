@@ -7,6 +7,7 @@ import Head from "next/head"
 import { useCallback, useEffect, useRef, useState } from "react"
 import MapboxMap, { type MapRef } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
+import type { LabelOptions } from "@/app/print/types"
 import validatedData from "@/data/clusters-timeline.geo.json"
 import type { LatLongRect } from "@/lib/latLongRect"
 import { useWindowSize } from "@/lib/useWindowSize"
@@ -35,6 +36,29 @@ export interface RegionMapProps {
     // For controlled view state (zoom/pan)
     viewState?: ViewState
     onViewStateChange?: (viewState: ViewState) => void
+    // Print mode options
+    labelOptions?: LabelOptions
+    scope?: string
+}
+
+/**
+ * Check if a feature matches the scope filter
+ */
+function matchesScope(feature: Feature, scope: string | undefined): boolean {
+    if (!scope || scope === "region") return true
+
+    const clusterCode = feature.properties?.Cluster as string | undefined
+    const groupCode = feature.properties?.Group as string | undefined
+
+    if (scope.startsWith("state-")) {
+        const stateCode = scope.replace("state-", "")
+        return clusterCode?.startsWith(stateCode) ?? false
+    }
+    if (scope.startsWith("group-")) {
+        const targetGroup = scope.replace("group-", "")
+        return groupCode === targetGroup
+    }
+    return true
 }
 
 export const RegionMap = ({
@@ -47,6 +71,8 @@ export const RegionMap = ({
     onDateChange,
     viewState: controlledViewState,
     onViewStateChange,
+    labelOptions,
+    scope,
 }: RegionMapProps) => {
     const windowSize = useWindowSize()
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
@@ -135,7 +161,7 @@ export const RegionMap = ({
                     printMode
                         ? []
                         : validatedData.features.map(
-                              (_, index) => `cluster-${index}`,
+                              (f) => `cluster-${f.properties?.Cluster}`,
                           )
                 }
                 onMouseMove={printMode ? undefined : onHover}
@@ -166,18 +192,42 @@ export const RegionMap = ({
                     {/* County boundaries - only visible in print mode */}
                     {printMode && <CountyBoundaries visible={printMode} />}
 
-                    {features.map((feature, index) => (
+                    {/* Render in two passes to ensure symbols are always above fills */}
+                    {/* Pass 1: Fill and line layers */}
+                    {features.map((feature) => (
                         <ClusterLayers
-                            key={feature.properties?.Cluster ?? index}
+                            key={`fill-${feature.properties?.Cluster}`}
                             feature={feature}
-                            index={index}
-                            hoverFeature={printMode ? undefined : hoverFeature}
+                            hoverFeature={
+                                printMode ? undefined : hoverFeature
+                            }
                             largestRect={pickLargestRect(feature)}
                             currentDate={selectedDate}
                             boundariesOnly={!showClusters}
                             printMode={printMode}
+                            labelOptions={labelOptions}
+                            renderMode="fill"
+                            visible={matchesScope(feature, scope)}
                         />
                     ))}
+                    {/* Pass 2: Symbol/text layers (rendered after all fills) */}
+                    {showClusters &&
+                        features.map((feature) => (
+                            <ClusterLayers
+                                key={`symbol-${feature.properties?.Cluster}`}
+                                feature={feature}
+                                hoverFeature={
+                                    printMode ? undefined : hoverFeature
+                                }
+                                largestRect={pickLargestRect(feature)}
+                                currentDate={selectedDate}
+                                boundariesOnly={false}
+                                printMode={printMode}
+                                labelOptions={labelOptions}
+                                renderMode="symbol"
+                                visible={matchesScope(feature, scope)}
+                            />
+                        ))}
                     {hoverFeature && showGeoJsonDetails && (
                         <div
                             style={{

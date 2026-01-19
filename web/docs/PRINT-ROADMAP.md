@@ -52,13 +52,20 @@ The floating controls have been reorganized for better maintainability:
 - `z-60`: All floating buttons (Print, Layers, Timeline)
 - This ensures buttons remain clickable when panel is expanded
 
+**Mapbox layer ordering (for scope filtering):**
+- All clusters are always rendered (never unmounted)
+- Visibility controlled via Mapbox `fill-opacity` / `line-opacity` with 300ms transitions
+- Two-pass rendering: all fill layers first, then all symbol layers
+- This prevents layer reordering issues when toggling scope (labels staying above fills)
+- See `regionMap.tsx` for the two-pass pattern and `clusterLayers.tsx` for opacity transitions
+
 ### What's Missing
 
 | Feature | Priority | Notes |
 |---------|----------|-------|
-| Scope/area selector | High | Region, state, or cluster group view |
-| Label toggles | High | Show/hide codes, milestones, names, dates |
-| Scoped persistence | High | Each view saves its own legend positions |
+| Scope/area selector | ✅ Done | Region, state, or cluster group view (with smooth fade transitions) |
+| Label toggles | ✅ Done | Show/hide codes, milestones, names, dates |
+| Scoped persistence | Medium | Each view saves its own legend positions (currently shared) |
 | Print CSS (`@media print`) | High | Hide UI, preserve colors globally |
 | Page size selector | ✅ Done | Letter/Tabloid/Poster presets in PrintToolbar |
 | Aspect ratio matching | High | WYSIWYG - viewport matches paper |
@@ -356,16 +363,16 @@ On first visit or via help button, show tips:
 ### Implementation Checklist
 
 **Scope & Filtering:**
-- [ ] Define `ScopeOption` type and options list
-- [ ] Create `ScopeSelector` dropdown component
-- [ ] Implement cluster filtering by scope/area
+- [x] Define `ScopeOption` type and options list
+- [x] Create `ScopeSelector` dropdown component
+- [x] Implement cluster filtering by scope/area
 - [ ] Implement bounds calculation for filtered clusters
 - [ ] Auto-fit map to computed bounds on scope change
 
 **Label Controls:**
-- [ ] Add `LabelOptions` state (showCode, showMilestone, showName, showDate)
-- [ ] Wire toggles to `ClusterText` component via props
-- [ ] Add checkbox UI to toolbar
+- [x] Add `LabelOptions` state (showCode, showMilestone, showName, showDate)
+- [x] Wire toggles to `ClusterText` component via props
+- [x] Add checkbox UI to toolbar
 - [ ] Persist label options in `print-global-settings`
 
 **Scoped Persistence:**
@@ -381,7 +388,7 @@ On first visit or via help button, show tips:
 - [ ] Hide toolbar and overlays in print
 
 **Page Size & Layout:**
-- [ ] Create `PaperSizeSelector` component
+- [x] Create `PaperSizeSelector` component
 - [ ] Create `PrintContainer` with aspect ratio logic
 - [ ] Add gray overlay for off-page indicator
 
@@ -394,7 +401,7 @@ On first visit or via help button, show tips:
 - [ ] Test scope switching preserves/restores layouts
 - [ ] Test in Chrome, Safari, Firefox print preview
 - [ ] Test PDF output at various paper sizes
-- [ ] Test each scope option (region, states, groups)
+- [x] Test each scope option (region, states, groups)
 
 ---
 
@@ -528,6 +535,7 @@ Would require:
 | `src/app/print/HorizontalTimeline.tsx` | Horizontal timeline slider for print mode |
 | `src/app/print/DraggableLegend.tsx` | Per-group legend component |
 | `src/app/print/DraggableBox.tsx` | Generic draggable container |
+| `src/app/print/types.ts` | Shared types (LabelOptions) |
 | `src/lib/useMilestoneEvents.ts` | Hook to extract milestone events from cluster data |
 | `src/components/FloatingControls.tsx` | Unified floating button bar (Print, Layers, Timeline) |
 | `src/components/FloatingButton.tsx` | Shared button component + positioning constants |

@@ -2,6 +2,7 @@ import type { Feature } from "geojson"
 import type { Expression } from "mapbox-gl"
 import { Layer, Source } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
+import type { LabelOptions } from "@/app/print/types"
 import { getClusterGroup } from "@/data/clusterGroups"
 import {
     getMilestoneAtDate,
@@ -34,26 +35,39 @@ const PRINT_BORDER_WIDTH: Expression = [
     6,
 ]
 
+// Render mode controls which layers are rendered
+// "all" = fill + line + symbol (default, legacy behavior)
+// "fill" = only fill and line layers
+// "symbol" = only symbol/text layer
+type RenderMode = "all" | "fill" | "symbol"
+
 export const ClusterLayers = ({
     feature,
-    index,
     hoverFeature,
     largestRect,
     currentDate,
     boundariesOnly = false,
     printMode = false,
+    labelOptions,
+    renderMode = "all",
+    visible = true,
 }: {
     feature: Feature
-    index: number
     hoverFeature?: Feature
     largestRect?: LatLongRect
     currentDate: Date
     boundariesOnly?: boolean
     printMode?: boolean
+    labelOptions?: LabelOptions
+    renderMode?: RenderMode
+    visible?: boolean
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
     const clusterGroup = getClusterGroup(feature?.properties)
+
+    // Use cluster code for stable layer IDs (avoids issues when filtering changes indices)
+    const clusterCode = feature?.properties?.Cluster ?? "unknown"
 
     // Calculate milestone at the current date from timeline data
     const initialMilestone = `${feature?.properties?.M || "N"}`
@@ -80,12 +94,18 @@ export const ClusterLayers = ({
         (!categoryHighlight.milestone &&
             clusterGroup === categoryHighlight.clusterGroup)
     // const bounds = useMemo(() => featurePolygonBounds(data), [data])
-    const fillLayerId = `cluster-${index}`
-    const symbolLayerId = `symbol-${index}`
+    const fillLayerId = `cluster-${clusterCode}`
+    const symbolLayerId = `symbol-${clusterCode}`
 
     // useDebugClusterFeature(index, "IN-01", feature)
     // const scaleFactor = map?.getScaleFactor()
     // useEffect(() => console.log({scaleFactor}), [scaleFactor])
+
+    // For symbol layers, use visibility (has built-in fade)
+    const visibilityLayout = { visibility: visible ? "visible" : "none" } as const
+    // For fill/line layers, use opacity with transition for smooth fade
+    const fillOpacity = visible ? 1 : 0
+    const lineOpacity = visible ? 1 : 0
 
     // Boundaries-only mode: just show outlines, no fill or labels
     if (boundariesOnly) {
@@ -96,7 +116,8 @@ export const ClusterLayers = ({
                     paint={{
                         "line-color": BOUNDARY_ONLY_COLOR,
                         "line-width": 1.5,
-                        "line-opacity": 0.6,
+                        "line-opacity": visible ? 0.6 : 0,
+                        "line-opacity-transition": { duration: 300 },
                     }}
                     id={fillLayerId}
                 />
@@ -104,42 +125,53 @@ export const ClusterLayers = ({
         )
     }
 
+    const shouldRenderFill = renderMode === "all" || renderMode === "fill"
+    const shouldRenderSymbol = renderMode === "all" || renderMode === "symbol"
+
     return (
         <>
-            <Source type="geojson" data={feature}>
-                {feature.properties && (
-                    <Layer
-                        type="fill"
-                        paint={{
-                            "fill-color": clusterFillColor(
-                                feature.properties,
-                                highlighted,
-                                effectiveMilestone,
-                                printMode,
-                            ),
-                        }}
-                        id={fillLayerId}
-                    />
-                )}
-                {/* In print mode, always show borders; otherwise only when highlighted */}
-                {(highlighted || printMode) && (
-                    <Layer
-                        type="line"
-                        paint={{
-                            "line-color": printMode
-                                ? PRINT_BORDER_COLOR
-                                : clusterLineColor(
-                                      feature.properties,
-                                      highlighted,
-                                      effectiveMilestone,
-                                  ),
-                            "line-width": printMode ? PRINT_BORDER_WIDTH : 3,
-                        }}
-                    />
-                )}
-            </Source>
+            {shouldRenderFill && (
+                <Source type="geojson" data={feature}>
+                    {feature.properties && (
+                        <Layer
+                            type="fill"
+                            paint={{
+                                "fill-color": clusterFillColor(
+                                    feature.properties,
+                                    highlighted,
+                                    effectiveMilestone,
+                                    printMode,
+                                ),
+                                "fill-opacity": fillOpacity,
+                                "fill-opacity-transition": { duration: 300 },
+                            }}
+                            id={fillLayerId}
+                        />
+                    )}
+                    {/* In print mode, always show borders; otherwise only when highlighted */}
+                    {(highlighted || printMode) && (
+                        <Layer
+                            type="line"
+                            paint={{
+                                "line-color": printMode
+                                    ? PRINT_BORDER_COLOR
+                                    : clusterLineColor(
+                                          feature.properties,
+                                          highlighted,
+                                          effectiveMilestone,
+                                      ),
+                                "line-width": printMode
+                                    ? PRINT_BORDER_WIDTH
+                                    : 3,
+                                "line-opacity": lineOpacity,
+                                "line-opacity-transition": { duration: 300 },
+                            }}
+                        />
+                    )}
+                </Source>
+            )}
 
-            {largestRect && (
+            {shouldRenderSymbol && largestRect && (
                 <ClusterText
                     symbolLayerId={symbolLayerId}
                     largestRect={largestRect}
@@ -148,10 +180,12 @@ export const ClusterLayers = ({
                     effectiveMilestone={effectiveMilestone}
                     advancementDate={advancementDate}
                     printMode={printMode}
+                    labelOptions={labelOptions}
+                    visible={visible}
                 />
             )}
 
-            {largestRect && showMapGeometry && (
+            {shouldRenderFill && largestRect && showMapGeometry && (
                 <RectangleLayer
                     rectangle={largestRect}
                     color={clusterFillColor(
