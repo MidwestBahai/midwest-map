@@ -103,7 +103,7 @@ export const FloatingMapKey = () => {
                                     }
                                     onMouseLeave={clearCategoryHighlight}
                                 >
-                                    {details.cities[0]}
+                                    {details.displayName}
                                 </span>
                             </Fragment>
                         ))}

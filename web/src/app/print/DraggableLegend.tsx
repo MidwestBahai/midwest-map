@@ -36,7 +36,7 @@ export function DraggableLegend({
     const [isClient, setIsClient] = useState(false)
 
     const groupData = clusterGroups[groupKey]
-    const groupName = groupData.cities[0] ?? groupKey
+    const groupName = groupData.displayName
 
     // Ensure colors are computed on client (needs Canvas)
     useEffect(() => {
