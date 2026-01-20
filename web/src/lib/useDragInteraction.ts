@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 interface UseDragInteractionOptions {
     /**
@@ -32,25 +32,39 @@ export function useDragInteraction({
 }: UseDragInteractionOptions): UseDragInteractionResult {
     const [isDragging, setIsDragging] = useState(false)
 
+    // Use refs to avoid re-running the effect when callbacks change
+    // This prevents infinite update loops when onDrag dependencies change during drag
+    const onDragRef = useRef(onDrag)
+    const orientationRef = useRef(orientation)
+
+    // Keep refs in sync with props
+    useEffect(() => {
+        onDragRef.current = onDrag
+        orientationRef.current = orientation
+    })
+
     const getClientCoord = useCallback(
         (e: MouseEvent | TouchEvent | React.MouseEvent | React.TouchEvent) => {
             if ("touches" in e) {
-                return orientation === "horizontal"
+                return orientationRef.current === "horizontal"
                     ? e.touches[0].clientX
                     : e.touches[0].clientY
             }
-            return orientation === "horizontal" ? e.clientX : e.clientY
+            return orientationRef.current === "horizontal" ? e.clientX : e.clientY
         },
-        [orientation],
+        [],
     )
 
     const handleDragStart = useCallback(
         (e: React.MouseEvent | React.TouchEvent) => {
-            e.preventDefault()
+            // Check cancelable to avoid warning on passive touch events
+            if (e.cancelable) {
+                e.preventDefault()
+            }
             setIsDragging(true)
-            onDrag(getClientCoord(e))
+            onDragRef.current(getClientCoord(e))
         },
-        [onDrag, getClientCoord],
+        [getClientCoord],
     )
 
     useEffect(() => {
@@ -61,7 +75,7 @@ export function useDragInteraction({
             if ("touches" in e) {
                 e.preventDefault()
             }
-            onDrag(getClientCoord(e))
+            onDragRef.current(getClientCoord(e))
         }
 
         const handleEnd = () => {
@@ -81,7 +95,7 @@ export function useDragInteraction({
             document.removeEventListener("mouseup", handleEnd)
             document.removeEventListener("touchend", handleEnd)
         }
-    }, [isDragging, onDrag, getClientCoord])
+    }, [isDragging, getClientCoord])
 
     return {
         isDragging,

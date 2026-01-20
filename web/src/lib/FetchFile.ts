@@ -21,7 +21,7 @@ export async function fetchFile(
     try {
         // Now open the stream
         const body = await new Promise<fs.ReadStream>((resolve, reject) => {
-                const stream = fs.createReadStream(path, { encoding: null })
+                const stream = fs.createReadStream(path)
             stream.once("readable", () => resolve(stream))
             stream.on("error", (error) => reject(error))
         })
