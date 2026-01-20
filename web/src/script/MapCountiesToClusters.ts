@@ -1,12 +1,12 @@
 import { readFile, writeFile } from "node:fs/promises"
-import pointOnFeature from "@turf/point-on-feature"
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon"
+import pointOnFeature from "@turf/point-on-feature"
 import type {
     Feature,
     FeatureCollection,
-    Polygon,
     MultiPolygon,
     Point,
+    Polygon,
 } from "geojson"
 
 /**
@@ -47,7 +47,10 @@ type CountyFeature = Feature<Polygon | MultiPolygon, CountyProperties>
 /**
  * Check if a point is inside a polygon or any sub-polygon of a MultiPolygon
  */
-function pointInCluster(point: Feature<Point>, cluster: ClusterFeature): boolean {
+function pointInCluster(
+    point: Feature<Point>,
+    cluster: ClusterFeature,
+): boolean {
     const geometry = cluster.geometry
 
     if (geometry.type === "Polygon") {
@@ -75,11 +78,11 @@ async function main() {
 
     // Load data files
     const countiesData = JSON.parse(
-        await readFile(COUNTIES_PATH, "utf-8")
+        await readFile(COUNTIES_PATH, "utf-8"),
     ) as FeatureCollection<Polygon | MultiPolygon, CountyProperties>
 
     const clustersData = JSON.parse(
-        await readFile(CLUSTERS_PATH, "utf-8")
+        await readFile(CLUSTERS_PATH, "utf-8"),
     ) as FeatureCollection<Polygon | MultiPolygon, ClusterProperties>
 
     console.log(`Loaded ${countiesData.features.length} counties`)
@@ -118,7 +121,7 @@ async function main() {
 
             // Log for debugging
             console.log(
-                `  ${countyName} County (FIPS ${countyState}) → ${enrichedProps.clusterCode} (${enrichedProps.clusterGroup} group)`
+                `  ${countyName} County (FIPS ${countyState}) → ${enrichedProps.clusterCode} (${enrichedProps.clusterGroup} group)`,
             )
 
             return {
@@ -132,10 +135,14 @@ async function main() {
         return countyFeature
     })
 
-    console.log(`\nMatched: ${matched}/${countiesData.features.length} counties`)
+    console.log(
+        `\nMatched: ${matched}/${countiesData.features.length} counties`,
+    )
 
     if (unmatched.length > 0) {
-        console.error("\n❌ ERROR: The following counties were not matched to any cluster:")
+        console.error(
+            "\n❌ ERROR: The following counties were not matched to any cluster:",
+        )
         for (const name of unmatched) {
             console.error(`  - ${name}`)
         }

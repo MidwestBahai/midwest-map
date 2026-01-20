@@ -29,7 +29,7 @@ export const FullScreenButton = () => {
                     }}
                     className="absolute top-0 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold transition-[border] duration-1000 border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
                 >
-                    {fullScreen ? "Exit" : "Full Screen"}
+                    Full Screen
                 </button>
             )}
             {iframe && fullScreen && (

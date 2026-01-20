@@ -4,12 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { isMobileWidth } from "@/lib/constants"
 import { getMonthAbbreviation } from "@/lib/monthAbbreviations"
 import {
-    TIMELINE_COLORS,
-    TIMELINE_STROKES,
     calculateDateProgress,
     dateFromProgress,
+    TIMELINE_COLORS,
+    TIMELINE_STROKES,
 } from "@/lib/timelineConfig"
-import { useDragInteraction } from "@/lib/useDragInteraction"
 import { useWindowSize } from "@/lib/useWindowSize"
 import { BUTTON_CENTER_FROM_BOTTOM } from "./FloatingButton"
 
@@ -297,6 +296,7 @@ export const FloatingTimelineButton = ({
                     className="relative bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
                     onClick={handleOpen}
                     aria-label="Show timeline"
+                    title="Show timeline"
                     style={{
                         opacity: isOpen && isAnimatingOpen ? 0 : 1,
                         pointerEvents: isOpen ? "none" : "auto",

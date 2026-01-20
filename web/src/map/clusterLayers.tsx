@@ -101,8 +101,6 @@ export const ClusterLayers = ({
     // const scaleFactor = map?.getScaleFactor()
     // useEffect(() => console.log({scaleFactor}), [scaleFactor])
 
-    // For symbol layers, use visibility (has built-in fade)
-    const visibilityLayout = { visibility: visible ? "visible" : "none" } as const
     // For fill/line layers, use opacity with transition for smooth fade
     const fillOpacity = visible ? 1 : 0
     const lineOpacity = visible ? 1 : 0

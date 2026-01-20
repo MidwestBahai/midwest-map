@@ -31,10 +31,7 @@ interface CountyBoundariesProps {
  * Check if a county matches the current scope filter.
  * Counties have clusterState and clusterGroup properties from the data pipeline.
  */
-function matchesCountyScope(
-    feature: GeoJSON.Feature,
-    scope: string,
-): boolean {
+function matchesCountyScope(feature: GeoJSON.Feature, scope: string): boolean {
     if (scope === "region") return true
 
     const props = feature.properties
@@ -62,9 +59,9 @@ export const CountyBoundaries = ({
 
         return {
             ...countiesData,
-            features: (countiesData as GeoJSON.FeatureCollection).features.filter(
-                (feature) => matchesCountyScope(feature, scope),
-            ),
+            features: (
+                countiesData as GeoJSON.FeatureCollection
+            ).features.filter((feature) => matchesCountyScope(feature, scope)),
         } as GeoJSON.FeatureCollection
     }, [scope])
 

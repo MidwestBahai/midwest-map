@@ -9,9 +9,9 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { BREAKPOINTS, TIMING } from "@/lib/constants"
 import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
 import type { Milestone } from "@/data/milestoneLabels"
+import { BREAKPOINTS, TIMING } from "@/lib/constants"
 import { useLocalState } from "@/lib/useLocalState"
 import { milestoneColor } from "@/map/clusterColor"
 import { useWindowSize } from "../lib/useWindowSize"
@@ -41,7 +41,8 @@ export const FloatingMapKey = () => {
         setIsOpen(!isOpen)
         // wait for the animation to finish and then clear highlights
         // (a mouseenter can fire, then the element disappears, and the mouseleave never fires)
-        if (isOpen) setTimeout(() => clearCategoryHighlight(), TIMING.highlightClearMs)
+        if (isOpen)
+            setTimeout(() => clearCategoryHighlight(), TIMING.highlightClearMs)
     }, [clearCategoryHighlight, isOpen, setIsOpen])
     const isReallyOpen = isOpen && initialOpen
 

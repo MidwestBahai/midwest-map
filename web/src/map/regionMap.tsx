@@ -190,7 +190,9 @@ export const RegionMap = ({
             >
                 <MapProvider mapRef={mapRefState}>
                     {/* County boundaries - only visible in print mode */}
-                    {printMode && <CountyBoundaries visible={printMode} scope={scope} />}
+                    {printMode && (
+                        <CountyBoundaries visible={printMode} scope={scope} />
+                    )}
 
                     {/* Render in two passes to ensure symbols are always above fills */}
                     {/* Pass 1: Fill and line layers */}
@@ -198,9 +200,7 @@ export const RegionMap = ({
                         <ClusterLayers
                             key={`fill-${feature.properties?.Cluster}`}
                             feature={feature}
-                            hoverFeature={
-                                printMode ? undefined : hoverFeature
-                            }
+                            hoverFeature={printMode ? undefined : hoverFeature}
                             largestRect={pickLargestRect(feature)}
                             currentDate={selectedDate}
                             boundariesOnly={!showClusters}

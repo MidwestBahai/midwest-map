@@ -62,8 +62,9 @@ export function PrintToolbar({
     }
     const [selectedPaper, setSelectedPaper] = useState("poster-24x36")
     const [selectedScope, setSelectedScope] = useState("region")
-    const [labelOptions, setLabelOptions] =
-        useState<LabelOptions>(DEFAULT_LABEL_OPTIONS)
+    const [labelOptions, setLabelOptions] = useState<LabelOptions>(
+        DEFAULT_LABEL_OPTIONS,
+    )
 
     // Notify parent of initial state and changes
     useEffect(() => {
@@ -241,7 +242,10 @@ export function PrintToolbar({
                             Labels:
                         </span>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Cluster code – OH-03, MI-19, etc">
+                        <label
+                            className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer"
+                            title="Cluster code – OH-03, MI-19, etc"
+                        >
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showCode}
@@ -251,7 +255,10 @@ export function PrintToolbar({
                             Code
                         </label>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Milestone – E, M1, M2, M3">
+                        <label
+                            className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer"
+                            title="Milestone – E, M1, M2, M3"
+                        >
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showMilestone}
@@ -263,7 +270,10 @@ export function PrintToolbar({
                             Milestone
                         </label>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Cluster Name">
+                        <label
+                            className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer"
+                            title="Cluster Name"
+                        >
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showName}
@@ -273,7 +283,10 @@ export function PrintToolbar({
                             Name
                         </label>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Advancement Date">
+                        <label
+                            className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer"
+                            title="Advancement Date"
+                        >
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showDate}

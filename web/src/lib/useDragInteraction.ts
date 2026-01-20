@@ -50,7 +50,9 @@ export function useDragInteraction({
                     ? e.touches[0].clientX
                     : e.touches[0].clientY
             }
-            return orientationRef.current === "horizontal" ? e.clientX : e.clientY
+            return orientationRef.current === "horizontal"
+                ? e.clientX
+                : e.clientY
         },
         [],
     )

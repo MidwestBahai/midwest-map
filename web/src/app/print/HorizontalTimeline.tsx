@@ -3,12 +3,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getMonthAbbreviation } from "@/lib/monthAbbreviations"
 import {
+    calculateDateProgress,
+    dateFromProgress,
     MILESTONE_MARKER_RADIUS,
     TIMELINE_COLORS,
     TIMELINE_STROKES,
     TIMELINE_TYPOGRAPHY,
-    calculateDateProgress,
-    dateFromProgress,
 } from "@/lib/timelineConfig"
 import { useDragInteraction } from "@/lib/useDragInteraction"
 import type { MilestoneEvent } from "@/lib/useMilestoneEvents"
