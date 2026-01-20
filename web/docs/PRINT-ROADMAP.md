@@ -383,9 +383,9 @@ On first visit or via help button, show tips:
 - [ ] Compute smart defaults for first-time views
 
 **Print CSS:**
-- [ ] Add `@media print` rules to `globals.css`
-- [ ] Add `print-color-adjust: exact` globally
-- [ ] Hide toolbar and overlays in print
+- [x] Add `@media print` rules to `globals.css`
+- [x] Add `print-color-adjust: exact` globally
+- [x] Hide toolbar and overlays in print
 
 **Page Size & Layout:**
 - [x] Create `PaperSizeSelector` component

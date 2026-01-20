@@ -95,27 +95,58 @@ body {
 
 /* Print styles */
 @media print {
-    /* Global color preservation */
+    /* Global color preservation - ensures background colors print */
     * {
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
 
-    /* Hide print toolbar and other screen-only UI */
-    .print-hidden {
+    /* Hide screen-only UI elements
+     * Use .print-hidden class or data-print-hidden attribute */
+    .print-hidden,
+    [data-print-hidden] {
         display: none !important;
     }
 
-    /* Remove shadows */
+    /* Remove all decorative shadows in print */
     .shadow,
     .shadow-sm,
     .shadow-md,
-    .shadow-lg {
+    .shadow-lg,
+    .shadow-xl,
+    .shadow-2xl {
         box-shadow: none !important;
     }
 
     /* Ensure white background */
     body {
         background: white !important;
+    }
+
+    /* Page setup - no margins for full-bleed output */
+    @page {
+        margin: 0;
+    }
+
+    /* Remove default margin on html/body for full-bleed */
+    html,
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Ensure map container fills the page */
+    .mapboxgl-map,
+    .maplibregl-map {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* Hide Mapbox attribution/logo in print (user can re-enable if needed) */
+    .mapboxgl-ctrl-attrib,
+    .mapboxgl-ctrl-logo,
+    .maplibregl-ctrl-attrib,
+    .maplibregl-ctrl-logo {
+        display: none !important;
     }
 }
