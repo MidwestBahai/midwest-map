@@ -8,8 +8,8 @@ export const useLocalState = <T extends JsonValue>(
     initialValue: T,
 ): [T, Dispatch<React.SetStateAction<T>>] => {
     const [state, setState] = useState<T>(() => {
-        if (typeof localStorage === "undefined") return initialValue // on server
-        const stored = localStorage?.getItem(key)
+        if (typeof window === "undefined") return initialValue // on server
+        const stored = localStorage.getItem(key)
         if (stored) return JSON.parse(stored)
         return initialValue
     })
@@ -17,8 +17,7 @@ export const useLocalState = <T extends JsonValue>(
     const json = JSON.stringify(state)
 
     useEffect(() => {
-        if (typeof localStorage !== "undefined")
-            localStorage?.setItem(key, json)
+        localStorage.setItem(key, json)
     }, [key, json])
 
     return [state, setState]
