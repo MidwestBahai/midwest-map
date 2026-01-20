@@ -148,6 +148,26 @@ function saveViewState(viewState: ViewState) {
 }
 
 /**
+ * Get subtitle for scope selection (returns null for full region)
+ */
+function getSubtitleForScope(scope: string): string | null {
+    if (scope === "region") return null
+
+    const scopeLabels: Record<string, string> = {
+        "state-IN": "Indiana",
+        "state-MI": "Michigan",
+        "state-OH": "Ohio",
+        "group-CLV": "Cleveland Grouping",
+        "group-CBUS": "Columbus Grouping",
+        "group-GR": "Grand Rapids Grouping",
+        "group-INDY": "Indianapolis Grouping",
+        "group-AA": "Washtenaw Grouping",
+    }
+
+    return scopeLabels[scope] ?? null
+}
+
+/**
  * Filter clusters based on scope selection.
  * Returns true if the feature should be visible.
  */
@@ -377,6 +397,11 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                 <h1 className="text-xl font-bold text-center">
                                     Midwest Region Cluster Advancement
                                 </h1>
+                                {getSubtitleForScope(selectedScope) && (
+                                    <p className="text-base italic text-gray-700 text-center">
+                                        {getSubtitleForScope(selectedScope)}
+                                    </p>
+                                )}
                                 <p className="text-sm text-gray-600 text-center">
                                     As of{" "}
                                     {currentDate.toLocaleDateString("en-US", {
