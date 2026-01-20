@@ -37,6 +37,7 @@ export const FloatingMapKey = () => {
         useCategoryHighlight()
     const [initialOpen, setInitialOpen] = useState(false)
     const [isOpen, setIsOpen] = useLocalState<boolean>("map-key-open", true)
+    const [isFullscreen, setIsFullscreen] = useState(false)
     const toggleOpen = useCallback(() => {
         setIsOpen(!isOpen)
         // wait for the animation to finish and then clear highlights
@@ -52,6 +53,8 @@ export const FloatingMapKey = () => {
         // start out closed on small screens (phones)
         if (windowSize.width < BREAKPOINTS.sm) setIsOpen(false)
         setInitialOpen(true)
+        // Check if we're in fullscreen (not embedded in an iframe)
+        setIsFullscreen(window.self === window.top)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setIsOpen, windowSize.width])
 
@@ -60,11 +63,29 @@ export const FloatingMapKey = () => {
             <Collapsible
                 open={isReallyOpen}
                 onOpenChange={setIsOpen}
-                className={`${isReallyOpen ? "w-72" : "w-36"} bg-white rounded-lg shadow-lg overflow-hidden transition-width duration-300`}
+                className={`${isReallyOpen ? "w-72" : "w-36"} bg-white rounded-lg shadow-lg overflow-hidden transition-[width] duration-300 ease-out`}
             >
                 <CollapsibleContent className="CollapsibleContent">
+                    {isFullscreen && (
+                        <div className="mx-4 mt-4 mb-2 border-b border-gray-200 pb-3">
+                            <h1 className="text-lg font-semibold">
+                                <a className="text-blue-600 hover:underline" href="https://midwestbahai.org">Midwest Region</a> Bahá&apos;í Map
+                            </h1>
+                            <p className="text-sm text-gray-600">
+                                Cluster Milestones ·{" "}
+                                <a
+                                    href="https://github.com/MidwestBahai/midwest-map"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    source code
+                                </a>
+                            </p>
+                        </div>
+                    )}
                     <div
-                        className="m-4 grid"
+                        className={`${isFullscreen ? "mx-4 mb-4" : "m-4"} grid`}
                         style={{
                             gridTemplateColumns: "repeat(7, min-content)",
                         }}
