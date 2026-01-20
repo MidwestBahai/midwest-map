@@ -46,6 +46,10 @@ load(
     const largestClusterRects: Record<string, LatLongRect> = {}
     const features: Feature[] = typedUnvalidatedResult.data.map((feature) => {
         const parsedFeature = GeoJSONFeatureSchema.parse(feature) as Feature
+        // Rename "Ann Arbor" group to "Washtenaw" (shapefile has old name)
+        if (parsedFeature.properties?.GroupName === "Ann Arbor") {
+            parsedFeature.properties.GroupName = "Washtenaw"
+        }
         const clusterName = parsedFeature.properties?.Cluster
         if (typeof clusterName !== "string")
             console.error(`Cluster name is not a string: ${clusterName}`)
