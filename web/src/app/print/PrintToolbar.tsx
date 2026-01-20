@@ -241,17 +241,17 @@ export function PrintToolbar({
                             Labels:
                         </span>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
+                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Cluster code – OH-03, MI-19, etc">
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showCode}
                                 onChange={() => handleLabelToggle("showCode")}
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
-                            Codes
+                            Code
                         </label>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
+                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Milestone – E, M1, M2, M3">
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showMilestone}
@@ -260,27 +260,27 @@ export function PrintToolbar({
                                 }
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
-                            Milestones
+                            Milestone
                         </label>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
+                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Cluster Name">
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showName}
                                 onChange={() => handleLabelToggle("showName")}
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
-                            Names
+                            Name
                         </label>
 
-                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
+                        <label className="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer" title="Advancement Date">
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showDate}
                                 onChange={() => handleLabelToggle("showDate")}
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
-                            Dates
+                            Date
                         </label>
                     </div>
 
