@@ -150,8 +150,8 @@ export function PrintToolbar({
                             </select>
                         </div>
 
-                        {/* Paper dropdown */}
-                        <div className="flex items-center gap-2">
+                        {/* Paper dropdown - hidden until aspect ratio matching is implemented */}
+                        <div className="hidden items-center gap-2">
                             <label
                                 htmlFor="paper-select"
                                 className="text-sm font-medium text-gray-700 whitespace-nowrap"
