@@ -14,9 +14,11 @@ Interactive map showing Bahá'í clusters (geographic areas for systematic growt
 
 ## Data Pipeline
 
-### Two-Stage Process
-1. **ImportShapefiles.ts**: Converts shapefiles to GeoJSON (`clusters-static.geo.json`)
-2. **MergeAdvancementData.ts**: Merges timeline data (`clusters-timeline.geo.json`)
+### Multi-Stage Process
+1. **ImportShapefiles.ts**: Converts cluster shapefiles to GeoJSON (`clusters-static.geo.json`)
+2. **ImportCounties.ts**: Converts county shapefiles to GeoJSON (`counties.geo.json`)
+3. **MergeAdvancementData.ts**: Merges timeline data (`clusters-timeline.geo.json`)
+4. **MapCountiesToClusters.ts**: Enriches counties with cluster associations (adds `clusterCode`, `clusterState`, `clusterGroup` to each county)
 
 ### Key Data Structure
 ```typescript
@@ -63,12 +65,39 @@ pnpm prepare-data # Rebuild all data files
 - Some clusters have no advancement data (OK, haven't advanced)
 - Timeline spans 2011-2025
 - Population data is static per cluster
+- Each county belongs to exactly one cluster; clusters are composed of whole counties
+- Counties have `clusterState` (IN/MI/OH) and `clusterGroup` (INDY/CLV/etc.) for filtering
 
 ## Current Status
 - Timeline data structure is implemented
 - Map displays current milestone status with colored polygons and labels
 - Timeline slider (FloatingTimelineButton) allows viewing historical milestone states
 - Layer toggle allows switching to reference map view with cluster boundaries only
+- Print mode (`/print`) for generating printable maps
+
+## Print Mode
+
+Access via `/print` route. Features:
+
+### Print Controls (`web/src/app/print/PrintToolbar.tsx`)
+- **Label options**: Toggle which elements appear in cluster labels (codes, milestones, names, dates)
+- **Scope/Area filter**: Filter visible clusters and county boundaries by state (IN, MI, OH) or cluster group (INDY, CLV, etc.)
+- **Paper size**: Select target paper dimensions (affects @page CSS)
+- **Timeline**: Optional historical date selection
+
+### Key Components
+- `web/src/app/print/PrintClient.tsx` - Main print page with state management
+- `web/src/app/print/PrintToolbar.tsx` - Bottom toolbar with controls
+- `web/src/app/print/DraggableLegend.tsx` - Draggable per-group legends
+- `web/src/app/print/DraggableBox.tsx` - Draggable title box
+- `web/src/app/print/types.ts` - Shared types (LabelOptions)
+- `web/src/map/countyBoundaries.tsx` - County boundary lines (filtered by scope)
+
+### Architecture Notes
+- Layers use Mapbox `visibility` and opacity transitions (not React mount/unmount) to preserve layer ordering
+- All clusters render always; scope filtering controls visibility via opacity
+- Two-pass rendering: fills first, then symbols, ensures labels stay above fills
+- Draggable element positions persist to localStorage
 
 ## Deployment
 

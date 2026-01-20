@@ -1,11 +1,11 @@
 "use client"
 
-import { JsonValue } from "type-fest"
-import { Dispatch, useEffect, useState } from "react"
+import { type Dispatch, useEffect, useState } from "react"
+import type { JsonValue } from "type-fest"
 
 export const useLocalState = <T extends JsonValue>(
     key: string,
-    initialValue: T
+    initialValue: T,
 ): [T, Dispatch<React.SetStateAction<T>>] => {
     const [state, setState] = useState<T>(() => {
         if (typeof localStorage === "undefined") return initialValue // on server

@@ -1,15 +1,15 @@
-import { useMap } from "@/map/mapContext"
 import { useEffect } from "react"
+import { useMap } from "@/map/mapContext"
 
-const useZoomListeners = () => {
-    const {map} = useMap()
+const _useZoomListeners = () => {
+    const { map } = useMap()
     useEffect(() => {
         const removers: Array<() => void> = []
         if (map) {
             const createListener = (event: string) => {
-                const listener = (e: string) => {
+                const listener = (_e: string) => {
                     const zoom = map.getZoom()
-                    console.log({event, zoom})
+                    console.log({ event, zoom })
                 }
                 map.on(event, listener)
                 removers.push(() => map.off(event, listener))
@@ -20,8 +20,11 @@ const useZoomListeners = () => {
             // createListener("zoomend")
             createListener("touchstart")
             createListener("touchend")
-            return () =>
-                removers.forEach(remove => remove())
+            return () => {
+                for (const remove of removers) {
+                    remove()
+                }
+            }
         }
     }, [map])
 }

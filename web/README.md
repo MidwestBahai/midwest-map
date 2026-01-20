@@ -2,6 +2,22 @@
 
 Next.js 15 application for visualizing Bahá'í [clusters](https://bahaipedia.org/Cluster) (geographic areas for systematic growth) and their milestone advancement in the Midwest Region.
 
+## Features
+
+**Interactive Map**
+- Colored cluster polygons showing current milestone status
+- Timeline slider to view historical milestone advancement
+- Toggle between cluster overlay and reference map views
+- Hover/click for cluster details
+
+**Print Export**
+- Dedicated print view (`/print`) optimized for high-quality output
+- Draggable per-region legends (positions persist across sessions)
+- Historical snapshots via date parameter (`/print?date=2023-01-01`)
+- PNG export service for poster-size prints (Letter, Tabloid, 24×36" poster)
+
+See `docs/PRINT-ROADMAP.md` for planned enhancements.
+
 ## Development
 
 ```bash

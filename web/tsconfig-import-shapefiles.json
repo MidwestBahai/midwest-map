@@ -4,6 +4,9 @@
     "module": "commonjs",
     "target": "esnext",
     "rootDir": ".",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "paths": {
       "@/*": ["./*"]
     },
@@ -12,5 +15,5 @@
     "src/lib/**/*.ts",
     "src/script/**/*.ts",
   ],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "**/*.test.tsx", "**/*.spec.tsx"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "**/*.test.tsx", "**/*.spec.tsx", "src/lib/use*.ts"],
 }

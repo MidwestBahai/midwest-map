@@ -1,28 +1,37 @@
-import { Feature, GeoJsonProperties } from "geojson"
-import { Layer, Source } from "react-map-gl/mapbox"
-import { clusterLabelColor } from "@/map/clusterColor"
-import { LatLongRect } from "@/lib/latLongRect"
-import { useMap } from "@/map/mapContext"
+import type { Feature } from "geojson"
 import { useEffect, useState } from "react"
+import { Layer, Source } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
-import { Milestone, milestoneLabels } from "@/data/milestoneLabels"
+import type { LabelOptions } from "@/app/print/types"
+import { type Milestone, milestoneLabels } from "@/data/milestoneLabels"
+import type { LatLongRect } from "@/lib/latLongRect"
+import { MONTH_ABBREVIATIONS } from "@/lib/monthAbbreviations"
+import { clusterLabelColor } from "@/map/clusterColor"
+import { useMap } from "@/map/mapContext"
 
 interface ClusterTextProps {
-    feature: Feature,
-    largestRect: LatLongRect,
-    symbolLayerId: string,
-    highlighted: boolean,
-    effectiveMilestone: string,
-    advancementDate: Date | null,
+    feature: Feature
+    largestRect: LatLongRect
+    symbolLayerId: string
+    highlighted: boolean
+    effectiveMilestone: string
+    advancementDate: Date | null
+    printMode?: boolean
+    labelOptions?: LabelOptions
+    visible?: boolean
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+// Use shared month abbreviations
+const MONTHS = MONTH_ABBREVIATIONS
 
 /**
  * Format advancement date responsively based on available width.
  * Returns null if no date or not enough space.
  */
-const formatAdvancementDate = (date: Date | null, widthAvailable: number): string | null => {
+const formatAdvancementDate = (
+    date: Date | null,
+    widthAvailable: number,
+): string | null => {
     if (!date) return null
 
     const month = MONTHS[date.getMonth()]
@@ -43,21 +52,23 @@ const formatAdvancementDate = (date: Date | null, widthAvailable: number): strin
     return null
 }
 
-const truncate = ( str: any, maxLength: number, ellipsis: boolean = false ) => {
+const truncate = (
+    str: unknown,
+    maxLength: number,
+    ellipsis: boolean = false,
+) => {
     const s = `${str}`
-    return s.length <= maxLength ? s :
-        (ellipsis ?
-            s.slice(0, maxLength - 1) + "…" :
-            s.slice(0, maxLength)
-        )
+    return s.length <= maxLength
+        ? s
+        : ellipsis
+          ? `${s.slice(0, maxLength - 1)}…`
+          : s.slice(0, maxLength)
 }
 
 const cleanupClusterName = (original: string) => {
     let result = original
-    if (result.endsWith(" Co"))
-        result += "unty"
-    if (result.indexOf(" Co ") > 0)
-        result = result.replace(" Co ", " County ")
+    if (result.endsWith(" Co")) result += "unty"
+    if (result.indexOf(" Co ") > 0) result = result.replace(" Co ", " County ")
     return result
 }
 
@@ -66,19 +77,63 @@ const milestoneDescription = (milestoneString: string) => {
     if (milestoneLabelKey in milestoneLabels) {
         const milestone = milestoneLabelKey as Milestone
         return milestoneLabels[milestone]
-    }
-    else {
+    } else {
         return `Unknown milestone ${milestoneString}`
     }
 }
 
-export const ClusterText = (
-    {feature, largestRect, symbolLayerId, highlighted, effectiveMilestone, advancementDate}: ClusterTextProps
-) => {
+export const ClusterText = ({
+    feature,
+    largestRect,
+    symbolLayerId,
+    highlighted,
+    effectiveMilestone,
+    advancementDate,
+    printMode = false,
+    labelOptions,
+    visible = true,
+}: ClusterTextProps) => {
     const { showMapGeometry } = useDebug()
-    const {degreesToRem} = useMap()
+    const { degreesToRem } = useMap()
     const [text, setText] = useState<string>("")
     useEffect(() => {
+        // Print mode: show configurable label elements
+        if (printMode) {
+            const lines: string[] = []
+
+            // Cluster code (e.g., "IN-01")
+            if (labelOptions?.showCode) {
+                const clusterCode = feature.properties?.Cluster ?? ""
+                if (clusterCode) lines.push(clusterCode)
+            }
+
+            // Milestone display (e.g., "M3")
+            if (labelOptions?.showMilestone) {
+                const milestoneDisplay = effectiveMilestone
+                    .toUpperCase()
+                    .replace(/R$/, "") // Strip reservoir suffix
+                lines.push(milestoneDisplay)
+            }
+
+            // Cluster name (e.g., "Franklin County")
+            if (labelOptions?.showName) {
+                const clusterName = cleanupClusterName(
+                    feature.properties?.["Cluster Na"] ?? "",
+                )
+                if (clusterName) lines.push(clusterName)
+            }
+
+            // Advancement date (e.g., "Jan 2017")
+            if (labelOptions?.showDate && advancementDate) {
+                const month = MONTHS[advancementDate.getMonth()]
+                const year = advancementDate.getFullYear()
+                lines.push(`${month} ${year}`)
+            }
+
+            setText(lines.join("\n"))
+            return
+        }
+
         const remRect = degreesToRem(largestRect)
         const remDescription = `${truncate(remRect.width, 4)} x ${truncate(remRect.height, 4)}`
         // allow line height of about 1.2 REM
@@ -89,7 +144,10 @@ export const ClusterText = (
         // first line: Cluster code, for example "OH-03"
         // Top separator candidates so far: slash "/", interpunct "·", en-dash "–"
         const milestoneCode = effectiveMilestone.toUpperCase()
-        const lines: Array<string> = remRect.width > 5 ? [`{Cluster} · ${milestoneCode}`] : ["{Cluster}", milestoneCode]
+        const lines: Array<string> =
+            remRect.width > 5
+                ? [`{Cluster} · ${milestoneCode}`]
+                : ["{Cluster}", milestoneCode]
         --linesRemaining
 
         // if there's room, we can leave space for 2 lines
@@ -97,22 +155,21 @@ export const ClusterText = (
             if (linesRemaining > 2 && line.length > widthToDisplay) {
                 linesRemaining -= 2
                 lines.push(truncate(line, widthToDisplay * 1.8, true))
-            }
-            else if (linesRemaining > 1) {
+            } else if (linesRemaining > 1) {
                 lines.push(truncate(line, widthToDisplay, true))
                 --linesRemaining
             }
         }
 
         // second line: Cluster name, for example "Franklin County"
-        const clusterName = cleanupClusterName(feature.properties?.["Cluster Na"])
-        if (clusterName)
-            addLongLine(clusterName)
+        const clusterName = cleanupClusterName(
+            feature.properties?.["Cluster Na"],
+        )
+        if (clusterName) addLongLine(clusterName)
 
         // third line: milestone, for example "M3" or "3rd Milestone"
         const milestone = milestoneDescription(effectiveMilestone)
-        if (milestone && remRect.width > 8)
-            addLongLine(milestone)
+        if (milestone && remRect.width > 8) addLongLine(milestone)
 
         // fourth line: advancement date (if applicable)
         const dateStr = formatAdvancementDate(advancementDate, widthToDisplay)
@@ -127,25 +184,38 @@ export const ClusterText = (
         }
 
         setText(lines.filter(Boolean).join("\n"))
-    }, [largestRect, degreesToRem, feature.properties, showMapGeometry, effectiveMilestone, advancementDate])
-    return feature.properties && (
-        <Source
-            type="geojson"
-            data={feature}
-        >
-            <Layer
-                type="symbol"
-                layout={{
-                    "text-field": text,
-                    "text-size": 13,
-                    "text-anchor": "center",
-                    // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],
-                }}
-                paint={{
-                    "text-color": clusterLabelColor(feature.properties, highlighted, effectiveMilestone),
-                }}
-                id={symbolLayerId}
-            />
-        </Source>
+    }, [
+        largestRect,
+        degreesToRem,
+        feature.properties,
+        showMapGeometry,
+        effectiveMilestone,
+        advancementDate,
+        printMode,
+        labelOptions,
+    ])
+    return (
+        feature.properties && (
+            <Source type="geojson" data={feature}>
+                <Layer
+                    type="symbol"
+                    layout={{
+                        "text-field": text,
+                        "text-size": 13,
+                        "text-anchor": "center",
+                        visibility: visible ? "visible" : "none",
+                        // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],
+                    }}
+                    paint={{
+                        "text-color": clusterLabelColor(
+                            feature.properties,
+                            highlighted,
+                            effectiveMilestone,
+                        ),
+                    }}
+                    id={symbolLayerId}
+                />
+            </Source>
+        )
     )
 }

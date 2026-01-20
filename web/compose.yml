@@ -1,0 +1,39 @@
+services:
+  # Next.js web application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        # Pass Mapbox token from host environment or .env file
+        MAPBOX_TOKEN: ${MAPBOX_TOKEN}
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Puppeteer export service
+  export-service:
+    restart: unless-stopped
+    build:
+      context: ./export-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - WEB_URL=http://web:3000
+      - NODE_ENV=production
+    depends_on:
+      web:
+        condition: service_healthy
+    # Puppeteer needs some extra capabilities
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp=unconfined

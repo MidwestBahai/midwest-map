@@ -24,7 +24,15 @@ export const DebugProvider = ({
     children: React.ReactNode
 }) => {
     return (
-        <DebugContext.Provider value={{ debug, initialized: true, showMapGeometry: false, showCollisionBoxes: false, showGeoJsonDetails: false }}>
+        <DebugContext.Provider
+            value={{
+                debug,
+                initialized: true,
+                showMapGeometry: false,
+                showCollisionBoxes: false,
+                showGeoJsonDetails: false,
+            }}
+        >
             {children}
         </DebugContext.Provider>
     )
@@ -33,7 +41,9 @@ export const DebugProvider = ({
 export const useDebug = () => {
     const context = React.useContext(DebugContext)
     if (!context.initialized) {
-        throw new Error("DebugContext not initialized; wrap with <DebugProvider>")
+        throw new Error(
+            "DebugContext not initialized; wrap with <DebugProvider>",
+        )
     }
     return context
 }

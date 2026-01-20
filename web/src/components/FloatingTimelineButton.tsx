@@ -1,7 +1,16 @@
 "use client"
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { isMobileWidth } from "@/lib/constants"
+import { getMonthAbbreviation } from "@/lib/monthAbbreviations"
+import {
+    calculateDateProgress,
+    dateFromProgress,
+    TIMELINE_COLORS,
+    TIMELINE_STROKES,
+} from "@/lib/timelineConfig"
 import { useWindowSize } from "@/lib/useWindowSize"
+import { BUTTON_CENTER_FROM_BOTTOM } from "./FloatingButton"
 
 interface FloatingTimelineButtonProps {
     startDate: Date
@@ -9,34 +18,29 @@ interface FloatingTimelineButtonProps {
     currentDate: Date
     onDateChange: (date: Date) => void
     milestoneEvents?: { date: Date; label: string; color?: string }[]
+    initialOpen?: boolean
 }
 
 // Constants for maintainability
 const ANIMATION_DURATION_MS = 500
 const SVG_WIDTH = 60
 const CENTER_X = 30
-const BOTTOM_PADDING = 25    // Less padding at bottom to align with clock button
-
-// Button positioning (must match collapsed button's Tailwind classes)
-const BUTTON_BOTTOM = 24     // bottom-6 = 1.5rem = 24px
-const BUTTON_SIZE = 48       // p-3 (12px) * 2 + 24px icon = 48px
-const BUTTON_CENTER_FROM_BOTTOM = BUTTON_BOTTOM + BUTTON_SIZE / 2  // 48px
+const BOTTOM_PADDING = 25 // Less padding at bottom to align with clock button
 
 // Responsive circle sizes (mobile / desktop)
-const MOBILE_BREAKPOINT = 768
 const CIRCLE_SIZES = {
     mobile: {
-        yearCircle: 22,       // 44px diameter - meets touch target
-        dragCircle: 26,       // 52px diameter - primary interaction
+        yearCircle: 22, // 44px diameter - meets touch target
+        dragCircle: 26, // 52px diameter - primary interaction
         dragCircleActive: 28, // 56px diameter - visual feedback
         milestoneMarker: 4,
     },
     desktop: {
-        yearCircle: 18,       // 36px diameter - secondary element
-        dragCircle: 22,       // 44px diameter - meets minimum
+        yearCircle: 18, // 36px diameter - secondary element
+        dragCircle: 22, // 44px diameter - meets minimum
         dragCircleActive: 24, // 48px diameter
         milestoneMarker: 3,
-    }
+    },
 }
 
 // Responsive typography
@@ -50,22 +54,21 @@ const TYPOGRAPHY = {
         yearFontSize: 12,
         dragYearFontSize: 12,
         dragMonthFontSize: 10,
-    }
+    },
 }
 const YEAR_FONT_WEIGHT = "600"
 
-// Colors
-const TRACK_COLOR = "#e5e7eb"
-const YEAR_CIRCLE_STROKE = "#d1d5db"
-const YEAR_CIRCLE_STROKE_HOVER = "#9ca3af"
-const YEAR_TEXT_COLOR = "#374151"
-const DRAG_CIRCLE_COLOR = "#3b82f6"
-const MILESTONE_COLOR_DEFAULT = "#fb923c"
+// Re-export shared colors and strokes for easy access
+const TRACK_COLOR = TIMELINE_COLORS.track
+const YEAR_CIRCLE_STROKE = TIMELINE_COLORS.yearCircleStroke
+const YEAR_CIRCLE_STROKE_HOVER = TIMELINE_COLORS.yearCircleStrokeHover
+const YEAR_TEXT_COLOR = TIMELINE_COLORS.yearText
+const DRAG_CIRCLE_COLOR = TIMELINE_COLORS.dragCircle
+const MILESTONE_COLOR_DEFAULT = TIMELINE_COLORS.milestoneDefault
 
-// Strokes
-const LINE_STROKE_WIDTH = 2
-const CIRCLE_STROKE_WIDTH = 2
-const X_STROKE_WIDTH = 1.5
+const LINE_STROKE_WIDTH = TIMELINE_STROKES.line
+const CIRCLE_STROKE_WIDTH = TIMELINE_STROKES.circle
+const X_STROKE_WIDTH = TIMELINE_STROKES.closeX
 
 // Attention pulse timing (for undiscovered timeline)
 const PULSE_INITIAL_DELAY_MS = 20000
@@ -77,13 +80,14 @@ export const FloatingTimelineButton = ({
     endDate,
     currentDate,
     onDateChange,
-    milestoneEvents = []
+    milestoneEvents = [],
+    initialOpen = false,
 }: FloatingTimelineButtonProps) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [isAnimatingOpen, setIsAnimatingOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(initialOpen)
+    const [isAnimatingOpen, setIsAnimatingOpen] = useState(initialOpen)
     const [isDragging, setIsDragging] = useState(false)
     const [isHoveringClose, setIsHoveringClose] = useState(false)
-    const [hasBeenOpened, setHasBeenOpened] = useState(false)
+    const [hasBeenOpened, setHasBeenOpened] = useState(initialOpen)
     const [showPulse, setShowPulse] = useState(false)
     const svgRef = useRef<SVGSVGElement>(null)
     const animationTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
@@ -91,45 +95,47 @@ export const FloatingTimelineButton = ({
     const windowSize = useWindowSize()
 
     // Responsive sizes based on viewport width
-    const isMobile = windowSize.width > 0 && windowSize.width < MOBILE_BREAKPOINT
+    const isMobile = isMobileWidth(windowSize.width)
     const sizes = isMobile ? CIRCLE_SIZES.mobile : CIRCLE_SIZES.desktop
     const fonts = isMobile ? TYPOGRAPHY.mobile : TYPOGRAPHY.desktop
 
     const startYear = startDate.getFullYear()
     const endYear = endDate.getFullYear()
-    
-    // Calculate current progress
-    const currentProgress = useMemo(() => 
-        Math.max(0, Math.min(1, 
-            (currentDate.getTime() - startDate.getTime()) / (endDate.getTime() - startDate.getTime())
-        )), [currentDate, startDate, endDate]
+
+    // Calculate current progress using shared utility
+    const currentProgress = useMemo(
+        () => calculateDateProgress(currentDate, startDate, endDate),
+        [currentDate, startDate, endDate],
     )
-    
-    // Get month abbreviation
-    const currentMonth = useMemo(() => {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        return months[currentDate.getMonth()]
-    }, [currentDate])
-    
-    const handleInteraction = useCallback((clientY: number) => {
-        if (!svgRef.current) return
 
-        const rect = svgRef.current.getBoundingClientRect()
-        const progress = 1 - ((clientY - rect.top) / rect.height)
+    // Get month abbreviation using shared utility
+    const currentMonth = useMemo(
+        () => getMonthAbbreviation(currentDate),
+        [currentDate],
+    )
 
-        const clampedProgress = Math.max(0, Math.min(1, progress))
-        const totalTime = endDate.getTime() - startDate.getTime()
-        const newTime = startDate.getTime() + (clampedProgress * totalTime)
-        onDateChange(new Date(newTime))
-    }, [startDate, endDate, onDateChange])
-    
-    const handleMouseDown = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-        e.preventDefault()
-        setIsDragging(true)
-        const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
-        handleInteraction(clientY)
-    }, [handleInteraction])
-    
+    const handleInteraction = useCallback(
+        (clientY: number) => {
+            if (!svgRef.current) return
+
+            const rect = svgRef.current.getBoundingClientRect()
+            // Vertical timeline: top = end date (progress 1), bottom = start date (progress 0)
+            const progress = 1 - (clientY - rect.top) / rect.height
+            onDateChange(dateFromProgress(progress, startDate, endDate))
+        },
+        [startDate, endDate, onDateChange],
+    )
+
+    const handleMouseDown = useCallback(
+        (e: React.MouseEvent | React.TouchEvent) => {
+            e.preventDefault()
+            setIsDragging(true)
+            const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
+            handleInteraction(clientY)
+        },
+        [handleInteraction],
+    )
+
     const handleOpen = useCallback(() => {
         setIsOpen(true)
         setHasBeenOpened(true)
@@ -138,7 +144,7 @@ export const FloatingTimelineButton = ({
             setIsAnimatingOpen(true)
         })
     }, [])
-    
+
     const handleClose = useCallback(() => {
         // Reset to present immediately when starting to close
         onDateChange(new Date())
@@ -151,16 +157,16 @@ export const FloatingTimelineButton = ({
             setIsOpen(false)
         }, ANIMATION_DURATION_MS)
     }, [onDateChange])
-    
+
     useEffect(() => {
         if (!isDragging) return
 
         const handleMove = (e: MouseEvent | TouchEvent) => {
             // Prevent map panning on mobile during timeline drag
-            if ('touches' in e) {
+            if ("touches" in e) {
                 e.preventDefault()
             }
-            const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
+            const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
             handleInteraction(clientY)
         }
 
@@ -170,19 +176,19 @@ export const FloatingTimelineButton = ({
 
         // Add both mouse and touch listeners
         // passive: false required to allow preventDefault() on touch events
-        document.addEventListener('mousemove', handleMove)
-        document.addEventListener('touchmove', handleMove, { passive: false })
-        document.addEventListener('mouseup', handleEnd)
-        document.addEventListener('touchend', handleEnd)
+        document.addEventListener("mousemove", handleMove)
+        document.addEventListener("touchmove", handleMove, { passive: false })
+        document.addEventListener("mouseup", handleEnd)
+        document.addEventListener("touchend", handleEnd)
 
         return () => {
-            document.removeEventListener('mousemove', handleMove)
-            document.removeEventListener('touchmove', handleMove)
-            document.removeEventListener('mouseup', handleEnd)
-            document.removeEventListener('touchend', handleEnd)
+            document.removeEventListener("mousemove", handleMove)
+            document.removeEventListener("touchmove", handleMove)
+            document.removeEventListener("mouseup", handleEnd)
+            document.removeEventListener("touchend", handleEnd)
         }
     }, [isDragging, handleInteraction])
-    
+
     // Cleanup timeout on unmount
     useEffect(() => {
         return () => {
@@ -211,7 +217,10 @@ export const FloatingTimelineButton = ({
         pulseIntervalRef.current = setTimeout(() => {
             triggerPulse()
             // Then set up recurring interval
-            pulseIntervalRef.current = setInterval(triggerPulse, PULSE_INTERVAL_MS)
+            pulseIntervalRef.current = setInterval(
+                triggerPulse,
+                PULSE_INTERVAL_MS,
+            )
         }, PULSE_INITIAL_DELAY_MS)
 
         return () => {
@@ -223,19 +232,27 @@ export const FloatingTimelineButton = ({
     }, [hasBeenOpened])
 
     // Timeline dimensions - memoized to avoid recalculation
-    const { timelineHeight, lineLength, currentPos, bottomOffset, bottomY } = useMemo(() => {
-        // Align bottom circle with collapsed button center
-        const offset = BUTTON_CENTER_FROM_BOTTOM - BOTTOM_PADDING
-        // Calculate height for symmetry: both circles at BUTTON_CENTER_FROM_BOTTOM from their edges
-        // Top circle (at CENTER_X in SVG) should be 48px from viewport top
-        // Bottom circle (at height - BOTTOM_PADDING) should be 48px from viewport bottom
-        const viewportHeight = windowSize.height || 700
-        const height = viewportHeight - offset - BUTTON_CENTER_FROM_BOTTOM + CENTER_X
-        const bottom = height - BOTTOM_PADDING
-        const length = height - CENTER_X - BOTTOM_PADDING
-        const pos = CENTER_X + length * (1 - currentProgress)
-        return { timelineHeight: height, lineLength: length, currentPos: pos, bottomOffset: offset, bottomY: bottom }
-    }, [currentProgress, windowSize.height])
+    const { timelineHeight, lineLength, currentPos, bottomOffset, bottomY } =
+        useMemo(() => {
+            // Align bottom circle with collapsed button center
+            const offset = BUTTON_CENTER_FROM_BOTTOM - BOTTOM_PADDING
+            // Calculate height for symmetry: both circles at BUTTON_CENTER_FROM_BOTTOM from their edges
+            // Top circle (at CENTER_X in SVG) should be 48px from viewport top
+            // Bottom circle (at height - BOTTOM_PADDING) should be 48px from viewport bottom
+            const viewportHeight = windowSize.height || 700
+            const height =
+                viewportHeight - offset - BUTTON_CENTER_FROM_BOTTOM + CENTER_X
+            const bottom = height - BOTTOM_PADDING
+            const length = height - CENTER_X - BOTTOM_PADDING
+            const pos = CENTER_X + length * (1 - currentProgress)
+            return {
+                timelineHeight: height,
+                lineLength: length,
+                currentPos: pos,
+                bottomOffset: offset,
+                bottomY: bottom,
+            }
+        }, [currentProgress, windowSize.height])
 
     return (
         <>
@@ -257,34 +274,37 @@ export const FloatingTimelineButton = ({
             `}</style>
 
             <div
-                className="fixed bottom-6 right-6 z-30"
-                style={{ pointerEvents: isOpen ? 'none' : 'auto' }}
+                className="fixed bottom-6 right-6 z-[60]"
+                style={{ pointerEvents: isOpen ? "none" : "auto" }}
             >
                 {/* Pulse rings */}
                 {showPulse && !isOpen && (
                     <>
                         <div
                             className="absolute inset-0 rounded-full bg-blue-400 timeline-pulse-ring"
-                            style={{ animationDelay: '0s' }}
+                            style={{ animationDelay: "0s" }}
                         />
                         <div
                             className="absolute inset-0 rounded-full bg-blue-400 timeline-pulse-ring"
-                            style={{ animationDelay: '0.3s' }}
+                            style={{ animationDelay: "0.3s" }}
                         />
                     </>
                 )}
 
                 <button
+                    type="button"
                     className="relative bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
                     onClick={handleOpen}
                     aria-label="Show timeline"
+                    title="Show timeline"
                     style={{
-                        opacity: (isOpen && isAnimatingOpen) ? 0 : 1,
-                        pointerEvents: isOpen ? 'none' : 'auto',
-                        transition: 'opacity 0.3s ease-out'
+                        opacity: isOpen && isAnimatingOpen ? 0 : 1,
+                        pointerEvents: isOpen ? "none" : "auto",
+                        transition: "opacity 0.3s ease-out",
                     }}
                 >
                     <svg
+                        aria-hidden="true"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -304,48 +324,85 @@ export const FloatingTimelineButton = ({
             {isOpen && (
                 <>
                     {/* Container for sliding animation */}
-                    <div 
-                        className="fixed z-20"
+                    <div
+                        className="fixed z-[60]"
                         style={{
-                            right: '18px',  // Adjusted to align with clock button center
-                            bottom: `${bottomOffset}px`,  // Center vertically
+                            right: "18px", // Adjusted to align with clock button center
+                            bottom: `${bottomOffset}px`, // Center vertically
                             height: timelineHeight,
                             width: SVG_WIDTH,
-                            overflow: 'hidden'
+                            overflow: "hidden",
                         }}
                     >
                         <svg
                             ref={svgRef}
+                            // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: SVG is made interactive via mouse/touch handlers
+                            role="slider"
+                            aria-label="Timeline date selector"
+                            aria-valuemin={startDate.getFullYear()}
+                            aria-valuemax={endDate.getFullYear()}
+                            aria-valuenow={currentDate.getFullYear()}
+                            aria-valuetext={`${currentMonth} ${currentDate.getFullYear()}`}
+                            tabIndex={0}
                             className="cursor-pointer"
                             width={SVG_WIDTH}
                             height={timelineHeight}
                             style={{
-                                transform: isAnimatingOpen ? 'translateY(0)' : `translateY(${timelineHeight}px)`,
+                                transform: isAnimatingOpen
+                                    ? "translateY(0)"
+                                    : `translateY(${timelineHeight}px)`,
                                 transition: `transform ${ANIMATION_DURATION_MS}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
-                                touchAction: 'none',  // Prevent default touch behaviors (map pan)
+                                touchAction: "none", // Prevent default touch behaviors (map pan)
                             }}
                             onMouseDown={handleMouseDown}
                             onTouchStart={handleMouseDown}
                         >
                             <defs>
-                                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-                                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="1" />
+                                <linearGradient
+                                    id="progressGradient"
+                                    x1="0%"
+                                    y1="0%"
+                                    x2="0%"
+                                    y2="100%"
+                                >
+                                    <stop
+                                        offset="0%"
+                                        stopColor="#3b82f6"
+                                        stopOpacity="0.2"
+                                    />
+                                    <stop
+                                        offset="100%"
+                                        stopColor="#3b82f6"
+                                        stopOpacity="1"
+                                    />
                                 </linearGradient>
-                                
-                                <filter id="dropshadow" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-                                    <feOffset dx="0" dy="1" result="offsetblur"/>
+
+                                <filter
+                                    id="dropshadow"
+                                    x="-50%"
+                                    y="-50%"
+                                    width="200%"
+                                    height="200%"
+                                >
+                                    <feGaussianBlur
+                                        in="SourceAlpha"
+                                        stdDeviation="2"
+                                    />
+                                    <feOffset
+                                        dx="0"
+                                        dy="1"
+                                        result="offsetblur"
+                                    />
                                     <feComponentTransfer>
-                                        <feFuncA type="linear" slope="0.2"/>
+                                        <feFuncA type="linear" slope="0.2" />
                                     </feComponentTransfer>
                                     <feMerge>
-                                        <feMergeNode/>
-                                        <feMergeNode in="SourceGraphic"/>
+                                        <feMergeNode />
+                                        <feMergeNode in="SourceGraphic" />
                                     </feMerge>
                                 </filter>
                             </defs>
-                            
+
                             {/* Background track */}
                             <line
                                 x1={CENTER_X}
@@ -356,7 +413,7 @@ export const FloatingTimelineButton = ({
                                 strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
                             />
-                            
+
                             {/* Progress line */}
                             <line
                                 x1={CENTER_X}
@@ -367,24 +424,31 @@ export const FloatingTimelineButton = ({
                                 strokeWidth={LINE_STROKE_WIDTH}
                                 strokeLinecap="round"
                             />
-                            
+
                             {/* Milestone markers */}
-                            {milestoneEvents.map((event, index) => {
-                                const eventProgress = (event.date.getTime() - startDate.getTime()) / (endDate.getTime() - startDate.getTime())
-                                const eventY = CENTER_X + lineLength * (1 - eventProgress)
-                                
+                            {milestoneEvents.map((event) => {
+                                const eventProgress =
+                                    (event.date.getTime() -
+                                        startDate.getTime()) /
+                                    (endDate.getTime() - startDate.getTime())
+                                const eventY =
+                                    CENTER_X + lineLength * (1 - eventProgress)
+
                                 return (
                                     <circle
-                                        key={index}
+                                        key={`${event.date.getTime()}-${event.label}`}
                                         cx={CENTER_X}
                                         cy={eventY}
                                         r={sizes.milestoneMarker}
-                                        fill={event.color || MILESTONE_COLOR_DEFAULT}
+                                        fill={
+                                            event.color ||
+                                            MILESTONE_COLOR_DEFAULT
+                                        }
                                         opacity="0.7"
                                     />
                                 )
                             })}
-                            
+
                             {/* Top year (end date) */}
                             <g>
                                 <circle
@@ -408,7 +472,7 @@ export const FloatingTimelineButton = ({
                                     {endYear}
                                 </text>
                             </g>
-                            
+
                             {/* Bottom year (start date) - aligned with button, acts as close button */}
                             <g
                                 onClick={handleClose}
@@ -416,7 +480,7 @@ export const FloatingTimelineButton = ({
                                 onTouchStart={(e) => e.stopPropagation()}
                                 onMouseEnter={() => setIsHoveringClose(true)}
                                 onMouseLeave={() => setIsHoveringClose(false)}
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: "pointer" }}
                                 role="button"
                                 aria-label="Close timeline"
                             >
@@ -425,13 +489,17 @@ export const FloatingTimelineButton = ({
                                     cy={bottomY}
                                     r={sizes.yearCircle}
                                     fill="white"
-                                    stroke={isHoveringClose ? YEAR_CIRCLE_STROKE_HOVER : YEAR_CIRCLE_STROKE}
+                                    stroke={
+                                        isHoveringClose
+                                            ? YEAR_CIRCLE_STROKE_HOVER
+                                            : YEAR_CIRCLE_STROKE
+                                    }
                                     strokeWidth={CIRCLE_STROKE_WIDTH}
                                     filter="url(#dropshadow)"
-                                    style={{ transition: 'stroke 0.2s ease' }}
+                                    style={{ transition: "stroke 0.2s ease" }}
                                 />
                                 {isHoveringClose || isMobile ? (
-                                    <g style={{ pointerEvents: 'none' }}>
+                                    <g style={{ pointerEvents: "none" }}>
                                         <line
                                             x1={CENTER_X - 4}
                                             y1={bottomY - 4}
@@ -460,22 +528,26 @@ export const FloatingTimelineButton = ({
                                         fill={YEAR_TEXT_COLOR}
                                         textAnchor="middle"
                                         alignmentBaseline="middle"
-                                        style={{ pointerEvents: 'none' }}
+                                        style={{ pointerEvents: "none" }}
                                     >
                                         {startYear}
                                     </text>
                                 )}
                             </g>
-                            
+
                             {/* Current position indicator */}
                             <g>
                                 <circle
                                     cx={CENTER_X}
                                     cy={currentPos}
-                                    r={isDragging ? sizes.dragCircleActive : sizes.dragCircle}
+                                    r={
+                                        isDragging
+                                            ? sizes.dragCircleActive
+                                            : sizes.dragCircle
+                                    }
                                     fill={DRAG_CIRCLE_COLOR}
                                     filter="url(#dropshadow)"
-                                    style={{ transition: 'r 0.2s ease-out' }}
+                                    style={{ transition: "r 0.2s ease-out" }}
                                 />
                                 <text
                                     x={CENTER_X}

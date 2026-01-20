@@ -5,7 +5,7 @@ export interface TimelineEntry {
 
 export interface MilestoneAtDate {
     milestone: string
-    advancementDate: Date | null  // null if base state (no advancement yet)
+    advancementDate: Date | null // null if base state (no advancement yet)
 }
 
 /**
@@ -19,7 +19,7 @@ export interface MilestoneAtDate {
 export function getMilestoneAtDate(
     currentMilestone: string,
     timeline: TimelineEntry[] | undefined,
-    targetDate: Date
+    targetDate: Date,
 ): MilestoneAtDate {
     // Clusters without timeline data never advanced - use their current milestone
     if (!timeline || timeline.length === 0) {
@@ -28,7 +28,7 @@ export function getMilestoneAtDate(
 
     // Find all advancements that occurred on or before the target date
     const targetTime = targetDate.getTime()
-    const applicableAdvancements = timeline.filter(entry => {
+    const applicableAdvancements = timeline.filter((entry) => {
         const entryDate = new Date(entry.date)
         return entryDate.getTime() <= targetTime
     })
@@ -40,12 +40,12 @@ export function getMilestoneAtDate(
 
     // Return the most recent advancement's milestone
     // Timeline entries are assumed to be in chronological order, but sort to be safe
-    const sorted = [...applicableAdvancements].sort((a, b) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime()
+    const sorted = [...applicableAdvancements].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     )
 
     return {
         milestone: sorted[0].milestone,
-        advancementDate: new Date(sorted[0].date)
+        advancementDate: new Date(sorted[0].date),
     }
 }
