@@ -10063,10 +10063,15 @@
     "GroupName": "Columbus",
     "RIC": "Marylou Miller",
     "population": 307060,
-    "currentMilestone": "N",
-    "timeline": [],
-    "firstAdvancement": null,
-    "latestAdvancement": null
+    "currentMilestone": "M1",
+    "timeline": [
+     {
+      "milestone": "M1",
+      "date": "2026-01-21"
+     }
+    ],
+    "firstAdvancement": "2026-01-21",
+    "latestAdvancement": "2026-01-21"
    }
   },
   {
@@ -35027,6 +35032,6 @@
  },
  "timelineBounds": {
   "minDate": "2011-11-10",
-  "maxDate": "2025-11-26"
+  "maxDate": "2026-01-21"
  }
 }
