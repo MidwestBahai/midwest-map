@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation"
 import { Suspense, useState } from "react"
 import { DebugProvider } from "@/app/DebugContext"
 import { FloatingControls } from "@/components/FloatingControls"
+import type { LayerMode } from "@/map/types"
 import { FullScreenLinkButton } from "@/components/FullScreenLinkButton"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { FloatingMapKey } from "@/map/floatingMapKey"
@@ -26,7 +27,7 @@ function ClientMainInner({
     const initialDate = dateParam ? new Date(dateParam) : new Date()
     const isValidDate = !Number.isNaN(initialDate.getTime())
 
-    const [showClusters, setShowClusters] = useState(true)
+    const [layerMode, setLayerMode] = useState<LayerMode>("clusters")
     const [currentDate, setCurrentDate] = useState<Date>(
         isValidDate ? initialDate : new Date(),
     )
@@ -37,20 +38,20 @@ function ClientMainInner({
                 <CategoryHighlightProvider>
                     <RegionMap
                         mapboxAccessToken={mapboxAccessToken}
-                        showClusters={showClusters}
+                        layerMode={layerMode}
                         currentDate={currentDate}
                         onDateChange={setCurrentDate}
                     />
                     <Suspense>
                         <FullScreenLinkButton />
                     </Suspense>
-                    {showClusters && <FloatingMapKey />}
+                    {layerMode !== "reference" && <FloatingMapKey />}
                     <FloatingControls
                         mode="main"
                         currentDate={currentDate}
                         onDateChange={setCurrentDate}
-                        showClusters={showClusters}
-                        onToggleClusters={() => setShowClusters(!showClusters)}
+                        layerMode={layerMode}
+                        onLayerModeChange={setLayerMode}
                         initialTimelineOpen={Boolean(dateParam && isValidDate)}
                     />
                 </CategoryHighlightProvider>
