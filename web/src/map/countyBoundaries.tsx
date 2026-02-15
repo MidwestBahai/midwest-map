@@ -23,7 +23,6 @@ const COUNTY_LINE_WIDTH: Expression = [
 ]
 
 interface CountyBoundariesProps {
-    visible?: boolean
     scope?: string // "region" | "state-OH" | "group-AA" | etc.
 }
 
@@ -49,7 +48,6 @@ function matchesCountyScope(feature: GeoJSON.Feature, scope: string): boolean {
 }
 
 export const CountyBoundaries = ({
-    visible = true,
     scope = "region",
 }: CountyBoundariesProps) => {
     const filteredData = useMemo(() => {
@@ -64,8 +62,6 @@ export const CountyBoundaries = ({
             ).features.filter((feature) => matchesCountyScope(feature, scope)),
         } as GeoJSON.FeatureCollection
     }, [scope])
-
-    if (!visible) return null
 
     return (
         <Source type="geojson" data={filteredData}>

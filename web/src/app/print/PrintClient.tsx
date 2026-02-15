@@ -12,14 +12,16 @@ import {
     useState,
 } from "react"
 import { DebugProvider } from "@/app/DebugContext"
-import type { ClusterGroup } from "@/data/clusterGroups"
+import { clusterGroups, type ClusterGroup } from "@/data/clusterGroups"
 import validatedData from "@/data/clusters-timeline.geo.json"
 import { TIMING } from "@/lib/constants"
+import { matchesScope } from "@/lib/scopeFilter"
+import { loadFromStorage, saveToStorage } from "@/lib/storage"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { initialBounds } from "@/map/initialMapBounds"
 import { RegionMap, type ViewState } from "@/map/regionMap"
 import { DraggableBox, type DraggablePosition } from "./DraggableBox"
-import { DraggableLegend, type LegendPosition } from "./DraggableLegend"
+import { DraggableLegend } from "./DraggableLegend"
 import { PrintToolbar } from "./PrintToolbar"
 import { DEFAULT_LABEL_OPTIONS, type LabelOptions } from "./types"
 
@@ -27,7 +29,9 @@ const queryClient = new QueryClient()
 
 // Cluster groups to show legends for (exclude Unknown)
 type DisplayClusterGroup = Exclude<ClusterGroup, "Unknown">
-const displayGroups: DisplayClusterGroup[] = ["INDY", "CLV", "CBUS", "AA", "GR"]
+const displayGroups = (Object.keys(clusterGroups) as ClusterGroup[]).filter(
+    (k): k is DisplayClusterGroup => k !== "Unknown",
+)
 
 // localStorage keys for persisting state
 const LEGEND_STORAGE_KEY = "print-legend-positions"
@@ -51,8 +55,8 @@ const defaultPositionsPercent: Record<
 function getDefaultPixelPositions(
     width: number,
     height: number,
-): Record<DisplayClusterGroup, LegendPosition> {
-    const result = {} as Record<DisplayClusterGroup, LegendPosition>
+): Record<DisplayClusterGroup, DraggablePosition> {
+    const result = {} as Record<DisplayClusterGroup, DraggablePosition>
     for (const key of displayGroups) {
         const { xPercent, yPercent } = defaultPositionsPercent[key]
         result[key] = {
@@ -61,35 +65,6 @@ function getDefaultPixelPositions(
         }
     }
     return result
-}
-
-// Load legend positions from localStorage
-function loadLegendPositions(): Record<
-    DisplayClusterGroup,
-    LegendPosition
-> | null {
-    if (typeof window === "undefined") return null
-    try {
-        const stored = localStorage.getItem(LEGEND_STORAGE_KEY)
-        if (stored) {
-            return JSON.parse(stored)
-        }
-    } catch {
-        // Ignore parse errors
-    }
-    return null
-}
-
-// Save legend positions to localStorage
-function saveLegendPositions(
-    positions: Record<DisplayClusterGroup, LegendPosition>,
-) {
-    if (typeof window === "undefined") return
-    try {
-        localStorage.setItem(LEGEND_STORAGE_KEY, JSON.stringify(positions))
-    } catch {
-        // Ignore storage errors
-    }
 }
 
 // Default title position as viewport percentages (top-right corner)
@@ -103,54 +78,6 @@ function getDefaultTitlePosition(
     return {
         x: Math.round((defaultTitlePositionPercent.xPercent / 100) * width),
         y: Math.round((defaultTitlePositionPercent.yPercent / 100) * height),
-    }
-}
-
-// Load title position from localStorage
-function loadTitlePosition(): DraggablePosition | null {
-    if (typeof window === "undefined") return null
-    try {
-        const stored = localStorage.getItem(TITLE_STORAGE_KEY)
-        if (stored) {
-            return JSON.parse(stored)
-        }
-    } catch {
-        // Ignore parse errors
-    }
-    return null
-}
-
-// Save title position to localStorage
-function saveTitlePosition(position: DraggablePosition) {
-    if (typeof window === "undefined") return
-    try {
-        localStorage.setItem(TITLE_STORAGE_KEY, JSON.stringify(position))
-    } catch {
-        // Ignore storage errors
-    }
-}
-
-// Load map view state from localStorage
-function loadViewState(): ViewState | null {
-    if (typeof window === "undefined") return null
-    try {
-        const stored = localStorage.getItem(VIEW_STORAGE_KEY)
-        if (stored) {
-            return JSON.parse(stored)
-        }
-    } catch {
-        // Ignore parse errors
-    }
-    return null
-}
-
-// Save map view state to localStorage
-function saveViewState(viewState: ViewState) {
-    if (typeof window === "undefined") return
-    try {
-        localStorage.setItem(VIEW_STORAGE_KEY, JSON.stringify(viewState))
-    } catch {
-        // Ignore storage errors
     }
 }
 
@@ -172,27 +99,6 @@ function getSubtitleForScope(scope: string): string | null {
     }
 
     return scopeLabels[scope] ?? null
-}
-
-/**
- * Filter clusters based on scope selection.
- * Returns true if the feature should be visible.
- */
-function matchesScope(feature: Feature, scope: string): boolean {
-    if (scope === "region") return true
-
-    const clusterCode = feature.properties?.Cluster as string | undefined
-    const groupCode = feature.properties?.Group as string | undefined
-
-    if (scope.startsWith("state-")) {
-        const stateCode = scope.replace("state-", "") // "IN", "MI", "OH"
-        return clusterCode?.startsWith(stateCode) ?? false
-    }
-    if (scope.startsWith("group-")) {
-        const targetGroup = scope.replace("group-", "") // "INDY", "CLV", etc.
-        return groupCode === targetGroup
-    }
-    return true
 }
 
 /**
@@ -222,7 +128,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // Legend positions state - null until initialized on client
     const [legendPositions, setLegendPositions] = useState<Record<
         DisplayClusterGroup,
-        LegendPosition
+        DraggablePosition
     > | null>(null)
 
     // Title position state - null until initialized on client
@@ -237,6 +143,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         DEFAULT_LABEL_OPTIONS,
     )
     const [selectedScope, setSelectedScope] = useState("region")
+    const [selectedPaper, setSelectedPaper] = useState("poster-24x36")
 
     // Cast features for filtering (TypeScript compatibility)
     const allFeatures = validatedData.features as Feature[]
@@ -247,10 +154,18 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         [allFeatures, selectedScope],
     )
 
+    // Compute subtitle for scope
+    const subtitle = useMemo(
+        () => getSubtitleForScope(selectedScope),
+        [selectedScope],
+    )
+
     // Initialize legend positions on mount (client-side only)
     useEffect(() => {
         // Try to load from localStorage first
-        const stored = loadLegendPositions()
+        const stored = loadFromStorage<
+            Record<DisplayClusterGroup, DraggablePosition>
+        >(LEGEND_STORAGE_KEY)
         if (stored) {
             setLegendPositions(stored)
         } else {
@@ -265,7 +180,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
 
     // Initialize title position on mount (client-side only)
     useEffect(() => {
-        const stored = loadTitlePosition()
+        const stored = loadFromStorage<DraggablePosition>(TITLE_STORAGE_KEY)
         if (stored) {
             setTitlePosition(stored)
         } else {
@@ -279,7 +194,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
 
     // Initialize view state on mount
     useEffect(() => {
-        const stored = loadViewState()
+        const stored = loadFromStorage<ViewState>(VIEW_STORAGE_KEY)
         if (stored) {
             setViewState(stored)
         } else {
@@ -297,14 +212,14 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // Save legend positions to localStorage when they change
     useEffect(() => {
         if (legendPositions) {
-            saveLegendPositions(legendPositions)
+            saveToStorage(LEGEND_STORAGE_KEY, legendPositions)
         }
     }, [legendPositions])
 
     // Save title position to localStorage when it changes
     useEffect(() => {
         if (titlePosition) {
-            saveTitlePosition(titlePosition)
+            saveToStorage(TITLE_STORAGE_KEY, titlePosition)
         }
     }, [titlePosition])
 
@@ -312,7 +227,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     useEffect(() => {
         if (!viewState) return
         const timeout = setTimeout(() => {
-            saveViewState(viewState)
+            saveToStorage(VIEW_STORAGE_KEY, viewState)
         }, TIMING.debounceMs)
         return () => clearTimeout(timeout)
     }, [viewState])
@@ -334,7 +249,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     }, [])
 
     const handleLegendPositionChange = useCallback(
-        (groupKey: DisplayClusterGroup, position: LegendPosition) => {
+        (groupKey: DisplayClusterGroup, position: DraggablePosition) => {
             setLegendPositions((prev) =>
                 prev
                     ? {
@@ -358,7 +273,6 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                         {viewState && (
                             <RegionMap
                                 mapboxAccessToken={mapboxAccessToken}
-                                showClusters={true}
                                 printMode={true}
                                 currentDate={currentDate}
                                 onDateChange={setCurrentDate}
@@ -405,9 +319,9 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                 <h1 className="text-xl font-bold text-center">
                                     Midwest Region Cluster Advancement
                                 </h1>
-                                {getSubtitleForScope(selectedScope) && (
+                                {subtitle && (
                                     <p className="text-base italic text-gray-700 text-center">
-                                        {getSubtitleForScope(selectedScope)}
+                                        {subtitle}
                                     </p>
                                 )}
                                 <p className="text-sm text-gray-600 text-center">
@@ -429,8 +343,12 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                 initialShowTimeline={Boolean(
                                     dateParam && isValidDate,
                                 )}
+                                labelOptions={labelOptions}
                                 onLabelOptionsChange={setLabelOptions}
+                                selectedScope={selectedScope}
                                 onScopeChange={setSelectedScope}
+                                selectedPaper={selectedPaper}
+                                onPaperChange={setSelectedPaper}
                             />
                         )}
 

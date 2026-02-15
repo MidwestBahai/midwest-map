@@ -7,14 +7,14 @@ const clusterBaseHue = (properties: GeoJsonProperties) =>
     clusterGroups[getClusterGroup(properties)].baseHue
 
 const alpha = 0.5
-const printAlpha = 0.85
+const boldAlpha = 0.85
 
 const milestoneColorInner = (
     milestone: string,
     baseHue: number,
-    printMode: boolean = false,
+    boldColors: boolean = false,
 ) => {
-    const a = printMode ? printAlpha : alpha
+    const a = boldColors ? boldAlpha : alpha
     switch (milestone.toLowerCase()) {
         case "m3r":
         case "m2r":
@@ -38,20 +38,20 @@ const milestoneColorInner = (
 
 const colorCache: Record<string, Record<string, Uint8ClampedArray[]>> = {
     normal: {},
-    print: {},
+    bold: {},
 }
 
 const milestoneRgba = (
     milestone: string,
     baseHue: number,
-    printMode: boolean = false,
+    boldColors: boolean = false,
 ): Uint8ClampedArray => {
     if (typeof document === "undefined")
         return [255, 0, 0, 0] as unknown as Uint8ClampedArray
-    const cacheKey = printMode ? "print" : "normal"
+    const cacheKey = boldColors ? "bold" : "normal"
     if (colorCache[cacheKey][milestone]?.[baseHue])
         return colorCache[cacheKey][milestone][baseHue]
-    const lch = milestoneColorInner(milestone, baseHue, printMode)
+    const lch = milestoneColorInner(milestone, baseHue, boldColors)
     // Use a canvas to convert the color to RGBA
     // From https://stackoverflow.com/questions/63929820/converting-css-lch-to-rgb
     const canvas = document.createElement("canvas")
@@ -71,8 +71,8 @@ export const milestoneColor = (
     milestone: string,
     baseHue: number,
     alpha?: number,
-    printMode: boolean = false,
-) => rgbaString(milestoneRgba(milestone, baseHue, printMode), alpha)
+    boldColors: boolean = false,
+) => rgbaString(milestoneRgba(milestone, baseHue, boldColors), alpha)
 
 export const rgbaString = (rgba: Uint8ClampedArray, alpha?: number) =>
     `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(alpha ?? rgba[3]) / 255})`
@@ -81,40 +81,40 @@ export const clusterFillColor = (
     properties: GeoJsonProperties,
     highlighted: boolean,
     milestoneOverride?: string,
-    printMode: boolean = false,
+    boldColors: boolean = false,
 ) =>
     clusterColor(
         properties,
         highlighted ? 90 : undefined,
         milestoneOverride,
-        printMode,
+        boldColors,
     )
 
 export const clusterLineColor = (
     properties: GeoJsonProperties,
     highlighted: boolean,
     milestoneOverride?: string,
-    printMode: boolean = false,
+    boldColors: boolean = false,
 ) =>
     clusterColor(
         properties,
         highlighted ? 180 : undefined,
         milestoneOverride,
-        printMode,
+        boldColors,
     )
 
 export const clusterColor = (
     properties: GeoJsonProperties,
     alpha?: number,
     milestoneOverride?: string,
-    printMode: boolean = false,
+    boldColors: boolean = false,
 ) => {
     const baseHue = clusterBaseHue(properties)
     return milestoneColor(
         milestoneOverride ?? milestone(properties),
         baseHue,
         alpha,
-        printMode,
+        boldColors,
     )
 }
 

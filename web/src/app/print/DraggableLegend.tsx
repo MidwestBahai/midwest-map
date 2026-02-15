@@ -6,9 +6,6 @@ import type { Milestone } from "@/data/milestoneLabels"
 import { milestoneColor } from "@/map/clusterColor"
 import { DraggableBox, type DraggablePosition } from "./DraggableBox"
 
-// Re-export for backwards compatibility
-export type { DraggablePosition }
-export type LegendPosition = DraggablePosition
 
 interface DraggableLegendProps {
     groupKey: Exclude<ClusterGroup, "Unknown">

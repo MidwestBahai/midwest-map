@@ -8,8 +8,10 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import MapboxMap, { type MapRef } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
 import type { LabelOptions } from "@/app/print/types"
+import type { LayerMode } from "@/map/types"
 import validatedData from "@/data/clusters-timeline.geo.json"
 import type { LatLongRect } from "@/lib/latLongRect"
+import { matchesScope } from "@/lib/scopeFilter"
 import { useWindowSize } from "@/lib/useWindowSize"
 import { ClusterLayers } from "@/map/clusterLayers"
 import { CountyBoundaries } from "@/map/countyBoundaries"
@@ -26,7 +28,9 @@ export interface ViewState {
 
 export interface RegionMapProps {
     mapboxAccessToken: string
-    showClusters: boolean
+    // Layer mode for the interactive map view (clusters, reference, bold)
+    layerMode?: LayerMode
+    // Print mode is separate from layer modes (used by /print route)
     printMode?: boolean
     initialDate?: Date
     onMapLoaded?: () => void
@@ -41,29 +45,10 @@ export interface RegionMapProps {
     scope?: string
 }
 
-/**
- * Check if a feature matches the scope filter
- */
-function matchesScope(feature: Feature, scope: string | undefined): boolean {
-    if (!scope || scope === "region") return true
-
-    const clusterCode = feature.properties?.Cluster as string | undefined
-    const groupCode = feature.properties?.Group as string | undefined
-
-    if (scope.startsWith("state-")) {
-        const stateCode = scope.replace("state-", "")
-        return clusterCode?.startsWith(stateCode) ?? false
-    }
-    if (scope.startsWith("group-")) {
-        const targetGroup = scope.replace("group-", "")
-        return groupCode === targetGroup
-    }
-    return true
-}
 
 export const RegionMap = ({
     mapboxAccessToken,
-    showClusters,
+    layerMode = "clusters",
     printMode = false,
     initialDate,
     onMapLoaded,
@@ -118,6 +103,8 @@ export const RegionMap = ({
     // Zod validates, but the TypeScript types are not strictly compatible, so we have to cast.
     // TODO See time series updates in comments here: https://docs.google.com/spreadsheets/d/1NplBKdFrqkTsiqxfHgh6wciuCb8wopp97s_h8eRRJIQ/edit?gid=1531826735#gid=1531826735
     const features = validatedData.features as Feature[]
+    const isReference = layerMode === "reference"
+    const isBold = layerMode === "bold"
 
     // It's okay if <Map> is also rendered on the server — the canvas won't be created, just a placeholder div.
     // See https://github.com/visgl/react-map-gl/issues/568
@@ -151,11 +138,11 @@ export const RegionMap = ({
                     : { initialViewState: initialBounds(windowSize) })}
                 style={{ width: "100vw", height: "100vh" }}
                 mapStyle={
-                    printMode
-                        ? "mapbox://styles/mapbox/empty-v9" // Minimal style for print
-                        : showClusters
-                          ? "mapbox://styles/mapbox/light-v11"
-                          : "mapbox://styles/mapbox/streets-v12"
+                    printMode || isBold
+                        ? "mapbox://styles/mapbox/empty-v9" // Minimal style for print and bold modes
+                        : isReference
+                          ? "mapbox://styles/mapbox/streets-v12"
+                          : "mapbox://styles/mapbox/light-v11" // clusters mode
                 }
                 interactiveLayerIds={
                     printMode
@@ -191,7 +178,7 @@ export const RegionMap = ({
                 <MapProvider mapRef={mapRefState}>
                     {/* County boundaries - only visible in print mode */}
                     {printMode && (
-                        <CountyBoundaries visible={printMode} scope={scope} />
+                        <CountyBoundaries scope={scope} />
                     )}
 
                     {/* Render in two passes to ensure symbols are always above fills */}
@@ -203,15 +190,16 @@ export const RegionMap = ({
                             hoverFeature={printMode ? undefined : hoverFeature}
                             largestRect={pickLargestRect(feature)}
                             currentDate={selectedDate}
-                            boundariesOnly={!showClusters}
+                            boundariesOnly={isReference}
                             printMode={printMode}
+                            boldColors={isBold}
                             labelOptions={labelOptions}
                             renderMode="fill"
                             visible={matchesScope(feature, scope)}
                         />
                     ))}
                     {/* Pass 2: Symbol/text layers (rendered after all fills) */}
-                    {showClusters &&
+                    {!isReference &&
                         features.map((feature) => (
                             <ClusterLayers
                                 key={`symbol-${feature.properties?.Cluster}`}
@@ -223,6 +211,7 @@ export const RegionMap = ({
                                 currentDate={selectedDate}
                                 boundariesOnly={false}
                                 printMode={printMode}
+                                boldColors={isBold}
                                 labelOptions={labelOptions}
                                 renderMode="symbol"
                                 visible={matchesScope(feature, scope)}

@@ -2,19 +2,22 @@
 
 import { ChevronDown, ChevronUp, Clock, X } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { getTimelineBounds, useMilestoneEvents } from "@/lib/useMilestoneEvents"
 import { HorizontalTimeline } from "./HorizontalTimeline"
-import { DEFAULT_LABEL_OPTIONS, type LabelOptions } from "./types"
+import type { LabelOptions } from "./types"
 
 interface PrintToolbarProps {
     className?: string
     currentDate: Date
     onDateChange: (date: Date) => void
     initialShowTimeline?: boolean
-    onLabelOptionsChange?: (options: LabelOptions) => void
-    onScopeChange?: (scope: string) => void
-    onPaperChange?: (paper: string) => void
+    labelOptions: LabelOptions
+    onLabelOptionsChange: (options: LabelOptions) => void
+    selectedScope: string
+    onScopeChange: (scope: string) => void
+    selectedPaper: string
+    onPaperChange: (paper: string) => void
 }
 
 const PAPER_SIZES = [
@@ -45,8 +48,11 @@ export function PrintToolbar({
     currentDate,
     onDateChange,
     initialShowTimeline = false,
+    labelOptions,
     onLabelOptionsChange,
+    selectedScope,
     onScopeChange,
+    selectedPaper,
     onPaperChange,
 }: PrintToolbarProps) {
     const router = useRouter()
@@ -60,34 +66,12 @@ export function PrintToolbar({
         }
         setShowTimeline(!showTimeline)
     }
-    const [selectedPaper, setSelectedPaper] = useState("poster-24x36")
-    const [selectedScope, setSelectedScope] = useState("region")
-    const [labelOptions, setLabelOptions] = useState<LabelOptions>(
-        DEFAULT_LABEL_OPTIONS,
-    )
-
-    // Notify parent of initial state and changes
-    useEffect(() => {
-        onLabelOptionsChange?.(labelOptions)
-    }, [labelOptions, onLabelOptionsChange])
-
-    useEffect(() => {
-        onScopeChange?.(selectedScope)
-    }, [selectedScope, onScopeChange])
-
-    useEffect(() => {
-        onPaperChange?.(selectedPaper)
-    }, [selectedPaper, onPaperChange])
 
     const milestoneEvents = useMilestoneEvents()
     const { startDate, endDate } = getTimelineBounds()
 
     const handlePrint = () => {
         window.print()
-    }
-
-    const handleLabelToggle = (key: keyof typeof labelOptions) => {
-        setLabelOptions((prev) => ({ ...prev, [key]: !prev[key] }))
     }
 
     return (
@@ -139,7 +123,7 @@ export function PrintToolbar({
                                 id="scope-select"
                                 value={selectedScope}
                                 onChange={(e) =>
-                                    setSelectedScope(e.target.value)
+                                    onScopeChange(e.target.value)
                                 }
                                 className="px-3 py-1.5 text-sm border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             >
@@ -163,7 +147,7 @@ export function PrintToolbar({
                                 id="paper-select"
                                 value={selectedPaper}
                                 onChange={(e) =>
-                                    setSelectedPaper(e.target.value)
+                                    onPaperChange(e.target.value)
                                 }
                                 className="px-3 py-1.5 text-sm border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             >
@@ -249,7 +233,12 @@ export function PrintToolbar({
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showCode}
-                                onChange={() => handleLabelToggle("showCode")}
+                                onChange={() =>
+                                    onLabelOptionsChange({
+                                        ...labelOptions,
+                                        showCode: !labelOptions.showCode,
+                                    })
+                                }
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
                             Code
@@ -263,7 +252,11 @@ export function PrintToolbar({
                                 type="checkbox"
                                 checked={labelOptions.showMilestone}
                                 onChange={() =>
-                                    handleLabelToggle("showMilestone")
+                                    onLabelOptionsChange({
+                                        ...labelOptions,
+                                        showMilestone:
+                                            !labelOptions.showMilestone,
+                                    })
                                 }
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
@@ -277,7 +270,12 @@ export function PrintToolbar({
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showName}
-                                onChange={() => handleLabelToggle("showName")}
+                                onChange={() =>
+                                    onLabelOptionsChange({
+                                        ...labelOptions,
+                                        showName: !labelOptions.showName,
+                                    })
+                                }
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
                             Name
@@ -290,7 +288,12 @@ export function PrintToolbar({
                             <input
                                 type="checkbox"
                                 checked={labelOptions.showDate}
-                                onChange={() => handleLabelToggle("showDate")}
+                                onChange={() =>
+                                    onLabelOptionsChange({
+                                        ...labelOptions,
+                                        showDate: !labelOptions.showDate,
+                                    })
+                                }
                                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
                             Date
