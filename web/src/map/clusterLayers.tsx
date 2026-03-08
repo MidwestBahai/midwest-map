@@ -48,6 +48,7 @@ export const ClusterLayers = ({
     currentDate,
     boundariesOnly = false,
     printMode = false,
+    boldColors = false,
     labelOptions,
     renderMode = "all",
     visible = true,
@@ -58,6 +59,8 @@ export const ClusterLayers = ({
     currentDate: Date
     boundariesOnly?: boolean
     printMode?: boolean
+    /** Use bold (print-mode) colors/borders without affecting label style */
+    boldColors?: boolean
     labelOptions?: LabelOptions
     renderMode?: RenderMode
     visible?: boolean
@@ -126,6 +129,9 @@ export const ClusterLayers = ({
     const shouldRenderFill = renderMode === "all" || renderMode === "fill"
     const shouldRenderSymbol = renderMode === "all" || renderMode === "symbol"
 
+    // Bold colors apply to fills and borders (print mode always implies bold colors)
+    const useBoldColors = printMode || boldColors
+
     return (
         <>
             {shouldRenderFill && (
@@ -138,7 +144,7 @@ export const ClusterLayers = ({
                                     feature.properties,
                                     highlighted,
                                     effectiveMilestone,
-                                    printMode,
+                                    useBoldColors,
                                 ),
                                 "fill-opacity": fillOpacity,
                                 "fill-opacity-transition": { duration: 300 },
@@ -146,19 +152,19 @@ export const ClusterLayers = ({
                             id={fillLayerId}
                         />
                     )}
-                    {/* In print mode, always show borders; otherwise only when highlighted */}
-                    {(highlighted || printMode) && (
+                    {/* In bold/print mode, always show borders; otherwise only when highlighted */}
+                    {(highlighted || useBoldColors) && (
                         <Layer
                             type="line"
                             paint={{
-                                "line-color": printMode
+                                "line-color": useBoldColors
                                     ? PRINT_BORDER_COLOR
                                     : clusterLineColor(
                                           feature.properties,
                                           highlighted,
                                           effectiveMilestone,
                                       ),
-                                "line-width": printMode
+                                "line-width": useBoldColors
                                     ? PRINT_BORDER_WIDTH
                                     : 3,
                                 "line-opacity": lineOpacity,
@@ -190,7 +196,7 @@ export const ClusterLayers = ({
                         feature.properties,
                         true,
                         effectiveMilestone,
-                        printMode,
+                        useBoldColors,
                     )}
                 />
             )}
