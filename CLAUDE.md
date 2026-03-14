@@ -90,6 +90,8 @@ Access via `/print` route. Features:
 - `web/src/app/print/PrintToolbar.tsx` - Bottom toolbar with controls
 - `web/src/app/print/DraggableLegend.tsx` - Draggable per-group legends
 - `web/src/app/print/DraggableBox.tsx` - Draggable title box
+- `web/src/app/print/usePageSize.ts` - Dynamic @page CSS + print zoom injection
+- `web/src/app/print/paperDimensions.ts` - Paper size constants and container sizing
 - `web/src/app/print/types.ts` - Shared types (LabelOptions)
 - `web/src/map/countyBoundaries.tsx` - County boundary lines (filtered by scope)
 
@@ -98,6 +100,8 @@ Access via `/print` route. Features:
 - All clusters render always; scope filtering controls visibility via opacity
 - Two-pass rendering: fills first, then symbols, ensures labels stay above fills
 - Draggable element positions persist to localStorage
+- **Print scaling**: CSS `zoom` on `.print-container` scales the on-screen container to fill Chrome's print viewport (96 CSS px/inch × paper width). Injected dynamically by `usePageSize.ts`.
+- **Font scaling**: Map labels (`printTextSize`), legends, and title scale proportionally to container width (baseline: 600px = 1.0×)
 
 ## Deployment
 
