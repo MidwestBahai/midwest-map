@@ -16,7 +16,7 @@ Next.js 15 application for visualizing Bahá'í [clusters](https://bahaipedia.or
 - Historical snapshots via date parameter (`/print?date=2023-01-01`)
 - PNG export service for poster-size prints (Letter, Tabloid, 24×36" poster)
 
-See `docs/PRINT-ROADMAP.md` for planned enhancements.
+See `docs/print-roadmap.md` for planned enhancements.
 
 ## Development
 

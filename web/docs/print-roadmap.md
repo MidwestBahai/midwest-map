@@ -27,7 +27,7 @@ See `CLAUDE.md` for component locations and architecture notes.
 
 | Feature | Notes |
 |---------|-------|
-| Guaranteed labels | All clusters labeled in print; see `PRINT-LABELS-ADVANCED.md` |
+| Guaranteed labels | All clusters labeled in print; see `print-labels-advanced.md` |
 | Persist label options | Save label toggle state to localStorage |
 | Help/tips | Show printing tips (set margins to None, disable headers/footers, etc.) |
 

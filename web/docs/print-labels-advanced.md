@@ -1,6 +1,6 @@
 # Advanced Print Labels: HTML Overlay Approach
 
-This document describes a future enhancement for guaranteed cluster labeling in print mode. It builds on the base print features in `PRINT-ROADMAP.md`.
+This document describes a future enhancement for guaranteed cluster labeling in print mode. It builds on the base print features in `print-roadmap.md`.
 
 ## Problem Statement
 
@@ -276,7 +276,7 @@ SVG overlay layer connecting external labels to their clusters:
 
 ## Label Content
 
-Labels respect `LabelOptions` from print toolbar (see `PRINT-ROADMAP.md`):
+Labels respect `LabelOptions` from print toolbar (see `print-roadmap.md`):
 
 ```typescript
 interface LabelOptions {
@@ -345,6 +345,6 @@ The HTML overlay approach uses existing data:
 
 ## Related Documents
 
-- `PRINT-ROADMAP.md` - Base print features, label toggles, toolbar
+- `print-roadmap.md` - Base print features, label toggles, toolbar
 - `src/script/largestRectangle.ts` - Largest rectangle algorithm (for reference)
 - `src/map/clusterText.tsx` - Current Mapbox label implementation

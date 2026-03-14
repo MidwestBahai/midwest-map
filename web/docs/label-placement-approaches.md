@@ -1,6 +1,6 @@
 # Label Placement Approaches
 
-This document compares approaches for determining where to place labels inside cluster polygons and how much space is available. This informs both the current Mapbox symbol layer approach and the future HTML overlay approach (see `PRINT-LABELS-ADVANCED.md`).
+This document compares approaches for determining where to place labels inside cluster polygons and how much space is available. This informs both the current Mapbox symbol layer approach and the future HTML overlay approach (see `print-labels-advanced.md`).
 
 ## Current Approach: Largest Inscribed Rectangle
 
@@ -103,7 +103,7 @@ Keep the stabilized largest-rectangle approach. It's working, now deterministic,
 
 ### Medium Term (HTML Overlay Labels)
 
-When implementing `PRINT-LABELS-ADVANCED.md`, consider using polylabel for:
+When implementing `print-labels-advanced.md`, consider using polylabel for:
 - **Label anchor point** — Place label center at pole of inaccessibility
 - **Internal/external classification** — If `clearance < threshold`, mark as external label
 
@@ -148,4 +148,4 @@ interface ClusterProperties {
 
 - [Polylabel algorithm explanation](https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc)
 - [@mapbox/polylabel npm package](https://www.npmjs.com/package/@mapbox/polylabel)
-- `PRINT-LABELS-ADVANCED.md` — HTML overlay label placement plan
+- `print-labels-advanced.md` — HTML overlay label placement plan
