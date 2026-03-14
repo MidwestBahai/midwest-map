@@ -11,6 +11,7 @@ interface DraggableBoxProps {
     containerRef: React.RefObject<HTMLElement | null>
     children: ReactNode
     className?: string
+    style?: React.CSSProperties
     /** Additional z-index applied when dragging (default: 100 when dragging, 10 otherwise) */
     zIndex?: number
     zIndexDragging?: number
@@ -27,6 +28,7 @@ export function DraggableBox({
     containerRef,
     children,
     className = "",
+    style: extraStyle,
     zIndex = 10,
     zIndexDragging = 100,
 }: DraggableBoxProps) {
@@ -47,6 +49,7 @@ export function DraggableBox({
                 top: clampedPosition.y,
                 zIndex: isDragging ? zIndexDragging : zIndex,
                 touchAction: "none", // Prevent browser handling of touch gestures
+                ...extraStyle,
             }}
             onMouseDown={handlers.onMouseDown}
             onTouchStart={handlers.onTouchStart}

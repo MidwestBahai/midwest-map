@@ -41,22 +41,23 @@ export function useDraggable({
         }
     }, [])
 
-    // Track viewport size for clamping
-    const [viewportSize, setViewportSize] = useState({
+    // Track container size for clamping (via ResizeObserver)
+    const [containerSize, setContainerSize] = useState({
         width: 1000,
         height: 800,
     })
     useEffect(() => {
-        const updateViewport = () => {
-            setViewportSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            })
+        const el = containerRef.current
+        if (!el) return
+        const update = () => {
+            const rect = el.getBoundingClientRect()
+            setContainerSize({ width: rect.width, height: rect.height })
         }
-        updateViewport()
-        window.addEventListener("resize", updateViewport)
-        return () => window.removeEventListener("resize", updateViewport)
-    }, [])
+        update()
+        const observer = new ResizeObserver(update)
+        observer.observe(el)
+        return () => observer.disconnect()
+    }, [containerRef])
 
     // Shared logic to calculate clamped position
     const calculatePosition = useCallback(
@@ -179,22 +180,22 @@ export function useDraggable({
         handleTouchEnd,
     ])
 
-    // Clamp rendered position to viewport to prevent page expansion
+    // Clamp rendered position to container bounds to prevent overflow
     const clampedPosition = useMemo(() => {
         const padding = 10
         const maxX = Math.max(
             padding,
-            viewportSize.width - elementSize.width - padding,
+            containerSize.width - elementSize.width - padding,
         )
         const maxY = Math.max(
             padding,
-            viewportSize.height - elementSize.height - padding,
+            containerSize.height - elementSize.height - padding,
         )
         return {
             x: Math.max(padding, Math.min(position.x, maxX)),
             y: Math.max(padding, Math.min(position.y, maxY)),
         }
-    }, [position, elementSize, viewportSize])
+    }, [position, elementSize, containerSize])
 
     return {
         elementRef,

@@ -12,6 +12,8 @@ interface DraggableLegendProps {
     position: DraggablePosition
     onPositionChange: (position: DraggablePosition) => void
     containerRef: React.RefObject<HTMLDivElement | null>
+    /** Scale factor for font sizes and swatch dimensions (1.0 = default at ~600px container) */
+    scale?: number
 }
 
 // Simplified milestone list for print
@@ -29,6 +31,7 @@ export function DraggableLegend({
     position,
     onPositionChange,
     containerRef,
+    scale = 1,
 }: DraggableLegendProps) {
     const [isClient, setIsClient] = useState(false)
 
@@ -51,6 +54,13 @@ export function DraggableLegend({
         )
     }
 
+    const fontSize = Math.round(12 * scale)
+    const swatchW = Math.round(20 * scale)
+    const swatchH = Math.round(16 * scale)
+    const pad = Math.round(8 * scale)
+    const gap = Math.round(8 * scale)
+    const spacing = Math.round(4 * scale)
+
     return (
         <DraggableBox
             position={position}
@@ -59,17 +69,25 @@ export function DraggableLegend({
             className="bg-white border border-gray-400 shadow-sm"
         >
             {/* Header */}
-            <div className="bg-gray-100 px-2 py-1 border-b border-gray-300 text-xs font-semibold">
+            <div
+                className="bg-gray-100 border-b border-gray-300 font-semibold"
+                style={{
+                    fontSize,
+                    padding: `${spacing}px ${pad}px`,
+                }}
+            >
                 {groupName} group
             </div>
 
             {/* Milestone swatches */}
-            <div className="p-2 space-y-1">
+            <div style={{ padding: pad, display: "flex", flexDirection: "column", gap: spacing }}>
                 {printMilestones.map(({ key, label }) => (
-                    <div key={key} className="flex items-center gap-2">
+                    <div key={key} className="flex items-center" style={{ gap }}>
                         <div
-                            className="w-5 h-4 border border-black flex-shrink-0"
+                            className="border border-black flex-shrink-0"
                             style={{
+                                width: swatchW,
+                                height: swatchH,
                                 backgroundColor: milestoneColor(
                                     key,
                                     groupData.baseHue,
@@ -80,7 +98,7 @@ export function DraggableLegend({
                                 WebkitPrintColorAdjust: "exact",
                             }}
                         />
-                        <span className="text-xs whitespace-nowrap">
+                        <span className="whitespace-nowrap" style={{ fontSize }}>
                             {label}
                         </span>
                     </div>

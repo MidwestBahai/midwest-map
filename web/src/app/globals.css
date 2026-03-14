@@ -160,4 +160,24 @@ body {
     .maplibregl-ctrl-logo {
         display: none !important;
     }
+
+    /* Print layout: collapse wrappers so container sits at page origin.
+     * The dynamic zoom on .print-container (injected by usePageSize)
+     * scales it up to fill the print viewport. */
+    .print-page-root {
+        width: auto !important;
+        height: auto !important;
+        background: white !important;
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+    .print-centering-wrapper {
+        display: block !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .print-container {
+        box-shadow: none !important;
+    }
 }

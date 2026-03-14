@@ -22,8 +22,10 @@ import { initialBounds } from "@/map/initialMapBounds"
 import { RegionMap, type ViewState } from "@/map/regionMap"
 import { DraggableBox, type DraggablePosition } from "./DraggableBox"
 import { DraggableLegend } from "./DraggableLegend"
+import { calculateContainerSize } from "./paperDimensions"
 import { PrintToolbar } from "./PrintToolbar"
 import { DEFAULT_LABEL_OPTIONS, type LabelOptions } from "./types"
+import { usePageSize } from "./usePageSize"
 
 const queryClient = new QueryClient()
 
@@ -38,8 +40,8 @@ const LEGEND_STORAGE_KEY = "print-legend-positions"
 const TITLE_STORAGE_KEY = "print-title-position"
 const VIEW_STORAGE_KEY = "print-map-view"
 
-// Default legend positions as viewport percentages
-// These get converted to pixels on mount based on actual viewport size
+// Default legend positions as container percentages
+// These get converted to pixels on mount based on actual container size
 const defaultPositionsPercent: Record<
     DisplayClusterGroup,
     { xPercent: number; yPercent: number }
@@ -51,7 +53,7 @@ const defaultPositionsPercent: Record<
     CBUS: { xPercent: 85, yPercent: 45 }, // Columbus: right side, lower
 }
 
-// Convert percentage positions to pixels based on viewport
+// Convert percentage positions to pixels based on container dimensions
 function getDefaultPixelPositions(
     width: number,
     height: number,
@@ -67,10 +69,10 @@ function getDefaultPixelPositions(
     return result
 }
 
-// Default title position as viewport percentages (top-right corner)
+// Default title position as container percentages (top-right corner)
 const defaultTitlePositionPercent = { xPercent: 75, yPercent: 2 }
 
-// Convert title percentage position to pixels based on viewport
+// Convert title percentage position to pixels based on container dimensions
 function getDefaultTitlePosition(
     width: number,
     height: number,
@@ -145,8 +147,40 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     const [selectedScope, setSelectedScope] = useState("region")
     const [selectedPaper, setSelectedPaper] = useState("poster-24x36")
 
+    // Container size — tracks paper aspect ratio within available viewport space
+    const [containerSize, setContainerSize] = useState(() => {
+        if (typeof window === "undefined") return { width: 0, height: 0 }
+        return calculateContainerSize(
+            window.innerWidth,
+            window.innerHeight,
+            selectedPaper,
+        )
+    })
+
+    // Update container size on window resize or paper change
+    useEffect(() => {
+        const update = () => {
+            setContainerSize(
+                calculateContainerSize(
+                    window.innerWidth,
+                    window.innerHeight,
+                    selectedPaper,
+                ),
+            )
+        }
+        update()
+        window.addEventListener("resize", update)
+        return () => window.removeEventListener("resize", update)
+    }, [selectedPaper])
+
+    // Inject dynamic @page CSS for the selected paper size + print zoom
+    usePageSize(selectedPaper, containerSize.width)
+
     // Cast features for filtering (TypeScript compatibility)
     const allFeatures = validatedData.features as Feature[]
+
+    // Scale factor for UI elements (legends, title) — 1.0 at 600px container width
+    const uiScale = Math.max(0.5, Math.min(1.2, containerSize.width / 600))
 
     // Compute which groups are visible based on current scope
     const visibleGroups = useMemo(
@@ -169,11 +203,13 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         if (stored) {
             setLegendPositions(stored)
         } else {
-            // Calculate defaults based on viewport size
-            const defaults = getDefaultPixelPositions(
+            // Calculate defaults based on container size
+            const size = calculateContainerSize(
                 window.innerWidth,
                 window.innerHeight,
+                "poster-24x36",
             )
+            const defaults = getDefaultPixelPositions(size.width, size.height)
             setLegendPositions(defaults)
         }
     }, [])
@@ -184,10 +220,12 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         if (stored) {
             setTitlePosition(stored)
         } else {
-            const defaultPos = getDefaultTitlePosition(
+            const size = calculateContainerSize(
                 window.innerWidth,
                 window.innerHeight,
+                "poster-24x36",
             )
+            const defaultPos = getDefaultTitlePosition(size.width, size.height)
             setTitlePosition(defaultPos)
         }
     }, [])
@@ -198,11 +236,13 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         if (stored) {
             setViewState(stored)
         } else {
-            // Use default bounds based on window size
-            const defaults = initialBounds({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            })
+            // Use default bounds based on container size
+            const size = calculateContainerSize(
+                window.innerWidth,
+                window.innerHeight,
+                "poster-24x36",
+            )
+            const defaults = initialBounds(size)
             if (defaults) {
                 setViewState(defaults)
             }
@@ -266,74 +306,136 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         <DebugProvider debug={false}>
             <QueryClientProvider client={queryClient}>
                 <CategoryHighlightProvider>
-                    <div
-                        ref={containerRef}
-                        className="relative w-screen h-screen bg-white"
-                    >
-                        {viewState && (
-                            <RegionMap
-                                mapboxAccessToken={mapboxAccessToken}
-                                printMode={true}
-                                currentDate={currentDate}
-                                onDateChange={setCurrentDate}
-                                onMapLoaded={handleMapLoaded}
-                                viewState={viewState}
-                                onViewStateChange={setViewState}
-                                labelOptions={labelOptions}
-                                scope={selectedScope}
-                            />
-                        )}
+                    {/* Gray viewport background */}
+                    <div className="print-page-root w-screen h-screen bg-neutral-300 overflow-hidden print:bg-white">
+                        {/* Centering wrapper — positions container above toolbar */}
+                        <div
+                            className="print-centering-wrapper flex items-center justify-center"
+                            style={{ height: "calc(100vh - 40px)" }}
+                        >
+                            {/* Print container — aspect ratio matches selected paper */}
+                            {containerSize.width > 0 && (
+                                <div
+                                    ref={containerRef}
+                                    className="relative bg-white shadow-lg overflow-hidden print-container"
+                                    style={{
+                                        width: containerSize.width,
+                                        height: containerSize.height,
+                                    }}
+                                >
+                                    {viewState && (
+                                        <RegionMap
+                                            mapboxAccessToken={
+                                                mapboxAccessToken
+                                            }
+                                            printMode={true}
+                                            currentDate={currentDate}
+                                            onDateChange={setCurrentDate}
+                                            onMapLoaded={handleMapLoaded}
+                                            viewState={viewState}
+                                            onViewStateChange={setViewState}
+                                            labelOptions={labelOptions}
+                                            scope={selectedScope}
+                                            containerWidth={
+                                                containerSize.width
+                                            }
+                                            containerHeight={
+                                                containerSize.height
+                                            }
+                                            printTextSize={Math.max(
+                                                7,
+                                                Math.min(
+                                                    16,
+                                                    Math.round(
+                                                        13 *
+                                                            containerSize.width /
+                                                            600,
+                                                    ),
+                                                ),
+                                            )}
+                                        />
+                                    )}
 
-                        {/* Draggable legends - one per cluster group (filtered by scope) */}
-                        {mapLoaded &&
-                            legendPositions &&
-                            displayGroups
-                                .filter((groupKey) =>
-                                    visibleGroups.has(groupKey),
-                                )
-                                .map((groupKey) => (
-                                    <DraggableLegend
-                                        key={groupKey}
-                                        groupKey={groupKey}
-                                        position={legendPositions[groupKey]}
-                                        onPositionChange={(pos) =>
-                                            handleLegendPositionChange(
-                                                groupKey,
-                                                pos,
+                                    {/* Draggable legends - one per cluster group (filtered by scope) */}
+                                    {mapLoaded &&
+                                        legendPositions &&
+                                        displayGroups
+                                            .filter((groupKey) =>
+                                                visibleGroups.has(groupKey),
                                             )
-                                        }
-                                        containerRef={containerRef}
-                                    />
-                                ))}
+                                            .map((groupKey) => (
+                                                <DraggableLegend
+                                                    key={groupKey}
+                                                    groupKey={groupKey}
+                                                    position={
+                                                        legendPositions[
+                                                            groupKey
+                                                        ]
+                                                    }
+                                                    onPositionChange={(pos) =>
+                                                        handleLegendPositionChange(
+                                                            groupKey,
+                                                            pos,
+                                                        )
+                                                    }
+                                                    containerRef={containerRef}
+                                                    scale={uiScale}
+                                                />
+                                            ))}
 
-                        {/* Draggable Title */}
-                        {mapLoaded && titlePosition && (
-                            <DraggableBox
-                                position={titlePosition}
-                                onPositionChange={setTitlePosition}
-                                containerRef={containerRef}
-                                className="bg-white/90 px-4 py-2 rounded shadow print:shadow-none"
-                                zIndex={20}
-                                zIndexDragging={100}
-                            >
-                                <h1 className="text-xl font-bold text-center">
-                                    Midwest Region Cluster Advancement
-                                </h1>
-                                {subtitle && (
-                                    <p className="text-base italic text-gray-700 text-center">
-                                        {subtitle}
-                                    </p>
-                                )}
-                                <p className="text-sm text-gray-600 text-center">
-                                    As of{" "}
-                                    {currentDate.toLocaleDateString("en-US", {
-                                        month: "long",
-                                        year: "numeric",
-                                    })}{" "}
-                                    · map.midwestbahai.org
-                                </p>
-                            </DraggableBox>
-                        )}
+                                    {/* Draggable Title */}
+                                    {mapLoaded && titlePosition && (
+                                        <DraggableBox
+                                            position={titlePosition}
+                                            onPositionChange={setTitlePosition}
+                                            containerRef={containerRef}
+                                            className="bg-white/90 rounded shadow print:shadow-none"
+                                            style={{
+                                                padding: `${8 * uiScale}px ${16 * uiScale}px`,
+                                            }}
+                                            zIndex={20}
+                                            zIndexDragging={100}
+                                        >
+                                            <h1
+                                                className="font-bold text-center"
+                                                style={{
+                                                    fontSize: `${20 * uiScale}px`,
+                                                }}
+                                            >
+                                                Midwest Region Cluster
+                                                Advancement
+                                            </h1>
+                                            {subtitle && (
+                                                <p
+                                                    className="italic text-gray-700 text-center"
+                                                    style={{
+                                                        fontSize: `${16 * uiScale}px`,
+                                                    }}
+                                                >
+                                                    {subtitle}
+                                                </p>
+                                            )}
+                                            <p
+                                                className="text-gray-600 text-center"
+                                                style={{
+                                                    fontSize: `${14 * uiScale}px`,
+                                                }}
+                                            >
+                                                As of{" "}
+                                                {currentDate.toLocaleDateString(
+                                                    "en-US",
+                                                    {
+                                                        month: "long",
+                                                        year: "numeric",
+                                                    },
+                                                )}{" "}
+                                                · map.midwestbahai.org
+                                            </p>
+                                        </DraggableBox>
+                                    )}
+                                </div>
+                            )}
+                        </div>
 
                         {/* Print toolbar - hidden during actual print */}
                         {mapLoaded && (

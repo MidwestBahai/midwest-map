@@ -19,6 +19,7 @@ interface ClusterTextProps {
     printMode?: boolean
     labelOptions?: LabelOptions
     visible?: boolean
+    printTextSize?: number
 }
 
 // Use shared month abbreviations
@@ -92,6 +93,7 @@ export const ClusterText = ({
     printMode = false,
     labelOptions,
     visible = true,
+    printTextSize,
 }: ClusterTextProps) => {
     const { showMapGeometry } = useDebug()
     const { degreesToRem } = useMap()
@@ -201,7 +203,7 @@ export const ClusterText = ({
                     type="symbol"
                     layout={{
                         "text-field": text,
-                        "text-size": 13,
+                        "text-size": printTextSize ?? 13,
                         "text-anchor": "center",
                         visibility: visible ? "visible" : "none",
                         // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],

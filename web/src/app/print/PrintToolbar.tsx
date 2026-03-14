@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { getTimelineBounds, useMilestoneEvents } from "@/lib/useMilestoneEvents"
 import { HorizontalTimeline } from "./HorizontalTimeline"
+import { PAPER_OPTIONS } from "./paperDimensions"
 import type { LabelOptions } from "./types"
 
 interface PrintToolbarProps {
@@ -19,17 +20,6 @@ interface PrintToolbarProps {
     selectedPaper: string
     onPaperChange: (paper: string) => void
 }
-
-const PAPER_SIZES = [
-    { key: "letter", label: "Letter" },
-    { key: "letter-landscape", label: "Letter Landscape" },
-    { key: "tabloid", label: "Tabloid" },
-    { key: "tabloid-landscape", label: "Tabloid Landscape" },
-    { key: "a4", label: "A4" },
-    { key: "a4-landscape", label: "A4 Landscape" },
-    { key: "poster-18x24", label: "Poster 18×24" },
-    { key: "poster-24x36", label: "Poster 24×36" },
-] as const
 
 const SCOPE_OPTIONS = [
     { key: "region", label: "Full Region" },
@@ -135,8 +125,8 @@ export function PrintToolbar({
                             </select>
                         </div>
 
-                        {/* Paper dropdown - hidden until aspect ratio matching is implemented */}
-                        <div className="hidden items-center gap-2">
+                        {/* Paper size selector */}
+                        <div className="flex items-center gap-2">
                             <label
                                 htmlFor="paper-select"
                                 className="text-sm font-medium text-gray-700 whitespace-nowrap"
@@ -151,7 +141,7 @@ export function PrintToolbar({
                                 }
                                 className="px-3 py-1.5 text-sm border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             >
-                                {PAPER_SIZES.map(({ key, label }) => (
+                                {PAPER_OPTIONS.map(({ key, label }) => (
                                     <option key={key} value={key}>
                                         {label}
                                     </option>

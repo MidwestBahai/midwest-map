@@ -43,6 +43,11 @@ export interface RegionMapProps {
     // Print mode options
     labelOptions?: LabelOptions
     scope?: string
+    // Optional container dimensions (used by print mode for aspect-ratio containers)
+    containerWidth?: number
+    containerHeight?: number
+    // Scaled text size for print labels (proportional to container width)
+    printTextSize?: number
 }
 
 
@@ -58,8 +63,13 @@ export const RegionMap = ({
     onViewStateChange,
     labelOptions,
     scope,
+    containerWidth,
+    containerHeight,
+    printTextSize,
 }: RegionMapProps) => {
     const windowSize = useWindowSize()
+    const effectiveWidth = containerWidth ?? windowSize.width
+    const effectiveHeight = containerHeight ?? windowSize.height
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
 
     const [hoverFeature, setHoverFeature] = useState<Feature | undefined>(
@@ -125,8 +135,8 @@ export const RegionMap = ({
                               bearing: 0,
                               pitch: 0,
                               padding: { top: 0, bottom: 0, left: 0, right: 0 },
-                              width: windowSize.width,
-                              height: windowSize.height,
+                              width: effectiveWidth,
+                              height: effectiveHeight,
                           },
                           onMove: (e) =>
                               onViewStateChange?.({
@@ -136,7 +146,10 @@ export const RegionMap = ({
                               }),
                       }
                     : { initialViewState: initialBounds(windowSize) })}
-                style={{ width: "100vw", height: "100vh" }}
+                style={{
+                    width: containerWidth ? "100%" : "100vw",
+                    height: containerHeight ? "100%" : "100vh",
+                }}
                 mapStyle={
                     printMode || isBold
                         ? "mapbox://styles/mapbox/empty-v9" // Minimal style for print and bold modes
@@ -215,6 +228,7 @@ export const RegionMap = ({
                                 labelOptions={labelOptions}
                                 renderMode="symbol"
                                 visible={matchesScope(feature, scope)}
+                                printTextSize={printTextSize}
                             />
                         ))}
                     {hoverFeature && showGeoJsonDetails && (

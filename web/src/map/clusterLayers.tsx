@@ -52,6 +52,7 @@ export const ClusterLayers = ({
     labelOptions,
     renderMode = "all",
     visible = true,
+    printTextSize,
 }: {
     feature: Feature
     hoverFeature?: Feature
@@ -64,6 +65,7 @@ export const ClusterLayers = ({
     labelOptions?: LabelOptions
     renderMode?: RenderMode
     visible?: boolean
+    printTextSize?: number
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
@@ -186,6 +188,7 @@ export const ClusterLayers = ({
                     printMode={printMode}
                     labelOptions={labelOptions}
                     visible={visible}
+                    printTextSize={printTextSize}
                 />
             )}
 
