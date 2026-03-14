@@ -182,6 +182,9 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // Scale factor for UI elements (legends, title) — 1.0 at 600px container width
     const uiScale = Math.max(0.5, Math.min(1.2, containerSize.width / 600))
 
+    // Scaled text size for map labels (proportional to container width)
+    const printTextSize = Math.max(7, Math.min(16, Math.round(13 * uiScale)))
+
     // Compute which groups are visible based on current scope
     const visibleGroups = useMemo(
         () => getVisibleGroups(allFeatures, selectedScope),
@@ -194,60 +197,39 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         [selectedScope],
     )
 
-    // Initialize legend positions on mount (client-side only)
+    // Initialize legend positions, title position, and view state on mount (client-side only).
+    // containerSize is already computed from the default paper in the useState initializer,
+    // so we use it directly instead of recalculating.
     useEffect(() => {
-        // Try to load from localStorage first
         const stored = loadFromStorage<
             Record<DisplayClusterGroup, DraggablePosition>
         >(LEGEND_STORAGE_KEY)
-        if (stored) {
-            setLegendPositions(stored)
-        } else {
-            // Calculate defaults based on container size
-            const size = calculateContainerSize(
-                window.innerWidth,
-                window.innerHeight,
-                "poster-24x36",
-            )
-            const defaults = getDefaultPixelPositions(size.width, size.height)
-            setLegendPositions(defaults)
-        }
-    }, [])
+        setLegendPositions(
+            stored ??
+                getDefaultPixelPositions(
+                    containerSize.width,
+                    containerSize.height,
+                ),
+        )
 
-    // Initialize title position on mount (client-side only)
-    useEffect(() => {
-        const stored = loadFromStorage<DraggablePosition>(TITLE_STORAGE_KEY)
-        if (stored) {
-            setTitlePosition(stored)
-        } else {
-            const size = calculateContainerSize(
-                window.innerWidth,
-                window.innerHeight,
-                "poster-24x36",
-            )
-            const defaultPos = getDefaultTitlePosition(size.width, size.height)
-            setTitlePosition(defaultPos)
-        }
-    }, [])
+        const storedTitle =
+            loadFromStorage<DraggablePosition>(TITLE_STORAGE_KEY)
+        setTitlePosition(
+            storedTitle ??
+                getDefaultTitlePosition(
+                    containerSize.width,
+                    containerSize.height,
+                ),
+        )
 
-    // Initialize view state on mount
-    useEffect(() => {
-        const stored = loadFromStorage<ViewState>(VIEW_STORAGE_KEY)
-        if (stored) {
-            setViewState(stored)
+        const storedView = loadFromStorage<ViewState>(VIEW_STORAGE_KEY)
+        if (storedView) {
+            setViewState(storedView)
         } else {
-            // Use default bounds based on container size
-            const size = calculateContainerSize(
-                window.innerWidth,
-                window.innerHeight,
-                "poster-24x36",
-            )
-            const defaults = initialBounds(size)
-            if (defaults) {
-                setViewState(defaults)
-            }
+            const defaults = initialBounds(containerSize)
+            if (defaults) setViewState(defaults)
         }
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // Save legend positions to localStorage when they change
     useEffect(() => {
@@ -342,17 +324,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                             containerHeight={
                                                 containerSize.height
                                             }
-                                            printTextSize={Math.max(
-                                                7,
-                                                Math.min(
-                                                    16,
-                                                    Math.round(
-                                                        13 *
-                                                            containerSize.width /
-                                                            600,
-                                                    ),
-                                                ),
-                                            )}
+                                            printTextSize={printTextSize}
                                         />
                                     )}
 

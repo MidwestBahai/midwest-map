@@ -22,8 +22,6 @@ interface ClusterTextProps {
     printTextSize?: number
 }
 
-// Use shared month abbreviations
-const MONTHS = MONTH_ABBREVIATIONS
 
 /**
  * Format advancement date responsively based on available width.
@@ -35,7 +33,7 @@ const formatAdvancementDate = (
 ): string | null => {
     if (!date) return null
 
-    const month = MONTHS[date.getMonth()]
+    const month = MONTH_ABBREVIATIONS[date.getMonth()]
     const year = date.getFullYear()
 
     // Responsive formats:
@@ -127,7 +125,7 @@ export const ClusterText = ({
 
             // Advancement date (e.g., "Jan 2017")
             if (labelOptions?.showDate && advancementDate) {
-                const month = MONTHS[advancementDate.getMonth()]
+                const month = MONTH_ABBREVIATIONS[advancementDate.getMonth()]
                 const year = advancementDate.getFullYear()
                 lines.push(`${month} ${year}`)
             }

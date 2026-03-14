@@ -98,13 +98,8 @@ export const ClusterLayers = ({
         // only grouping is highlighted
         (!categoryHighlight.milestone &&
             clusterGroup === categoryHighlight.clusterGroup)
-    // const bounds = useMemo(() => featurePolygonBounds(data), [data])
     const fillLayerId = `cluster-${clusterCode}`
     const symbolLayerId = `symbol-${clusterCode}`
-
-    // useDebugClusterFeature(index, "IN-01", feature)
-    // const scaleFactor = map?.getScaleFactor()
-    // useEffect(() => console.log({scaleFactor}), [scaleFactor])
 
     // For fill/line layers, use opacity with transition for smooth fade
     const fillOpacity = visible ? 1 : 0
