@@ -1,7 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises"
 import { parse } from "csv-parse/sync"
 import type { Feature } from "geojson"
-import type { ShapeFilePlusLargestRects } from "./ImportShapefiles"
+import type { LatLongRect } from "../lib/latLongRect"
+import { trimCoordinates } from "./trimCoordinates"
 
 /**
  * Merge advancement timeline data from TSV file into the static cluster GeoJSON.
@@ -39,7 +40,10 @@ interface ClusterTimelineData {
     latestAdvancement?: string
 }
 
-interface EnhancedShapefile extends ShapeFilePlusLargestRects {
+/** Clean output interface — no shapefile metadata (prj, shx, header) */
+interface ClusterTimelineOutput {
+    features: Feature[]
+    largestClusterRects: Record<string, LatLongRect>
     timelineBounds: {
         minDate: string | null
         maxDate: string | null
@@ -135,7 +139,10 @@ async function mergeTimelineData() {
     // Load static cluster data
     console.log("Loading static cluster data...")
     const staticDataText = await readFile(STATIC_CLUSTERS_FILE, "utf-8")
-    const staticData = JSON.parse(staticDataText) as ShapeFilePlusLargestRects
+    const staticData = JSON.parse(staticDataText) as {
+        features?: Feature[]
+        largestClusterRects: Record<string, LatLongRect>
+    }
 
     // Load advancement data
     const advancementData = await loadAdvancementData()
@@ -173,12 +180,22 @@ async function mergeTimelineData() {
 
             const timelineData = advancementData.get(clusterId)
 
+            const p = feature.properties ?? {}
+            const picked = {
+                Cluster: p.Cluster,
+                Group: p.Group,
+                "Cluster Na": p["Cluster Na"],
+                ST: p.ST,
+                aland: p.aland,
+                M: p.M,
+            }
+
             if (timelineData) {
                 stats.clustersWithTimeline++
-                return {
+                return trimCoordinates({
                     ...feature,
                     properties: {
-                        ...feature.properties,
+                        ...picked,
                         population: timelineData.population,
                         currentMilestone: timelineData.currentMilestone,
                         timeline: timelineData.timeline,
@@ -186,20 +203,19 @@ async function mergeTimelineData() {
                         latestAdvancement:
                             timelineData.latestAdvancement || null,
                     },
-                }
+                })
             } else {
                 stats.clustersWithoutTimeline.push(clusterId)
-                // Keep existing milestone from shapefile, add empty timeline
-                return {
+                return trimCoordinates({
                     ...feature,
                     properties: {
-                        ...feature.properties,
-                        currentMilestone: feature.properties?.M || "N",
+                        ...picked,
+                        currentMilestone: p.M || "N",
                         timeline: [],
                         firstAdvancement: null,
                         latestAdvancement: null,
                     },
-                }
+                })
             }
         },
     )
@@ -223,10 +239,10 @@ async function mergeTimelineData() {
         }
     }
 
-    // Create enhanced shapefile with timeline data
-    const enhancedShapefile: EnhancedShapefile = {
-        ...staticData,
+    // Create clean output (no shapefile metadata like prj, shx, header)
+    const output: ClusterTimelineOutput = {
         features: enhancedFeatures,
+        largestClusterRects: staticData.largestClusterRects,
         timelineBounds: {
             minDate,
             maxDate,
@@ -234,7 +250,7 @@ async function mergeTimelineData() {
     }
 
     // Write output
-    await writeFile(OUTPUT_FILE, JSON.stringify(enhancedShapefile, null, 1))
+    await writeFile(OUTPUT_FILE, JSON.stringify(output, null, 1))
 
     // Report statistics
     console.log(`\n✅ Merged timeline data into ${OUTPUT_FILE}`)

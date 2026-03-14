@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import MapboxMap, { type MapRef } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
 import type { LabelOptions } from "@/app/print/types"
-import type { LayerMode } from "@/map/types"
+import { FloatingSearch } from "@/components/FloatingSearch"
 import validatedData from "@/data/clusters-timeline.geo.json"
 import type { LatLongRect } from "@/lib/latLongRect"
 import { matchesScope } from "@/lib/scopeFilter"
@@ -18,6 +18,7 @@ import { CountyBoundaries } from "@/map/countyBoundaries"
 import { initialBounds } from "@/map/initialMapBounds"
 import { MapProvider } from "@/map/mapContext"
 import { MapExperiments } from "@/map/mapExperiments"
+import type { LayerMode } from "@/map/types"
 
 // Simple view state for persistence (subset of mapbox's full ViewState)
 export interface ViewState {
@@ -49,7 +50,6 @@ export interface RegionMapProps {
     // Scaled text size for print labels (proportional to container width)
     printTextSize?: number
 }
-
 
 export const RegionMap = ({
     mapboxAccessToken,
@@ -189,10 +189,9 @@ export const RegionMap = ({
                 ref={mapRef}
             >
                 <MapProvider mapRef={mapRefState}>
+                    {!printMode && <FloatingSearch features={features} />}
                     {/* County boundaries - only visible in print mode */}
-                    {printMode && (
-                        <CountyBoundaries scope={scope} />
-                    )}
+                    {printMode && <CountyBoundaries scope={scope} />}
 
                     {/* Render in two passes to ensure symbols are always above fills */}
                     {/* Pass 1: Fill and line layers */}

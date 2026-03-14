@@ -1,7 +1,6 @@
 import type { Expression } from "mapbox-gl"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Layer, Source } from "react-map-gl/mapbox"
-import countiesData from "@/data/counties.geo.json"
 
 // Style for county boundaries in print mode
 // Darker gray and wider line for better visibility in print
@@ -50,18 +49,31 @@ function matchesCountyScope(feature: GeoJSON.Feature, scope: string): boolean {
 export const CountyBoundaries = ({
     scope = "region",
 }: CountyBoundariesProps) => {
+    const [countiesData, setCountiesData] =
+        useState<GeoJSON.FeatureCollection | null>(null)
+
+    useEffect(() => {
+        import("@/data/counties.geo.json").then((mod) => {
+            setCountiesData(mod.default as GeoJSON.FeatureCollection)
+        })
+    }, [])
+
     const filteredData = useMemo(() => {
+        if (!countiesData) return null
+
         if (scope === "region") {
-            return countiesData as GeoJSON.FeatureCollection
+            return countiesData
         }
 
         return {
             ...countiesData,
-            features: (
-                countiesData as GeoJSON.FeatureCollection
-            ).features.filter((feature) => matchesCountyScope(feature, scope)),
+            features: countiesData.features.filter((feature) =>
+                matchesCountyScope(feature, scope),
+            ),
         } as GeoJSON.FeatureCollection
-    }, [scope])
+    }, [scope, countiesData])
+
+    if (!filteredData) return null
 
     return (
         <Source type="geojson" data={filteredData}>

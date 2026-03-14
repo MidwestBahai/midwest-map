@@ -46,6 +46,8 @@ interface ClusterProperties {
 - `web/src/map/floatingMapKey.tsx` - Map legend
 - `web/src/components/FloatingTimelineButton.tsx` - Timeline slider for viewing historical milestones
 - `web/src/components/FloatingLayerToggle.tsx` - Toggle between cluster overlay and reference map
+- `web/src/components/FloatingSearch.tsx` - Search clusters/groups by code, name, city, or county
+- `web/src/lib/useSearchIndex.ts` - Builds search index from GeoJSON features
 - `web/src/data/milestoneLabels.ts` - Milestone definitions (M1, M2, M3, etc.)
 
 ## Commands

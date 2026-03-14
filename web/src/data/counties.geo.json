@@ -59,15 +59,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "101",
-    "COUNTYNS": "00451679",
-    "AFFGEOID": "0500000US18101",
-    "GEOID": "18101",
     "NAME": "Martin",
-    "LSAD": "06",
-    "ALAND": 869615714,
-    "AWATER": 12033246,
+    "GEOID": "18101",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -179,15 +172,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "005",
-    "COUNTYNS": "01622945",
-    "AFFGEOID": "0500000US26005",
-    "GEOID": "26005",
     "NAME": "Allegan",
-    "LSAD": "06",
-    "ALAND": 2137349551,
-    "AWATER": 2610845118,
+    "GEOID": "26005",
     "clusterCode": "MI-12",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -327,15 +313,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "149",
-    "COUNTYNS": "01625034",
-    "AFFGEOID": "0500000US26149",
-    "GEOID": "26149",
     "NAME": "St. Joseph",
-    "LSAD": "06",
-    "ALAND": 1296553523,
-    "AWATER": 52912989,
+    "GEOID": "26149",
     "clusterCode": "MI-13",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -383,15 +362,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "081",
-    "COUNTYNS": "00450365",
-    "AFFGEOID": "0500000US18081",
-    "GEOID": "18081",
     "NAME": "Johnson",
-    "LSAD": "06",
-    "ALAND": 829909420,
-    "AWATER": 3525572,
+    "GEOID": "18081",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -443,15 +415,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "009",
-    "COUNTYNS": "00450404",
-    "AFFGEOID": "0500000US18009",
-    "GEOID": "18009",
     "NAME": "Blackford",
-    "LSAD": "06",
-    "ALAND": 427554634,
-    "AWATER": 1303566,
+    "GEOID": "18009",
     "clusterCode": "IN-08",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -543,15 +508,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "161",
-    "COUNTYNS": "01074092",
-    "AFFGEOID": "0500000US39161",
-    "GEOID": "39161",
     "NAME": "Van Wert",
-    "LSAD": "06",
-    "ALAND": 1059698927,
-    "AWATER": 3281853,
+    "GEOID": "39161",
     "clusterCode": "OH-25",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -599,15 +557,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "025",
-    "COUNTYNS": "01622955",
-    "AFFGEOID": "0500000US26025",
-    "GEOID": "26025",
     "NAME": "Calhoun",
-    "LSAD": "06",
-    "ALAND": 1829249870,
-    "AWATER": 31275675,
+    "GEOID": "26025",
     "clusterCode": "MI-13",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -679,15 +630,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "023",
-    "COUNTYNS": "00450342",
-    "AFFGEOID": "0500000US18023",
-    "GEOID": "18023",
     "NAME": "Clinton",
-    "LSAD": "06",
-    "ALAND": 1049119210,
-    "AWATER": 461117,
+    "GEOID": "18023",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -743,15 +687,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "013",
-    "COUNTYNS": "00451684",
-    "AFFGEOID": "0500000US18013",
-    "GEOID": "18013",
     "NAME": "Brown",
-    "LSAD": "06",
-    "ALAND": 808043861,
-    "AWATER": 12025993,
+    "GEOID": "18013",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -847,15 +784,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "079",
-    "COUNTYNS": "00450364",
-    "AFFGEOID": "0500000US18079",
-    "GEOID": "18079",
     "NAME": "Jennings",
-    "LSAD": "06",
-    "ALAND": 975364209,
-    "AWATER": 4546213,
+    "GEOID": "18079",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -895,15 +825,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "133",
-    "COUNTYNS": "01623009",
-    "AFFGEOID": "0500000US26133",
-    "GEOID": "26133",
     "NAME": "Osceola",
-    "LSAD": "06",
-    "ALAND": 1467044588,
-    "AWATER": 17266828,
+    "GEOID": "26133",
     "clusterCode": "MI-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -947,15 +870,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "037",
-    "COUNTYNS": "01622961",
-    "AFFGEOID": "0500000US26037",
-    "GEOID": "26037",
     "NAME": "Clinton",
-    "LSAD": "06",
-    "ALAND": 1466991661,
-    "AWATER": 21105919,
+    "GEOID": "26037",
     "clusterCode": "MI-11",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -1003,15 +919,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "085",
-    "COUNTYNS": "01622985",
-    "AFFGEOID": "0500000US26085",
-    "GEOID": "26085",
     "NAME": "Lake",
-    "LSAD": "06",
-    "ALAND": 1469857281,
-    "AWATER": 17521848,
+    "GEOID": "26085",
     "clusterCode": "MI-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -1079,15 +988,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "007",
-    "COUNTYNS": "00450403",
-    "AFFGEOID": "0500000US18007",
-    "GEOID": "18007",
     "NAME": "Benton",
-    "LSAD": "06",
-    "ALAND": 1052616452,
-    "AWATER": 236033,
+    "GEOID": "18007",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -1147,15 +1049,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "011",
-    "COUNTYNS": "00450405",
-    "AFFGEOID": "0500000US18011",
-    "GEOID": "18011",
     "NAME": "Boone",
-    "LSAD": "06",
-    "ALAND": 1095336141,
-    "AWATER": 877936,
+    "GEOID": "18011",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -1207,15 +1102,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "145",
-    "COUNTYNS": "00450387",
-    "AFFGEOID": "0500000US18145",
-    "GEOID": "18145",
     "NAME": "Shelby",
-    "LSAD": "06",
-    "ALAND": 1064898914,
-    "AWATER": 4135270,
+    "GEOID": "18145",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -1311,15 +1199,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "089",
-    "COUNTYNS": "01074057",
-    "AFFGEOID": "0500000US39089",
-    "GEOID": "39089",
     "NAME": "Licking",
-    "LSAD": "06",
-    "ALAND": 1767343170,
-    "AWATER": 12918986,
+    "GEOID": "39089",
     "clusterCode": "OH-28",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -1363,15 +1244,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "165",
-    "COUNTYNS": "01623023",
-    "AFFGEOID": "0500000US26165",
-    "GEOID": "26165",
     "NAME": "Wexford",
-    "LSAD": "06",
-    "ALAND": 1463348860,
-    "AWATER": 27098944,
+    "GEOID": "26165",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -1419,15 +1293,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "113",
-    "COUNTYNS": "01622999",
-    "AFFGEOID": "0500000US26113",
-    "GEOID": "26113",
     "NAME": "Missaukee",
-    "LSAD": "06",
-    "ALAND": 1462638198,
-    "AWATER": 23575303,
+    "GEOID": "26113",
     "clusterCode": "MI-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -1503,15 +1370,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "067",
-    "COUNTYNS": "01074046",
-    "AFFGEOID": "0500000US39067",
-    "GEOID": "39067",
     "NAME": "Harrison",
-    "LSAD": "06",
-    "ALAND": 1042034970,
-    "AWATER": 21847164,
+    "GEOID": "39067",
     "clusterCode": "OH-17",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -1587,15 +1447,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "033",
-    "COUNTYNS": "00450346",
-    "AFFGEOID": "0500000US18033",
-    "GEOID": "18033",
     "NAME": "DeKalb",
-    "LSAD": "06",
-    "ALAND": 939732061,
-    "AWATER": 2657419,
+    "GEOID": "18033",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -1651,15 +1504,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "049",
-    "COUNTYNS": "01622967",
-    "AFFGEOID": "0500000US26049",
-    "GEOID": "26049",
     "NAME": "Genesee",
-    "LSAD": "06",
-    "ALAND": 1649729500,
-    "AWATER": 32693085,
+    "GEOID": "26049",
     "clusterCode": "MI-08",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -1731,15 +1577,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "027",
-    "COUNTYNS": "01074026",
-    "AFFGEOID": "0500000US39027",
-    "GEOID": "39027",
     "NAME": "Clinton",
-    "LSAD": "06",
-    "ALAND": 1058487159,
-    "AWATER": 9351754,
+    "GEOID": "39027",
     "clusterCode": "OH-33",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -1863,15 +1702,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "037",
-    "COUNTYNS": "01074031",
-    "AFFGEOID": "0500000US39037",
-    "GEOID": "39037",
     "NAME": "Darke",
-    "LSAD": "06",
-    "ALAND": 1549120893,
-    "AWATER": 4245786,
+    "GEOID": "39037",
     "clusterCode": "OH-29",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -1935,15 +1767,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "017",
-    "COUNTYNS": "00450339",
-    "AFFGEOID": "0500000US18017",
-    "GEOID": "18017",
     "NAME": "Cass",
-    "LSAD": "06",
-    "ALAND": 1067475977,
-    "AWATER": 6974424,
+    "GEOID": "18017",
     "clusterCode": "IN-10",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2039,15 +1864,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "073",
-    "COUNTYNS": "00450494",
-    "AFFGEOID": "0500000US18073",
-    "GEOID": "18073",
     "NAME": "Jasper",
-    "LSAD": "06",
-    "ALAND": 1449431947,
-    "AWATER": 4560470,
+    "GEOID": "18073",
     "clusterCode": "IN-11",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2095,15 +1913,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "041",
-    "COUNTYNS": "00450349",
-    "AFFGEOID": "0500000US18041",
-    "GEOID": "18041",
     "NAME": "Fayette",
-    "LSAD": "06",
-    "ALAND": 556901540,
-    "AWATER": 366408,
+    "GEOID": "18041",
     "clusterCode": "IN-13",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2143,15 +1954,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "073",
-    "COUNTYNS": "01622979",
-    "AFFGEOID": "0500000US26073",
-    "GEOID": "26073",
     "NAME": "Isabella",
-    "LSAD": "06",
-    "ALAND": 1483226454,
-    "AWATER": 12959626,
+    "GEOID": "26073",
     "clusterCode": "MI-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -2211,15 +2015,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "099",
-    "COUNTYNS": "00450372",
-    "AFFGEOID": "0500000US18099",
-    "GEOID": "18099",
     "NAME": "Marshall",
-    "LSAD": "06",
-    "ALAND": 1148993902,
-    "AWATER": 15834723,
+    "GEOID": "18099",
     "clusterCode": "IN-03",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2259,15 +2056,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "131",
-    "COUNTYNS": "00446852",
-    "AFFGEOID": "0500000US18131",
-    "GEOID": "18131",
     "NAME": "Pulaski",
-    "LSAD": "06",
-    "ALAND": 1123146088,
-    "AWATER": 2291536,
+    "GEOID": "18131",
     "clusterCode": "IN-11",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2367,15 +2157,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "127",
-    "COUNTYNS": "00450382",
-    "AFFGEOID": "0500000US18127",
-    "GEOID": "18127",
     "NAME": "Porter",
-    "LSAD": "06",
-    "ALAND": 1082777920,
-    "AWATER": 268688087,
+    "GEOID": "18127",
     "clusterCode": "IN-06",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2443,15 +2226,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "021",
-    "COUNTYNS": "00450341",
-    "AFFGEOID": "0500000US18021",
-    "GEOID": "18021",
     "NAME": "Clay",
-    "LSAD": "06",
-    "ALAND": 926109960,
-    "AWATER": 7118039,
+    "GEOID": "18021",
     "clusterCode": "IN-09",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2543,15 +2319,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "161",
-    "COUNTYNS": "00450395",
-    "AFFGEOID": "0500000US18161",
-    "GEOID": "18161",
     "NAME": "Union",
-    "LSAD": "06",
-    "ALAND": 417568568,
-    "AWATER": 10238515,
+    "GEOID": "18161",
     "clusterCode": "IN-13",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -2591,15 +2360,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "039",
-    "COUNTYNS": "01622962",
-    "AFFGEOID": "0500000US26039",
-    "GEOID": "26039",
     "NAME": "Crawford",
-    "LSAD": "06",
-    "ALAND": 1440763922,
-    "AWATER": 18025856,
+    "GEOID": "26039",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -2659,15 +2421,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "143",
-    "COUNTYNS": "01623014",
-    "AFFGEOID": "0500000US26143",
-    "GEOID": "26143",
     "NAME": "Roscommon",
-    "LSAD": "06",
-    "ALAND": 1345852870,
-    "AWATER": 156421369,
+    "GEOID": "26143",
     "clusterCode": "MI-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -2771,15 +2526,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "019",
-    "COUNTYNS": "01074022",
-    "AFFGEOID": "0500000US39019",
-    "GEOID": "39019",
     "NAME": "Carroll",
-    "LSAD": "06",
-    "ALAND": 1022030958,
-    "AWATER": 11192655,
+    "GEOID": "39019",
     "clusterCode": "OH-17",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -2835,15 +2583,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "021",
-    "COUNTYNS": "01074023",
-    "AFFGEOID": "0500000US39021",
-    "GEOID": "39021",
     "NAME": "Champaign",
-    "LSAD": "06",
-    "ALAND": 1109623490,
-    "AWATER": 3639845,
+    "GEOID": "39021",
     "clusterCode": "OH-29",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -2923,15 +2664,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "065",
-    "COUNTYNS": "01074045",
-    "AFFGEOID": "0500000US39065",
-    "GEOID": "39065",
     "NAME": "Hardin",
-    "LSAD": "06",
-    "ALAND": 1218342693,
-    "AWATER": 629922,
+    "GEOID": "39065",
     "clusterCode": "OH-26",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -3051,15 +2785,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "141",
-    "COUNTYNS": "00452855",
-    "AFFGEOID": "0500000US18141",
-    "GEOID": "18141",
     "NAME": "St. Joseph",
-    "LSAD": "06",
-    "ALAND": 1185912669,
-    "AWATER": 9070408,
+    "GEOID": "18141",
     "clusterCode": "IN-03",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -3139,15 +2866,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "103",
-    "COUNTYNS": "01074064",
-    "AFFGEOID": "0500000US39103",
-    "GEOID": "39103",
     "NAME": "Medina",
-    "LSAD": "06",
-    "ALAND": 1091406446,
-    "AWATER": 4198457,
+    "GEOID": "39103",
     "clusterCode": "OH-13",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -3215,15 +2935,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "165",
-    "COUNTYNS": "01074094",
-    "AFFGEOID": "0500000US39165",
-    "GEOID": "39165",
     "NAME": "Warren",
-    "LSAD": "06",
-    "ALAND": 1039437341,
-    "AWATER": 15502922,
+    "GEOID": "39165",
     "clusterCode": "OH-33",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -3279,15 +2992,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "033",
-    "COUNTYNS": "01074029",
-    "AFFGEOID": "0500000US39033",
-    "GEOID": "39033",
     "NAME": "Crawford",
-    "LSAD": "06",
-    "ALAND": 1040619676,
-    "AWATER": 2359515,
+    "GEOID": "39033",
     "clusterCode": "OH-24",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -3339,15 +3045,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "047",
-    "COUNTYNS": "01074036",
-    "AFFGEOID": "0500000US39047",
-    "GEOID": "39047",
     "NAME": "Fayette",
-    "LSAD": "06",
-    "ALAND": 1052470875,
-    "AWATER": 1693045,
+    "GEOID": "39047",
     "clusterCode": "OH-31",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -3415,15 +3114,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "077",
-    "COUNTYNS": "01074051",
-    "AFFGEOID": "0500000US39077",
-    "GEOID": "39077",
     "NAME": "Huron",
-    "LSAD": "06",
-    "ALAND": 1272965337,
-    "AWATER": 8615925,
+    "GEOID": "39077",
     "clusterCode": "OH-22",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -3499,15 +3191,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "041",
-    "COUNTYNS": "01074033",
-    "AFFGEOID": "0500000US39041",
-    "GEOID": "39041",
     "NAME": "Delaware",
-    "LSAD": "06",
-    "ALAND": 1147867059,
-    "AWATER": 36610531,
+    "GEOID": "39041",
     "clusterCode": "OH-27",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -3587,15 +3272,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "003",
-    "COUNTYNS": "01074015",
-    "AFFGEOID": "0500000US39003",
-    "GEOID": "39003",
     "NAME": "Allen",
-    "LSAD": "06",
-    "ALAND": 1042470095,
-    "AWATER": 11266164,
+    "GEOID": "39003",
     "clusterCode": "OH-26",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -3743,15 +3421,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "093",
-    "COUNTYNS": "01074059",
-    "AFFGEOID": "0500000US39093",
-    "GEOID": "39093",
     "NAME": "Lorain",
-    "LSAD": "06",
-    "ALAND": 1272000372,
-    "AWATER": 1119442372,
+    "GEOID": "39093",
     "clusterCode": "OH-10",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -3851,15 +3522,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "133",
-    "COUNTYNS": "01074079",
-    "AFFGEOID": "0500000US39133",
-    "GEOID": "39133",
     "NAME": "Portage",
-    "LSAD": "06",
-    "ALAND": 1262374971,
-    "AWATER": 43121843,
+    "GEOID": "39133",
     "clusterCode": "OH-11",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -5063,15 +4727,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "109",
-    "COUNTYNS": "01622997",
-    "AFFGEOID": "0500000US26109",
-    "GEOID": "26109",
     "NAME": "Menominee",
-    "LSAD": "06",
-    "ALAND": 2704030473,
-    "AWATER": 761792643,
+    "GEOID": "26109",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -5175,15 +4832,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "173",
-    "COUNTYNS": "01074098",
-    "AFFGEOID": "0500000US39173",
-    "GEOID": "39173",
     "NAME": "Wood",
-    "LSAD": "06",
-    "ALAND": 1598508434,
-    "AWATER": 8545552,
+    "GEOID": "39173",
     "clusterCode": "OH-23",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -5227,15 +4877,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "067",
-    "COUNTYNS": "01622976",
-    "AFFGEOID": "0500000US26067",
-    "GEOID": "26067",
     "NAME": "Ionia",
-    "LSAD": "06",
-    "ALAND": 1479671935,
-    "AWATER": 22641047,
+    "GEOID": "26067",
     "clusterCode": "MI-31",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -5279,15 +4922,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "077",
-    "COUNTYNS": "01622981",
-    "AFFGEOID": "0500000US26077",
-    "GEOID": "26077",
     "NAME": "Kalamazoo",
-    "LSAD": "06",
-    "ALAND": 1456081718,
-    "AWATER": 46881014,
+    "GEOID": "26077",
     "clusterCode": "MI-13",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -5335,15 +4971,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "123",
-    "COUNTYNS": "01623004",
-    "AFFGEOID": "0500000US26123",
-    "GEOID": "26123",
     "NAME": "Newaygo",
-    "LSAD": "06",
-    "ALAND": 2112559448,
-    "AWATER": 119204427,
+    "GEOID": "26123",
     "clusterCode": "MI-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -5451,15 +5080,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "139",
-    "COUNTYNS": "01623012",
-    "AFFGEOID": "0500000US26139",
-    "GEOID": "26139",
     "NAME": "Ottawa",
-    "LSAD": "06",
-    "ALAND": 1459662264,
-    "AWATER": 2765669102,
+    "GEOID": "26139",
     "clusterCode": "MI-09",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -5527,15 +5149,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "159",
-    "COUNTYNS": "01623020",
-    "AFFGEOID": "0500000US26159",
-    "GEOID": "26159",
     "NAME": "Van Buren",
-    "LSAD": "06",
-    "ALAND": 1574150150,
-    "AWATER": 1248671273,
+    "GEOID": "26159",
     "clusterCode": "MI-12",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -5635,15 +5250,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "127",
-    "COUNTYNS": "01074076",
-    "AFFGEOID": "0500000US39127",
-    "GEOID": "39127",
     "NAME": "Perry",
-    "LSAD": "06",
-    "ALAND": 1056682425,
-    "AWATER": 11653682,
+    "GEOID": "39127",
     "clusterCode": "OH-19",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -5747,15 +5355,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "139",
-    "COUNTYNS": "01074082",
-    "AFFGEOID": "0500000US39139",
-    "GEOID": "39139",
     "NAME": "Richland",
-    "LSAD": "06",
-    "ALAND": 1282720855,
-    "AWATER": 12470884,
+    "GEOID": "39139",
     "clusterCode": "OH-24",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -5819,15 +5420,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "147",
-    "COUNTYNS": "01074086",
-    "AFFGEOID": "0500000US39147",
-    "GEOID": "39147",
     "NAME": "Seneca",
-    "LSAD": "06",
-    "ALAND": 1427146050,
-    "AWATER": 4582482,
+    "GEOID": "39147",
     "clusterCode": "OH-22",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -5895,15 +5489,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "149",
-    "COUNTYNS": "01074087",
-    "AFFGEOID": "0500000US39149",
-    "GEOID": "39149",
     "NAME": "Shelby",
-    "LSAD": "06",
-    "ALAND": 1055876814,
-    "AWATER": 7808224,
+    "GEOID": "39149",
     "clusterCode": "OH-29",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -5987,15 +5574,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "039",
-    "COUNTYNS": "01074032",
-    "AFFGEOID": "0500000US39039",
-    "GEOID": "39039",
     "NAME": "Defiance",
-    "LSAD": "06",
-    "ALAND": 1065649893,
-    "AWATER": 7073999,
+    "GEOID": "39039",
     "clusterCode": "OH-21",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -6043,15 +5623,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "079",
-    "COUNTYNS": "01622982",
-    "AFFGEOID": "0500000US26079",
-    "GEOID": "26079",
     "NAME": "Kalkaska",
-    "LSAD": "06",
-    "ALAND": 1450060290,
-    "AWATER": 28061562,
+    "GEOID": "26079",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -6091,15 +5664,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "035",
-    "COUNTYNS": "01622960",
-    "AFFGEOID": "0500000US26035",
-    "GEOID": "26035",
     "NAME": "Clare",
-    "LSAD": "06",
-    "ALAND": 1461621715,
-    "AWATER": 28500716,
+    "GEOID": "26035",
     "clusterCode": "MI-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -6155,15 +5721,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "051",
-    "COUNTYNS": "01622968",
-    "AFFGEOID": "0500000US26051",
-    "GEOID": "26051",
     "NAME": "Gladwin",
-    "LSAD": "06",
-    "ALAND": 1299615518,
-    "AWATER": 36636103,
+    "GEOID": "26051",
     "clusterCode": "MI-05",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -6211,15 +5770,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "129",
-    "COUNTYNS": "01623007",
-    "AFFGEOID": "0500000US26129",
-    "GEOID": "26129",
     "NAME": "Ogemaw",
-    "LSAD": "06",
-    "ALAND": 1459438802,
-    "AWATER": 29680532,
+    "GEOID": "26129",
     "clusterCode": "MI-05",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -6283,15 +5835,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "169",
-    "COUNTYNS": "00450399",
-    "AFFGEOID": "0500000US18169",
-    "GEOID": "18169",
     "NAME": "Wabash",
-    "LSAD": "06",
-    "ALAND": 1068206218,
-    "AWATER": 22115988,
+    "GEOID": "18169",
     "clusterCode": "IN-10",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -6355,15 +5900,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "097",
-    "COUNTYNS": "00450371",
-    "AFFGEOID": "0500000US18097",
-    "GEOID": "18097",
     "NAME": "Marion",
-    "LSAD": "06",
-    "ALAND": 1026612130,
-    "AWATER": 17179347,
+    "GEOID": "18097",
     "clusterCode": "IN-01",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -6423,15 +5961,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "107",
-    "COUNTYNS": "00450374",
-    "AFFGEOID": "0500000US18107",
-    "GEOID": "18107",
     "NAME": "Montgomery",
-    "LSAD": "06",
-    "ALAND": 1306954200,
-    "AWATER": 2144021,
+    "GEOID": "18107",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -6483,15 +6014,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "159",
-    "COUNTYNS": "00450394",
-    "AFFGEOID": "0500000US18159",
-    "GEOID": "18159",
     "NAME": "Tipton",
-    "LSAD": "06",
-    "ALAND": 674797598,
-    "AWATER": 68028,
+    "GEOID": "18159",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -6631,15 +6155,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "177",
-    "COUNTYNS": "00450336",
-    "AFFGEOID": "0500000US18177",
-    "GEOID": "18177",
     "NAME": "Wayne",
-    "LSAD": "06",
-    "ALAND": 1040508998,
-    "AWATER": 6732251,
+    "GEOID": "18177",
     "clusterCode": "IN-13",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -6819,15 +6336,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "099",
-    "COUNTYNS": "01622992",
-    "AFFGEOID": "0500000US26099",
-    "GEOID": "26099",
     "NAME": "Macomb",
-    "LSAD": "06",
-    "ALAND": 1240902197,
-    "AWATER": 237590352,
+    "GEOID": "26099",
     "clusterCode": "MI-19",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -6931,15 +6441,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "163",
-    "COUNTYNS": "01074093",
-    "AFFGEOID": "0500000US39163",
-    "GEOID": "39163",
     "NAME": "Vinton",
-    "LSAD": "06",
-    "ALAND": 1068008731,
-    "AWATER": 6781201,
+    "GEOID": "39163",
     "clusterCode": "OH-19",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -6991,15 +6494,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "117",
-    "COUNTYNS": "00451681",
-    "AFFGEOID": "0500000US18117",
-    "GEOID": "18117",
     "NAME": "Orange",
-    "LSAD": "06",
-    "ALAND": 1031818419,
-    "AWATER": 25393791,
+    "GEOID": "18117",
     "clusterCode": "IN-16",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -7083,15 +6579,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "063",
-    "COUNTYNS": "00450358",
-    "AFFGEOID": "0500000US18063",
-    "GEOID": "18063",
     "NAME": "Hendricks",
-    "LSAD": "06",
-    "ALAND": 1053848884,
-    "AWATER": 4881142,
+    "GEOID": "18063",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -7139,15 +6628,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "069",
-    "COUNTYNS": "01074047",
-    "AFFGEOID": "0500000US39069",
-    "GEOID": "39069",
     "NAME": "Henry",
-    "LSAD": "06",
-    "ALAND": 1077461474,
-    "AWATER": 9687645,
+    "GEOID": "39069",
     "clusterCode": "OH-21",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -7227,15 +6709,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "083",
-    "COUNTYNS": "01074054",
-    "AFFGEOID": "0500000US39083",
-    "GEOID": "39083",
     "NAME": "Knox",
-    "LSAD": "06",
-    "ALAND": 1361054324,
-    "AWATER": 10718576,
+    "GEOID": "39083",
     "clusterCode": "OH-28",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -7411,15 +6886,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "043",
-    "COUNTYNS": "00450350",
-    "AFFGEOID": "0500000US18043",
-    "GEOID": "18043",
     "NAME": "Floyd",
-    "LSAD": "06",
-    "ALAND": 383288360,
-    "AWATER": 2645487,
+    "GEOID": "18043",
     "clusterCode": "IN-17",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -7475,15 +6943,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "111",
-    "COUNTYNS": "01622998",
-    "AFFGEOID": "0500000US26111",
-    "GEOID": "26111",
     "NAME": "Midland",
-    "LSAD": "06",
-    "ALAND": 1337099821,
-    "AWATER": 30589808,
+    "GEOID": "26111",
     "clusterCode": "MI-06",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -7559,15 +7020,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "085",
-    "COUNTYNS": "00450367",
-    "AFFGEOID": "0500000US18085",
-    "GEOID": "18085",
     "NAME": "Kosciusko",
-    "LSAD": "06",
-    "ALAND": 1376372904,
-    "AWATER": 59498373,
+    "GEOID": "18085",
     "clusterCode": "IN-03",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -7699,15 +7153,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "171",
-    "COUNTYNS": "00450400",
-    "AFFGEOID": "0500000US18171",
-    "GEOID": "18171",
     "NAME": "Warren",
-    "LSAD": "06",
-    "ALAND": 944520564,
-    "AWATER": 4466121,
+    "GEOID": "18171",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -7771,15 +7218,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "049",
-    "COUNTYNS": "00450353",
-    "AFFGEOID": "0500000US18049",
-    "GEOID": "18049",
     "NAME": "Fulton",
-    "LSAD": "06",
-    "ALAND": 954118209,
-    "AWATER": 7454415,
+    "GEOID": "18049",
     "clusterCode": "IN-10",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -7851,15 +7291,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "159",
-    "COUNTYNS": "01074091",
-    "AFFGEOID": "0500000US39159",
-    "GEOID": "39159",
     "NAME": "Union",
-    "LSAD": "06",
-    "ALAND": 1118207229,
-    "AWATER": 13286144,
+    "GEOID": "39159",
     "clusterCode": "OH-27",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -7911,15 +7344,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "057",
-    "COUNTYNS": "00450356",
-    "AFFGEOID": "0500000US18057",
-    "GEOID": "18057",
     "NAME": "Hamilton",
-    "LSAD": "06",
-    "ALAND": 1021224501,
-    "AWATER": 21082234,
+    "GEOID": "18057",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -8011,15 +7437,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "095",
-    "COUNTYNS": "01622990",
-    "AFFGEOID": "0500000US26095",
-    "GEOID": "26095",
     "NAME": "Luce",
-    "LSAD": "06",
-    "ALAND": 2328606181,
-    "AWATER": 2624713509,
+    "GEOID": "26095",
     "clusterCode": "MIUP-05",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -8187,15 +7606,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "071",
-    "COUNTYNS": "00451678",
-    "AFFGEOID": "0500000US18071",
-    "GEOID": "18071",
     "NAME": "Jackson",
-    "LSAD": "06",
-    "ALAND": 1319119300,
-    "AWATER": 11910481,
+    "GEOID": "18071",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -8247,15 +7659,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "057",
-    "COUNTYNS": "01622971",
-    "AFFGEOID": "0500000US26057",
-    "GEOID": "26057",
     "NAME": "Gratiot",
-    "LSAD": "06",
-    "ALAND": 1472309904,
-    "AWATER": 8154670,
+    "GEOID": "26057",
     "clusterCode": "MI-06",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -8335,15 +7740,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "125",
-    "COUNTYNS": "01074075",
-    "AFFGEOID": "0500000US39125",
-    "GEOID": "39125",
     "NAME": "Paulding",
-    "LSAD": "06",
-    "ALAND": 1078561239,
-    "AWATER": 6245392,
+    "GEOID": "39125",
     "clusterCode": "OH-21",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -8423,15 +7821,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "119",
-    "COUNTYNS": "01074072",
-    "AFFGEOID": "0500000US39119",
-    "GEOID": "39119",
     "NAME": "Muskingum",
-    "LSAD": "06",
-    "ALAND": 1721328761,
-    "AWATER": 20656658,
+    "GEOID": "39119",
     "clusterCode": "OH-19",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -8491,15 +7882,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "109",
-    "COUNTYNS": "01074067",
-    "AFFGEOID": "0500000US39109",
-    "GEOID": "39109",
     "NAME": "Miami",
-    "LSAD": "06",
-    "ALAND": 1053028422,
-    "AWATER": 7967436,
+    "GEOID": "39109",
     "clusterCode": "OH-29",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -8611,15 +7995,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "001",
-    "COUNTYNS": "01622943",
-    "AFFGEOID": "0500000US26001",
-    "GEOID": "26001",
     "NAME": "Alcona",
-    "LSAD": "06",
-    "ALAND": 1747141585,
-    "AWATER": 2890419325,
+    "GEOID": "26001",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -8663,15 +8040,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "015",
-    "COUNTYNS": "01622950",
-    "AFFGEOID": "0500000US26015",
-    "GEOID": "26015",
     "NAME": "Barry",
-    "LSAD": "06",
-    "ALAND": 1432507987,
-    "AWATER": 62021607,
+    "GEOID": "26015",
     "clusterCode": "MI-12",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -8715,15 +8085,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "045",
-    "COUNTYNS": "01622965",
-    "AFFGEOID": "0500000US26045",
-    "GEOID": "26045",
     "NAME": "Eaton",
-    "LSAD": "06",
-    "ALAND": 1489703574,
-    "AWATER": 11020019,
+    "GEOID": "26045",
     "clusterCode": "MI-11",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -8779,15 +8142,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "157",
-    "COUNTYNS": "00450393",
-    "AFFGEOID": "0500000US18157",
-    "GEOID": "18157",
     "NAME": "Tippecanoe",
-    "LSAD": "06",
-    "ALAND": 1294484142,
-    "AWATER": 8910174,
+    "GEOID": "18157",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -8935,15 +8291,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "021",
-    "COUNTYNS": "01622953",
-    "AFFGEOID": "0500000US26021",
-    "GEOID": "26021",
     "NAME": "Berrien",
-    "LSAD": "06",
-    "ALAND": 1470467019,
-    "AWATER": 2625526479,
+    "GEOID": "26021",
     "clusterCode": "MI-12",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -8995,15 +8344,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "093",
-    "COUNTYNS": "01622989",
-    "AFFGEOID": "0500000US26093",
-    "GEOID": "26093",
     "NAME": "Livingston",
-    "LSAD": "06",
-    "ALAND": 1463696909,
-    "AWATER": 52499169,
+    "GEOID": "26093",
     "clusterCode": "MI-16",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -9067,15 +8409,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "161",
-    "COUNTYNS": "01623021",
-    "AFFGEOID": "0500000US26161",
-    "GEOID": "26161",
     "NAME": "Washtenaw",
-    "LSAD": "06",
-    "ALAND": 1828428383,
-    "AWATER": 42628874,
+    "GEOID": "26161",
     "clusterCode": "MI-17",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -9167,15 +8502,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "079",
-    "COUNTYNS": "01074052",
-    "AFFGEOID": "0500000US39079",
-    "GEOID": "39079",
     "NAME": "Jackson",
-    "LSAD": "06",
-    "ALAND": 1088581966,
-    "AWATER": 3184785,
+    "GEOID": "39079",
     "clusterCode": "OH-35",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -9235,15 +8563,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "075",
-    "COUNTYNS": "01622980",
-    "AFFGEOID": "0500000US26075",
-    "GEOID": "26075",
     "NAME": "Jackson",
-    "LSAD": "06",
-    "ALAND": 1817308326,
-    "AWATER": 56538564,
+    "GEOID": "26075",
     "clusterCode": "MI-14",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -9279,15 +8600,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "107",
-    "COUNTYNS": "01622996",
-    "AFFGEOID": "0500000US26107",
-    "GEOID": "26107",
     "NAME": "Mecosta",
-    "LSAD": "06",
-    "ALAND": 1437626842,
-    "AWATER": 41759537,
+    "GEOID": "26107",
     "clusterCode": "MI-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -9363,15 +8677,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "113",
-    "COUNTYNS": "01074069",
-    "AFFGEOID": "0500000US39113",
-    "GEOID": "39113",
     "NAME": "Montgomery",
-    "LSAD": "06",
-    "ALAND": 1195426527,
-    "AWATER": 7203231,
+    "GEOID": "39113",
     "clusterCode": "OH-06",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -9515,15 +8822,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "031",
-    "COUNTYNS": "01622958",
-    "AFFGEOID": "0500000US26031",
-    "GEOID": "26031",
     "NAME": "Cheboygan",
-    "LSAD": "06",
-    "ALAND": 1852528263,
-    "AWATER": 440607039,
+    "GEOID": "26031",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -9611,15 +8911,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "075",
-    "COUNTYNS": "00450362",
-    "AFFGEOID": "0500000US18075",
-    "GEOID": "18075",
     "NAME": "Jay",
-    "LSAD": "06",
-    "ALAND": 994310101,
-    "AWATER": 458556,
+    "GEOID": "18075",
     "clusterCode": "IN-08",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -9811,15 +9104,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "029",
-    "COUNTYNS": "00450344",
-    "AFFGEOID": "0500000US18029",
-    "GEOID": "18029",
     "NAME": "Dearborn",
-    "LSAD": "06",
-    "ALAND": 790034484,
-    "AWATER": 6167882,
+    "GEOID": "18029",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -9907,15 +9193,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "125",
-    "COUNTYNS": "01623005",
-    "AFFGEOID": "0500000US26125",
-    "GEOID": "26125",
     "NAME": "Oakland",
-    "LSAD": "06",
-    "ALAND": 2246702102,
-    "AWATER": 103171713,
+    "GEOID": "26125",
     "clusterCode": "MI-19",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -9963,15 +9242,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "069",
-    "COUNTYNS": "00450361",
-    "AFFGEOID": "0500000US18069",
-    "GEOID": "18069",
     "NAME": "Huntington",
-    "LSAD": "06",
-    "ALAND": 991054480,
-    "AWATER": 13135918,
+    "GEOID": "18069",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -10047,15 +9319,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "047",
-    "COUNTYNS": "00450352",
-    "AFFGEOID": "0500000US18047",
-    "GEOID": "18047",
     "NAME": "Franklin",
-    "LSAD": "06",
-    "ALAND": 995670496,
-    "AWATER": 17143494,
+    "GEOID": "18047",
     "clusterCode": "IN-13",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -10259,15 +9524,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "035",
-    "COUNTYNS": "01074030",
-    "AFFGEOID": "0500000US39035",
-    "GEOID": "39035",
     "NAME": "Cuyahoga",
-    "LSAD": "06",
-    "ALAND": 1184014460,
-    "AWATER": 2041889938,
+    "GEOID": "39035",
     "clusterCode": "OH-01",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -10335,15 +9593,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "065",
-    "COUNTYNS": "00450359",
-    "AFFGEOID": "0500000US18065",
-    "GEOID": "18065",
     "NAME": "Henry",
-    "LSAD": "06",
-    "ALAND": 1014954779,
-    "AWATER": 7655158,
+    "GEOID": "18065",
     "clusterCode": "IN-13",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -10487,15 +9738,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "017",
-    "COUNTYNS": "01622951",
-    "AFFGEOID": "0500000US26017",
-    "GEOID": "26017",
     "NAME": "Bay",
-    "LSAD": "06",
-    "ALAND": 1145557693,
-    "AWATER": 487990590,
+    "GEOID": "26017",
     "clusterCode": "MI-06",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -10867,15 +10111,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "051",
-    "COUNTYNS": "00450354",
-    "AFFGEOID": "0500000US18051",
-    "GEOID": "18051",
     "NAME": "Gibson",
-    "LSAD": "06",
-    "ALAND": 1262606257,
-    "AWATER": 30223914,
+    "GEOID": "18051",
     "clusterCode": "IN-07",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -10943,15 +10180,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "059",
-    "COUNTYNS": "00450357",
-    "AFFGEOID": "0500000US18059",
-    "GEOID": "18059",
     "NAME": "Hancock",
-    "LSAD": "06",
-    "ALAND": 792580849,
-    "AWATER": 2610512,
+    "GEOID": "18059",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -11171,15 +10401,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "029",
-    "COUNTYNS": "01074027",
-    "AFFGEOID": "0500000US39029",
-    "GEOID": "39029",
     "NAME": "Columbiana",
-    "LSAD": "06",
-    "ALAND": 1377697739,
-    "AWATER": 7237745,
+    "GEOID": "39029",
     "clusterCode": "OH-17",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -11307,15 +10530,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "087",
-    "COUNTYNS": "00450368",
-    "AFFGEOID": "0500000US18087",
-    "GEOID": "18087",
     "NAME": "LaGrange",
-    "LSAD": "06",
-    "ALAND": 983237254,
-    "AWATER": 18317909,
+    "GEOID": "18087",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -11479,15 +10695,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "091",
-    "COUNTYNS": "00450507",
-    "AFFGEOID": "0500000US18091",
-    "GEOID": "18091",
     "NAME": "LaPorte",
-    "LSAD": "06",
-    "ALAND": 1549659083,
-    "AWATER": 38675577,
+    "GEOID": "18091",
     "clusterCode": "IN-06",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -11547,15 +10756,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "093",
-    "COUNTYNS": "00451703",
-    "AFFGEOID": "0500000US18093",
-    "GEOID": "18093",
     "NAME": "Lawrence",
-    "LSAD": "06",
-    "ALAND": 1163367147,
-    "AWATER": 7122898,
+    "GEOID": "18093",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -11643,15 +10845,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "015",
-    "COUNTYNS": "00450406",
-    "AFFGEOID": "0500000US18015",
-    "GEOID": "18015",
     "NAME": "Carroll",
-    "LSAD": "06",
-    "ALAND": 964066240,
-    "AWATER": 7227489,
+    "GEOID": "18015",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -12539,15 +11734,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "071",
-    "COUNTYNS": "01622978",
-    "AFFGEOID": "0500000US26071",
-    "GEOID": "26071",
     "NAME": "Iron",
-    "LSAD": "06",
-    "ALAND": 3020278450,
-    "AWATER": 116739058,
+    "GEOID": "26071",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -12619,15 +11807,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "129",
-    "COUNTYNS": "01074077",
-    "AFFGEOID": "0500000US39129",
-    "GEOID": "39129",
     "NAME": "Pickaway",
-    "LSAD": "06",
-    "ALAND": 1298053079,
-    "AWATER": 13912322,
+    "GEOID": "39129",
     "clusterCode": "OH-31",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -12691,15 +11872,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "005",
-    "COUNTYNS": "00451683",
-    "AFFGEOID": "0500000US18005",
-    "GEOID": "18005",
     "NAME": "Bartholomew",
-    "LSAD": "06",
-    "ALAND": 1053850605,
-    "AWATER": 6814131,
+    "GEOID": "18005",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -12807,15 +11981,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "037",
-    "COUNTYNS": "00451675",
-    "AFFGEOID": "0500000US18037",
-    "GEOID": "18037",
     "NAME": "Dubois",
-    "LSAD": "06",
-    "ALAND": 1106624776,
-    "AWATER": 20884565,
+    "GEOID": "18037",
     "clusterCode": "IN-16",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -12927,15 +12094,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "121",
-    "COUNTYNS": "00450380",
-    "AFFGEOID": "0500000US18121",
-    "GEOID": "18121",
     "NAME": "Parke",
-    "LSAD": "06",
-    "ALAND": 1151747431,
-    "AWATER": 13683945,
+    "GEOID": "18121",
     "clusterCode": "IN-09",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -13129,15 +12289,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "043",
-    "COUNTYNS": "01074034",
-    "AFFGEOID": "0500000US39043",
-    "GEOID": "39043",
     "NAME": "Erie",
-    "LSAD": "06",
-    "ALAND": 651628988,
-    "AWATER": 969654879,
+    "GEOID": "39043",
     "clusterCode": "OH-22",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -13389,15 +12542,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "055",
-    "COUNTYNS": "01622970",
-    "AFFGEOID": "0500000US26055",
-    "GEOID": "26055",
     "NAME": "Grand Traverse",
-    "LSAD": "06",
-    "ALAND": 1202643276,
-    "AWATER": 354756753,
+    "GEOID": "26055",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -14079,15 +13225,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "089",
-    "COUNTYNS": "01622987",
-    "AFFGEOID": "0500000US26089",
-    "GEOID": "26089",
     "NAME": "Leelanau",
-    "LSAD": "06",
-    "ALAND": 899207290,
-    "AWATER": 5659134006,
+    "GEOID": "26089",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -14323,15 +13462,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "007",
-    "COUNTYNS": "01622946",
-    "AFFGEOID": "0500000US26007",
-    "GEOID": "26007",
     "NAME": "Alpena",
-    "LSAD": "06",
-    "ALAND": 1481125303,
-    "AWATER": 2908714548,
+    "GEOID": "26007",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -14575,15 +13707,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "025",
-    "COUNTYNS": "00451674",
-    "AFFGEOID": "0500000US18025",
-    "GEOID": "18025",
     "NAME": "Crawford",
-    "LSAD": "06",
-    "ALAND": 791601708,
-    "AWATER": 7974816,
+    "GEOID": "18025",
     "clusterCode": "IN-16",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -14703,15 +13828,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "045",
-    "COUNTYNS": "00450351",
-    "AFFGEOID": "0500000US18045",
-    "GEOID": "18045",
     "NAME": "Fountain",
-    "LSAD": "06",
-    "ALAND": 1024769250,
-    "AWATER": 5734092,
+    "GEOID": "18045",
     "clusterCode": "IN-04",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -14847,15 +13965,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "111",
-    "COUNTYNS": "00450376",
-    "AFFGEOID": "0500000US18111",
-    "GEOID": "18111",
     "NAME": "Newton",
-    "LSAD": "06",
-    "ALAND": 1040539917,
-    "AWATER": 4349506,
+    "GEOID": "18111",
     "clusterCode": "IN-11",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -15167,15 +14278,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "155",
-    "COUNTYNS": "00450392",
-    "AFFGEOID": "0500000US18155",
-    "GEOID": "18155",
     "NAME": "Switzerland",
-    "LSAD": "06",
-    "ALAND": 571509734,
-    "AWATER": 7193744,
+    "GEOID": "18155",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -16201,15 +15305,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "033",
-    "COUNTYNS": "01622959",
-    "AFFGEOID": "0500000US26033",
-    "GEOID": "26033",
     "NAME": "Chippewa",
-    "LSAD": "06",
-    "ALAND": 4036315424,
-    "AWATER": 2952479423,
+    "GEOID": "26033",
     "clusterCode": "MIUP-06",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -16317,15 +15414,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "019",
-    "COUNTYNS": "01622952",
-    "AFFGEOID": "0500000US26019",
-    "GEOID": "26019",
     "NAME": "Benzie",
-    "LSAD": "06",
-    "ALAND": 828029228,
-    "AWATER": 1398237386,
+    "GEOID": "26019",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -16409,15 +15499,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "105",
-    "COUNTYNS": "00451680",
-    "AFFGEOID": "0500000US18105",
-    "GEOID": "18105",
     "NAME": "Monroe",
-    "LSAD": "06",
-    "ALAND": 1021811645,
-    "AWATER": 43504254,
+    "GEOID": "18105",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -16585,15 +15668,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "011",
-    "COUNTYNS": "01622948",
-    "AFFGEOID": "0500000US26011",
-    "GEOID": "26011",
     "NAME": "Arenac",
-    "LSAD": "06",
-    "ALAND": 940660641,
-    "AWATER": 822319329,
+    "GEOID": "26011",
     "clusterCode": "MI-05",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -16669,15 +15745,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "091",
-    "COUNTYNS": "01622988",
-    "AFFGEOID": "0500000US26091",
-    "GEOID": "26091",
     "NAME": "Lenawee",
-    "LSAD": "06",
-    "ALAND": 1941350734,
-    "AWATER": 30688197,
+    "GEOID": "26091",
     "clusterCode": "MI-15",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -16797,15 +15866,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "107",
-    "COUNTYNS": "01074066",
-    "AFFGEOID": "0500000US39107",
-    "GEOID": "39107",
     "NAME": "Mercer",
-    "LSAD": "06",
-    "ALAND": 1197738405,
-    "AWATER": 28425902,
+    "GEOID": "39107",
     "clusterCode": "OH-25",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -16861,15 +15923,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "053",
-    "COUNTYNS": "00450355",
-    "AFFGEOID": "0500000US18053",
-    "GEOID": "18053",
     "NAME": "Grant",
-    "LSAD": "06",
-    "ALAND": 1072452767,
-    "AWATER": 2133507,
+    "GEOID": "18053",
     "clusterCode": "IN-10",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -17273,15 +16328,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "147",
-    "COUNTYNS": "00450388",
-    "AFFGEOID": "0500000US18147",
-    "GEOID": "18147",
     "NAME": "Spencer",
-    "LSAD": "06",
-    "ALAND": 1027689680,
-    "AWATER": 11999892,
+    "GEOID": "18147",
     "clusterCode": "IN-16",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -17493,15 +16541,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "089",
-    "COUNTYNS": "00450495",
-    "AFFGEOID": "0500000US18089",
-    "GEOID": "18089",
     "NAME": "Lake",
-    "LSAD": "06",
-    "ALAND": 1292119563,
-    "AWATER": 330902305,
+    "GEOID": "18089",
     "clusterCode": "IN-06",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -17989,15 +17030,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "123",
-    "COUNTYNS": "00451682",
-    "AFFGEOID": "0500000US18123",
-    "GEOID": "18123",
     "NAME": "Perry",
-    "LSAD": "06",
-    "ALAND": 988668629,
-    "AWATER": 11817654,
+    "GEOID": "18123",
     "clusterCode": "IN-16",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -18265,15 +17299,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "015",
-    "COUNTYNS": "01074020",
-    "AFFGEOID": "0500000US39015",
-    "GEOID": "39015",
     "NAME": "Brown",
-    "LSAD": "06",
-    "ALAND": 1269138601,
-    "AWATER": 8895019,
+    "GEOID": "39015",
     "clusterCode": "OH-34",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -18517,15 +17544,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "027",
-    "COUNTYNS": "00450343",
-    "AFFGEOID": "0500000US18027",
-    "GEOID": "18027",
     "NAME": "Daviess",
-    "LSAD": "06",
-    "ALAND": 1112370958,
-    "AWATER": 19127827,
+    "GEOID": "18027",
     "clusterCode": "IN-12",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -18621,15 +17641,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "011",
-    "COUNTYNS": "01074019",
-    "AFFGEOID": "0500000US39011",
-    "GEOID": "39011",
     "NAME": "Auglaize",
-    "LSAD": "06",
-    "ALAND": 1039599278,
-    "AWATER": 1345186,
+    "GEOID": "39011",
     "clusterCode": "OH-26",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -18689,15 +17702,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "169",
-    "COUNTYNS": "01074096",
-    "AFFGEOID": "0500000US39169",
-    "GEOID": "39169",
     "NAME": "Wayne",
-    "LSAD": "06",
-    "ALAND": 1437257217,
-    "AWATER": 4885102,
+    "GEOID": "39169",
     "clusterCode": "OH-13",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -19285,15 +18291,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "105",
-    "COUNTYNS": "01074065",
-    "AFFGEOID": "0500000US39105",
-    "GEOID": "39105",
     "NAME": "Meigs",
-    "LSAD": "06",
-    "ALAND": 1113958479,
-    "AWATER": 7519824,
+    "GEOID": "39105",
     "clusterCode": "OH-20",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -19353,15 +18352,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "137",
-    "COUNTYNS": "00450385",
-    "AFFGEOID": "0500000US18137",
-    "GEOID": "18137",
     "NAME": "Ripley",
-    "LSAD": "06",
-    "ALAND": 1156236794,
-    "AWATER": 4237459,
+    "GEOID": "18137",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -19521,15 +18513,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "125",
-    "COUNTYNS": "00450381",
-    "AFFGEOID": "0500000US18125",
-    "GEOID": "18125",
     "NAME": "Pike",
-    "LSAD": "06",
-    "ALAND": 865686068,
-    "AWATER": 17743893,
+    "GEOID": "18125",
     "clusterCode": "IN-07",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -19613,15 +18598,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "133",
-    "COUNTYNS": "00450384",
-    "AFFGEOID": "0500000US18133",
-    "GEOID": "18133",
     "NAME": "Putnam",
-    "LSAD": "06",
-    "ALAND": 1244585902,
-    "AWATER": 5585892,
+    "GEOID": "18133",
     "clusterCode": "IN-09",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -19737,15 +18715,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "045",
-    "COUNTYNS": "01074035",
-    "AFFGEOID": "0500000US39045",
-    "GEOID": "39045",
     "NAME": "Fairfield",
-    "LSAD": "06",
-    "ALAND": 1306415680,
-    "AWATER": 10752450,
+    "GEOID": "39045",
     "clusterCode": "OH-19",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -19841,15 +18812,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "039",
-    "COUNTYNS": "00450348",
-    "AFFGEOID": "0500000US18039",
-    "GEOID": "18039",
     "NAME": "Elkhart",
-    "LSAD": "06",
-    "ALAND": 1199614702,
-    "AWATER": 12423390,
+    "GEOID": "18039",
     "clusterCode": "IN-03",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -20093,15 +19057,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "173",
-    "COUNTYNS": "00450335",
-    "AFFGEOID": "0500000US18173",
-    "GEOID": "18173",
     "NAME": "Warrick",
-    "LSAD": "06",
-    "ALAND": 996664714,
-    "AWATER": 16155578,
+    "GEOID": "18173",
     "clusterCode": "IN-07",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -20153,15 +19110,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "065",
-    "COUNTYNS": "01622975",
-    "AFFGEOID": "0500000US26065",
-    "GEOID": "26065",
     "NAME": "Ingham",
-    "LSAD": "06",
-    "ALAND": 1440346359,
-    "AWATER": 11891440,
+    "GEOID": "26065",
     "clusterCode": "MI-11",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -20221,15 +19171,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "119",
-    "COUNTYNS": "01623002",
-    "AFFGEOID": "0500000US26119",
-    "GEOID": "26119",
     "NAME": "Montmorency",
-    "LSAD": "06",
-    "ALAND": 1415851589,
-    "AWATER": 41410946,
+    "GEOID": "26119",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -20905,15 +19848,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "129",
-    "COUNTYNS": "00450383",
-    "AFFGEOID": "0500000US18129",
-    "GEOID": "18129",
     "NAME": "Posey",
-    "LSAD": "06",
-    "ALAND": 1060787801,
-    "AWATER": 25259380,
+    "GEOID": "18129",
     "clusterCode": "IN-07",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -21659,15 +20595,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "083",
-    "COUNTYNS": "01622984",
-    "AFFGEOID": "0500000US26083",
-    "GEOID": "26083",
     "NAME": "Keweenaw",
-    "LSAD": "06",
-    "ALAND": 1398883253,
-    "AWATER": 14053673397,
+    "GEOID": "26083",
     "clusterCode": "MIUP-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -21803,15 +20732,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "167",
-    "COUNTYNS": "00450398",
-    "AFFGEOID": "0500000US18167",
-    "GEOID": "18167",
     "NAME": "Vigo",
-    "LSAD": "06",
-    "ALAND": 1044993095,
-    "AWATER": 18068475,
+    "GEOID": "18167",
     "clusterCode": "IN-09",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -21859,15 +20781,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "137",
-    "COUNTYNS": "01623011",
-    "AFFGEOID": "0500000US26137",
-    "GEOID": "26137",
     "NAME": "Otsego",
-    "LSAD": "06",
-    "ALAND": 1333825812,
-    "AWATER": 28997739,
+    "GEOID": "26137",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -22003,15 +20918,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "007",
-    "COUNTYNS": "01074017",
-    "AFFGEOID": "0500000US39007",
-    "GEOID": "39007",
     "NAME": "Ashtabula",
-    "LSAD": "06",
-    "ALAND": 1818008351,
-    "AWATER": 1724849868,
+    "GEOID": "39007",
     "clusterCode": "OH-09",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -22191,15 +21099,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "115",
-    "COUNTYNS": "00450378",
-    "AFFGEOID": "0500000US18115",
-    "GEOID": "18115",
     "NAME": "Ohio",
-    "LSAD": "06",
-    "ALAND": 223101879,
-    "AWATER": 3352213,
+    "GEOID": "18115",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -22575,15 +21476,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "103",
-    "COUNTYNS": "01622994",
-    "AFFGEOID": "0500000US26103",
-    "GEOID": "26103",
     "NAME": "Marquette",
-    "LSAD": "06",
-    "ALAND": 4683963838,
-    "AWATER": 4185358819,
+    "GEOID": "26103",
     "clusterCode": "MIUP-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -22811,15 +21705,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "131",
-    "COUNTYNS": "01623008",
-    "AFFGEOID": "0500000US26131",
-    "GEOID": "26131",
     "NAME": "Ontonagon",
-    "LSAD": "06",
-    "ALAND": 3396305812,
-    "AWATER": 6292488315,
+    "GEOID": "26131",
     "clusterCode": "MIUP-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -22927,15 +21814,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "023",
-    "COUNTYNS": "01622954",
-    "AFFGEOID": "0500000US26023",
-    "GEOID": "26023",
     "NAME": "Branch",
-    "LSAD": "06",
-    "ALAND": 1311513992,
-    "AWATER": 34440013,
+    "GEOID": "26023",
     "clusterCode": "MI-14",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -23027,15 +21907,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "059",
-    "COUNTYNS": "01074042",
-    "AFFGEOID": "0500000US39059",
-    "GEOID": "39059",
     "NAME": "Guernsey",
-    "LSAD": "06",
-    "ALAND": 1352631187,
-    "AWATER": 15666075,
+    "GEOID": "39059",
     "clusterCode": "OH-18",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -23183,15 +22056,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "099",
-    "COUNTYNS": "01074062",
-    "AFFGEOID": "0500000US39099",
-    "GEOID": "39099",
     "NAME": "Mahoning",
-    "LSAD": "06",
-    "ALAND": 1065799604,
-    "AWATER": 35434368,
+    "GEOID": "39099",
     "clusterCode": "OH-15",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -23247,15 +22113,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "113",
-    "COUNTYNS": "00450377",
-    "AFFGEOID": "0500000US18113",
-    "GEOID": "18113",
     "NAME": "Noble",
-    "LSAD": "06",
-    "ALAND": 1064072501,
-    "AWATER": 17073555,
+    "GEOID": "18113",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -23335,15 +22194,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "119",
-    "COUNTYNS": "00450379",
-    "AFFGEOID": "0500000US18119",
-    "GEOID": "18119",
     "NAME": "Owen",
-    "LSAD": "06",
-    "ALAND": 997921791,
-    "AWATER": 6541718,
+    "GEOID": "18119",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -23435,15 +22287,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "101",
-    "COUNTYNS": "01074063",
-    "AFFGEOID": "0500000US39101",
-    "GEOID": "39101",
     "NAME": "Marion",
-    "LSAD": "06",
-    "ALAND": 1045726876,
-    "AWATER": 908577,
+    "GEOID": "39101",
     "clusterCode": "OH-27",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -23739,15 +22584,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "061",
-    "COUNTYNS": "01622973",
-    "AFFGEOID": "0500000US26061",
-    "GEOID": "26061",
     "NAME": "Houghton",
-    "LSAD": "06",
-    "ALAND": 2613513997,
-    "AWATER": 1275354815,
+    "GEOID": "26061",
     "clusterCode": "MIUP-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -23787,15 +22625,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "135",
-    "COUNTYNS": "01623010",
-    "AFFGEOID": "0500000US26135",
-    "GEOID": "26135",
     "NAME": "Oscoda",
-    "LSAD": "06",
-    "ALAND": 1465256288,
-    "AWATER": 15133747,
+    "GEOID": "26135",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -23891,15 +22722,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "127",
-    "COUNTYNS": "01623006",
-    "AFFGEOID": "0500000US26127",
-    "GEOID": "26127",
     "NAME": "Oceana",
-    "LSAD": "06",
-    "ALAND": 1326431592,
-    "AWATER": 2055963785,
+    "GEOID": "26127",
     "clusterCode": "MI-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -24003,15 +22827,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "097",
-    "COUNTYNS": "01074061",
-    "AFFGEOID": "0500000US39097",
-    "GEOID": "39097",
     "NAME": "Madison",
-    "LSAD": "06",
-    "ALAND": 1206646148,
-    "AWATER": 1919019,
+    "GEOID": "39097",
     "clusterCode": "OH-31",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -24453,15 +23270,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "029",
-    "COUNTYNS": "01622957",
-    "AFFGEOID": "0500000US26029",
-    "GEOID": "26029",
     "NAME": "Charlevoix",
-    "LSAD": "06",
-    "ALAND": 1078324745,
-    "AWATER": 2522960018,
+    "GEOID": "26029",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -24709,15 +23519,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "153",
-    "COUNTYNS": "01623017",
-    "AFFGEOID": "0500000US26153",
-    "GEOID": "26153",
     "NAME": "Schoolcraft",
-    "LSAD": "06",
-    "ALAND": 3033820559,
-    "AWATER": 1845664244,
+    "GEOID": "26153",
     "clusterCode": "MIUP-05",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -24801,15 +23604,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "149",
-    "COUNTYNS": "00450389",
-    "AFFGEOID": "0500000US18149",
-    "GEOID": "18149",
     "NAME": "Starke",
-    "LSAD": "06",
-    "ALAND": 800657644,
-    "AWATER": 7951314,
+    "GEOID": "18149",
     "clusterCode": "IN-11",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -25017,15 +23813,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "165",
-    "COUNTYNS": "00450397",
-    "AFFGEOID": "0500000US18165",
-    "GEOID": "18165",
     "NAME": "Vermillion",
-    "LSAD": "06",
-    "ALAND": 665311752,
-    "AWATER": 7904759,
+    "GEOID": "18165",
     "clusterCode": "IN-09",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -25161,15 +23950,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "151",
-    "COUNTYNS": "00450390",
-    "AFFGEOID": "0500000US18151",
-    "GEOID": "18151",
     "NAME": "Steuben",
-    "LSAD": "06",
-    "ALAND": 799725143,
-    "AWATER": 35458838,
+    "GEOID": "18151",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -25661,15 +24443,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "043",
-    "COUNTYNS": "01622964",
-    "AFFGEOID": "0500000US26043",
-    "GEOID": "26043",
     "NAME": "Dickinson",
-    "LSAD": "06",
-    "ALAND": 1972018818,
-    "AWATER": 40533053,
+    "GEOID": "26043",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -25741,15 +24516,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "137",
-    "COUNTYNS": "01074081",
-    "AFFGEOID": "0500000US39137",
-    "GEOID": "39137",
     "NAME": "Putnam",
-    "LSAD": "06",
-    "ALAND": 1249724511,
-    "AWATER": 4603965,
+    "GEOID": "39137",
     "clusterCode": "OH-21",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -25813,15 +24581,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "063",
-    "COUNTYNS": "01074044",
-    "AFFGEOID": "0500000US39063",
-    "GEOID": "39063",
     "NAME": "Hancock",
-    "LSAD": "06",
-    "ALAND": 1376210233,
-    "AWATER": 5959837,
+    "GEOID": "39063",
     "clusterCode": "OH-23",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -26165,15 +24926,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "163",
-    "COUNTYNS": "00450396",
-    "AFFGEOID": "0500000US18163",
-    "GEOID": "18163",
     "NAME": "Vanderburgh",
-    "LSAD": "06",
-    "ALAND": 605227462,
-    "AWATER": 7655294,
+    "GEOID": "18163",
     "clusterCode": "IN-07",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -26281,15 +25035,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "171",
-    "COUNTYNS": "01074097",
-    "AFFGEOID": "0500000US39171",
-    "GEOID": "39171",
     "NAME": "Williams",
-    "LSAD": "06",
-    "ALAND": 1090296605,
-    "AWATER": 5507083,
+    "GEOID": "39171",
     "clusterCode": "OH-21",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -26535,15 +25282,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "123",
-    "COUNTYNS": "01074074",
-    "AFFGEOID": "0500000US39123",
-    "GEOID": "39123",
     "NAME": "Ottawa",
-    "LSAD": "06",
-    "ALAND": 660275593,
-    "AWATER": 855032692,
+    "GEOID": "39123",
     "clusterCode": "OH-22",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -26619,15 +25359,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "121",
-    "COUNTYNS": "01623003",
-    "AFFGEOID": "0500000US26121",
-    "GEOID": "26121",
     "NAME": "Muskegon",
-    "LSAD": "06",
-    "ALAND": 1295054825,
-    "AWATER": 2486391724,
+    "GEOID": "26121",
     "clusterCode": "MI-09",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -27437,15 +26170,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "097",
-    "COUNTYNS": "01622991",
-    "AFFGEOID": "0500000US26097",
-    "GEOID": "26097",
     "NAME": "Mackinac",
-    "LSAD": "06",
-    "ALAND": 2646811928,
-    "AWATER": 2793797829,
+    "GEOID": "26097",
     "clusterCode": "MIUP-06",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -27533,15 +26259,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "051",
-    "COUNTYNS": "01074038",
-    "AFFGEOID": "0500000US39051",
-    "GEOID": "39051",
     "NAME": "Fulton",
-    "LSAD": "06",
-    "ALAND": 1050089558,
-    "AWATER": 4621138,
+    "GEOID": "39051",
     "clusterCode": "OH-21",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -27677,15 +26396,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "121",
-    "COUNTYNS": "01074073",
-    "AFFGEOID": "0500000US39121",
-    "GEOID": "39121",
     "NAME": "Noble",
-    "LSAD": "06",
-    "ALAND": 1030845400,
-    "AWATER": 16985543,
+    "GEOID": "39121",
     "clusterCode": "OH-18",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -27757,15 +26469,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "055",
-    "COUNTYNS": "01074040",
-    "AFFGEOID": "0500000US39055",
-    "GEOID": "39055",
     "NAME": "Geauga",
-    "LSAD": "06",
-    "ALAND": 1036429792,
-    "AWATER": 21045380,
+    "GEOID": "39055",
     "clusterCode": "OH-12",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -27813,15 +26518,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "095",
-    "COUNTYNS": "00450370",
-    "AFFGEOID": "0500000US18095",
-    "GEOID": "18095",
     "NAME": "Madison",
-    "LSAD": "06",
-    "ALAND": 1170457570,
-    "AWATER": 2559344,
+    "GEOID": "18095",
     "clusterCode": "IN-08",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -28253,15 +26951,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "061",
-    "COUNTYNS": "01074043",
-    "AFFGEOID": "0500000US39061",
-    "GEOID": "39061",
     "NAME": "Hamilton",
-    "LSAD": "06",
-    "ALAND": 1051349243,
-    "AWATER": 17355289,
+    "GEOID": "39061",
     "clusterCode": "OH-05",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -28845,15 +27536,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "167",
-    "COUNTYNS": "01074095",
-    "AFFGEOID": "0500000US39167",
-    "GEOID": "39167",
     "NAME": "Washington",
-    "LSAD": "06",
-    "ALAND": 1636799191,
-    "AWATER": 20784924,
+    "GEOID": "39167",
     "clusterCode": "OH-18",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -29097,15 +27781,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "095",
-    "COUNTYNS": "01074060",
-    "AFFGEOID": "0500000US39095",
-    "GEOID": "39095",
     "NAME": "Lucas",
-    "LSAD": "06",
-    "ALAND": 882812509,
-    "AWATER": 660504435,
+    "GEOID": "39095",
     "clusterCode": "OH-08",
     "clusterState": "OH",
     "clusterGroup": "AA"
@@ -29209,15 +27886,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "005",
-    "COUNTYNS": "01074016",
-    "AFFGEOID": "0500000US39005",
-    "GEOID": "39005",
     "NAME": "Ashland",
-    "LSAD": "06",
-    "ALAND": 1095444135,
-    "AWATER": 9962880,
+    "GEOID": "39005",
     "clusterCode": "OH-24",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -29325,15 +27995,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "027",
-    "COUNTYNS": "01622956",
-    "AFFGEOID": "0500000US26027",
-    "GEOID": "26027",
     "NAME": "Cass",
-    "LSAD": "06",
-    "ALAND": 1269354633,
-    "AWATER": 47180822,
+    "GEOID": "26027",
     "clusterCode": "MI-12",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -29677,15 +28340,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "053",
-    "COUNTYNS": "01074039",
-    "AFFGEOID": "0500000US39053",
-    "GEOID": "39053",
     "NAME": "Gallia",
-    "LSAD": "06",
-    "ALAND": 1208307869,
-    "AWATER": 12085303,
+    "GEOID": "39053",
     "clusterCode": "OH-20",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -30033,15 +28689,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "019",
-    "COUNTYNS": "00450340",
-    "AFFGEOID": "0500000US18019",
-    "GEOID": "18019",
     "NAME": "Clark",
-    "LSAD": "06",
-    "ALAND": 965626378,
-    "AWATER": 9244303,
+    "GEOID": "18019",
     "clusterCode": "IN-17",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -30125,15 +28774,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "175",
-    "COUNTYNS": "01074099",
-    "AFFGEOID": "0500000US39175",
-    "GEOID": "39175",
     "NAME": "Wyandot",
-    "LSAD": "06",
-    "ALAND": 1053773836,
-    "AWATER": 1783531,
+    "GEOID": "39175",
     "clusterCode": "OH-27",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -30289,15 +28931,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "069",
-    "COUNTYNS": "01622977",
-    "AFFGEOID": "0500000US26069",
-    "GEOID": "26069",
     "NAME": "Iosco",
-    "LSAD": "06",
-    "ALAND": 1422205035,
-    "AWATER": 3473020950,
+    "GEOID": "26069",
     "clusterCode": "MI-05",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -30389,15 +29024,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "059",
-    "COUNTYNS": "01622972",
-    "AFFGEOID": "0500000US26059",
-    "GEOID": "26059",
     "NAME": "Hillsdale",
-    "LSAD": "06",
-    "ALAND": 1549199574,
-    "AWATER": 22938608,
+    "GEOID": "26059",
     "clusterCode": "MI-14",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -30501,15 +29129,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "141",
-    "COUNTYNS": "01074083",
-    "AFFGEOID": "0500000US39141",
-    "GEOID": "39141",
     "NAME": "Ross",
-    "LSAD": "06",
-    "ALAND": 1784987272,
-    "AWATER": 9938174,
+    "GEOID": "39141",
     "clusterCode": "OH-31",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -30805,15 +29426,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "047",
-    "COUNTYNS": "01622966",
-    "AFFGEOID": "0500000US26047",
-    "GEOID": "26047",
     "NAME": "Emmet",
-    "LSAD": "06",
-    "ALAND": 1210886743,
-    "AWATER": 1073475707,
+    "GEOID": "26047",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -31593,15 +30207,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "053",
-    "COUNTYNS": "01622969",
-    "AFFGEOID": "0500000US26053",
-    "GEOID": "26053",
     "NAME": "Gogebic",
-    "LSAD": "06",
-    "ALAND": 2853813312,
-    "AWATER": 969951123,
+    "GEOID": "26053",
     "clusterCode": "MIUP-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -31725,15 +30332,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "135",
-    "COUNTYNS": "01074080",
-    "AFFGEOID": "0500000US39135",
-    "GEOID": "39135",
     "NAME": "Preble",
-    "LSAD": "06",
-    "ALAND": 1098738400,
-    "AWATER": 6065437,
+    "GEOID": "39135",
     "clusterCode": "OH-32",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -31821,15 +30421,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "135",
-    "COUNTYNS": "00446853",
-    "AFFGEOID": "0500000US18135",
-    "GEOID": "18135",
     "NAME": "Randolph",
-    "LSAD": "06",
-    "ALAND": 1171656633,
-    "AWATER": 2420286,
+    "GEOID": "18135",
     "clusterCode": "IN-08",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -31929,15 +30522,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "001",
-    "COUNTYNS": "00450401",
-    "AFFGEOID": "0500000US18001",
-    "GEOID": "18001",
     "NAME": "Adams",
-    "LSAD": "06",
-    "ALAND": 878079482,
-    "AWATER": 2429955,
+    "GEOID": "18001",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -32213,15 +30799,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "077",
-    "COUNTYNS": "00450363",
-    "AFFGEOID": "0500000US18077",
-    "GEOID": "18077",
     "NAME": "Jefferson",
-    "LSAD": "06",
-    "ALAND": 934033344,
-    "AWATER": 5844616,
+    "GEOID": "18077",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -32489,15 +31068,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "115",
-    "COUNTYNS": "01623000",
-    "AFFGEOID": "0500000US26115",
-    "GEOID": "26115",
     "NAME": "Monroe",
-    "LSAD": "06",
-    "ALAND": 1423002774,
-    "AWATER": 338237702,
+    "GEOID": "26115",
     "clusterCode": "MI-15",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -32645,15 +31217,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "157",
-    "COUNTYNS": "01623019",
-    "AFFGEOID": "0500000US26157",
-    "GEOID": "26157",
     "NAME": "Tuscola",
-    "LSAD": "06",
-    "ALAND": 2080717684,
-    "AWATER": 286300240,
+    "GEOID": "26157",
     "clusterCode": "MI-07",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -32713,15 +31278,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "055",
-    "COUNTYNS": "00451676",
-    "AFFGEOID": "0500000US18055",
-    "GEOID": "18055",
     "NAME": "Greene",
-    "LSAD": "06",
-    "ALAND": 1405093029,
-    "AWATER": 8826699,
+    "GEOID": "18055",
     "clusterCode": "IN-12",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -32769,15 +31327,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "155",
-    "COUNTYNS": "01623018",
-    "AFFGEOID": "0500000US26155",
-    "GEOID": "26155",
     "NAME": "Shiawassee",
-    "LSAD": "06",
-    "ALAND": 1374710887,
-    "AWATER": 26336215,
+    "GEOID": "26155",
     "clusterCode": "MI-08",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -32853,15 +31404,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "031",
-    "COUNTYNS": "01074028",
-    "AFFGEOID": "0500000US39031",
-    "GEOID": "39031",
     "NAME": "Coshocton",
-    "LSAD": "06",
-    "ALAND": 1460530890,
-    "AWATER": 9243185,
+    "GEOID": "39031",
     "clusterCode": "OH-28",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -32953,15 +31497,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "181",
-    "COUNTYNS": "00450338",
-    "AFFGEOID": "0500000US18181",
-    "GEOID": "18181",
     "NAME": "White",
-    "LSAD": "06",
-    "ALAND": 1308269853,
-    "AWATER": 9203227,
+    "GEOID": "18181",
     "clusterCode": "IN-11",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -33073,15 +31610,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "101",
-    "COUNTYNS": "01622993",
-    "AFFGEOID": "0500000US26101",
-    "GEOID": "26101",
     "NAME": "Manistee",
-    "LSAD": "06",
-    "ALAND": 1404203525,
-    "AWATER": 1912441687,
+    "GEOID": "26101",
     "clusterCode": "MI-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -33165,15 +31695,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "057",
-    "COUNTYNS": "01074041",
-    "AFFGEOID": "0500000US39057",
-    "GEOID": "39057",
     "NAME": "Greene",
-    "LSAD": "06",
-    "ALAND": 1071562447,
-    "AWATER": 6534702,
+    "GEOID": "39057",
     "clusterCode": "OH-30",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -33297,15 +31820,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "049",
-    "COUNTYNS": "01074037",
-    "AFFGEOID": "0500000US39049",
-    "GEOID": "39049",
     "NAME": "Franklin",
-    "LSAD": "06",
-    "ALAND": 1378855894,
-    "AWATER": 29122804,
+    "GEOID": "39049",
     "clusterCode": "OH-03",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -33797,15 +32313,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "083",
-    "COUNTYNS": "00450366",
-    "AFFGEOID": "0500000US18083",
-    "GEOID": "18083",
     "NAME": "Knox",
-    "LSAD": "06",
-    "ALAND": 1336508529,
-    "AWATER": 20760770,
+    "GEOID": "18083",
     "clusterCode": "IN-12",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -33865,15 +32374,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "179",
-    "COUNTYNS": "00450337",
-    "AFFGEOID": "0500000US18179",
-    "GEOID": "18179",
     "NAME": "Wells",
-    "LSAD": "06",
-    "ALAND": 953341274,
-    "AWATER": 5596377,
+    "GEOID": "18179",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -33933,15 +32435,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "103",
-    "COUNTYNS": "00450373",
-    "AFFGEOID": "0500000US18103",
-    "GEOID": "18103",
     "NAME": "Miami",
-    "LSAD": "06",
-    "ALAND": 968246955,
-    "AWATER": 9184624,
+    "GEOID": "18103",
     "clusterCode": "IN-10",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -34037,15 +32532,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "109",
-    "COUNTYNS": "00450375",
-    "AFFGEOID": "0500000US18109",
-    "GEOID": "18109",
     "NAME": "Morgan",
-    "LSAD": "06",
-    "ALAND": 1046324519,
-    "AWATER": 14089948,
+    "GEOID": "18109",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -34145,15 +32633,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "073",
-    "COUNTYNS": "01074049",
-    "AFFGEOID": "0500000US39073",
-    "GEOID": "39073",
     "NAME": "Hocking",
-    "LSAD": "06",
-    "ALAND": 1091232272,
-    "AWATER": 5959003,
+    "GEOID": "39073",
     "clusterCode": "OH-19",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -34281,15 +32762,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "017",
-    "COUNTYNS": "01074021",
-    "AFFGEOID": "0500000US39017",
-    "GEOID": "39017",
     "NAME": "Butler",
-    "LSAD": "06",
-    "ALAND": 1209528851,
-    "AWATER": 7833380,
+    "GEOID": "39017",
     "clusterCode": "OH-32",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -34641,15 +33115,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "013",
-    "COUNTYNS": "01065575",
-    "AFFGEOID": "0500000US39013",
-    "GEOID": "39013",
     "NAME": "Belmont",
-    "LSAD": "06",
-    "ALAND": 1378212725,
-    "AWATER": 23682244,
+    "GEOID": "39013",
     "clusterCode": "OH-18",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -34757,15 +33224,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "003",
-    "COUNTYNS": "00450402",
-    "AFFGEOID": "0500000US18003",
-    "GEOID": "18003",
     "NAME": "Allen",
-    "LSAD": "06",
-    "ALAND": 1702454351,
-    "AWATER": 6999604,
+    "GEOID": "18003",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -34897,15 +33357,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "009",
-    "COUNTYNS": "01074018",
-    "AFFGEOID": "0500000US39009",
-    "GEOID": "39009",
     "NAME": "Athens",
-    "LSAD": "06",
-    "ALAND": 1304383720,
-    "AWATER": 12463892,
+    "GEOID": "39009",
     "clusterCode": "OH-20",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -35025,15 +33478,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "153",
-    "COUNTYNS": "01074088",
-    "AFFGEOID": "0500000US39153",
-    "GEOID": "39153",
     "NAME": "Summit",
-    "LSAD": "06",
-    "ALAND": 1069244605,
-    "AWATER": 18896599,
+    "GEOID": "39153",
     "clusterCode": "OH-07",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -35109,15 +33555,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "091",
-    "COUNTYNS": "01074058",
-    "AFFGEOID": "0500000US39091",
-    "GEOID": "39091",
     "NAME": "Logan",
-    "LSAD": "06",
-    "ALAND": 1187336848,
-    "AWATER": 21598324,
+    "GEOID": "39091",
     "clusterCode": "OH-27",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -35345,15 +33784,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "163",
-    "COUNTYNS": "01623022",
-    "AFFGEOID": "0500000US26163",
-    "GEOID": "26163",
     "NAME": "Wayne",
-    "LSAD": "06",
-    "ALAND": 1585112017,
-    "AWATER": 157118555,
+    "GEOID": "26163",
     "clusterCode": "MI-19",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -35517,15 +33949,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "155",
-    "COUNTYNS": "01074089",
-    "AFFGEOID": "0500000US39155",
-    "GEOID": "39155",
     "NAME": "Trumbull",
-    "LSAD": "06",
-    "ALAND": 1601379251,
-    "AWATER": 47321072,
+    "GEOID": "39155",
     "clusterCode": "OH-09",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -35781,15 +34206,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "013",
-    "COUNTYNS": "01622949",
-    "AFFGEOID": "0500000US26013",
-    "GEOID": "26013",
     "NAME": "Baraga",
-    "LSAD": "06",
-    "ALAND": 2326506042,
-    "AWATER": 441604306,
+    "GEOID": "26013",
     "clusterCode": "MIUP-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -35873,15 +34291,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "145",
-    "COUNTYNS": "01623015",
-    "AFFGEOID": "0500000US26145",
-    "GEOID": "26145",
     "NAME": "Saginaw",
-    "LSAD": "06",
-    "ALAND": 2073181589,
-    "AWATER": 40159719,
+    "GEOID": "26145",
     "clusterCode": "MI-06",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -35925,15 +34336,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "035",
-    "COUNTYNS": "00450347",
-    "AFFGEOID": "0500000US18035",
-    "GEOID": "18035",
     "NAME": "Delaware",
-    "LSAD": "06",
-    "ALAND": 1015607220,
-    "AWATER": 9792807,
+    "GEOID": "18035",
     "clusterCode": "IN-08",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -36153,15 +34557,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "025",
-    "COUNTYNS": "01074025",
-    "AFFGEOID": "0500000US39025",
-    "GEOID": "39025",
     "NAME": "Clermont",
-    "LSAD": "06",
-    "ALAND": 1170958174,
-    "AWATER": 19831175,
+    "GEOID": "39025",
     "clusterCode": "OH-34",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -36261,15 +34658,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "157",
-    "COUNTYNS": "01074090",
-    "AFFGEOID": "0500000US39157",
-    "GEOID": "39157",
     "NAME": "Tuscarawas",
-    "LSAD": "06",
-    "ALAND": 1469659271,
-    "AWATER": 10390938,
+    "GEOID": "39157",
     "clusterCode": "OH-17",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -36325,15 +34715,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "031",
-    "COUNTYNS": "00450345",
-    "AFFGEOID": "0500000US18031",
-    "GEOID": "18031",
     "NAME": "Decatur",
-    "LSAD": "06",
-    "ALAND": 964946206,
-    "AWATER": 1955471,
+    "GEOID": "18031",
     "clusterCode": "IN-05",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -36417,15 +34800,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "023",
-    "COUNTYNS": "01074024",
-    "AFFGEOID": "0500000US39023",
-    "GEOID": "39023",
     "NAME": "Clark",
-    "LSAD": "06",
-    "ALAND": 1029469371,
-    "AWATER": 13070242,
+    "GEOID": "39023",
     "clusterCode": "OH-30",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -36493,15 +34869,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "075",
-    "COUNTYNS": "01074050",
-    "AFFGEOID": "0500000US39075",
-    "GEOID": "39075",
     "NAME": "Holmes",
-    "LSAD": "06",
-    "ALAND": 1094356036,
-    "AWATER": 3745075,
+    "GEOID": "39075",
     "clusterCode": "OH-16",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -36941,15 +35310,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "061",
-    "COUNTYNS": "00451677",
-    "AFFGEOID": "0500000US18061",
-    "GEOID": "18061",
     "NAME": "Harrison",
-    "LSAD": "06",
-    "ALAND": 1254889453,
-    "AWATER": 5193189,
+    "GEOID": "18061",
     "clusterCode": "IN-17",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -37013,15 +35375,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "081",
-    "COUNTYNS": "01622983",
-    "AFFGEOID": "0500000US26081",
-    "GEOID": "26081",
     "NAME": "Kent",
-    "LSAD": "06",
-    "ALAND": 2195453261,
-    "AWATER": 62871179,
+    "GEOID": "26081",
     "clusterCode": "MI-09",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -37093,15 +35448,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "067",
-    "COUNTYNS": "00450360",
-    "AFFGEOID": "0500000US18067",
-    "GEOID": "18067",
     "NAME": "Howard",
-    "LSAD": "06",
-    "ALAND": 758858972,
-    "AWATER": 2394185,
+    "GEOID": "18067",
     "clusterCode": "IN-10",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -37221,15 +35569,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "143",
-    "COUNTYNS": "00450386",
-    "AFFGEOID": "0500000US18143",
-    "GEOID": "18143",
     "NAME": "Scott",
-    "LSAD": "06",
-    "ALAND": 493126045,
-    "AWATER": 6089001,
+    "GEOID": "18143",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -37581,15 +35922,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "087",
-    "COUNTYNS": "01074056",
-    "AFFGEOID": "0500000US39087",
-    "GEOID": "39087",
     "NAME": "Lawrence",
-    "LSAD": "06",
-    "ALAND": 1174224656,
-    "AWATER": 10110032,
+    "GEOID": "39087",
     "clusterCode": "OH-35",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -37637,15 +35971,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "139",
-    "COUNTYNS": "00446854",
-    "AFFGEOID": "0500000US18139",
-    "GEOID": "18139",
     "NAME": "Rush",
-    "LSAD": "06",
-    "ALAND": 1057035490,
-    "AWATER": 872270,
+    "GEOID": "18139",
     "clusterCode": "IN-13",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -37829,15 +36156,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "175",
-    "COUNTYNS": "00451665",
-    "AFFGEOID": "0500000US18175",
-    "GEOID": "18175",
     "NAME": "Washington",
-    "LSAD": "06",
-    "ALAND": 1330542464,
-    "AWATER": 7441979,
+    "GEOID": "18175",
     "clusterCode": "IN-14",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -38169,15 +36489,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "063",
-    "COUNTYNS": "01622974",
-    "AFFGEOID": "0500000US26063",
-    "GEOID": "26063",
     "NAME": "Huron",
-    "LSAD": "06",
-    "ALAND": 2165436311,
-    "AWATER": 3368857517,
+    "GEOID": "26063",
     "clusterCode": "MI-07",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -38297,15 +36610,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "085",
-    "COUNTYNS": "01074055",
-    "AFFGEOID": "0500000US39085",
-    "GEOID": "39085",
     "NAME": "Lake",
-    "LSAD": "06",
-    "ALAND": 593799763,
-    "AWATER": 1942309063,
+    "GEOID": "39085",
     "clusterCode": "OH-12",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -38409,15 +36715,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "115",
-    "COUNTYNS": "01074070",
-    "AFFGEOID": "0500000US39115",
-    "GEOID": "39115",
     "NAME": "Morgan",
-    "LSAD": "06",
-    "ALAND": 1078543401,
-    "AWATER": 13869506,
+    "GEOID": "39115",
     "clusterCode": "OH-18",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -38817,15 +37116,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "003",
-    "COUNTYNS": "01622944",
-    "AFFGEOID": "0500000US26003",
-    "GEOID": "26003",
     "NAME": "Alger",
-    "LSAD": "06",
-    "ALAND": 2370036407,
-    "AWATER": 10703535571,
+    "GEOID": "26003",
     "clusterCode": "MIUP-04",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -39221,15 +37513,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "145",
-    "COUNTYNS": "01074085",
-    "AFFGEOID": "0500000US39145",
-    "GEOID": "39145",
     "NAME": "Scioto",
-    "LSAD": "06",
-    "ALAND": 1580451539,
-    "AWATER": 15363856,
+    "GEOID": "39145",
     "clusterCode": "OH-35",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -39345,15 +37630,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "071",
-    "COUNTYNS": "01074048",
-    "AFFGEOID": "0500000US39071",
-    "GEOID": "39071",
     "NAME": "Highland",
-    "LSAD": "06",
-    "ALAND": 1432479994,
-    "AWATER": 12194983,
+    "GEOID": "39071",
     "clusterCode": "OH-35",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -39429,15 +37707,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "131",
-    "COUNTYNS": "01074078",
-    "AFFGEOID": "0500000US39131",
-    "GEOID": "39131",
     "NAME": "Pike",
-    "LSAD": "06",
-    "ALAND": 1140324458,
-    "AWATER": 9567612,
+    "GEOID": "39131",
     "clusterCode": "OH-35",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -39781,15 +38052,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "081",
-    "COUNTYNS": "01074053",
-    "AFFGEOID": "0500000US39081",
-    "GEOID": "39081",
     "NAME": "Jefferson",
-    "LSAD": "06",
-    "ALAND": 1057248944,
-    "AWATER": 7120754,
+    "GEOID": "39081",
     "clusterCode": "OH-17",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -39853,15 +38117,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "117",
-    "COUNTYNS": "01623001",
-    "AFFGEOID": "0500000US26117",
-    "GEOID": "26117",
     "NAME": "Montcalm",
-    "LSAD": "06",
-    "ALAND": 1826967219,
-    "AWATER": 39965455,
+    "GEOID": "26117",
     "clusterCode": "MI-31",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -40261,15 +38518,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "147",
-    "COUNTYNS": "01625033",
-    "AFFGEOID": "0500000US26147",
-    "GEOID": "26147",
     "NAME": "St. Clair",
-    "LSAD": "06",
-    "ALAND": 1867861159,
-    "AWATER": 298681155,
+    "GEOID": "26147",
     "clusterCode": "MI-07",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -40401,15 +38651,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "009",
-    "COUNTYNS": "01622947",
-    "AFFGEOID": "0500000US26009",
-    "GEOID": "26009",
     "NAME": "Antrim",
-    "LSAD": "06",
-    "ALAND": 1232064099,
-    "AWATER": 326512927,
+    "GEOID": "26009",
     "clusterCode": "MI-02",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -40689,15 +38932,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "141",
-    "COUNTYNS": "01623013",
-    "AFFGEOID": "0500000US26141",
-    "GEOID": "26141",
     "NAME": "Presque Isle",
-    "LSAD": "06",
-    "ALAND": 1706067766,
-    "AWATER": 4957327257,
+    "GEOID": "26141",
     "clusterCode": "MI-01",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -40817,15 +39053,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "151",
-    "COUNTYNS": "01065576",
-    "AFFGEOID": "0500000US39151",
-    "GEOID": "39151",
     "NAME": "Stark",
-    "LSAD": "06",
-    "ALAND": 1490089723,
-    "AWATER": 13610824,
+    "GEOID": "39151",
     "clusterCode": "OH-14",
     "clusterState": "OH",
     "clusterGroup": "CLV"
@@ -40889,15 +39118,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "087",
-    "COUNTYNS": "01622986",
-    "AFFGEOID": "0500000US26087",
-    "GEOID": "26087",
     "NAME": "Lapeer",
-    "LSAD": "06",
-    "ALAND": 1668449552,
-    "AWATER": 48310219,
+    "GEOID": "26087",
     "clusterCode": "MI-08",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -41033,15 +39255,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "105",
-    "COUNTYNS": "01622995",
-    "AFFGEOID": "0500000US26105",
-    "GEOID": "26105",
     "NAME": "Mason",
-    "LSAD": "06",
-    "ALAND": 1282237606,
-    "AWATER": 1935672193,
+    "GEOID": "26105",
     "clusterCode": "MI-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -41783,15 +39998,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "041",
-    "COUNTYNS": "01622963",
-    "AFFGEOID": "0500000US26041",
-    "GEOID": "26041",
     "NAME": "Delta",
-    "LSAD": "06",
-    "ALAND": 3033119057,
-    "AWATER": 2124391646,
+    "GEOID": "26041",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
     "clusterGroup": "GR"
@@ -41963,15 +40171,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "153",
-    "COUNTYNS": "00450391",
-    "AFFGEOID": "0500000US18153",
-    "GEOID": "18153",
     "NAME": "Sullivan",
-    "LSAD": "06",
-    "ALAND": 1158058302,
-    "AWATER": 18096342,
+    "GEOID": "18153",
     "clusterCode": "IN-12",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -42295,15 +40496,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "111",
-    "COUNTYNS": "01074068",
-    "AFFGEOID": "0500000US39111",
-    "GEOID": "39111",
     "NAME": "Monroe",
-    "LSAD": "06",
-    "ALAND": 1180317768,
-    "AWATER": 4495382,
+    "GEOID": "39111",
     "clusterCode": "OH-18",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -42375,15 +40569,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "18",
-    "COUNTYFP": "183",
-    "COUNTYNS": "00450369",
-    "AFFGEOID": "0500000US18183",
-    "GEOID": "18183",
     "NAME": "Whitley",
-    "LSAD": "06",
-    "ALAND": 869120483,
-    "AWATER": 6073937,
+    "GEOID": "18183",
     "clusterCode": "IN-02",
     "clusterState": "IN",
     "clusterGroup": "INDY"
@@ -42671,15 +40858,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "001",
-    "COUNTYNS": "01074014",
-    "AFFGEOID": "0500000US39001",
-    "GEOID": "39001",
     "NAME": "Adams",
-    "LSAD": "06",
-    "ALAND": 1512208937,
-    "AWATER": 6165939,
+    "GEOID": "39001",
     "clusterCode": "OH-35",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -42811,15 +40991,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "26",
-    "COUNTYFP": "151",
-    "COUNTYNS": "01623016",
-    "AFFGEOID": "0500000US26151",
-    "GEOID": "26151",
     "NAME": "Sanilac",
-    "LSAD": "06",
-    "ALAND": 2493045863,
-    "AWATER": 1624882489,
+    "GEOID": "26151",
     "clusterCode": "MI-07",
     "clusterState": "MI",
     "clusterGroup": "AA"
@@ -42927,15 +41100,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "117",
-    "COUNTYNS": "01074071",
-    "AFFGEOID": "0500000US39117",
-    "GEOID": "39117",
     "NAME": "Morrow",
-    "LSAD": "06",
-    "ALAND": 1051881046,
-    "AWATER": 2819351,
+    "GEOID": "39117",
     "clusterCode": "OH-28",
     "clusterState": "OH",
     "clusterGroup": "CBUS"
@@ -43011,15 +41177,8 @@
     ]
    },
    "properties": {
-    "STATEFP": "39",
-    "COUNTYFP": "143",
-    "COUNTYNS": "01074084",
-    "AFFGEOID": "0500000US39143",
-    "GEOID": "39143",
     "NAME": "Sandusky",
-    "LSAD": "06",
-    "ALAND": 1057906596,
-    "AWATER": 23958604,
+    "GEOID": "39143",
     "clusterCode": "OH-22",
     "clusterState": "OH",
     "clusterGroup": "CLV"
