@@ -38,7 +38,7 @@ export interface RegionMapProps {
     // For controlled mode (when parent manages date state)
     currentDate?: Date
     onDateChange?: (date: Date) => void
-    // For controlled view state (zoom/pan)
+    // Initial view state (zoom/pan) — persisted via onMoveEnd
     viewState?: ViewState
     onViewStateChange?: (viewState: ViewState) => void
     // Print mode options
@@ -68,8 +68,6 @@ export const RegionMap = ({
     printTextSize,
 }: RegionMapProps) => {
     const windowSize = useWindowSize()
-    const effectiveWidth = containerWidth ?? windowSize.width
-    const effectiveHeight = containerHeight ?? windowSize.height
     const { showGeoJsonDetails, showCollisionBoxes } = useDebug()
 
     const [hoverFeature, setHoverFeature] = useState<Feature | undefined>(

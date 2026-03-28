@@ -104,6 +104,7 @@ Access via `/print` route. Features:
 - Draggable element positions persist to localStorage
 - **Print scaling**: CSS `zoom` on `.print-container` scales the on-screen container to fill Chrome's print viewport (96 CSS px/inch × paper width). Injected dynamically by `usePageSize.ts`.
 - **Font scaling**: Map labels (`printTextSize`), legends, and title scale proportionally to container width (baseline: 600px = 1.0×)
+- **Map must use uncontrolled mode**: `RegionMap` uses `initialViewState` (not `viewState`) to avoid infinite render loops (React #185) during rapid zoom. With ~120 cluster layers, controlled mode cannot re-render fast enough per animation frame. `onMoveEnd` persists the final position to localStorage.
 
 ## Deployment
 
