@@ -82,25 +82,13 @@ export const MapProvider = ({
     mapRef: MapRef | undefined
 }>) => {
     const map = mapRef?.getMap()
-    // console.log({map})
-    const [context, setContext] = useState<MapContextValue>(INITIAL_MAP_CONTEXT)
+    const [degreesToRem, setDegreesToRem] = useState(() => makeDegreesToRem(0))
     useEffect(() => {
         // listen to zoom changes
         if (map) {
-            if (!context.map || context.map !== mapRef) {
-                setContext((prev) => ({
-                    ...prev,
-                    map: mapRef,
-                }))
-            }
             const zoomListener = () => {
-                // console.log("zoom changed", map.getZoom())
-                setContext((prev) => ({
-                    ...prev,
-                    degreesToRem: makeDegreesToRem(map.getZoom()),
-                }))
+                setDegreesToRem(() => makeDegreesToRem(map.getZoom()))
             }
-            // console.log("adding listeners")
             for (const event of EVENTS_TO_LISTEN) map.on(event, zoomListener)
             // call once to initialize
             zoomListener()
@@ -112,7 +100,12 @@ export const MapProvider = ({
             console.debug("map is undefined, waiting for onLoad")
             return () => {}
         }
-    }, [map, mapRef, context.map])
+    }, [map])
+    const context: MapContextValue = {
+        map: mapRef,
+        degreesToRem,
+        initialized: true,
+    }
     return <MapContext.Provider value={context}>{children}</MapContext.Provider>
 }
 
