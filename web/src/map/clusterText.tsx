@@ -96,43 +96,53 @@ export const ClusterText = ({
     const { showMapGeometry } = useDebug()
     const { degreesToRem } = useMap()
     const [text, setText] = useState<string>("")
+
+    // Print mode labels — independent of zoom/degreesToRem
     useEffect(() => {
-        // Print mode: show configurable label elements
-        if (printMode) {
-            const lines: string[] = []
+        if (!printMode) return
+        const lines: string[] = []
 
-            // Cluster code (e.g., "IN-01")
-            if (labelOptions?.showCode) {
-                const clusterCode = feature.properties?.Cluster ?? ""
-                if (clusterCode) lines.push(clusterCode)
-            }
-
-            // Milestone display (e.g., "M3")
-            if (labelOptions?.showMilestone) {
-                const milestoneDisplay = effectiveMilestone
-                    .toUpperCase()
-                    .replace(/R$/, "") // Strip reservoir suffix
-                lines.push(milestoneDisplay)
-            }
-
-            // Cluster name (e.g., "Franklin County")
-            if (labelOptions?.showName) {
-                const clusterName = cleanupClusterName(
-                    feature.properties?.["Cluster Na"] ?? "",
-                )
-                if (clusterName) lines.push(clusterName)
-            }
-
-            // Advancement date (e.g., "Jan 2017")
-            if (labelOptions?.showDate && advancementDate) {
-                const month = MONTH_ABBREVIATIONS[advancementDate.getMonth()]
-                const year = advancementDate.getFullYear()
-                lines.push(`${month} ${year}`)
-            }
-
-            setText(lines.join("\n"))
-            return
+        // Cluster code (e.g., "IN-01")
+        if (labelOptions?.showCode) {
+            const clusterCode = feature.properties?.Cluster ?? ""
+            if (clusterCode) lines.push(clusterCode)
         }
+
+        // Milestone display (e.g., "M3")
+        if (labelOptions?.showMilestone) {
+            const milestoneDisplay = effectiveMilestone
+                .toUpperCase()
+                .replace(/R$/, "") // Strip reservoir suffix
+            lines.push(milestoneDisplay)
+        }
+
+        // Cluster name (e.g., "Franklin County")
+        if (labelOptions?.showName) {
+            const clusterName = cleanupClusterName(
+                feature.properties?.["Cluster Na"] ?? "",
+            )
+            if (clusterName) lines.push(clusterName)
+        }
+
+        // Advancement date (e.g., "Jan 2017")
+        if (labelOptions?.showDate && advancementDate) {
+            const month = MONTH_ABBREVIATIONS[advancementDate.getMonth()]
+            const year = advancementDate.getFullYear()
+            lines.push(`${month} ${year}`)
+        }
+
+        setText(lines.join("\n"))
+    }, [
+        feature.properties,
+        effectiveMilestone,
+        advancementDate,
+        printMode,
+        labelOptions,
+    ])
+
+    // Interactive mode labels — responsive to zoom via degreesToRem
+    useEffect(() => {
+        if (printMode) return
 
         const remRect = degreesToRem(largestRect)
         const remDescription = `${truncate(remRect.width, 4)} x ${truncate(remRect.height, 4)}`
@@ -192,7 +202,6 @@ export const ClusterText = ({
         effectiveMilestone,
         advancementDate,
         printMode,
-        labelOptions,
     ])
     if (!feature.properties) return null
     return (

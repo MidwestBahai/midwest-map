@@ -4,6 +4,7 @@ import {
     type PropsWithChildren,
     useContext,
     useEffect,
+    useMemo,
     useState,
 } from "react"
 import type { MapRef } from "react-map-gl/mapbox"
@@ -101,11 +102,10 @@ export const MapProvider = ({
             return () => {}
         }
     }, [map])
-    const context: MapContextValue = {
-        map: mapRef,
-        degreesToRem,
-        initialized: true,
-    }
+    const context = useMemo<MapContextValue>(
+        () => ({ map: mapRef, degreesToRem, initialized: true }),
+        [mapRef, degreesToRem],
+    )
     return <MapContext.Provider value={context}>{children}</MapContext.Provider>
 }
 
