@@ -194,28 +194,27 @@ export const ClusterText = ({
         printMode,
         labelOptions,
     ])
+    if (!feature.properties) return null
     return (
-        feature.properties && (
-            <Source type="geojson" data={feature}>
-                <Layer
-                    type="symbol"
-                    layout={{
-                        "text-field": text,
-                        "text-size": printTextSize ?? 13,
-                        "text-anchor": "center",
-                        visibility: visible ? "visible" : "none",
-                        // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],
-                    }}
-                    paint={{
-                        "text-color": clusterLabelColor(
-                            feature.properties,
-                            highlighted,
-                            effectiveMilestone,
-                        ),
-                    }}
-                    id={symbolLayerId}
-                />
-            </Source>
-        )
+        <Source type="geojson" data={feature}>
+            <Layer
+                type="symbol"
+                layout={{
+                    "text-field": text,
+                    "text-size": printTextSize ?? 13,
+                    "text-anchor": "center",
+                    visibility: visible ? "visible" : "none",
+                    // "text-font": ["Roboto Black", "Arial Unicode MS Bold"],
+                }}
+                paint={{
+                    "text-color": clusterLabelColor(
+                        feature.properties,
+                        highlighted,
+                        effectiveMilestone,
+                    ),
+                }}
+                id={symbolLayerId}
+            />
+        </Source>
     )
 }
