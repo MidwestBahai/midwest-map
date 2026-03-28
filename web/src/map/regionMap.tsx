@@ -130,29 +130,21 @@ export const RegionMap = ({
                 mapboxAccessToken={mapboxAccessToken}
                 {...(controlledViewState
                     ? {
-                          viewState: {
+                          initialViewState: {
                               ...controlledViewState,
                               bearing: 0,
                               pitch: 0,
-                              padding: { top: 0, bottom: 0, left: 0, right: 0 },
-                              width: effectiveWidth,
-                              height: effectiveHeight,
                           },
-                          onMove: (e) => {
-                              const next = {
+                          // Persist view state on move end only — using controlled
+                          // viewState + onMove causes render loops (React #185)
+                          // during rapid zoom because hundreds of ClusterLayers
+                          // re-render on every frame.
+                          onMoveEnd: (e) =>
+                              onViewStateChange?.({
                                   latitude: e.viewState.latitude,
                                   longitude: e.viewState.longitude,
                                   zoom: e.viewState.zoom,
-                              }
-                              // Skip no-op updates to avoid infinite render loops during rapid zoom
-                              if (
-                                  controlledViewState &&
-                                  next.latitude === controlledViewState.latitude &&
-                                  next.longitude === controlledViewState.longitude &&
-                                  next.zoom === controlledViewState.zoom
-                              ) return
-                              onViewStateChange?.(next)
-                          },
+                              }),
                       }
                     : { initialViewState: initialBounds(windowSize) })}
                 style={{
