@@ -138,12 +138,21 @@ export const RegionMap = ({
                               width: effectiveWidth,
                               height: effectiveHeight,
                           },
-                          onMove: (e) =>
-                              onViewStateChange?.({
+                          onMove: (e) => {
+                              const next = {
                                   latitude: e.viewState.latitude,
                                   longitude: e.viewState.longitude,
                                   zoom: e.viewState.zoom,
-                              }),
+                              }
+                              // Skip no-op updates to avoid infinite render loops during rapid zoom
+                              if (
+                                  controlledViewState &&
+                                  next.latitude === controlledViewState.latitude &&
+                                  next.longitude === controlledViewState.longitude &&
+                                  next.zoom === controlledViewState.zoom
+                              ) return
+                              onViewStateChange?.(next)
+                          },
                       }
                     : { initialViewState: initialBounds(windowSize) })}
                 style={{
