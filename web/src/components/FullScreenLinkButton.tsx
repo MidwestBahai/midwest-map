@@ -21,7 +21,7 @@ export const FullScreenLinkButton = () => {
                     id={"full-screen-button"}
                     href={`?showClose=true`}
                     target="_blank"
-                    className="absolute top-0 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold transition-[border] duration-1000 border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
+                    className="absolute top-14 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold transition-[border] duration-1000 border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
                     rel="noopener"
                 >
                     {isFullScreen ? "Exit" : "Full Screen"}
@@ -31,7 +31,7 @@ export const FullScreenLinkButton = () => {
                 <button
                     type="button"
                     id={"full-screen-button"}
-                    className="absolute top-0 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
+                    className="absolute top-14 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
                     onClick={handleClose}
                 >
                     Exit

@@ -27,7 +27,7 @@ export const FullScreenButton = () => {
                         iframe.requestFullscreen()
                         setFullScreen(true)
                     }}
-                    className="absolute top-0 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold transition-[border] duration-1000 border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
+                    className="absolute top-14 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold transition-[border] duration-1000 border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
                 >
                     Full Screen
                 </button>
@@ -40,7 +40,7 @@ export const FullScreenButton = () => {
                         window.parent.document.exitFullscreen()
                         setFullScreen(false)
                     }}
-                    className="absolute top-0 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
+                    className="absolute top-14 left-0 m-4 p-2 rounded-lg bg-gray-200 font-bold border-4 shadow-lg hover:shadow-xl hover:border-gray-300 hover:bg-gray-300"
                 >
                     Exit
                 </button>
