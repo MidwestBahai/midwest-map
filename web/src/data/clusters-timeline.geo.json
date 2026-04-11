@@ -9509,10 +9509,15 @@
     "aland": 829909420,
     "M": "N",
     "population": 347462,
-    "currentMilestone": "N",
-    "timeline": [],
-    "firstAdvancement": null,
-    "latestAdvancement": null
+    "currentMilestone": "M1",
+    "timeline": [
+     {
+      "milestone": "M1",
+      "date": "2026-04-07"
+     }
+    ],
+    "firstAdvancement": "2026-04-07",
+    "latestAdvancement": "2026-04-07"
    }
   },
   {
@@ -10532,7 +10537,7 @@
     "aland": 939732061,
     "M": "M2",
     "population": 674285,
-    "currentMilestone": "M2",
+    "currentMilestone": "M3",
     "timeline": [
      {
       "milestone": "M1",
@@ -10541,10 +10546,14 @@
      {
       "milestone": "M2",
       "date": "2021-08-30"
+     },
+     {
+      "milestone": "M3",
+      "date": "2026-04-09"
      }
     ],
     "firstAdvancement": "2013-01-30",
-    "latestAdvancement": "2021-08-30"
+    "latestAdvancement": "2026-04-09"
    }
   },
   {
@@ -32468,6 +32477,6 @@
  },
  "timelineBounds": {
   "minDate": "2011-11-10",
-  "maxDate": "2026-04-05"
+  "maxDate": "2026-04-09"
  }
 }
