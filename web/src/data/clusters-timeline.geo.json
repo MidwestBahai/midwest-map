@@ -16692,15 +16692,19 @@
     "aland": 1262606257,
     "M": "M1",
     "population": 315711,
-    "currentMilestone": "M1",
+    "currentMilestone": "M2",
     "timeline": [
      {
       "milestone": "M1",
       "date": "2022-05-08"
+     },
+     {
+      "milestone": "M2",
+      "date": "2026-04-14"
      }
     ],
     "firstAdvancement": "2022-05-08",
-    "latestAdvancement": "2022-05-08"
+    "latestAdvancement": "2026-04-14"
    }
   },
   {
@@ -32477,6 +32481,6 @@
  },
  "timelineBounds": {
   "minDate": "2011-11-10",
-  "maxDate": "2026-04-09"
+  "maxDate": "2026-04-14"
  }
 }
