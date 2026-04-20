@@ -1,25 +1,37 @@
 import type { Feature } from "geojson"
+import { getClusterGroupAtDate } from "@/data/clusterGroups"
 
 /**
- * Check if a cluster feature matches the scope filter.
- * Returns true if the feature should be visible.
+ * Check if a feature (cluster or county) matches the scope filter.
+ * Works with both cluster properties (Cluster, Group) and county properties
+ * (clusterCode, clusterState, clusterGroup).
  */
 export function matchesScope(
     feature: Feature,
     scope: string | undefined,
+    date?: Date,
 ): boolean {
     if (!scope || scope === "region") return true
 
-    const clusterCode = feature.properties?.Cluster as string | undefined
-    const groupCode = feature.properties?.Group as string | undefined
+    const props = feature.properties
+    const clusterCode = (props?.Cluster ?? props?.clusterCode) as
+        | string
+        | undefined
 
     if (scope.startsWith("state-")) {
         const stateCode = scope.replace("state-", "")
-        return clusterCode?.startsWith(stateCode) ?? false
+        // Counties have clusterState directly; clusters use code prefix
+        return (
+            props?.clusterState === stateCode ||
+            (clusterCode?.startsWith(stateCode) ?? false)
+        )
     }
     if (scope.startsWith("group-")) {
         const targetGroup = scope.replace("group-", "")
-        return groupCode === targetGroup
+        const effectiveGroup = date
+            ? getClusterGroupAtDate(props, date)
+            : ((props?.Group ?? props?.clusterGroup) as string | undefined)
+        return effectiveGroup === targetGroup
     }
     return true
 }

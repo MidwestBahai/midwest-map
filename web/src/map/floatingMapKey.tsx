@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronDown, ChevronUp } from "lucide-react"
-import { Fragment, useCallback, useEffect, useState } from "react"
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react"
 import { objectEntries, objectKeys } from "ts-extras"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,18 +9,13 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
+import { getActiveScheme, getGroupInfo } from "@/data/clusterGroups"
 import type { Milestone } from "@/data/milestoneLabels"
 import { BREAKPOINTS, TIMING } from "@/lib/constants"
 import { useLocalState } from "@/lib/useLocalState"
 import { milestoneColor } from "@/map/clusterColor"
 import { useWindowSize } from "../lib/useWindowSize"
 import { useCategoryHighlight } from "./categoryHighlightContext"
-
-// Remove the "Unknown" cluster group
-const displayClusterGroups = objectEntries(clusterGroups).filter(
-    ([grouping]) => grouping !== "Unknown",
-)
 
 const displayMilestones: Partial<Record<Milestone, string>> = {
     n: "No Program of Growth",
@@ -31,7 +26,7 @@ const displayMilestones: Partial<Record<Milestone, string>> = {
     m3r: "Reservoir",
 }
 
-export const FloatingMapKey = () => {
+export const FloatingMapKey = ({ currentDate }: { currentDate: Date }) => {
     const windowSize = useWindowSize()
     const { categoryHighlight, setCategoryHighlight, clearCategoryHighlight } =
         useCategoryHighlight()
@@ -46,6 +41,15 @@ export const FloatingMapKey = () => {
             setTimeout(() => clearCategoryHighlight(), TIMING.highlightClearMs)
     }, [clearCategoryHighlight, isOpen, setIsOpen])
     const isReallyOpen = isOpen && initialOpen
+
+    const activeScheme = useMemo(
+        () => getActiveScheme(currentDate),
+        [currentDate],
+    )
+    const displayClusterGroups = useMemo(
+        () => Object.entries(activeScheme.groups),
+        [activeScheme],
+    )
 
     // Run this exactly once, on load. Force colors to be rendered on client rather than pre-rendered
     // during static generation, when Canvas isn't available.
@@ -69,7 +73,13 @@ export const FloatingMapKey = () => {
                     {isFullscreen && (
                         <div className="mx-4 mt-4 mb-2 border-b border-gray-200 pb-3">
                             <h1 className="text-lg font-semibold">
-                                <a className="text-blue-600 hover:underline" href="https://midwestbahai.org">Midwest Region</a> Bahá&apos;í Map
+                                <a
+                                    className="text-blue-600 hover:underline"
+                                    href="https://midwestbahai.org"
+                                >
+                                    Midwest Region
+                                </a>{" "}
+                                Bahá&apos;í Map
                             </h1>
                             <p className="text-sm text-gray-600">
                                 Cluster Milestones ·{" "}
@@ -120,7 +130,7 @@ export const FloatingMapKey = () => {
                                     className={`cursor-pointer text-sm text-nowrap content-center ${categoryHighlight.clusterGroup === clusterGroup ? "font-semibold" : ""}`}
                                     onMouseEnter={() =>
                                         setCategoryHighlight({
-                                            clusterGroup: clusterGroup,
+                                            clusterGroup,
                                         })
                                     }
                                     onMouseLeave={clearCategoryHighlight}
@@ -165,11 +175,11 @@ const ColorSwatch = ({
     clusterGroup,
 }: {
     milestone: Milestone
-    clusterGroup: ClusterGroup
+    clusterGroup: string
 }) => {
-    // add hover effect
     const { categoryHighlight, setCategoryHighlight, clearCategoryHighlight } =
         useCategoryHighlight()
+    const baseHue = getGroupInfo(clusterGroup).baseHue
     const highlighted =
         // both grouping & milestone are highlighted
         (categoryHighlight.milestone === milestone &&
@@ -186,14 +196,14 @@ const ColorSwatch = ({
             style={{
                 backgroundColor: milestoneColor(
                     milestone,
-                    clusterGroups[clusterGroup].baseHue,
+                    baseHue,
                     highlighted ? 90 : undefined,
                 ),
-                border: `3px solid ${highlighted ? milestoneColor(milestone, clusterGroups[clusterGroup].baseHue, 180) : "white"}`,
+                border: `3px solid ${highlighted ? milestoneColor(milestone, baseHue, 180) : "white"}`,
             }}
             aria-hidden="true"
             onMouseEnter={() =>
-                setCategoryHighlight({ milestone, clusterGroup: clusterGroup })
+                setCategoryHighlight({ milestone, clusterGroup })
             }
             onMouseLeave={clearCategoryHighlight}
         />

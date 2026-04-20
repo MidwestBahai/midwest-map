@@ -1,10 +1,18 @@
 "use client" // canvas, which we use to compute colors, only exists on the browser
 
 import type { GeoJsonProperties } from "geojson"
-import { clusterGroups, getClusterGroup } from "@/data/clusterGroups"
+import {
+    getClusterGroup,
+    getClusterGroupAtDate,
+    getGroupInfo,
+} from "@/data/clusterGroups"
 
-const clusterBaseHue = (properties: GeoJsonProperties) =>
-    clusterGroups[getClusterGroup(properties)].baseHue
+const clusterBaseHue = (properties: GeoJsonProperties, date?: Date) => {
+    const group = date
+        ? getClusterGroupAtDate(properties, date)
+        : getClusterGroup(properties)
+    return getGroupInfo(group).baseHue
+}
 
 const alpha = 0.5
 const boldAlpha = 0.85
@@ -82,12 +90,14 @@ export const clusterFillColor = (
     highlighted: boolean,
     milestoneOverride?: string,
     boldColors: boolean = false,
+    date?: Date,
 ) =>
     clusterColor(
         properties,
         highlighted ? 90 : undefined,
         milestoneOverride,
         boldColors,
+        date,
     )
 
 export const clusterLineColor = (
@@ -95,12 +105,14 @@ export const clusterLineColor = (
     highlighted: boolean,
     milestoneOverride?: string,
     boldColors: boolean = false,
+    date?: Date,
 ) =>
     clusterColor(
         properties,
         highlighted ? 180 : undefined,
         milestoneOverride,
         boldColors,
+        date,
     )
 
 export const clusterColor = (
@@ -108,8 +120,9 @@ export const clusterColor = (
     alpha?: number,
     milestoneOverride?: string,
     boldColors: boolean = false,
+    date?: Date,
 ) => {
-    const baseHue = clusterBaseHue(properties)
+    const baseHue = clusterBaseHue(properties, date)
     return milestoneColor(
         milestoneOverride ?? milestone(properties),
         baseHue,

@@ -3,7 +3,7 @@ import type { Expression } from "mapbox-gl"
 import { Layer, Source } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
 import type { LabelOptions } from "@/app/print/types"
-import { getClusterGroup } from "@/data/clusterGroups"
+import { getClusterGroupAtDate } from "@/data/clusterGroups"
 import {
     getMilestoneAtDate,
     type TimelineEntry,
@@ -69,7 +69,7 @@ export const ClusterLayers = ({
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
-    const clusterGroup = getClusterGroup(feature?.properties)
+    const clusterGroup = getClusterGroupAtDate(feature?.properties, currentDate)
 
     // Use cluster code for stable layer IDs (avoids issues when filtering changes indices)
     const clusterCode = feature?.properties?.Cluster ?? "unknown"
@@ -142,6 +142,7 @@ export const ClusterLayers = ({
                                     highlighted,
                                     effectiveMilestone,
                                     useBoldColors,
+                                    currentDate,
                                 ),
                                 "fill-opacity": fillOpacity,
                                 "fill-opacity-transition": { duration: 300 },
@@ -160,6 +161,8 @@ export const ClusterLayers = ({
                                           feature.properties,
                                           highlighted,
                                           effectiveMilestone,
+                                          false,
+                                          currentDate,
                                       ),
                                 "line-width": useBoldColors
                                     ? PRINT_BORDER_WIDTH
@@ -195,6 +198,7 @@ export const ClusterLayers = ({
                         true,
                         effectiveMilestone,
                         useBoldColors,
+                        currentDate,
                     )}
                 />
             )}

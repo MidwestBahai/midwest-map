@@ -2,7 +2,7 @@ import type { Feature } from "geojson"
 import { useMemo } from "react"
 import { clusterCities } from "@/data/clusterCities"
 import { clusterCounties } from "@/data/clusterCounties"
-import { clusterGroups } from "@/data/clusterGroups"
+import { groupingSchemes } from "@/data/clusterGroups"
 import { type BBox, combineBboxes, featureBbox } from "./featureBbox"
 
 export interface SearchResult {
@@ -56,7 +56,12 @@ export function useSearchIndex(features: Feature[]) {
                 keys: [
                     { term: code.toLowerCase(), context: "" },
                     ...(name
-                        ? [{ term: name.toLowerCase(), context: contextFor(name, `Name: ${name}`) }]
+                        ? [
+                              {
+                                  term: name.toLowerCase(),
+                                  context: contextFor(name, `Name: ${name}`),
+                              },
+                          ]
                         : []),
                     ...cities.map((c) => ({
                         term: c.toLowerCase(),
@@ -75,7 +80,21 @@ export function useSearchIndex(features: Feature[]) {
                 },
             })
 
-            if (group) {
+            // Accumulate bboxes for every group this cluster belongs to
+            // across all grouping schemes (via groupTimeline)
+            const timeline = p.groupTimeline as
+                | Array<{ group: string; from: string }>
+                | undefined
+            if (timeline) {
+                for (const entry of timeline) {
+                    let arr = groupBboxes.get(entry.group)
+                    if (!arr) {
+                        arr = []
+                        groupBboxes.set(entry.group, arr)
+                    }
+                    arr.push(bbox)
+                }
+            } else if (group) {
                 let arr = groupBboxes.get(group)
                 if (!arr) {
                     arr = []
@@ -85,25 +104,26 @@ export function useSearchIndex(features: Feature[]) {
             }
         }
 
-        // Add group entries
-        for (const [code, info] of Object.entries(clusterGroups)) {
-            if (code === "Unknown") continue
-            const bboxes = groupBboxes.get(code)
-            if (!bboxes?.length) continue
+        // Add group entries from all grouping schemes
+        for (const scheme of groupingSchemes) {
+            for (const [code, info] of Object.entries(scheme.groups)) {
+                const bboxes = groupBboxes.get(code)
+                if (!bboxes?.length) continue
 
-            entries.push({
-                keys: [
-                    { term: code.toLowerCase(), context: "" },
-                    { term: info.displayName.toLowerCase(), context: "" },
-                    { term: "group", context: "" },
-                ],
-                result: {
-                    label: info.displayName,
-                    sublabel: `${code} group`,
-                    type: "group",
-                    bbox: combineBboxes(bboxes),
-                },
-            })
+                entries.push({
+                    keys: [
+                        { term: code.toLowerCase(), context: "" },
+                        { term: info.displayName.toLowerCase(), context: "" },
+                        { term: "group", context: "" },
+                    ],
+                    result: {
+                        label: info.displayName,
+                        sublabel: `${code} group`,
+                        type: "group",
+                        bbox: combineBboxes(bboxes),
+                    },
+                })
+            }
         }
 
         return entries
@@ -121,11 +141,17 @@ export function useSearchIndex(features: Feature[]) {
                 for (const entry of index) {
                     let match = entry.keys.find((k) => k.term.startsWith(q))
                     if (match) {
-                        prefixMatches.push({ ...entry.result, matchContext: match.context || undefined })
+                        prefixMatches.push({
+                            ...entry.result,
+                            matchContext: match.context || undefined,
+                        })
                     } else {
                         match = entry.keys.find((k) => k.term.includes(q))
                         if (match) {
-                            containsMatches.push({ ...entry.result, matchContext: match.context || undefined })
+                            containsMatches.push({
+                                ...entry.result,
+                                matchContext: match.context || undefined,
+                            })
                         }
                     }
                 }

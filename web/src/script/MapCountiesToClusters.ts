@@ -27,6 +27,7 @@ interface ClusterProperties {
     Cluster: string
     ST: string
     Group: string
+    groupTimeline?: Array<{ group: string; from: string }>
 }
 
 interface CountyProperties {
@@ -114,6 +115,7 @@ async function main() {
                 clusterCode: matchingCluster.properties.Cluster,
                 clusterState: matchingCluster.properties.ST,
                 clusterGroup: matchingCluster.properties.Group,
+                groupTimeline: matchingCluster.properties.groupTimeline,
             }
 
             // Log for debugging

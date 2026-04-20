@@ -63,7 +63,17 @@
     "GEOID": "18101",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -176,7 +186,17 @@
     "GEOID": "26005",
     "clusterCode": "MI-12",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -317,7 +337,17 @@
     "GEOID": "26149",
     "clusterCode": "MI-13",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -366,7 +396,17 @@
     "GEOID": "18081",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -419,7 +459,17 @@
     "GEOID": "18009",
     "clusterCode": "IN-08",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -512,7 +562,17 @@
     "GEOID": "39161",
     "clusterCode": "OH-25",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -561,7 +621,17 @@
     "GEOID": "26025",
     "clusterCode": "MI-13",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -634,7 +704,17 @@
     "GEOID": "18023",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -691,7 +771,17 @@
     "GEOID": "18013",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -788,7 +878,17 @@
     "GEOID": "18079",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -829,7 +929,17 @@
     "GEOID": "26133",
     "clusterCode": "MI-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -874,7 +984,17 @@
     "GEOID": "26037",
     "clusterCode": "MI-11",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -923,7 +1043,17 @@
     "GEOID": "26085",
     "clusterCode": "MI-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -992,7 +1122,17 @@
     "GEOID": "18007",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1053,7 +1193,17 @@
     "GEOID": "18011",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1106,7 +1256,17 @@
     "GEOID": "18145",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1203,7 +1363,17 @@
     "GEOID": "39089",
     "clusterCode": "OH-28",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1248,7 +1418,17 @@
     "GEOID": "26165",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1297,7 +1477,17 @@
     "GEOID": "26113",
     "clusterCode": "MI-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1374,7 +1564,17 @@
     "GEOID": "39067",
     "clusterCode": "OH-17",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1451,7 +1651,17 @@
     "GEOID": "18033",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1508,7 +1718,17 @@
     "GEOID": "26049",
     "clusterCode": "MI-08",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1581,7 +1801,17 @@
     "GEOID": "39027",
     "clusterCode": "OH-33",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1706,7 +1936,17 @@
     "GEOID": "39037",
     "clusterCode": "OH-29",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1771,7 +2011,17 @@
     "GEOID": "18017",
     "clusterCode": "IN-10",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1868,7 +2118,17 @@
     "GEOID": "18073",
     "clusterCode": "IN-11",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1917,7 +2177,17 @@
     "GEOID": "18041",
     "clusterCode": "IN-13",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1958,7 +2228,17 @@
     "GEOID": "26073",
     "clusterCode": "MI-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2019,7 +2299,17 @@
     "GEOID": "18099",
     "clusterCode": "IN-03",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2060,7 +2350,17 @@
     "GEOID": "18131",
     "clusterCode": "IN-11",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2161,7 +2461,17 @@
     "GEOID": "18127",
     "clusterCode": "IN-06",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2230,7 +2540,17 @@
     "GEOID": "18021",
     "clusterCode": "IN-09",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2323,7 +2643,17 @@
     "GEOID": "18161",
     "clusterCode": "IN-13",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2364,7 +2694,17 @@
     "GEOID": "26039",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2425,7 +2765,17 @@
     "GEOID": "26143",
     "clusterCode": "MI-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2530,7 +2880,17 @@
     "GEOID": "39019",
     "clusterCode": "OH-17",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2587,7 +2947,17 @@
     "GEOID": "39021",
     "clusterCode": "OH-29",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2668,7 +3038,17 @@
     "GEOID": "39065",
     "clusterCode": "OH-26",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2789,7 +3169,17 @@
     "GEOID": "18141",
     "clusterCode": "IN-03",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2870,7 +3260,17 @@
     "GEOID": "39103",
     "clusterCode": "OH-13",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2939,7 +3339,17 @@
     "GEOID": "39165",
     "clusterCode": "OH-33",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2996,7 +3406,17 @@
     "GEOID": "39033",
     "clusterCode": "OH-24",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3049,7 +3469,17 @@
     "GEOID": "39047",
     "clusterCode": "OH-31",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3118,7 +3548,17 @@
     "GEOID": "39077",
     "clusterCode": "OH-22",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3195,7 +3635,17 @@
     "GEOID": "39041",
     "clusterCode": "OH-27",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3276,7 +3726,17 @@
     "GEOID": "39003",
     "clusterCode": "OH-26",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3425,7 +3885,17 @@
     "GEOID": "39093",
     "clusterCode": "OH-10",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3526,7 +3996,17 @@
     "GEOID": "39133",
     "clusterCode": "OH-11",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -4731,7 +5211,17 @@
     "GEOID": "26109",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -4836,7 +5326,17 @@
     "GEOID": "39173",
     "clusterCode": "OH-23",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -4881,7 +5381,17 @@
     "GEOID": "26067",
     "clusterCode": "MI-31",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -4926,7 +5436,17 @@
     "GEOID": "26077",
     "clusterCode": "MI-13",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -4975,7 +5495,17 @@
     "GEOID": "26123",
     "clusterCode": "MI-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5084,7 +5614,17 @@
     "GEOID": "26139",
     "clusterCode": "MI-09",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5153,7 +5693,17 @@
     "GEOID": "26159",
     "clusterCode": "MI-12",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5254,7 +5804,17 @@
     "GEOID": "39127",
     "clusterCode": "OH-19",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5359,7 +5919,17 @@
     "GEOID": "39139",
     "clusterCode": "OH-24",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5424,7 +5994,17 @@
     "GEOID": "39147",
     "clusterCode": "OH-22",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5493,7 +6073,17 @@
     "GEOID": "39149",
     "clusterCode": "OH-29",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5578,7 +6168,17 @@
     "GEOID": "39039",
     "clusterCode": "OH-21",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5627,7 +6227,17 @@
     "GEOID": "26079",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5668,7 +6278,17 @@
     "GEOID": "26035",
     "clusterCode": "MI-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5725,7 +6345,17 @@
     "GEOID": "26051",
     "clusterCode": "MI-05",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5774,7 +6404,17 @@
     "GEOID": "26129",
     "clusterCode": "MI-05",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5839,7 +6479,17 @@
     "GEOID": "18169",
     "clusterCode": "IN-10",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5904,7 +6554,17 @@
     "GEOID": "18097",
     "clusterCode": "IN-01",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -5965,7 +6625,17 @@
     "GEOID": "18107",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6018,7 +6688,17 @@
     "GEOID": "18159",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6159,7 +6839,17 @@
     "GEOID": "18177",
     "clusterCode": "IN-13",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6340,7 +7030,17 @@
     "GEOID": "26099",
     "clusterCode": "MI-19",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6445,7 +7145,17 @@
     "GEOID": "39163",
     "clusterCode": "OH-19",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6498,7 +7208,17 @@
     "GEOID": "18117",
     "clusterCode": "IN-16",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6583,7 +7303,17 @@
     "GEOID": "18063",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6632,7 +7362,17 @@
     "GEOID": "39069",
     "clusterCode": "OH-21",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6713,7 +7453,17 @@
     "GEOID": "39083",
     "clusterCode": "OH-28",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6890,7 +7640,17 @@
     "GEOID": "18043",
     "clusterCode": "IN-17",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6947,7 +7707,17 @@
     "GEOID": "26111",
     "clusterCode": "MI-06",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7024,7 +7794,17 @@
     "GEOID": "18085",
     "clusterCode": "IN-03",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7157,7 +7937,17 @@
     "GEOID": "18171",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7222,7 +8012,17 @@
     "GEOID": "18049",
     "clusterCode": "IN-10",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7295,7 +8095,17 @@
     "GEOID": "39159",
     "clusterCode": "OH-27",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7348,7 +8158,17 @@
     "GEOID": "18057",
     "clusterCode": "IN-01N",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7441,7 +8261,17 @@
     "GEOID": "26095",
     "clusterCode": "MIUP-05",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7610,7 +8440,17 @@
     "GEOID": "18071",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7663,7 +8503,17 @@
     "GEOID": "26057",
     "clusterCode": "MI-06",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7744,7 +8594,17 @@
     "GEOID": "39125",
     "clusterCode": "OH-21",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7825,7 +8685,17 @@
     "GEOID": "39119",
     "clusterCode": "OH-19",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7886,7 +8756,17 @@
     "GEOID": "39109",
     "clusterCode": "OH-29",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7999,7 +8879,17 @@
     "GEOID": "26001",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8044,7 +8934,17 @@
     "GEOID": "26015",
     "clusterCode": "MI-12",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8089,7 +8989,17 @@
     "GEOID": "26045",
     "clusterCode": "MI-11",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8146,7 +9056,17 @@
     "GEOID": "18157",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8295,7 +9215,17 @@
     "GEOID": "26021",
     "clusterCode": "MI-12",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8348,7 +9278,17 @@
     "GEOID": "26093",
     "clusterCode": "MI-16",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8413,7 +9353,17 @@
     "GEOID": "26161",
     "clusterCode": "MI-17",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8506,7 +9456,17 @@
     "GEOID": "39079",
     "clusterCode": "OH-35",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8567,7 +9527,17 @@
     "GEOID": "26075",
     "clusterCode": "MI-14",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8604,7 +9574,17 @@
     "GEOID": "26107",
     "clusterCode": "MI-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8681,7 +9661,17 @@
     "GEOID": "39113",
     "clusterCode": "OH-06",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8826,7 +9816,17 @@
     "GEOID": "26031",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8915,7 +9915,17 @@
     "GEOID": "18075",
     "clusterCode": "IN-08",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9108,7 +10118,17 @@
     "GEOID": "18029",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9197,7 +10217,17 @@
     "GEOID": "26125",
     "clusterCode": "MI-19",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9246,7 +10276,17 @@
     "GEOID": "18069",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9323,7 +10363,17 @@
     "GEOID": "18047",
     "clusterCode": "IN-13",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9528,7 +10578,17 @@
     "GEOID": "39035",
     "clusterCode": "OH-01",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9597,7 +10657,17 @@
     "GEOID": "18065",
     "clusterCode": "IN-13",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9742,7 +10812,17 @@
     "GEOID": "26017",
     "clusterCode": "MI-06",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10115,7 +11195,17 @@
     "GEOID": "18051",
     "clusterCode": "IN-07",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10184,7 +11274,17 @@
     "GEOID": "18059",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10405,7 +11505,17 @@
     "GEOID": "39029",
     "clusterCode": "OH-17",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10534,7 +11644,17 @@
     "GEOID": "18087",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10699,7 +11819,17 @@
     "GEOID": "18091",
     "clusterCode": "IN-06",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10760,7 +11890,17 @@
     "GEOID": "18093",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10849,7 +11989,17 @@
     "GEOID": "18015",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -11738,7 +12888,17 @@
     "GEOID": "26071",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -11811,7 +12971,17 @@
     "GEOID": "39129",
     "clusterCode": "OH-31",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -11876,7 +13046,17 @@
     "GEOID": "18005",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -11985,7 +13165,17 @@
     "GEOID": "18037",
     "clusterCode": "IN-16",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12098,7 +13288,17 @@
     "GEOID": "18121",
     "clusterCode": "IN-09",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12293,7 +13493,17 @@
     "GEOID": "39043",
     "clusterCode": "OH-22",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12546,7 +13756,17 @@
     "GEOID": "26055",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13229,7 +14449,17 @@
     "GEOID": "26089",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13466,7 +14696,17 @@
     "GEOID": "26007",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13711,7 +14951,17 @@
     "GEOID": "18025",
     "clusterCode": "IN-16",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13832,7 +15082,17 @@
     "GEOID": "18045",
     "clusterCode": "IN-04",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13969,7 +15229,17 @@
     "GEOID": "18111",
     "clusterCode": "IN-11",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -14282,7 +15552,17 @@
     "GEOID": "18155",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15309,7 +16589,17 @@
     "GEOID": "26033",
     "clusterCode": "MIUP-06",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15418,7 +16708,17 @@
     "GEOID": "26019",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15503,7 +16803,17 @@
     "GEOID": "18105",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15672,7 +16982,17 @@
     "GEOID": "26011",
     "clusterCode": "MI-05",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15749,7 +17069,17 @@
     "GEOID": "26091",
     "clusterCode": "MI-15",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15870,7 +17200,17 @@
     "GEOID": "39107",
     "clusterCode": "OH-25",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15927,7 +17267,17 @@
     "GEOID": "18053",
     "clusterCode": "IN-10",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -16332,7 +17682,17 @@
     "GEOID": "18147",
     "clusterCode": "IN-16",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -16545,7 +17905,17 @@
     "GEOID": "18089",
     "clusterCode": "IN-06",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -17034,7 +18404,17 @@
     "GEOID": "18123",
     "clusterCode": "IN-16",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -17303,7 +18683,17 @@
     "GEOID": "39015",
     "clusterCode": "OH-34",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -17548,7 +18938,17 @@
     "GEOID": "18027",
     "clusterCode": "IN-12",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -17645,7 +19045,17 @@
     "GEOID": "39011",
     "clusterCode": "OH-26",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -17706,7 +19116,17 @@
     "GEOID": "39169",
     "clusterCode": "OH-13",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18295,7 +19715,17 @@
     "GEOID": "39105",
     "clusterCode": "OH-20",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18356,7 +19786,17 @@
     "GEOID": "18137",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18517,7 +19957,17 @@
     "GEOID": "18125",
     "clusterCode": "IN-07",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18602,7 +20052,17 @@
     "GEOID": "18133",
     "clusterCode": "IN-09",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18719,7 +20179,17 @@
     "GEOID": "39045",
     "clusterCode": "OH-19",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18816,7 +20286,17 @@
     "GEOID": "18039",
     "clusterCode": "IN-03",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19061,7 +20541,17 @@
     "GEOID": "18173",
     "clusterCode": "IN-07",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19114,7 +20604,17 @@
     "GEOID": "26065",
     "clusterCode": "MI-11",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19175,7 +20675,17 @@
     "GEOID": "26119",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19852,7 +21362,17 @@
     "GEOID": "18129",
     "clusterCode": "IN-07",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -20599,7 +22119,17 @@
     "GEOID": "26083",
     "clusterCode": "MIUP-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -20736,7 +22266,17 @@
     "GEOID": "18167",
     "clusterCode": "IN-09",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -20785,7 +22325,17 @@
     "GEOID": "26137",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -20922,7 +22472,17 @@
     "GEOID": "39007",
     "clusterCode": "OH-09",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21103,7 +22663,17 @@
     "GEOID": "18115",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21480,7 +23050,17 @@
     "GEOID": "26103",
     "clusterCode": "MIUP-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21709,7 +23289,17 @@
     "GEOID": "26131",
     "clusterCode": "MIUP-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21818,7 +23408,17 @@
     "GEOID": "26023",
     "clusterCode": "MI-14",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21911,7 +23511,17 @@
     "GEOID": "39059",
     "clusterCode": "OH-18",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22060,7 +23670,17 @@
     "GEOID": "39099",
     "clusterCode": "OH-15",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22117,7 +23737,17 @@
     "GEOID": "18113",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22198,7 +23828,17 @@
     "GEOID": "18119",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22291,7 +23931,17 @@
     "GEOID": "39101",
     "clusterCode": "OH-27",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22588,7 +24238,17 @@
     "GEOID": "26061",
     "clusterCode": "MIUP-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22629,7 +24289,17 @@
     "GEOID": "26135",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22726,7 +24396,17 @@
     "GEOID": "26127",
     "clusterCode": "MI-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22831,7 +24511,17 @@
     "GEOID": "39097",
     "clusterCode": "OH-31",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23274,7 +24964,17 @@
     "GEOID": "26029",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23523,7 +25223,17 @@
     "GEOID": "26153",
     "clusterCode": "MIUP-05",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23608,7 +25318,17 @@
     "GEOID": "18149",
     "clusterCode": "IN-11",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23817,7 +25537,17 @@
     "GEOID": "18165",
     "clusterCode": "IN-09",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23954,7 +25684,17 @@
     "GEOID": "18151",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -24447,7 +26187,17 @@
     "GEOID": "26043",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -24520,7 +26270,17 @@
     "GEOID": "39137",
     "clusterCode": "OH-21",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -24585,7 +26345,17 @@
     "GEOID": "39063",
     "clusterCode": "OH-23",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -24930,7 +26700,17 @@
     "GEOID": "18163",
     "clusterCode": "IN-07",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -25039,7 +26819,17 @@
     "GEOID": "39171",
     "clusterCode": "OH-21",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -25286,7 +27076,17 @@
     "GEOID": "39123",
     "clusterCode": "OH-22",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -25363,7 +27163,17 @@
     "GEOID": "26121",
     "clusterCode": "MI-09",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26174,7 +27984,17 @@
     "GEOID": "26097",
     "clusterCode": "MIUP-06",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26263,7 +28083,17 @@
     "GEOID": "39051",
     "clusterCode": "OH-21",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26400,7 +28230,17 @@
     "GEOID": "39121",
     "clusterCode": "OH-18",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26473,7 +28313,17 @@
     "GEOID": "39055",
     "clusterCode": "OH-12",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26522,7 +28372,17 @@
     "GEOID": "18095",
     "clusterCode": "IN-08",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26955,7 +28815,17 @@
     "GEOID": "39061",
     "clusterCode": "OH-05",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -27540,7 +29410,17 @@
     "GEOID": "39167",
     "clusterCode": "OH-18",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -27785,7 +29665,17 @@
     "GEOID": "39095",
     "clusterCode": "OH-08",
     "clusterState": "OH",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -27890,7 +29780,17 @@
     "GEOID": "39005",
     "clusterCode": "OH-24",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -27999,7 +29899,17 @@
     "GEOID": "26027",
     "clusterCode": "MI-12",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28344,7 +30254,17 @@
     "GEOID": "39053",
     "clusterCode": "OH-20",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28693,7 +30613,17 @@
     "GEOID": "18019",
     "clusterCode": "IN-17",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28778,7 +30708,17 @@
     "GEOID": "39175",
     "clusterCode": "OH-27",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28935,7 +30875,17 @@
     "GEOID": "26069",
     "clusterCode": "MI-05",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -29028,7 +30978,17 @@
     "GEOID": "26059",
     "clusterCode": "MI-14",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -29133,7 +31093,17 @@
     "GEOID": "39141",
     "clusterCode": "OH-31",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -29430,7 +31400,17 @@
     "GEOID": "26047",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30211,7 +32191,17 @@
     "GEOID": "26053",
     "clusterCode": "MIUP-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30336,7 +32326,17 @@
     "GEOID": "39135",
     "clusterCode": "OH-32",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30425,7 +32425,17 @@
     "GEOID": "18135",
     "clusterCode": "IN-08",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30526,7 +32536,17 @@
     "GEOID": "18001",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30803,7 +32823,17 @@
     "GEOID": "18077",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31072,7 +33102,17 @@
     "GEOID": "26115",
     "clusterCode": "MI-15",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31221,7 +33261,17 @@
     "GEOID": "26157",
     "clusterCode": "MI-07",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31282,7 +33332,17 @@
     "GEOID": "18055",
     "clusterCode": "IN-12",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31331,7 +33391,17 @@
     "GEOID": "26155",
     "clusterCode": "MI-08",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31408,7 +33478,17 @@
     "GEOID": "39031",
     "clusterCode": "OH-28",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31501,7 +33581,17 @@
     "GEOID": "18181",
     "clusterCode": "IN-11",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31614,7 +33704,17 @@
     "GEOID": "26101",
     "clusterCode": "MI-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31699,7 +33799,17 @@
     "GEOID": "39057",
     "clusterCode": "OH-30",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31824,7 +33934,17 @@
     "GEOID": "39049",
     "clusterCode": "OH-03",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32317,7 +34437,17 @@
     "GEOID": "18083",
     "clusterCode": "IN-12",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32378,7 +34508,17 @@
     "GEOID": "18179",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32439,7 +34579,17 @@
     "GEOID": "18103",
     "clusterCode": "IN-10",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32536,7 +34686,17 @@
     "GEOID": "18109",
     "clusterCode": "IN-01S",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32637,7 +34797,17 @@
     "GEOID": "39073",
     "clusterCode": "OH-19",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32766,7 +34936,17 @@
     "GEOID": "39017",
     "clusterCode": "OH-32",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33119,7 +35299,17 @@
     "GEOID": "39013",
     "clusterCode": "OH-18",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33228,7 +35418,17 @@
     "GEOID": "18003",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33361,7 +35561,17 @@
     "GEOID": "39009",
     "clusterCode": "OH-20",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33482,7 +35692,17 @@
     "GEOID": "39153",
     "clusterCode": "OH-07",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33559,7 +35779,17 @@
     "GEOID": "39091",
     "clusterCode": "OH-27",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33788,7 +36018,17 @@
     "GEOID": "26163",
     "clusterCode": "MI-19",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -33953,7 +36193,17 @@
     "GEOID": "39155",
     "clusterCode": "OH-09",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34210,7 +36460,17 @@
     "GEOID": "26013",
     "clusterCode": "MIUP-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34295,7 +36555,17 @@
     "GEOID": "26145",
     "clusterCode": "MI-06",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34340,7 +36610,17 @@
     "GEOID": "18035",
     "clusterCode": "IN-08",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34561,7 +36841,17 @@
     "GEOID": "39025",
     "clusterCode": "OH-34",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34662,7 +36952,17 @@
     "GEOID": "39157",
     "clusterCode": "OH-17",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34719,7 +37019,17 @@
     "GEOID": "18031",
     "clusterCode": "IN-05",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34804,7 +37114,17 @@
     "GEOID": "39023",
     "clusterCode": "OH-30",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -34873,7 +37193,17 @@
     "GEOID": "39075",
     "clusterCode": "OH-16",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -35314,7 +37644,17 @@
     "GEOID": "18061",
     "clusterCode": "IN-17",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -35379,7 +37719,17 @@
     "GEOID": "26081",
     "clusterCode": "MI-09",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -35452,7 +37802,17 @@
     "GEOID": "18067",
     "clusterCode": "IN-10",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -35573,7 +37933,17 @@
     "GEOID": "18143",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -35926,7 +38296,17 @@
     "GEOID": "39087",
     "clusterCode": "OH-35",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -35975,7 +38355,17 @@
     "GEOID": "18139",
     "clusterCode": "IN-13",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -36160,7 +38550,17 @@
     "GEOID": "18175",
     "clusterCode": "IN-14",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -36493,7 +38893,17 @@
     "GEOID": "26063",
     "clusterCode": "MI-07",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -36614,7 +39024,17 @@
     "GEOID": "39085",
     "clusterCode": "OH-12",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -36719,7 +39139,17 @@
     "GEOID": "39115",
     "clusterCode": "OH-18",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -37120,7 +39550,17 @@
     "GEOID": "26003",
     "clusterCode": "MIUP-04",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -37517,7 +39957,17 @@
     "GEOID": "39145",
     "clusterCode": "OH-35",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -37634,7 +40084,17 @@
     "GEOID": "39071",
     "clusterCode": "OH-35",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -37711,7 +40171,17 @@
     "GEOID": "39131",
     "clusterCode": "OH-35",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -38056,7 +40526,17 @@
     "GEOID": "39081",
     "clusterCode": "OH-17",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -38121,7 +40601,17 @@
     "GEOID": "26117",
     "clusterCode": "MI-31",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -38522,7 +41012,17 @@
     "GEOID": "26147",
     "clusterCode": "MI-07",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -38655,7 +41155,17 @@
     "GEOID": "26009",
     "clusterCode": "MI-02",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -38936,7 +41446,17 @@
     "GEOID": "26141",
     "clusterCode": "MI-01",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -39057,7 +41577,17 @@
     "GEOID": "39151",
     "clusterCode": "OH-14",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -39122,7 +41652,17 @@
     "GEOID": "26087",
     "clusterCode": "MI-08",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -39259,7 +41799,17 @@
     "GEOID": "26105",
     "clusterCode": "MI-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -40002,7 +42552,17 @@
     "GEOID": "26041",
     "clusterCode": "MIUP-03",
     "clusterState": "MI",
-    "clusterGroup": "GR"
+    "clusterGroup": "WMI",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -40175,7 +42735,17 @@
     "GEOID": "18153",
     "clusterCode": "IN-12",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "SIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -40500,7 +43070,17 @@
     "GEOID": "39111",
     "clusterCode": "OH-18",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -40573,7 +43153,17 @@
     "GEOID": "18183",
     "clusterCode": "IN-02",
     "clusterState": "IN",
-    "clusterGroup": "INDY"
+    "clusterGroup": "NIN",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -40862,7 +43452,17 @@
     "GEOID": "39001",
     "clusterCode": "OH-35",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -40995,7 +43595,17 @@
     "GEOID": "26151",
     "clusterCode": "MI-07",
     "clusterState": "MI",
-    "clusterGroup": "AA"
+    "clusterGroup": "EMI",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -41104,7 +43714,17 @@
     "GEOID": "39117",
     "clusterCode": "OH-28",
     "clusterState": "OH",
-    "clusterGroup": "CBUS"
+    "clusterGroup": "SOH",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -41181,7 +43801,17 @@
     "GEOID": "39143",
     "clusterCode": "OH-22",
     "clusterState": "OH",
-    "clusterGroup": "CLV"
+    "clusterGroup": "NOH",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   }
  ]

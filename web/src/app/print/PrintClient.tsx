@@ -12,7 +12,7 @@ import {
     useState,
 } from "react"
 import { DebugProvider } from "@/app/DebugContext"
-import { clusterGroups, type ClusterGroup } from "@/data/clusterGroups"
+import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
 import validatedData from "@/data/clusters-timeline.geo.json"
 import { TIMING } from "@/lib/constants"
 import { matchesScope } from "@/lib/scopeFilter"
@@ -22,8 +22,8 @@ import { initialBounds } from "@/map/initialMapBounds"
 import { RegionMap, type ViewState } from "@/map/regionMap"
 import { DraggableBox, type DraggablePosition } from "./DraggableBox"
 import { DraggableLegend } from "./DraggableLegend"
-import { calculateContainerSize } from "./paperDimensions"
 import { PrintToolbar } from "./PrintToolbar"
+import { calculateContainerSize } from "./paperDimensions"
 import { DEFAULT_LABEL_OPTIONS, type LabelOptions } from "./types"
 import { usePageSize } from "./usePageSize"
 
@@ -188,7 +188,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // Compute which groups are visible based on current scope
     const visibleGroups = useMemo(
         () => getVisibleGroups(allFeatures, selectedScope),
-        [allFeatures, selectedScope],
+        [selectedScope],
     )
 
     // Compute subtitle for scope
@@ -201,9 +201,10 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // containerSize is already computed from the default paper in the useState initializer,
     // so we use it directly instead of recalculating.
     useEffect(() => {
-        const stored = loadFromStorage<
-            Record<DisplayClusterGroup, DraggablePosition>
-        >(LEGEND_STORAGE_KEY)
+        const stored =
+            loadFromStorage<Record<DisplayClusterGroup, DraggablePosition>>(
+                LEGEND_STORAGE_KEY,
+            )
         setLegendPositions(
             stored ??
                 getDefaultPixelPositions(
@@ -229,7 +230,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
             const defaults = initialBounds(containerSize)
             if (defaults) setViewState(defaults)
         }
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [containerSize]) // eslint-disable-line react-hooks/exhaustive-deps
 
     // Save legend positions to localStorage when they change
     useEffect(() => {
@@ -318,9 +319,7 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
                                             onViewStateChange={setViewState}
                                             labelOptions={labelOptions}
                                             scope={selectedScope}
-                                            containerWidth={
-                                                containerSize.width
-                                            }
+                                            containerWidth={containerSize.width}
                                             containerHeight={
                                                 containerSize.height
                                             }

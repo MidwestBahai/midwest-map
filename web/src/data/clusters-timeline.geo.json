@@ -759,7 +759,7 @@
    },
    "properties": {
     "Cluster": "IN-17",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Clark, Floyd, Harrison Co",
     "ST": "IN",
     "aland": 383288360,
@@ -773,7 +773,17 @@
      }
     ],
     "firstAdvancement": "2016-03-28",
-    "latestAdvancement": "2016-03-28"
+    "latestAdvancement": "2016-03-28",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1223,7 +1233,7 @@
    },
    "properties": {
     "Cluster": "OH-34",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Appalachia II",
     "ST": "OH",
     "aland": 1269138601,
@@ -1237,7 +1247,17 @@
      }
     ],
     "firstAdvancement": "2016-01-14",
-    "latestAdvancement": "2016-01-14"
+    "latestAdvancement": "2016-01-14",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1667,7 +1687,7 @@
    },
    "properties": {
     "Cluster": "OH-05",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Hamilton Co (Cincinnati)",
     "ST": "OH",
     "aland": 1051349243,
@@ -1685,7 +1705,17 @@
      }
     ],
     "firstAdvancement": "2011-11-11",
-    "latestAdvancement": "2011-11-30"
+    "latestAdvancement": "2011-11-30",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -1927,7 +1957,7 @@
    },
    "properties": {
     "Cluster": "IN-04",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "W Lafayette",
     "ST": "IN",
     "aland": 1049119210,
@@ -1945,7 +1975,17 @@
      }
     ],
     "firstAdvancement": "2015-03-26",
-    "latestAdvancement": "2023-09-02"
+    "latestAdvancement": "2023-09-02",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -2923,7 +2963,7 @@
    },
    "properties": {
     "Cluster": "OH-35",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Appalachia III",
     "ST": "OH",
     "aland": 1088581966,
@@ -2941,7 +2981,17 @@
      }
     ],
     "firstAdvancement": "2016-03-11",
-    "latestAdvancement": "2022-05-20"
+    "latestAdvancement": "2022-05-20",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3299,7 +3349,7 @@
    },
    "properties": {
     "Cluster": "MI-19",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Tri-County",
     "ST": "MI",
     "aland": 1240902197,
@@ -3321,7 +3371,17 @@
      }
     ],
     "firstAdvancement": "2011-11-10",
-    "latestAdvancement": "2026-04-05"
+    "latestAdvancement": "2026-04-05",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -3411,7 +3471,7 @@
    },
    "properties": {
     "Cluster": "MI-04",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Central Michigan Counties",
     "ST": "MI",
     "aland": 1467044588,
@@ -3425,7 +3485,17 @@
      }
     ],
     "firstAdvancement": "2025-11-26",
-    "latestAdvancement": "2025-11-26"
+    "latestAdvancement": "2025-11-26",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -6617,7 +6687,7 @@
    },
    "properties": {
     "Cluster": "MIUP-03",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Escanaba",
     "ST": "MI",
     "aland": 2704030473,
@@ -6626,7 +6696,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7520,7 +7600,7 @@
    },
    "properties": {
     "Cluster": "MI-07",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Thumb Area Counties",
     "ST": "MI",
     "aland": 2080717684,
@@ -7534,7 +7614,17 @@
      }
     ],
     "firstAdvancement": "2025-11-26",
-    "latestAdvancement": "2025-11-26"
+    "latestAdvancement": "2025-11-26",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7692,7 +7782,7 @@
    },
    "properties": {
     "Cluster": "OH-26",
-    "Group": "CBUS",
+    "Group": "NOH",
     "Cluster Na": "Allen",
     "ST": "OH",
     "aland": 1218342693,
@@ -7701,7 +7791,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -7875,7 +7975,7 @@
    },
    "properties": {
     "Cluster": "OH-25",
-    "Group": "CBUS",
+    "Group": "NOH",
     "Cluster Na": "Van Wert",
     "ST": "OH",
     "aland": 1059698927,
@@ -7884,7 +7984,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8118,7 +8228,7 @@
    },
    "properties": {
     "Cluster": "IN-13",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Richmond",
     "ST": "IN",
     "aland": 556901540,
@@ -8132,7 +8242,17 @@
      }
     ],
     "firstAdvancement": "2015-03-26",
-    "latestAdvancement": "2015-03-26"
+    "latestAdvancement": "2015-03-26",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8346,7 +8466,7 @@
    },
    "properties": {
     "Cluster": "OH-32",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Butler",
     "ST": "OH",
     "aland": 1098738400,
@@ -8360,7 +8480,17 @@
      }
     ],
     "firstAdvancement": "2024-02-26",
-    "latestAdvancement": "2024-02-26"
+    "latestAdvancement": "2024-02-26",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8586,7 +8716,7 @@
    },
    "properties": {
     "Cluster": "OH-19",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Muskingum",
     "ST": "OH",
     "aland": 1056682425,
@@ -8600,7 +8730,17 @@
      }
     ],
     "firstAdvancement": "2026-01-21",
-    "latestAdvancement": "2026-01-21"
+    "latestAdvancement": "2026-01-21",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8810,7 +8950,7 @@
    },
    "properties": {
     "Cluster": "IN-03",
-    "Group": "INDY",
+    "Group": "NIN",
     "Cluster Na": "South Bend Area",
     "ST": "IN",
     "aland": 1148993902,
@@ -8824,7 +8964,17 @@
      }
     ],
     "firstAdvancement": "2014-03-30",
-    "latestAdvancement": "2014-03-30"
+    "latestAdvancement": "2014-03-30",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -8890,7 +9040,7 @@
    },
    "properties": {
     "Cluster": "OH-16",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Holmes",
     "ST": "OH",
     "aland": 1094356036,
@@ -8899,7 +9049,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9177,7 +9337,7 @@
    },
    "properties": {
     "Cluster": "IN-11",
-    "Group": "INDY",
+    "Group": "NIN",
     "Cluster Na": "Monon",
     "ST": "IN",
     "aland": 1449431947,
@@ -9186,7 +9346,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9332,7 +9502,7 @@
    },
    "properties": {
     "Cluster": "OH-15",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Mahoning",
     "ST": "OH",
     "aland": 1065799604,
@@ -9341,7 +9511,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -9503,7 +9683,7 @@
    },
    "properties": {
     "Cluster": "IN-01S",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Indy South",
     "ST": "IN",
     "aland": 829909420,
@@ -9517,7 +9697,17 @@
      }
     ],
     "firstAdvancement": "2026-04-07",
-    "latestAdvancement": "2026-04-07"
+    "latestAdvancement": "2026-04-07",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10071,7 +10261,7 @@
    },
    "properties": {
     "Cluster": "IN-12",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Vincennes",
     "ST": "IN",
     "aland": 1112370958,
@@ -10085,7 +10275,17 @@
      }
     ],
     "firstAdvancement": "2026-03-13",
-    "latestAdvancement": "2026-03-13"
+    "latestAdvancement": "2026-03-13",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10531,7 +10731,7 @@
    },
    "properties": {
     "Cluster": "IN-02",
-    "Group": "INDY",
+    "Group": "NIN",
     "Cluster Na": "Fort Wayne",
     "ST": "IN",
     "aland": 939732061,
@@ -10553,7 +10753,17 @@
      }
     ],
     "firstAdvancement": "2013-01-30",
-    "latestAdvancement": "2026-04-09"
+    "latestAdvancement": "2026-04-09",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -10603,7 +10813,7 @@
    },
    "properties": {
     "Cluster": "MI-16",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Livingston County (Brighton)",
     "ST": "MI",
     "aland": 1463696909,
@@ -10612,7 +10822,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12360,7 +12580,7 @@
    },
    "properties": {
     "Cluster": "MIUP-06",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Sault Ste Marie",
     "ST": "MI",
     "aland": 4036315424,
@@ -12374,7 +12594,17 @@
      }
     ],
     "firstAdvancement": "2025-11-26",
-    "latestAdvancement": "2025-11-26"
+    "latestAdvancement": "2025-11-26",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12572,7 +12802,7 @@
    },
    "properties": {
     "Cluster": "OH-31",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Fayette",
     "ST": "OH",
     "aland": 1052470875,
@@ -12586,7 +12816,17 @@
      }
     ],
     "firstAdvancement": "2016-03-11",
-    "latestAdvancement": "2016-03-11"
+    "latestAdvancement": "2016-03-11",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12716,7 +12956,7 @@
    },
    "properties": {
     "Cluster": "OH-12",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Geauga-Lake Co",
     "ST": "OH",
     "aland": 1036429792,
@@ -12730,7 +12970,17 @@
      }
     ],
     "firstAdvancement": "2014-03-30",
-    "latestAdvancement": "2014-03-30"
+    "latestAdvancement": "2014-03-30",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -12828,7 +13078,7 @@
    },
    "properties": {
     "Cluster": "OH-11",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Portage Co",
     "ST": "OH",
     "aland": 1262374971,
@@ -12842,7 +13092,17 @@
      }
     ],
     "firstAdvancement": "2015-11-30",
-    "latestAdvancement": "2015-11-30"
+    "latestAdvancement": "2015-11-30",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13156,7 +13416,7 @@
    },
    "properties": {
     "Cluster": "MI-15",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Adrian/Monroe",
     "ST": "MI",
     "aland": 1941350734,
@@ -13170,7 +13430,17 @@
      }
     ],
     "firstAdvancement": "2015-12-17",
-    "latestAdvancement": "2015-12-17"
+    "latestAdvancement": "2015-12-17",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13272,7 +13542,7 @@
    },
    "properties": {
     "Cluster": "OH-13",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Medina-Wayne Co",
     "ST": "OH",
     "aland": 1091406446,
@@ -13280,7 +13550,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13446,7 +13726,7 @@
    },
    "properties": {
     "Cluster": "MI-13",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Kalamazoo Area",
     "ST": "MI",
     "aland": 1296553523,
@@ -13464,7 +13744,17 @@
      }
     ],
     "firstAdvancement": "2014-04-30",
-    "latestAdvancement": "2024-02-15"
+    "latestAdvancement": "2024-02-15",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13526,7 +13816,7 @@
    },
    "properties": {
     "Cluster": "MI-17",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Washtenaw Co (Ann Arbor)",
     "ST": "MI",
     "aland": 1828428383,
@@ -13548,7 +13838,17 @@
      }
     ],
     "firstAdvancement": "2011-11-30",
-    "latestAdvancement": "2021-07-21"
+    "latestAdvancement": "2021-07-21",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -13698,7 +13998,7 @@
    },
    "properties": {
     "Cluster": "MI-09",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Grand Rapids Area",
     "ST": "MI",
     "aland": 1459662264,
@@ -13720,7 +14020,17 @@
      }
     ],
     "firstAdvancement": "2011-11-10",
-    "latestAdvancement": "2021-07-12"
+    "latestAdvancement": "2021-07-12",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -14702,7 +15012,7 @@
    },
    "properties": {
     "Cluster": "OH-20",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Athens",
     "ST": "OH",
     "aland": 1113958479,
@@ -14716,7 +15026,17 @@
      }
     ],
     "firstAdvancement": "2016-01-28",
-    "latestAdvancement": "2016-01-28"
+    "latestAdvancement": "2016-01-28",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -14854,7 +15174,7 @@
    },
    "properties": {
     "Cluster": "IN-01N",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Indy North",
     "ST": "IN",
     "aland": 1095336141,
@@ -14868,7 +15188,17 @@
      }
     ],
     "firstAdvancement": "2022-12-06",
-    "latestAdvancement": "2022-12-06"
+    "latestAdvancement": "2022-12-06",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15046,7 +15376,7 @@
    },
    "properties": {
     "Cluster": "MI-06",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Midland/Bay City/Saginaw",
     "ST": "MI",
     "aland": 1337099821,
@@ -15060,7 +15390,17 @@
      }
     ],
     "firstAdvancement": "2014-10-15",
-    "latestAdvancement": "2014-10-15"
+    "latestAdvancement": "2014-10-15",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -15178,7 +15518,7 @@
    },
    "properties": {
     "Cluster": "OH-07",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Summit Co (Akron)",
     "ST": "OH",
     "aland": 1069244605,
@@ -15196,7 +15536,17 @@
      }
     ],
     "firstAdvancement": "2014-10-15",
-    "latestAdvancement": "2024-01-30"
+    "latestAdvancement": "2024-01-30",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -16686,7 +17036,7 @@
    },
    "properties": {
     "Cluster": "IN-07",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Evansville",
     "ST": "IN",
     "aland": 1262606257,
@@ -16704,7 +17054,17 @@
      }
     ],
     "firstAdvancement": "2022-05-08",
-    "latestAdvancement": "2026-04-14"
+    "latestAdvancement": "2026-04-14",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -18364,7 +18724,7 @@
    },
    "properties": {
     "Cluster": "MI-02",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Travers City/Charlevoix Area",
     "ST": "MI",
     "aland": 1463348860,
@@ -18378,7 +18738,17 @@
      }
     ],
     "firstAdvancement": "2014-10-15",
-    "latestAdvancement": "2014-10-15"
+    "latestAdvancement": "2014-10-15",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19360,7 +19730,7 @@
    },
    "properties": {
     "Cluster": "IN-16",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Jasper",
     "ST": "IN",
     "aland": 1031818419,
@@ -19369,7 +19739,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19611,7 +19991,7 @@
    },
    "properties": {
     "Cluster": "OH-08",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Lucas Co",
     "ST": "OH",
     "aland": 882812509,
@@ -19629,7 +20009,17 @@
      }
     ],
     "firstAdvancement": "2021-01-30",
-    "latestAdvancement": "2021-10-11"
+    "latestAdvancement": "2021-10-11",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -19763,7 +20153,7 @@
    },
    "properties": {
     "Cluster": "OH-24",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Crawford",
     "ST": "OH",
     "aland": 1040619676,
@@ -19781,7 +20171,17 @@
      }
     ],
     "firstAdvancement": "2014-04-30",
-    "latestAdvancement": "2021-10-16"
+    "latestAdvancement": "2021-10-16",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -20981,7 +21381,7 @@
    },
    "properties": {
     "Cluster": "MIUP-02",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Houghton",
     "ST": "MI",
     "aland": 1398883253,
@@ -20995,7 +21395,17 @@
      }
     ],
     "firstAdvancement": "2015-10-21",
-    "latestAdvancement": "2015-10-21"
+    "latestAdvancement": "2015-10-21",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21105,7 +21515,7 @@
    },
    "properties": {
     "Cluster": "OH-33",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Warren",
     "ST": "OH",
     "aland": 1058487159,
@@ -21119,7 +21529,17 @@
      }
     ],
     "firstAdvancement": "2015-10-12",
-    "latestAdvancement": "2015-10-12"
+    "latestAdvancement": "2015-10-12",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21461,7 +21881,7 @@
    },
    "properties": {
     "Cluster": "IN-05",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Hollow Reed (Bloomington)",
     "ST": "IN",
     "aland": 869615714,
@@ -21479,7 +21899,17 @@
      }
     ],
     "firstAdvancement": "2015-01-30",
-    "latestAdvancement": "2025-06-09"
+    "latestAdvancement": "2025-06-09",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21581,7 +22011,7 @@
    },
    "properties": {
     "Cluster": "MI-08",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Davison-Flint",
     "ST": "MI",
     "aland": 1649729500,
@@ -21603,7 +22033,17 @@
      }
     ],
     "firstAdvancement": "2014-04-30",
-    "latestAdvancement": "2023-05-14"
+    "latestAdvancement": "2023-05-14",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21685,7 +22125,7 @@
    },
    "properties": {
     "Cluster": "OH-30",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Greene and Clark Counties (Yellow Springs)",
     "ST": "OH",
     "aland": 1071562447,
@@ -21703,7 +22143,17 @@
      }
     ],
     "firstAdvancement": "2013-01-30",
-    "latestAdvancement": "2018-05-15"
+    "latestAdvancement": "2018-05-15",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -21925,7 +22375,7 @@
    },
    "properties": {
     "Cluster": "OH-27",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Wyandot",
     "ST": "OH",
     "aland": 1147867059,
@@ -21943,7 +22393,17 @@
      }
     ],
     "firstAdvancement": "2017-11-09",
-    "latestAdvancement": "2023-11-06"
+    "latestAdvancement": "2023-11-06",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22153,7 +22613,7 @@
    },
    "properties": {
     "Cluster": "OH-28",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Morrow",
     "ST": "OH",
     "aland": 1767343170,
@@ -22167,7 +22627,17 @@
      }
     ],
     "firstAdvancement": "2016-03-17",
-    "latestAdvancement": "2016-03-17"
+    "latestAdvancement": "2016-03-17",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22517,7 +22987,7 @@
    },
    "properties": {
     "Cluster": "MI-12",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "St Joseph/Benton Harbor Area",
     "ST": "MI",
     "aland": 2137349551,
@@ -22531,7 +23001,17 @@
      }
     ],
     "firstAdvancement": "2024-03-20",
-    "latestAdvancement": "2024-03-20"
+    "latestAdvancement": "2024-03-20",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -22733,7 +23213,7 @@
    },
    "properties": {
     "Cluster": "OH-01",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Emerald (Cuyahoga-Cleveland)",
     "ST": "OH",
     "aland": 1184014460,
@@ -22751,7 +23231,17 @@
      }
     ],
     "firstAdvancement": "2011-11-10",
-    "latestAdvancement": "2011-11-30"
+    "latestAdvancement": "2011-11-30",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23061,7 +23551,7 @@
    },
    "properties": {
     "Cluster": "MIUP-05",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Manistique",
     "ST": "MI",
     "aland": 2328606181,
@@ -23070,7 +23560,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -23992,7 +24492,7 @@
    },
    "properties": {
     "Cluster": "MIUP-01",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Bessemer",
     "ST": "MI",
     "aland": 3396305812,
@@ -24001,7 +24501,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -24907,7 +25417,7 @@
    },
    "properties": {
     "Cluster": "IN-14",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Cinci-Indiana",
     "ST": "IN",
     "aland": 790034484,
@@ -24916,7 +25426,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -24986,7 +25506,7 @@
    },
    "properties": {
     "Cluster": "MI-31",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Ionia Area",
     "ST": "MI",
     "aland": 1479671935,
@@ -24995,7 +25515,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -25113,7 +25643,7 @@
    },
    "properties": {
     "Cluster": "OH-14",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Stark Co",
     "ST": "OH",
     "aland": 1490089723,
@@ -25127,7 +25657,17 @@
      }
     ],
     "firstAdvancement": "2015-10-15",
-    "latestAdvancement": "2015-10-15"
+    "latestAdvancement": "2015-10-15",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -25453,7 +25993,7 @@
    },
    "properties": {
     "Cluster": "MI-05",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Tawas, Standish, West Branch Area",
     "ST": "MI",
     "aland": 1299615518,
@@ -25462,7 +26002,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -25780,7 +26330,7 @@
    },
    "properties": {
     "Cluster": "IN-09",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Terre Haute",
     "ST": "IN",
     "aland": 926109960,
@@ -25794,7 +26344,17 @@
      }
     ],
     "firstAdvancement": "2017-01-09",
-    "latestAdvancement": "2017-01-09"
+    "latestAdvancement": "2017-01-09",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26444,7 +27004,7 @@
    },
    "properties": {
     "Cluster": "MI-01",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "NE Michigan-Alpena Area",
     "ST": "MI",
     "aland": 1440763922,
@@ -26458,7 +27018,17 @@
      }
     ],
     "firstAdvancement": "2014-10-15",
-    "latestAdvancement": "2014-10-15"
+    "latestAdvancement": "2014-10-15",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26524,7 +27094,7 @@
    },
    "properties": {
     "Cluster": "MI-11",
-    "Group": "GR",
+    "Group": "EMI",
     "Cluster Na": "Lansing Area",
     "ST": "MI",
     "aland": 1466991661,
@@ -26542,7 +27112,17 @@
      }
     ],
     "firstAdvancement": "2011-11-30",
-    "latestAdvancement": "2015-07-09"
+    "latestAdvancement": "2015-07-09",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26688,7 +27268,7 @@
    },
    "properties": {
     "Cluster": "OH-10",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Lorain Co (Oberlin)",
     "ST": "OH",
     "aland": 1272000372,
@@ -26702,7 +27282,17 @@
      }
     ],
     "firstAdvancement": "2013-01-30",
-    "latestAdvancement": "2013-01-30"
+    "latestAdvancement": "2013-01-30",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -26972,7 +27562,7 @@
    },
    "properties": {
     "Cluster": "OH-09",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Astabula/Trumbull",
     "ST": "OH",
     "aland": 1818008351,
@@ -26980,7 +27570,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -27118,7 +27718,7 @@
    },
    "properties": {
     "Cluster": "OH-23",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Wood",
     "ST": "OH",
     "aland": 1598508434,
@@ -27132,7 +27732,17 @@
      }
     ],
     "firstAdvancement": "2017-02-13",
-    "latestAdvancement": "2017-02-13"
+    "latestAdvancement": "2017-02-13",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -27298,7 +27908,7 @@
    },
    "properties": {
     "Cluster": "IN-08",
-    "Group": "INDY",
+    "Group": "NIN",
     "Cluster Na": "Muncie",
     "ST": "IN",
     "aland": 427554634,
@@ -27312,7 +27922,17 @@
      }
     ],
     "firstAdvancement": "2015-03-26",
-    "latestAdvancement": "2015-03-26"
+    "latestAdvancement": "2015-03-26",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28058,7 +28678,7 @@
    },
    "properties": {
     "Cluster": "MIUP-04",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Marquette",
     "ST": "MI",
     "aland": 4683963838,
@@ -28076,7 +28696,17 @@
      }
     ],
     "firstAdvancement": "2014-10-15",
-    "latestAdvancement": "2022-05-31"
+    "latestAdvancement": "2022-05-31",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28278,7 +28908,7 @@
    },
    "properties": {
     "Cluster": "MI-14",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Falling Waters (Jackson/Hillsdale/Branch)",
     "ST": "MI",
     "aland": 1817308326,
@@ -28292,7 +28922,17 @@
      }
     ],
     "firstAdvancement": "2015-10-12",
-    "latestAdvancement": "2015-10-12"
+    "latestAdvancement": "2015-10-12",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28414,7 +29054,7 @@
    },
    "properties": {
     "Cluster": "OH-03",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Franklin Co (Columbus)",
     "ST": "OH",
     "aland": 1378855894,
@@ -28436,7 +29076,17 @@
      }
     ],
     "firstAdvancement": "2014-11-11",
-    "latestAdvancement": "2020-01-04"
+    "latestAdvancement": "2020-01-04",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28846,7 +29496,7 @@
    },
    "properties": {
     "Cluster": "IN-06",
-    "Group": "INDY",
+    "Group": "NIN",
     "Cluster Na": "Gary",
     "ST": "IN",
     "aland": 1082777920,
@@ -28860,7 +29510,17 @@
      }
     ],
     "firstAdvancement": "2015-03-13",
-    "latestAdvancement": "2015-03-13"
+    "latestAdvancement": "2015-03-13",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -28934,7 +29594,7 @@
    },
    "properties": {
     "Cluster": "OH-06",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Montgomery Co (Dayton)",
     "ST": "OH",
     "aland": 1195426527,
@@ -28952,7 +29612,17 @@
      }
     ],
     "firstAdvancement": "2011-11-11",
-    "latestAdvancement": "2011-11-30"
+    "latestAdvancement": "2011-11-30",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30050,7 +30720,7 @@
    },
    "properties": {
     "Cluster": "OH-18",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Appalachia I",
     "ST": "OH",
     "aland": 1352631187,
@@ -30064,7 +30734,17 @@
      }
     ],
     "firstAdvancement": "2016-01-03",
-    "latestAdvancement": "2016-01-03"
+    "latestAdvancement": "2016-01-03",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30126,7 +30806,7 @@
    },
    "properties": {
     "Cluster": "IN-01",
-    "Group": "INDY",
+    "Group": "SIN",
     "Cluster Na": "Indianapolis",
     "ST": "IN",
     "aland": 1026612130,
@@ -30148,7 +30828,17 @@
      }
     ],
     "firstAdvancement": "2011-11-11",
-    "latestAdvancement": "2025-05-15"
+    "latestAdvancement": "2025-05-15",
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30710,7 +31400,7 @@
    },
    "properties": {
     "Cluster": "OH-17",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Carroll",
     "ST": "OH",
     "aland": 1042034970,
@@ -30719,7 +31409,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -30997,7 +31697,7 @@
    },
    "properties": {
     "Cluster": "MI-03",
-    "Group": "GR",
+    "Group": "WMI",
     "Cluster Na": "Manistee/Newaygo Area",
     "ST": "MI",
     "aland": 1469857281,
@@ -31011,7 +31711,17 @@
      }
     ],
     "firstAdvancement": "2016-07-18",
-    "latestAdvancement": "2016-07-18"
+    "latestAdvancement": "2016-07-18",
+    "groupTimeline": [
+     {
+      "group": "GR",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "WMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31161,7 +31871,7 @@
    },
    "properties": {
     "Cluster": "IN-10",
-    "Group": "INDY",
+    "Group": "NIN",
     "Cluster Na": "Kokomo",
     "ST": "IN",
     "aland": 1067475977,
@@ -31170,7 +31880,17 @@
     "currentMilestone": "N",
     "timeline": [],
     "firstAdvancement": null,
-    "latestAdvancement": null
+    "latestAdvancement": null,
+    "groupTimeline": [
+     {
+      "group": "INDY",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NIN",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31360,7 +32080,7 @@
    },
    "properties": {
     "Cluster": "OH-29",
-    "Group": "CBUS",
+    "Group": "SOH",
     "Cluster Na": "Darke",
     "ST": "OH",
     "aland": 1549120893,
@@ -31378,7 +32098,17 @@
      }
     ],
     "firstAdvancement": "2016-01-03",
-    "latestAdvancement": "2023-06-10"
+    "latestAdvancement": "2023-06-10",
+    "groupTimeline": [
+     {
+      "group": "CBUS",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "SOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -31766,7 +32496,7 @@
    },
    "properties": {
     "Cluster": "OH-22",
-    "Group": "CLV",
+    "Group": "NOH",
     "Cluster Na": "Ottawa Co",
     "ST": "OH",
     "aland": 1272965337,
@@ -31780,7 +32510,17 @@
      }
     ],
     "firstAdvancement": "2015-10-15",
-    "latestAdvancement": "2015-10-15"
+    "latestAdvancement": "2015-10-15",
+    "groupTimeline": [
+     {
+      "group": "CLV",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "NOH",
+      "from": "2026-03-15"
+     }
+    ]
    }
   },
   {
@@ -32014,7 +32754,7 @@
    },
    "properties": {
     "Cluster": "OH-21",
-    "Group": "AA",
+    "Group": "EMI",
     "Cluster Na": "Williams",
     "ST": "OH",
     "aland": 1065649893,
@@ -32028,7 +32768,17 @@
      }
     ],
     "firstAdvancement": "2026-04-20",
-    "latestAdvancement": "2026-04-20"
+    "latestAdvancement": "2026-04-20",
+    "groupTimeline": [
+     {
+      "group": "AA",
+      "from": "2000-01-01"
+     },
+     {
+      "group": "EMI",
+      "from": "2026-03-15"
+     }
+    ]
    }
   }
  ],

@@ -1,14 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
+import { getGroupInfo } from "@/data/clusterGroups"
 import type { Milestone } from "@/data/milestoneLabels"
 import { milestoneColor } from "@/map/clusterColor"
 import { DraggableBox, type DraggablePosition } from "./DraggableBox"
 
-
 interface DraggableLegendProps {
-    groupKey: Exclude<ClusterGroup, "Unknown">
+    groupKey: string
     position: DraggablePosition
     onPositionChange: (position: DraggablePosition) => void
     containerRef: React.RefObject<HTMLDivElement | null>
@@ -35,7 +34,7 @@ export function DraggableLegend({
 }: DraggableLegendProps) {
     const [isClient, setIsClient] = useState(false)
 
-    const groupData = clusterGroups[groupKey]
+    const groupData = getGroupInfo(groupKey)
     const groupName = groupData.displayName
 
     // Ensure colors are computed on client (needs Canvas)
@@ -80,9 +79,20 @@ export function DraggableLegend({
             </div>
 
             {/* Milestone swatches */}
-            <div style={{ padding: pad, display: "flex", flexDirection: "column", gap: spacing }}>
+            <div
+                style={{
+                    padding: pad,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: spacing,
+                }}
+            >
                 {printMilestones.map(({ key, label }) => (
-                    <div key={key} className="flex items-center" style={{ gap }}>
+                    <div
+                        key={key}
+                        className="flex items-center"
+                        style={{ gap }}
+                    >
                         <div
                             className="border border-black flex-shrink-0"
                             style={{
@@ -98,7 +108,10 @@ export function DraggableLegend({
                                 WebkitPrintColorAdjust: "exact",
                             }}
                         />
-                        <span className="whitespace-nowrap" style={{ fontSize }}>
+                        <span
+                            className="whitespace-nowrap"
+                            style={{ fontSize }}
+                        >
                             {label}
                         </span>
                     </div>

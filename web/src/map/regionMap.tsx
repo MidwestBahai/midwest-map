@@ -190,7 +190,12 @@ export const RegionMap = ({
                 <MapProvider mapRef={mapRefState}>
                     {!printMode && <FloatingSearch features={features} />}
                     {/* County boundaries - only visible in print mode */}
-                    {printMode && <CountyBoundaries scope={scope} />}
+                    {printMode && (
+                        <CountyBoundaries
+                            scope={scope}
+                            currentDate={selectedDate}
+                        />
+                    )}
 
                     {/* Render in two passes to ensure symbols are always above fills */}
                     {/* Pass 1: Fill and line layers */}
@@ -206,7 +211,7 @@ export const RegionMap = ({
                             boldColors={isBold}
                             labelOptions={labelOptions}
                             renderMode="fill"
-                            visible={matchesScope(feature, scope)}
+                            visible={matchesScope(feature, scope, selectedDate)}
                         />
                     ))}
                     {/* Pass 2: Symbol/text layers (rendered after all fills) */}
@@ -225,7 +230,11 @@ export const RegionMap = ({
                                 boldColors={isBold}
                                 labelOptions={labelOptions}
                                 renderMode="symbol"
-                                visible={matchesScope(feature, scope)}
+                                visible={matchesScope(
+                                    feature,
+                                    scope,
+                                    selectedDate,
+                                )}
                                 printTextSize={printTextSize}
                             />
                         ))}

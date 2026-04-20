@@ -5,11 +5,11 @@ import { useSearchParams } from "next/navigation"
 import { Suspense, useState } from "react"
 import { DebugProvider } from "@/app/DebugContext"
 import { FloatingControls } from "@/components/FloatingControls"
-import type { LayerMode } from "@/map/types"
 import { FullScreenLinkButton } from "@/components/FullScreenLinkButton"
 import { CategoryHighlightProvider } from "@/map/categoryHighlightContext"
 import { FloatingMapKey } from "@/map/floatingMapKey"
 import { RegionMap } from "@/map/regionMap"
+import type { LayerMode } from "@/map/types"
 
 const queryClient = new QueryClient()
 
@@ -45,7 +45,9 @@ function ClientMainInner({
                     <Suspense>
                         <FullScreenLinkButton />
                     </Suspense>
-                    {layerMode !== "reference" && <FloatingMapKey />}
+                    {layerMode !== "reference" && (
+                        <FloatingMapKey currentDate={currentDate} />
+                    )}
                     <FloatingControls
                         mode="main"
                         currentDate={currentDate}

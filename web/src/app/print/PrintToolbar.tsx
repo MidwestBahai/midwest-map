@@ -2,7 +2,8 @@
 
 import { ChevronDown, ChevronUp, Clock, X } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useMemo, useState } from "react"
+import { groupingSchemes } from "@/data/clusterGroups"
 import { getTimelineBounds, useMilestoneEvents } from "@/lib/useMilestoneEvents"
 import { HorizontalTimeline } from "./HorizontalTimeline"
 import { PAPER_OPTIONS } from "./paperDimensions"
@@ -21,17 +22,37 @@ interface PrintToolbarProps {
     onPaperChange: (paper: string) => void
 }
 
-const SCOPE_OPTIONS = [
-    { key: "region", label: "Full Region" },
-    { key: "state-IN", label: "Indiana" },
-    { key: "state-MI", label: "Michigan" },
-    { key: "state-OH", label: "Ohio" },
-    { key: "group-CLV", label: "Cleveland Group" },
-    { key: "group-CBUS", label: "Columbus Group" },
-    { key: "group-GR", label: "Grand Rapids Group" },
-    { key: "group-INDY", label: "Indianapolis Group" },
-    { key: "group-AA", label: "Washtenaw Group" },
-] as const
+/** Build scope options: states + current scheme groups + legacy scheme groups */
+function buildScopeOptions(): Array<{ key: string; label: string }> {
+    const options: Array<{ key: string; label: string }> = [
+        { key: "region", label: "Full Region" },
+        { key: "state-IN", label: "Indiana" },
+        { key: "state-MI", label: "Michigan" },
+        { key: "state-OH", label: "Ohio" },
+    ]
+
+    // Latest scheme groups first (no suffix)
+    const latestScheme = groupingSchemes[groupingSchemes.length - 1]
+    for (const [code, info] of Object.entries(latestScheme.groups)) {
+        options.push({
+            key: `group-${code}`,
+            label: `${info.displayName} Group`,
+        })
+    }
+
+    // Older scheme groups with a suffix
+    for (const scheme of groupingSchemes) {
+        if (scheme === latestScheme) continue
+        for (const [code, info] of Object.entries(scheme.groups)) {
+            options.push({
+                key: `group-${code}`,
+                label: `${info.displayName} Group (${scheme.displayName})`,
+            })
+        }
+    }
+
+    return options
+}
 
 export function PrintToolbar({
     className = "",
@@ -48,6 +69,7 @@ export function PrintToolbar({
     const router = useRouter()
     const [isExpanded, setIsExpanded] = useState(true)
     const [showTimeline, setShowTimeline] = useState(initialShowTimeline)
+    const scopeOptions = useMemo(() => buildScopeOptions(), [])
 
     const handleToggleTimeline = () => {
         if (showTimeline) {
@@ -112,12 +134,10 @@ export function PrintToolbar({
                             <select
                                 id="scope-select"
                                 value={selectedScope}
-                                onChange={(e) =>
-                                    onScopeChange(e.target.value)
-                                }
+                                onChange={(e) => onScopeChange(e.target.value)}
                                 className="px-3 py-1.5 text-sm border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             >
-                                {SCOPE_OPTIONS.map(({ key, label }) => (
+                                {scopeOptions.map(({ key, label }) => (
                                     <option key={key} value={key}>
                                         {label}
                                     </option>
@@ -136,9 +156,7 @@ export function PrintToolbar({
                             <select
                                 id="paper-select"
                                 value={selectedPaper}
-                                onChange={(e) =>
-                                    onPaperChange(e.target.value)
-                                }
+                                onChange={(e) => onPaperChange(e.target.value)}
                                 className="px-3 py-1.5 text-sm border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             >
                                 {PAPER_OPTIONS.map(({ key, label }) => (

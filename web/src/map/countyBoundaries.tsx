@@ -1,6 +1,7 @@
 import type { Expression } from "mapbox-gl"
 import { useEffect, useMemo, useState } from "react"
 import { Layer, Source } from "react-map-gl/mapbox"
+import { matchesScope } from "@/lib/scopeFilter"
 
 // Style for county boundaries in print mode
 // Darker gray and wider line for better visibility in print
@@ -23,31 +24,12 @@ const COUNTY_LINE_WIDTH: Expression = [
 
 interface CountyBoundariesProps {
     scope?: string // "region" | "state-OH" | "group-AA" | etc.
-}
-
-/**
- * Check if a county matches the current scope filter.
- * Counties have clusterState and clusterGroup properties from the data pipeline.
- */
-function matchesCountyScope(feature: GeoJSON.Feature, scope: string): boolean {
-    if (scope === "region") return true
-
-    const props = feature.properties
-    if (!props) return false
-
-    if (scope.startsWith("state-")) {
-        const stateCode = scope.replace("state-", "")
-        return props.clusterState === stateCode
-    }
-    if (scope.startsWith("group-")) {
-        const groupCode = scope.replace("group-", "")
-        return props.clusterGroup === groupCode
-    }
-    return true
+    currentDate?: Date
 }
 
 export const CountyBoundaries = ({
     scope = "region",
+    currentDate,
 }: CountyBoundariesProps) => {
     const [countiesData, setCountiesData] =
         useState<GeoJSON.FeatureCollection | null>(null)
@@ -68,10 +50,10 @@ export const CountyBoundaries = ({
         return {
             ...countiesData,
             features: countiesData.features.filter((feature) =>
-                matchesCountyScope(feature, scope),
+                matchesScope(feature, scope, currentDate),
             ),
         } as GeoJSON.FeatureCollection
-    }, [scope, countiesData])
+    }, [scope, countiesData, currentDate])
 
     if (!filteredData) return null
 
