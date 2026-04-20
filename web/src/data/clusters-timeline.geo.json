@@ -32020,10 +32020,15 @@
     "aland": 1065649893,
     "M": "E",
     "population": 196616,
-    "currentMilestone": "N",
-    "timeline": [],
-    "firstAdvancement": null,
-    "latestAdvancement": null
+    "currentMilestone": "M1",
+    "timeline": [
+     {
+      "milestone": "M1",
+      "date": "2026-04-20"
+     }
+    ],
+    "firstAdvancement": "2026-04-20",
+    "latestAdvancement": "2026-04-20"
    }
   }
  ],
@@ -32481,6 +32486,6 @@
  },
  "timelineBounds": {
   "minDate": "2011-11-10",
-  "maxDate": "2026-04-14"
+  "maxDate": "2026-04-20"
  }
 }
