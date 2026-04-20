@@ -22,7 +22,6 @@ interface ClusterTextProps {
     printTextSize?: number
 }
 
-
 /**
  * Format advancement date responsively based on available width.
  * Returns null if no date or not enough space.

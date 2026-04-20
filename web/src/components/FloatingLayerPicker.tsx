@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
 import { Check } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import type { LayerMode } from "@/map/types"
 import { LAYER_MODES } from "@/map/types"
 import { FLOATING_ICON_CLASS } from "./FloatingButton"

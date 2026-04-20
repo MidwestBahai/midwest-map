@@ -13,16 +13,15 @@ import { PAPER_DIMENSIONS } from "./paperDimensions"
  * viewport (e.g. 2304px for a 24in-wide poster), because the browser lays
  * out the page at 96 CSS px per inch.
  */
-export function usePageSize(
-    paperId: string,
-    containerWidth?: number,
-) {
+export function usePageSize(paperId: string, containerWidth?: number) {
     useEffect(() => {
         const paper = PAPER_DIMENSIONS[paperId]
         if (!paper) return
 
         const styleId = "dynamic-page-size"
-        let styleEl = document.getElementById(styleId) as HTMLStyleElement | null
+        let styleEl = document.getElementById(
+            styleId,
+        ) as HTMLStyleElement | null
 
         if (!styleEl) {
             styleEl = document.createElement("style")

@@ -55,7 +55,7 @@ const makeDegreesToRem = (zoom: number) => {
     }
 }
 
-const INITIAL_MAP_CONTEXT: MapContextValue = {
+const _INITIAL_MAP_CONTEXT: MapContextValue = {
     map: undefined,
     degreesToRem: makeDegreesToRem(0),
     initialized: true,

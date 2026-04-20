@@ -95,7 +95,7 @@ export function HorizontalTimeline({
             const progress = (x - trackStartX) / trackWidth
             onDateChange(dateFromProgress(progress, startDate, endDate))
         },
-        [startDate, endDate, onDateChange, trackStartX, trackWidth],
+        [startDate, endDate, onDateChange, trackWidth],
     )
 
     // Use shared drag interaction hook

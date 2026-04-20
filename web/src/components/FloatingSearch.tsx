@@ -128,7 +128,9 @@ export const FloatingSearch = ({ features }: FloatingSearchProps) => {
                                 <span className="text-xs font-medium uppercase text-gray-400">
                                     {r.type}
                                 </span>
-                                <span className="whitespace-nowrap font-medium">{r.label}</span>
+                                <span className="whitespace-nowrap font-medium">
+                                    {r.label}
+                                </span>
                                 {r.matchContext && (
                                     <span className="text-xs text-blue-500">
                                         {r.matchContext}
