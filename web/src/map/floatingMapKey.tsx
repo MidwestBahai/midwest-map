@@ -9,7 +9,11 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { getActiveScheme, getGroupInfo } from "@/data/clusterGroups"
+import {
+    REGROUPING_DATE,
+    getActiveScheme,
+    getGroupInfo,
+} from "@/data/clusterGroups"
 import type { Milestone } from "@/data/milestoneLabels"
 import { BREAKPOINTS, TIMING } from "@/lib/constants"
 import { useLocalState } from "@/lib/useLocalState"
@@ -17,9 +21,17 @@ import { milestoneColor } from "@/map/clusterColor"
 import { useWindowSize } from "../lib/useWindowSize"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 
-const displayMilestones: Partial<Record<Milestone, string>> = {
+const allDisplayMilestones: Partial<Record<Milestone, string>> = {
     n: "No Program of Growth",
     e: "Emerging",
+    m1: "1st Milestone",
+    m2: "2nd Milestone",
+    m3: "3rd Milestone",
+    m3r: "Reservoir",
+}
+
+const postTransitionDisplayMilestones: Partial<Record<Milestone, string>> = {
+    n: "No Program of Growth",
     m1: "1st Milestone",
     m2: "2nd Milestone",
     m3: "3rd Milestone",
@@ -42,6 +54,13 @@ export const FloatingMapKey = ({ currentDate }: { currentDate: Date }) => {
     }, [clearCategoryHighlight, isOpen, setIsOpen])
     const isReallyOpen = isOpen && initialOpen
 
+    const displayMilestones = useMemo(
+        () =>
+            currentDate >= REGROUPING_DATE
+                ? postTransitionDisplayMilestones
+                : allDisplayMilestones,
+        [currentDate],
+    )
     const activeScheme = useMemo(
         () => getActiveScheme(currentDate),
         [currentDate],
@@ -97,7 +116,7 @@ export const FloatingMapKey = ({ currentDate }: { currentDate: Date }) => {
                     <div
                         className={`${isFullscreen ? "mx-4 mb-4" : "m-4"} grid`}
                         style={{
-                            gridTemplateColumns: "repeat(7, min-content)",
+                            gridTemplateColumns: `repeat(${Object.keys(displayMilestones).length + 1}, min-content)`,
                         }}
                     >
                         {objectEntries(displayMilestones).map(

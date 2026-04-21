@@ -12,6 +12,9 @@ export interface GroupingScheme {
     groups: Record<string, GroupInfo>
 }
 
+/** Date when the 2026 grouping scheme takes effect and Emerging merges into No PoG. */
+export const REGROUPING_DATE = new Date("2026-03-15")
+
 /** Ordered by effectiveDate ascending. */
 export const groupingSchemes: GroupingScheme[] = [
     {

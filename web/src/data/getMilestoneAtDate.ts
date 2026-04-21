@@ -1,3 +1,5 @@
+import { REGROUPING_DATE } from "./clusterGroups"
+
 export interface TimelineEntry {
     milestone: string
     date: string
@@ -33,9 +35,10 @@ export function getMilestoneAtDate(
         return entryDate.getTime() <= targetTime
     })
 
-    // Before any advancement, clusters start at Emerging
+    // Before any advancement, clusters start at Emerging (or "No PoG" after regrouping)
     if (applicableAdvancements.length === 0) {
-        return { milestone: "E", advancementDate: null }
+        const milestone = targetDate >= REGROUPING_DATE ? "N" : "E"
+        return { milestone, advancementDate: null }
     }
 
     // Return the most recent advancement's milestone
