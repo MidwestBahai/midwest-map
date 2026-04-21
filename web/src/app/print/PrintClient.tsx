@@ -12,7 +12,12 @@ import {
     useState,
 } from "react"
 import { DebugProvider } from "@/app/DebugContext"
-import { type ClusterGroup, clusterGroups } from "@/data/clusterGroups"
+import {
+    type ClusterGroup,
+    clusterGroups,
+    getActiveScheme,
+    getClusterGroupAtDate,
+} from "@/data/clusterGroups"
 import validatedData from "@/data/clusters-timeline.geo.json"
 import { TIMING } from "@/lib/constants"
 import { matchesScope } from "@/lib/scopeFilter"
@@ -43,14 +48,22 @@ const VIEW_STORAGE_KEY = "print-map-view"
 // Default legend positions as container percentages
 // These get converted to pixels on mount based on actual container size
 const defaultPositionsPercent: Record<
-    DisplayClusterGroup,
+    string,
     { xPercent: number; yPercent: number }
 > = {
+    // Legacy groups
     INDY: { xPercent: 3, yPercent: 15 }, // Indianapolis: left side, upper
     GR: { xPercent: 3, yPercent: 35 }, // Grand Rapids: left side, middle
     AA: { xPercent: 3, yPercent: 55 }, // Ann Arbor: left side, lower
     CLV: { xPercent: 85, yPercent: 15 }, // Cleveland: right side, upper
     CBUS: { xPercent: 85, yPercent: 45 }, // Columbus: right side, lower
+    // 2026 groups
+    NIN: { xPercent: 3, yPercent: 15 }, // Northern Indiana: left side, upper
+    SIN: { xPercent: 3, yPercent: 35 }, // Southern Indiana: left side, middle
+    WMI: { xPercent: 3, yPercent: 55 }, // Western Michigan: left side, lower
+    EMI: { xPercent: 3, yPercent: 75 }, // Eastern Michigan: left side, bottom
+    NOH: { xPercent: 85, yPercent: 15 }, // Northern Ohio: right side, upper
+    SOH: { xPercent: 85, yPercent: 45 }, // Southern Ohio: right side, lower
 }
 
 // Convert percentage positions to pixels based on container dimensions
@@ -60,10 +73,10 @@ function getDefaultPixelPositions(
 ): Record<DisplayClusterGroup, DraggablePosition> {
     const result = {} as Record<DisplayClusterGroup, DraggablePosition>
     for (const key of displayGroups) {
-        const { xPercent, yPercent } = defaultPositionsPercent[key]
+        const pos = defaultPositionsPercent[key] ?? { xPercent: 3, yPercent: 15 }
         result[key] = {
-            x: Math.round((xPercent / 100) * width),
-            y: Math.round((yPercent / 100) * height),
+            x: Math.round((pos.xPercent / 100) * width),
+            y: Math.round((pos.yPercent / 100) * height),
         }
     }
     return result
@@ -104,17 +117,21 @@ function getSubtitleForScope(scope: string): string | null {
 }
 
 /**
- * Get which cluster groups have visible clusters in the current scope
+ * Get which cluster groups have visible clusters in the current scope,
+ * using the date-aware group assignment.
  */
 function getVisibleGroups(
     features: Feature[],
     scope: string,
+    date: Date,
 ): Set<DisplayClusterGroup> {
+    const activeScheme = getActiveScheme(date)
+    const schemeGroups = new Set(Object.keys(activeScheme.groups))
     const visibleGroups = new Set<DisplayClusterGroup>()
     for (const feature of features) {
         if (matchesScope(feature, scope)) {
-            const group = feature.properties?.Group as string | undefined
-            if (group && displayGroups.includes(group as DisplayClusterGroup)) {
+            const group = getClusterGroupAtDate(feature.properties, date)
+            if (group && schemeGroups.has(group)) {
                 visibleGroups.add(group as DisplayClusterGroup)
             }
         }
@@ -184,12 +201,6 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
 
     // Scaled text size for map labels (proportional to container width)
     const printTextSize = Math.max(7, Math.min(16, Math.round(13 * uiScale)))
-
-    // Compute which groups are visible based on current scope
-    const visibleGroups = useMemo(
-        () => getVisibleGroups(allFeatures, selectedScope),
-        [selectedScope],
-    )
 
     // Compute subtitle for scope
     const subtitle = useMemo(
@@ -263,6 +274,12 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
     // Current date state - can be changed via timeline
     const [currentDate, setCurrentDate] = useState<Date>(
         isValidDate ? initialDate : new Date(),
+    )
+
+    // Compute which groups are visible based on current scope and date
+    const visibleGroups = useMemo(
+        () => getVisibleGroups(allFeatures, selectedScope, currentDate),
+        [selectedScope, currentDate],
     )
 
     const handleMapLoaded = useCallback(() => {

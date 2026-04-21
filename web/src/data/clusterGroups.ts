@@ -38,8 +38,8 @@ export const groupingSchemes: GroupingScheme[] = [
             SOH: { displayName: "Southern Ohio", baseHue: 320 },
             NIN: { displayName: "Northern Indiana", baseHue: 5 },
             SIN: { displayName: "Southern Indiana", baseHue: 200 },
-            WMI: { displayName: "West Michigan", baseHue: 260 },
-            EMI: { displayName: "East Michigan", baseHue: 95 },
+            WMI: { displayName: "Western Michigan", baseHue: 260 },
+            EMI: { displayName: "Eastern Michigan", baseHue: 95 },
         },
     },
 ]
