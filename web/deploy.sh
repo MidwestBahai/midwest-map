@@ -5,7 +5,15 @@
 #set -euo pipefail
 set -e
 
+BEFORE=$(git rev-parse HEAD)
 git pull
+AFTER=$(git rev-parse HEAD)
+
+if [ "$BEFORE" = "$AFTER" ]; then
+  echo "No changes — skipping build and deploy."
+  exit 0
+fi
+
 pnpm install
 pnpm build
 sudo cp -r out/* /var/www/html/map.midwestbahai.org
