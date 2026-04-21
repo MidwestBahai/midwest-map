@@ -8,7 +8,7 @@ import {
     getMilestoneAtDate,
     type TimelineEntry,
 } from "@/data/getMilestoneAtDate"
-import { matchesIncludingReservoir } from "@/data/milestoneLabels"
+import { isReservoir, matchesIncludingReservoir } from "@/data/milestoneLabels"
 import type { LatLongRect } from "@/lib/latLongRect"
 import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
 import { ClusterText } from "@/map/clusterText"
@@ -82,8 +82,14 @@ export const ClusterLayers = ({
     const { milestone: effectiveMilestone, advancementDate } =
         getMilestoneAtDate(initialMilestone, timeline, currentDate)
 
-    // Use effective milestone for display (lowercase for comparison)
-    const milestone = effectiveMilestone.toLowerCase()
+    // Preserve reservoir status from the M property — the timeline only tracks
+    // base milestones (M1/M2/M3), so reservoir suffixes would otherwise be lost
+    const rawM = (feature?.properties?.M || "").toLowerCase()
+    const baseEffective = effectiveMilestone.toLowerCase()
+    const milestone =
+        isReservoir(rawM) && rawM.replace("r", "") === baseEffective
+            ? rawM
+            : baseEffective
     const milestoneMatches = matchesIncludingReservoir(
         milestone,
         categoryHighlight.milestone,
@@ -140,7 +146,7 @@ export const ClusterLayers = ({
                                 "fill-color": clusterFillColor(
                                     feature.properties,
                                     highlighted,
-                                    effectiveMilestone,
+                                    milestone,
                                     useBoldColors,
                                     currentDate,
                                 ),
@@ -160,7 +166,7 @@ export const ClusterLayers = ({
                                     : clusterLineColor(
                                           feature.properties,
                                           highlighted,
-                                          effectiveMilestone,
+                                          milestone,
                                           false,
                                           currentDate,
                                       ),
@@ -181,7 +187,7 @@ export const ClusterLayers = ({
                     largestRect={largestRect}
                     feature={feature}
                     highlighted={highlighted}
-                    effectiveMilestone={effectiveMilestone}
+                    effectiveMilestone={milestone}
                     advancementDate={advancementDate}
                     printMode={printMode}
                     labelOptions={labelOptions}

@@ -13,7 +13,12 @@ export const reservoirs = ["m3r", "m2r"]
 
 export const isReservoir = (milestone: string) => reservoirs.includes(milestone)
 
+/** Does cluster milestone `a` match highlighted milestone `b`?
+ *  Reservoir clusters match both their base milestone and the reservoir category. */
 export const matchesIncludingReservoir = (a?: string, b?: string) =>
-    a && b && (a === b || (isReservoir(a) && isReservoir(b)))
+    a &&
+    b &&
+    (a === b ||
+        (isReservoir(a) && (isReservoir(b) || a.replace("r", "") === b)))
 
 export type Milestone = keyof typeof milestoneLabels
