@@ -216,13 +216,13 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
             loadFromStorage<Record<DisplayClusterGroup, DraggablePosition>>(
                 LEGEND_STORAGE_KEY,
             )
-        setLegendPositions(
-            stored ??
-                getDefaultPixelPositions(
-                    containerSize.width,
-                    containerSize.height,
-                ),
+        const defaults = getDefaultPixelPositions(
+            containerSize.width,
+            containerSize.height,
         )
+        // Merge so any groups added since the user's stored positions were saved
+        // (e.g. new 2026 groupings) fall back to defaults instead of undefined.
+        setLegendPositions(stored ? { ...defaults, ...stored } : defaults)
 
         const storedTitle =
             loadFromStorage<DraggablePosition>(TITLE_STORAGE_KEY)
@@ -238,8 +238,8 @@ function PrintMapInner({ mapboxAccessToken }: { mapboxAccessToken: string }) {
         if (storedView) {
             setViewState(storedView)
         } else {
-            const defaults = initialBounds(containerSize)
-            if (defaults) setViewState(defaults)
+            const defaultView = initialBounds(containerSize)
+            if (defaultView) setViewState(defaultView)
         }
     }, [containerSize]) // eslint-disable-line react-hooks/exhaustive-deps
 
