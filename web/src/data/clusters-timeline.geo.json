@@ -8956,15 +8956,19 @@
     "aland": 1148993902,
     "M": "M1",
     "population": 601557,
-    "currentMilestone": "M1",
+    "currentMilestone": "M2",
     "timeline": [
      {
       "milestone": "M1",
       "date": "2014-03-30"
+     },
+     {
+      "milestone": "M2",
+      "date": "2026-04-22"
      }
     ],
     "firstAdvancement": "2014-03-30",
-    "latestAdvancement": "2014-03-30",
+    "latestAdvancement": "2026-04-22",
     "groupTimeline": [
      {
       "group": "INDY",
@@ -33236,6 +33240,6 @@
  },
  "timelineBounds": {
   "minDate": "2011-11-10",
-  "maxDate": "2026-04-20"
+  "maxDate": "2026-04-22"
  }
 }
