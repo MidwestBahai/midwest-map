@@ -23223,7 +23223,7 @@
     "aland": 1184014460,
     "M": "M2R",
     "population": 1241475,
-    "currentMilestone": "M2",
+    "currentMilestone": "M3",
     "timeline": [
      {
       "milestone": "M1",
@@ -23232,10 +23232,14 @@
      {
       "milestone": "M2",
       "date": "2011-11-30"
+     },
+     {
+      "milestone": "M3",
+      "date": "2026-04-28"
      }
     ],
     "firstAdvancement": "2011-11-10",
-    "latestAdvancement": "2011-11-30",
+    "latestAdvancement": "2026-04-28",
     "groupTimeline": [
      {
       "group": "CLV",
@@ -33240,6 +33244,6 @@
  },
  "timelineBounds": {
   "minDate": "2011-11-10",
-  "maxDate": "2026-04-22"
+  "maxDate": "2026-04-28"
  }
 }
