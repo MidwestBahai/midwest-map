@@ -102,11 +102,65 @@ const CountiesIcon = () => (
     </svg>
 )
 
+// Text label in a county-like cell
+const CountyNamesIcon = () => (
+    <svg
+        aria-hidden="true"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={ICON_CLASS}
+    >
+        <rect x="2" y="2" width="20" height="20" rx="1" />
+        <line x1="7" y1="9" x2="17" y2="9" />
+        <line x1="12" y1="9" x2="12" y2="17" />
+    </svg>
+)
+
+const CheckboxItem = ({
+    icon,
+    label,
+    checked,
+    onChange,
+}: {
+    icon: React.ReactNode
+    label: string
+    checked: boolean
+    onChange: (checked: boolean) => void
+}) => (
+    <button
+        type="button"
+        role="menuitemcheckbox"
+        aria-checked={checked}
+        className={`flex items-center gap-3 w-full px-4 py-3 text-sm whitespace-nowrap transition-colors ${
+            checked
+                ? "bg-gray-100 text-gray-900 font-medium"
+                : "text-gray-600 hover:bg-gray-50"
+        }`}
+        onClick={() => onChange(!checked)}
+    >
+        {icon}
+        <span>{label}</span>
+        <span
+            className={`ml-auto transition-opacity ${checked ? "opacity-100" : "opacity-0"}`}
+        >
+            <Check className="w-4 h-4" />
+        </span>
+    </button>
+)
+
 interface FloatingLayerPickerProps {
     layerMode: LayerMode
     onLayerModeChange: (mode: LayerMode) => void
     showCountyBoundaries?: boolean
     onShowCountyBoundariesChange?: (show: boolean) => void
+    showCountyNames?: boolean
+    onShowCountyNamesChange?: (show: boolean) => void
 }
 
 export function FloatingLayerPicker({
@@ -114,6 +168,8 @@ export function FloatingLayerPicker({
     onLayerModeChange,
     showCountyBoundaries = false,
     onShowCountyBoundariesChange,
+    showCountyNames = false,
+    onShowCountyNamesChange,
 }: FloatingLayerPickerProps) {
     const [open, setOpen] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
@@ -192,33 +248,24 @@ export function FloatingLayerPicker({
                         </button>
                     )
                 })}
+                {(onShowCountyBoundariesChange || onShowCountyNamesChange) && (
+                    <div className="border-t border-gray-200" />
+                )}
                 {onShowCountyBoundariesChange && (
-                    <>
-                        <div className="border-t border-gray-200" />
-                        <button
-                            type="button"
-                            role="menuitemcheckbox"
-                            aria-checked={showCountyBoundaries}
-                            className={`flex items-center gap-3 w-full px-4 py-3 text-sm whitespace-nowrap transition-colors ${
-                                showCountyBoundaries
-                                    ? "bg-gray-100 text-gray-900 font-medium"
-                                    : "text-gray-600 hover:bg-gray-50"
-                            }`}
-                            onClick={() =>
-                                onShowCountyBoundariesChange(
-                                    !showCountyBoundaries,
-                                )
-                            }
-                        >
-                            <CountiesIcon />
-                            <span>Counties</span>
-                            <span
-                                className={`ml-auto transition-opacity ${showCountyBoundaries ? "opacity-100" : "opacity-0"}`}
-                            >
-                                <Check className="w-4 h-4" />
-                            </span>
-                        </button>
-                    </>
+                    <CheckboxItem
+                        icon={<CountiesIcon />}
+                        label="Counties"
+                        checked={showCountyBoundaries}
+                        onChange={onShowCountyBoundariesChange}
+                    />
+                )}
+                {onShowCountyNamesChange && (
+                    <CheckboxItem
+                        icon={<CountyNamesIcon />}
+                        label="County names"
+                        checked={showCountyNames}
+                        onChange={onShowCountyNamesChange}
+                    />
                 )}
             </div>
 

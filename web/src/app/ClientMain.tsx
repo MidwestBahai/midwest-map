@@ -30,6 +30,7 @@ function ClientMainInner({
     const [layerMode, setLayerMode] = useState<LayerMode>("clusters")
     // Intentionally not persisted — resets to off on each visit
     const [showCountyBoundaries, setShowCountyBoundaries] = useState(false)
+    const [showCountyNames, setShowCountyNames] = useState(false)
     const [currentDate, setCurrentDate] = useState<Date>(
         isValidDate ? initialDate : new Date(),
     )
@@ -42,6 +43,7 @@ function ClientMainInner({
                         mapboxAccessToken={mapboxAccessToken}
                         layerMode={layerMode}
                         showCountyBoundaries={showCountyBoundaries}
+                        showCountyNames={showCountyNames}
                         currentDate={currentDate}
                         onDateChange={setCurrentDate}
                     />
@@ -59,6 +61,8 @@ function ClientMainInner({
                         onLayerModeChange={setLayerMode}
                         showCountyBoundaries={showCountyBoundaries}
                         onShowCountyBoundariesChange={setShowCountyBoundaries}
+                        showCountyNames={showCountyNames}
+                        onShowCountyNamesChange={setShowCountyNames}
                         initialTimelineOpen={Boolean(dateParam && isValidDate)}
                     />
                 </CategoryHighlightProvider>

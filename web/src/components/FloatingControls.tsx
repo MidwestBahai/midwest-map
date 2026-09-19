@@ -17,6 +17,8 @@ interface FloatingControlsProps {
     onLayerModeChange?: (mode: LayerMode) => void
     showCountyBoundaries?: boolean
     onShowCountyBoundariesChange?: (show: boolean) => void
+    showCountyNames?: boolean
+    onShowCountyNamesChange?: (show: boolean) => void
     initialTimelineOpen?: boolean
 }
 
@@ -28,6 +30,8 @@ export const FloatingControls = ({
     onLayerModeChange,
     showCountyBoundaries = false,
     onShowCountyBoundariesChange,
+    showCountyNames = false,
+    onShowCountyNamesChange,
     initialTimelineOpen = false,
 }: FloatingControlsProps) => {
     const router = useRouter()
@@ -66,6 +70,8 @@ export const FloatingControls = ({
                     onLayerModeChange={onLayerModeChange}
                     showCountyBoundaries={showCountyBoundaries}
                     onShowCountyBoundariesChange={onShowCountyBoundariesChange}
+                    showCountyNames={showCountyNames}
+                    onShowCountyNamesChange={onShowCountyNamesChange}
                 />
             )}
 

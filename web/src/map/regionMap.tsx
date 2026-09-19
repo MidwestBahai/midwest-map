@@ -35,6 +35,8 @@ export interface RegionMapProps {
     printMode?: boolean
     // Show county boundary lines as an overlay (always on in print mode)
     showCountyBoundaries?: boolean
+    // Show county name labels (screen mode only for now)
+    showCountyNames?: boolean
     initialDate?: Date
     onMapLoaded?: () => void
     // For controlled mode (when parent manages date state)
@@ -58,6 +60,7 @@ export const RegionMap = ({
     layerMode = "clusters",
     printMode = false,
     showCountyBoundaries = false,
+    showCountyNames = false,
     initialDate,
     onMapLoaded,
     currentDate: controlledDate,
@@ -224,12 +227,18 @@ export const RegionMap = ({
                         The component inserts itself beneath the first label
                         layer (see CountyBoundaries) since mount order alone
                         would put it on top of everything. */}
-                    {!printMode && showCountyBoundaries && (
-                        <CountyBoundaries
-                            scope={scope}
-                            currentDate={selectedDate}
-                        />
-                    )}
+                    {!printMode &&
+                        (showCountyBoundaries || showCountyNames) && (
+                            <CountyBoundaries
+                                scope={scope}
+                                currentDate={selectedDate}
+                                showLines={showCountyBoundaries}
+                                showNames={showCountyNames}
+                                clusterFeatures={
+                                    isReference ? undefined : features
+                                }
+                            />
+                        )}
                     {/* Pass 2: Symbol/text layers (rendered after all fills) */}
                     {!isReference &&
                         features.map((feature) => (
