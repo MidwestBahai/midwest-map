@@ -3,14 +3,12 @@ import type { Expression } from "mapbox-gl"
 import { Layer, Source } from "react-map-gl/mapbox"
 import { useDebug } from "@/app/DebugContext"
 import type { LabelOptions } from "@/app/print/types"
-import { getClusterGroupAtDate } from "@/data/clusterGroups"
-import {
-    getMilestoneAtDate,
-    type TimelineEntry,
-} from "@/data/getMilestoneAtDate"
-import { isReservoir, matchesIncludingReservoir } from "@/data/milestoneLabels"
 import type { LatLongRect } from "@/lib/latLongRect"
 import { clusterFillColor, clusterLineColor } from "@/map/clusterColor"
+import {
+    effectiveClusterMilestone,
+    isClusterHighlighted,
+} from "@/map/clusterHighlight"
 import { ClusterText } from "@/map/clusterText"
 import { RectangleLayer } from "@/map/rectangleLayer"
 import { useCategoryHighlight } from "./categoryHighlightContext"
@@ -69,41 +67,21 @@ export const ClusterLayers = ({
 }) => {
     const { showMapGeometry } = useDebug()
     const { categoryHighlight } = useCategoryHighlight()
-    const clusterGroup = getClusterGroupAtDate(feature?.properties, currentDate)
-
     // Use cluster code for stable layer IDs (avoids issues when filtering changes indices)
     const clusterCode = feature?.properties?.Cluster ?? "unknown"
 
-    // Calculate milestone at the current date from timeline data
-    const initialMilestone = `${feature?.properties?.M || "N"}`
-    const timeline = feature?.properties?.timeline as
-        | TimelineEntry[]
-        | undefined
-    const { milestone: effectiveMilestone, advancementDate } =
-        getMilestoneAtDate(initialMilestone, timeline, currentDate)
-
-    // Preserve reservoir status from the M property — the timeline only tracks
-    // base milestones (M1/M2/M3), so reservoir suffixes would otherwise be lost
-    const rawM = (feature?.properties?.M || "").toLowerCase()
-    const baseEffective = effectiveMilestone.toLowerCase()
-    const milestone =
-        isReservoir(rawM) && rawM.replace("r", "") === baseEffective
-            ? rawM
-            : baseEffective
-    const milestoneMatches = matchesIncludingReservoir(
-        milestone,
-        categoryHighlight.milestone,
+    // Milestone at the current date from timeline data
+    const { milestone, advancementDate } = effectiveClusterMilestone(
+        feature,
+        currentDate,
     )
-    const highlighted =
-        // specific cluster is hovered
-        feature?.properties?.Cluster === hoverFeature?.properties?.Cluster ||
-        // both milestone & grouping are highlighted
-        (clusterGroup === categoryHighlight.clusterGroup && milestoneMatches) ||
-        // only milestone is highlighted
-        (!categoryHighlight.clusterGroup && milestoneMatches) ||
-        // only grouping is highlighted
-        (!categoryHighlight.milestone &&
-            clusterGroup === categoryHighlight.clusterGroup)
+    const highlighted = isClusterHighlighted(
+        feature,
+        milestone,
+        currentDate,
+        hoverFeature,
+        categoryHighlight,
+    )
     const fillLayerId = `cluster-${clusterCode}`
     const symbolLayerId = `symbol-${clusterCode}`
 
@@ -202,7 +180,7 @@ export const ClusterLayers = ({
                     color={clusterFillColor(
                         feature.properties,
                         true,
-                        effectiveMilestone,
+                        milestone,
                         useBoldColors,
                         currentDate,
                     )}

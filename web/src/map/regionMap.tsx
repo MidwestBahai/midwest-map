@@ -237,6 +237,7 @@ export const RegionMap = ({
                                 clusterFeatures={
                                     isReference ? undefined : features
                                 }
+                                hoverFeature={hoverFeature}
                             />
                         )}
                     {/* Pass 2: Symbol/text layers (rendered after all fills) */}

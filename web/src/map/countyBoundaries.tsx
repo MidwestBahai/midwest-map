@@ -3,12 +3,13 @@ import type { Feature } from "geojson"
 import type { Expression } from "mapbox-gl"
 import { useEffect, useMemo, useState } from "react"
 import { Layer, Source } from "react-map-gl/mapbox"
-import {
-    getMilestoneAtDate,
-    type TimelineEntry,
-} from "@/data/getMilestoneAtDate"
 import { matchesScope } from "@/lib/scopeFilter"
+import { useCategoryHighlight } from "@/map/categoryHighlightContext"
 import { clusterLabelColor } from "@/map/clusterColor"
+import {
+    effectiveClusterMilestone,
+    isClusterHighlighted,
+} from "@/map/clusterHighlight"
 import { useMap } from "@/map/mapContext"
 
 // Print mode: darker gray and higher opacity for visibility on paper
@@ -36,7 +37,8 @@ const COUNTY_LINE_WIDTH: Expression = [
 // County name labels: small, quiet, uppercase so they read as a different
 // kind of thing than cluster labels. Each label takes the same light/dark
 // color as its cluster's label so it stays legible over the darker milestone
-// fills. Hidden when zoomed out to the region overview.
+// fills, and flips along with it when the cluster is highlighted (hovered or
+// picked from the map key). Hidden when zoomed out to the region overview.
 const NAME_MIN_ZOOM = 6.5
 const NAME_TEXT_SIZE: Expression = [
     "interpolate",
@@ -59,6 +61,8 @@ interface CountyBoundariesProps {
     // Cluster features, used to pick a light or dark label color per county
     // from the fill it sits on. Omit when cluster fills aren't drawn.
     clusterFeatures?: Feature[]
+    // Hovered cluster, whose fill lightens so its labels turn dark
+    hoverFeature?: Feature
 }
 
 export const CountyBoundaries = ({
@@ -68,6 +72,7 @@ export const CountyBoundaries = ({
     showLines = true,
     showNames = false,
     clusterFeatures,
+    hoverFeature,
 }: CountyBoundariesProps) => {
     const [countiesData, setCountiesData] =
         useState<GeoJSON.FeatureCollection | null>(null)
@@ -78,6 +83,7 @@ export const CountyBoundaries = ({
     // readable. In print mode it mounts first and belongs at the bottom.
     const [beforeId, setBeforeId] = useState<string | undefined>(undefined)
     const { map } = useMap()
+    const { categoryHighlight } = useCategoryHighlight()
 
     useEffect(() => {
         import("@/data/counties.geo.json").then((mod) => {
@@ -113,23 +119,6 @@ export const CountyBoundaries = ({
     const labelPoints = useMemo(() => {
         if (!filteredData || !showNames) return null
 
-        // Label color per cluster, matching clusterText's light/dark choice
-        // for the milestone in effect at the current date.
-        const date = currentDate ?? new Date()
-        const colorByCluster = new Map<string, string>()
-        for (const cluster of clusterFeatures ?? []) {
-            const props = cluster.properties
-            const { milestone } = getMilestoneAtDate(
-                `${props?.M || "N"}`,
-                props?.timeline as TimelineEntry[] | undefined,
-                date,
-            )
-            colorByCluster.set(
-                props?.Cluster,
-                clusterLabelColor(props, false, milestone),
-            )
-        }
-
         return {
             type: "FeatureCollection",
             features: filteredData.features.map((feature) => ({
@@ -137,13 +126,39 @@ export const CountyBoundaries = ({
                 geometry: pointOnFeature(feature as GeoJSON.Feature).geometry,
                 properties: {
                     name: feature.properties?.NAME,
-                    color:
-                        colorByCluster.get(feature.properties?.clusterCode) ??
-                        "black",
+                    clusterCode: feature.properties?.clusterCode,
                 },
             })),
         } as GeoJSON.FeatureCollection
-    }, [filteredData, showNames, clusterFeatures, currentDate])
+    }, [filteredData, showNames])
+
+    // Label color per cluster, matching clusterText's light/dark choice for
+    // the milestone in effect at the current date and the highlight state.
+    // Built as a paint expression so hovering only restyles the layer rather
+    // than regenerating the label geometry.
+    const labelColor = useMemo((): Expression => {
+        const date = currentDate ?? new Date()
+        const colorByCluster: Array<string> = []
+        for (const cluster of clusterFeatures ?? []) {
+            const code = cluster.properties?.Cluster
+            if (!code) continue
+            const { milestone } = effectiveClusterMilestone(cluster, date)
+            const highlighted = isClusterHighlighted(
+                cluster,
+                milestone,
+                date,
+                hoverFeature,
+                categoryHighlight,
+            )
+            colorByCluster.push(
+                code,
+                clusterLabelColor(cluster.properties, highlighted, milestone),
+            )
+        }
+        // match needs at least one branch; fall through to black otherwise
+        if (colorByCluster.length === 0) return ["literal", "black"]
+        return ["match", ["get", "clusterCode"], ...colorByCluster, "black"]
+    }, [clusterFeatures, currentDate, hoverFeature, categoryHighlight])
 
     if (!filteredData) return null
 
@@ -169,7 +184,7 @@ export const CountyBoundaries = ({
                             "text-padding": 4,
                         }}
                         paint={{
-                            "text-color": ["get", "color"],
+                            "text-color": labelColor,
                         }}
                     />
                 </Source>
