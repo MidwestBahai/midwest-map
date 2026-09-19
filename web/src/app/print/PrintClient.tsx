@@ -73,7 +73,10 @@ function getDefaultPixelPositions(
 ): Record<DisplayClusterGroup, DraggablePosition> {
     const result = {} as Record<DisplayClusterGroup, DraggablePosition>
     for (const key of displayGroups) {
-        const pos = defaultPositionsPercent[key] ?? { xPercent: 3, yPercent: 15 }
+        const pos = defaultPositionsPercent[key] ?? {
+            xPercent: 3,
+            yPercent: 15,
+        }
         result[key] = {
             x: Math.round((pos.xPercent / 100) * width),
             y: Math.round((pos.yPercent / 100) * height),

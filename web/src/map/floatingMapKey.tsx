@@ -10,9 +10,9 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import {
-    REGROUPING_DATE,
     getActiveScheme,
     getGroupInfo,
+    REGROUPING_DATE,
 } from "@/data/clusterGroups"
 import type { Milestone } from "@/data/milestoneLabels"
 import { BREAKPOINTS, TIMING } from "@/lib/constants"
