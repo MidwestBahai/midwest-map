@@ -15,6 +15,8 @@ interface FloatingControlsProps {
     onDateChange: (date: Date) => void
     layerMode?: LayerMode
     onLayerModeChange?: (mode: LayerMode) => void
+    showCountyBoundaries?: boolean
+    onShowCountyBoundariesChange?: (show: boolean) => void
     initialTimelineOpen?: boolean
 }
 
@@ -24,6 +26,8 @@ export const FloatingControls = ({
     onDateChange,
     layerMode = "clusters",
     onLayerModeChange,
+    showCountyBoundaries = false,
+    onShowCountyBoundariesChange,
     initialTimelineOpen = false,
 }: FloatingControlsProps) => {
     const router = useRouter()
@@ -60,6 +64,8 @@ export const FloatingControls = ({
                 <FloatingLayerPicker
                     layerMode={layerMode}
                     onLayerModeChange={onLayerModeChange}
+                    showCountyBoundaries={showCountyBoundaries}
+                    onShowCountyBoundariesChange={onShowCountyBoundariesChange}
                 />
             )}
 

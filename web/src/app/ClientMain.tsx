@@ -28,6 +28,8 @@ function ClientMainInner({
     const isValidDate = !Number.isNaN(initialDate.getTime())
 
     const [layerMode, setLayerMode] = useState<LayerMode>("clusters")
+    // Intentionally not persisted — resets to off on each visit
+    const [showCountyBoundaries, setShowCountyBoundaries] = useState(false)
     const [currentDate, setCurrentDate] = useState<Date>(
         isValidDate ? initialDate : new Date(),
     )
@@ -39,6 +41,7 @@ function ClientMainInner({
                     <RegionMap
                         mapboxAccessToken={mapboxAccessToken}
                         layerMode={layerMode}
+                        showCountyBoundaries={showCountyBoundaries}
                         currentDate={currentDate}
                         onDateChange={setCurrentDate}
                     />
@@ -54,6 +57,8 @@ function ClientMainInner({
                         onDateChange={setCurrentDate}
                         layerMode={layerMode}
                         onLayerModeChange={setLayerMode}
+                        showCountyBoundaries={showCountyBoundaries}
+                        onShowCountyBoundariesChange={setShowCountyBoundaries}
                         initialTimelineOpen={Boolean(dateParam && isValidDate)}
                     />
                 </CategoryHighlightProvider>

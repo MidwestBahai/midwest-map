@@ -33,6 +33,8 @@ export interface RegionMapProps {
     layerMode?: LayerMode
     // Print mode is separate from layer modes (used by /print route)
     printMode?: boolean
+    // Show county boundary lines as an overlay (always on in print mode)
+    showCountyBoundaries?: boolean
     initialDate?: Date
     onMapLoaded?: () => void
     // For controlled mode (when parent manages date state)
@@ -55,6 +57,7 @@ export const RegionMap = ({
     mapboxAccessToken,
     layerMode = "clusters",
     printMode = false,
+    showCountyBoundaries = false,
     initialDate,
     onMapLoaded,
     currentDate: controlledDate,
@@ -189,11 +192,14 @@ export const RegionMap = ({
             >
                 <MapProvider mapRef={mapRefState}>
                     {!printMode && <FloatingSearch features={features} />}
-                    {/* County boundaries - only visible in print mode */}
+                    {/* Print mode: county boundaries mount first. The empty
+                        basemap has nothing beneath them and cluster fills are
+                        fully transparent, so they show through. */}
                     {printMode && (
                         <CountyBoundaries
                             scope={scope}
                             currentDate={selectedDate}
+                            printMode
                         />
                     )}
 
@@ -214,6 +220,16 @@ export const RegionMap = ({
                             visible={matchesScope(feature, scope, selectedDate)}
                         />
                     ))}
+                    {/* Screen mode: county boundaries draw above the fills.
+                        The component inserts itself beneath the first label
+                        layer (see CountyBoundaries) since mount order alone
+                        would put it on top of everything. */}
+                    {!printMode && showCountyBoundaries && (
+                        <CountyBoundaries
+                            scope={scope}
+                            currentDate={selectedDate}
+                        />
+                    )}
                     {/* Pass 2: Symbol/text layers (rendered after all fills) */}
                     {!isReference &&
                         features.map((feature) => (

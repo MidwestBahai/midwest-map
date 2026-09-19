@@ -80,14 +80,40 @@ const LAYER_MODE_OPTIONS: Record<
     bold: { icon: <StatusIcon />, label: "Clusters" },
 }
 
+// Grid of county-like cells
+const CountiesIcon = () => (
+    <svg
+        aria-hidden="true"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={ICON_CLASS}
+    >
+        <rect x="2" y="2" width="20" height="20" rx="1" />
+        <line x1="2" y1="9" x2="22" y2="9" />
+        <line x1="2" y1="16" x2="13" y2="16" />
+        <line x1="9" y1="2" x2="9" y2="16" />
+        <line x1="16" y1="9" x2="16" y2="22" />
+    </svg>
+)
+
 interface FloatingLayerPickerProps {
     layerMode: LayerMode
     onLayerModeChange: (mode: LayerMode) => void
+    showCountyBoundaries?: boolean
+    onShowCountyBoundariesChange?: (show: boolean) => void
 }
 
 export function FloatingLayerPicker({
     layerMode,
     onLayerModeChange,
+    showCountyBoundaries = false,
+    onShowCountyBoundariesChange,
 }: FloatingLayerPickerProps) {
     const [open, setOpen] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
@@ -166,6 +192,34 @@ export function FloatingLayerPicker({
                         </button>
                     )
                 })}
+                {onShowCountyBoundariesChange && (
+                    <>
+                        <div className="border-t border-gray-200" />
+                        <button
+                            type="button"
+                            role="menuitemcheckbox"
+                            aria-checked={showCountyBoundaries}
+                            className={`flex items-center gap-3 w-full px-4 py-3 text-sm whitespace-nowrap transition-colors ${
+                                showCountyBoundaries
+                                    ? "bg-gray-100 text-gray-900 font-medium"
+                                    : "text-gray-600 hover:bg-gray-50"
+                            }`}
+                            onClick={() =>
+                                onShowCountyBoundariesChange(
+                                    !showCountyBoundaries,
+                                )
+                            }
+                        >
+                            <CountiesIcon />
+                            <span>Counties</span>
+                            <span
+                                className={`ml-auto transition-opacity ${showCountyBoundaries ? "opacity-100" : "opacity-0"}`}
+                            >
+                                <Check className="w-4 h-4" />
+                            </span>
+                        </button>
+                    </>
+                )}
             </div>
 
             {/* Trigger button */}
