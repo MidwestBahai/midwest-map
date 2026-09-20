@@ -17,7 +17,7 @@
     "merge-timeline": "node out-scripts/src/script/MergeAdvancementData.js",
     "map-counties": "node out-scripts/src/script/MapCountiesToClusters.js",
     "merge-groupings": "node out-scripts/src/script/MergeGroupings.js",
-    "prepare-data": "pnpm compile-importer && pnpm import-shapefiles && pnpm import-counties && pnpm merge-timeline && pnpm merge-groupings && pnpm map-counties"
+    "prepare-data": "pnpm compile-importer && pnpm import-shapefiles && pnpm import-counties && pnpm merge-timeline && pnpm merge-groupings && pnpm map-counties && biome format --write src/data/clusterCounties.ts"
   },
   "dependencies": {
     "@loaders.gl/core": "^4.5.1",
