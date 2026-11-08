@@ -1,5 +1,6 @@
 "use client"
 
+import type { Feature } from "geojson"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react"
 import { objectEntries, objectKeys } from "ts-extras"
@@ -14,10 +15,15 @@ import {
     getGroupInfo,
     REGROUPING_DATE,
 } from "@/data/clusterGroups"
+import clusterData from "@/data/clusters-timeline.geo.json"
 import type { Milestone } from "@/data/milestoneLabels"
 import { BREAKPOINTS, TIMING } from "@/lib/constants"
 import { useLocalState } from "@/lib/useLocalState"
 import { milestoneColor } from "@/map/clusterColor"
+import {
+    effectiveClusterMilestone,
+    isClusterHighlighted,
+} from "@/map/clusterHighlight"
 import { useWindowSize } from "../lib/useWindowSize"
 import { useCategoryHighlight } from "./categoryHighlightContext"
 
@@ -65,6 +71,20 @@ export const FloatingMapKey = ({ currentDate }: { currentDate: Date }) => {
         () => getActiveScheme(currentDate),
         [currentDate],
     )
+    const highlightedClusterCount = useMemo(() => {
+        const features = clusterData.features as Feature[]
+        if (!categoryHighlight.milestone && !categoryHighlight.clusterGroup)
+            return features.length
+        return features.filter((f) =>
+            isClusterHighlighted(
+                f,
+                effectiveClusterMilestone(f, currentDate).milestone,
+                currentDate,
+                undefined,
+                categoryHighlight,
+            ),
+        ).length
+    }, [categoryHighlight, currentDate])
     const displayClusterGroups = useMemo(
         () => Object.entries(activeScheme.groups),
         [activeScheme],
@@ -173,6 +193,14 @@ export const FloatingMapKey = ({ currentDate }: { currentDate: Date }) => {
                     tabIndex={0}
                 >
                     <h2 className="text-lg font-semibold">Map Key</h2>
+                    {isReallyOpen && (
+                        <span
+                            className="ml-auto mr-2 text-sm text-gray-600 tabular-nums"
+                            aria-live="polite"
+                        >
+                            {highlightedClusterCount} clusters
+                        </span>
+                    )}
                     <CollapsibleTrigger asChild>
                         <Button variant="ghost" size="sm" className="w-9 p-0">
                             {isReallyOpen ? (
